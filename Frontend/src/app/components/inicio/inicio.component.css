@@ -1,0 +1,46 @@
+.main{
+    background-image: url('../../../../public/assets/fondo-inicio.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-1, .circle-2, .circle-3, .circle-4{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px; /* Centra el círculo y añade margen inferior */
+    position: relative; /* Para posicionar el círculo encima del texto */
+    z-index: 1; /* Asegura que el círculo esté encima del texto */
+    cursor: pointer;
+}
+
+.rectangulo{
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-top: -50px; /* Ajusta la posición para que el círculo esté encima */
+    position: relative; /* Para posicionar el rectángulo debajo del círculo */
+    z-index: 0; /* Asegura que el rectángulo esté debajo del círculo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #1E222B;
+    font-weight: bold;
+    font-size: 20px;
+}
+.icon{
+    color: white;
+    font-size: 2.2rem;
+}
+.texto{
+    font-size: 1.2rem;
+}

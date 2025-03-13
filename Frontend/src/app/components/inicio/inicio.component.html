@@ -1,0 +1,46 @@
+<div class="main">
+    <section class="container p-5">
+        <h1 class="text-center">¿Qué puedes <strong>hacer</strong> con <strong>nuestra app</strong>?</h1>
+        <p class=" text-center text-secondary texto">Podrás ahorrar tiempo y dinero al realizar tus recetas y reducirás el desperdicio de alimentos
+            al tener nuestra app para crear o modificar tus platos y un control total de tu inventario.
+        </p>
+        <div class="row  justify-content-center my-5">
+            <!-- primer elemento -->
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="circle-1"  (click)="openModal('stock')" data-bs-toggle="modal" data-bs-target="#flavouryModal" style="background-color: #F18C57;">
+                    <i class="fa-solid fa-cubes-stacked icon"></i> 
+                </div>
+                <p class="rectangulo" style="color: #F18C57;">Gestión de stock</p>
+            </div>
+            
+            <!-- segundo elemento -->
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="circle-2" (click)="openModal('recetas')" data-bs-toggle="modal" data-bs-target="#flavouryModal" style="background-color:#ED7557">
+                    <i class="fa-solid fa-receipt icon"></i>
+                </div>
+                <p class="rectangulo" style="color: #ED7557;">Recetas inteligentes</p>
+            </div>
+            <!-- tercero elemento -->
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="circle-3" (click)="openModal('registro')" data-bs-toggle="modal" data-bs-target="#flavouryModal" style=" background-color: #579E82;">
+                    <i class="fa-solid fa-list-check icon"></i>
+                </div>
+                <p class="rectangulo" style="color: #579E82;">Registro de productos</p>
+            </div>
+
+            <!-- cuarto elemento -->
+            <div class="col-md-6 col-xl-3 mb-4">
+                <div class="circle-4" (click)="openModal('alertas')" data-bs-toggle="modal" data-bs-target="#flavouryModal" style="background-color: #62C49A;">
+                    <i class="fa-solid fa-bell icon"></i>
+                </div>
+                <p class="rectangulo"  style="color: #62C49A;">Alertas</p>
+            </div>
+
+            <!-- componente de modal -->
+            <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent"></app-modal>
+
+        </div>
+
+    </section>
+</div>
+

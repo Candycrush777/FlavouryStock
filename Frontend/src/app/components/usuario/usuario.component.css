@@ -1,0 +1,69 @@
+.fondo-pantalla{
+    background-image: url('../../../../public/assets/fondo-inicio.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.fondo{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
+.segundo{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.texto{
+    color: white;
+    width: 450px;
+    font-weight: bolder;
+    padding: 10px;
+}
+.link1, .link2{
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.cuadrado1 {
+    background-color: rgba(255,255,255,0.7);
+    padding: 40px;
+    border: 4px solid #62C49A;
+    border-radius: 15px;
+}
+
+.cuadrado3{
+    background-color: rgba(255,255,255,0.7);
+    padding: 40px;
+    border: 4px solid #DC7131;
+    border-radius: 15px;
+}
+
+.cuadrado2{
+    background-color: rgba(255,255,255,0.7);
+    padding: 40px;
+    border: 4px solid #579E82;
+    border-radius: 15px;
+}
+.btnAcceder{
+    border: 2px solid white;
+    color: white;
+    width: 100px;
+}
+.btnAcceder:hover{
+    background-color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 1200px){
+    .segundo{
+        flex-direction: column;
+    }
+
+}

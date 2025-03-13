@@ -1,0 +1,17 @@
+.btnModal{
+    background-color: #f18d57c9;
+    border: none;
+    color: white;
+}
+
+.btnModal:hover{
+    color: white;
+    background-color: #f8bc9bf2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+
+}
+
+.icon{
+    text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    
+}

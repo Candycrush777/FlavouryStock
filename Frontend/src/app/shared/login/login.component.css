@@ -1,0 +1,116 @@
+
+
+
+.main {
+  background-image: url('../../../../public/assets/fondo-inicio.jpg');
+  background-size: cover;
+  background-position: center;
+    min-height: 100vh;
+  width: 100%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-container {
+
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 10px;
+  border: solid white 4px;
+    margin: 0 auto;
+    background: Rgba(255,255,255, 0.5);
+}
+.additional-options {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .forgot-password {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-password:hover {
+    color: #0056b3;
+  }
+
+  
+
+ 
+  
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #070707;
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-bottom: 2px solid #dee2e6;
+    background: transparent;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  .form-input::placeholder {
+    color: #444 !important; 
+    opacity: 1 !important; /*  ya no necesito important probar */
+  }
+  
+  
+  .form-input:focus {
+    outline: none;
+    border-bottom-color: #1ef50a;
+    box-shadow: 0 2px 4px rgba(0,123,255,0.1);
+  }
+
+  .btnComenzar{
+    width: 180px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 20px;
+    border: none;
+    
+}
+.btnComenzar:hover{
+    background-color: rgba(237, 117, 87, 0.645);
+}
+.btnComenzar:active{
+    border-color: rgb(237,117,87);
+    box-shadow: 0 0 5px rgba(238, 53, 6, 0.5); 
+    outline: none; 
+    color: white;
+}
+
+.boton{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .form-container {
+      margin: 1rem;
+      padding: 1rem;
+    }
+    
+    .form-input {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  }

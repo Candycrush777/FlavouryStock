@@ -21,6 +21,7 @@ import { LoginComponent } from './shared/login/login.component';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
 import { CreateAccountHeaderComponent } from './shared/create-account/create-account-header/create-account-header.component';
 import { StockComponent } from './shared/stock/stock.component';
+import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { StockComponent } from './shared/stock/stock.component';
     CreateAccountComponent,
     CreateAccountHeaderComponent,
     StockComponent,
+    ListadoStockComponent,
   ],
   imports: [
     BrowserModule, 

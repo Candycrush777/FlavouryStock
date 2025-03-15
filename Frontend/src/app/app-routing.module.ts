@@ -5,6 +5,7 @@ import { CreateAccountComponent } from './shared/create-account/create-account.c
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'create-account', component: CreateAccountComponent },
   { path: 'usuario', component: UsuarioComponent },
   { path: 'inicio-admin', component: InicioAdminComponent },
+  { path: 'listado-stock', component: ListadoStockComponent },
  
 
   //revisar si es necesario

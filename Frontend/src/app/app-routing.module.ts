@@ -6,6 +6,10 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
+import { CommonModule } from '@angular/common';
+import { StockComponent } from './shared/stock/stock.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -15,13 +19,13 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent },
   { path: 'inicio-admin', component: InicioAdminComponent },
   { path: 'listado-stock', component: ListadoStockComponent },
- 
+  { path: 'stock', component: StockComponent },
 
   //revisar si es necesario
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), CommonModule, FormsModule, ReactiveFormsModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

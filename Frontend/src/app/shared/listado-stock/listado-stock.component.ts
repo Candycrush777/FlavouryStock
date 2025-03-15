@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-listado-stock',
   standalone: false,
   templateUrl: './listado-stock.component.html',
-  styleUrl: './listado-stock.component.css'
+  styleUrl: './listado-stock.component.css',
+  
 })
 export class ListadoStockComponent {
+addProduct() {
+throw new Error('Method not implemented.');
+}
 
   stockItems = [
     {
@@ -91,17 +97,20 @@ export class ListadoStockComponent {
     },
   ];
  
-  isFormVisible = false;
-  newProduct = {
-    alimento: '',
-    peso: null,
-    categoria: 'Fruta',
-    estado: 'En Stock'  
-  };
+ 
+ 
+  isFormVisible: boolean = false;  
+  isTableVisible: boolean = false; 
 
- // Función para alternar la visibilidad del formulario
+  
+
 toggleForm() {
   this.isFormVisible = !this.isFormVisible;
+}
+
+toggleTable() {
+  this.isTableVisible = !this.isTableVisible;  
+  this.isFormVisible = false; 
 }
 
 }

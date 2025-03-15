@@ -22,6 +22,7 @@ import { CreateAccountComponent } from './shared/create-account/create-account.c
 import { CreateAccountHeaderComponent } from './shared/create-account/create-account-header/create-account-header.component';
 import { StockComponent } from './shared/stock/stock.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ListadoStockComponent } from './shared/listado-stock/listado-stock.comp
     BrowserModule, 
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],

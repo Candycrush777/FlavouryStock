@@ -10,7 +10,7 @@ import {  Router } from '@angular/router';
 export class AppComponent {
   title = 'FlavouryStock';
   //todo: Prueba de user
-  user= "admin"
+  user= "inicio"
 
   private router = inject(Router); // Nueva forma de inyectar Router en Angular 19
   currentHeader = signal('inicio'); // Usa signals en lugar de variables reactivas tradicionales

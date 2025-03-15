@@ -1,25 +1,37 @@
-
 <main class="main">
-<div class="form-container">
-  <div class="form-group">
-    <label class="form-label"><b>Email</b></label>
-    <input type="email" class="form-input" placeholder="Ingresa tu email" />
-  </div>
+  <div class="form-container">
+    <div class="form-group">
+      <label class="form-label"><b>Email</b></label>
+      <input
+        type="email"
+        class="form-input"
+        [(ngModel)]="user.email"
+        name="email"
+        placeholder="Ingresa tu email"
+        required
+      />
+    </div>
 
-  <div class="form-group">
-    <label class="form-label"><b>Contraseña</b></label>
-    <input
-      type="password"
-      class="form-input"
-      placeholder="Ingresa tu contraseña"
-    />
-  </div>
-  <div class="boton">
-    <button type="submit" class="submit-button btnComenzar">Sign In</button>
-  </div>
+    <div class="form-group">
+      <label class="form-label"><b>Contraseña</b></label>
+      <input
+        type="password"
+        class="form-input"
+        [(ngModel)]="user.passwd"
+        name="passwd"
+        placeholder="Ingresa tu contraseña"
+        required
+      />
+    </div>
 
-  <div class="additional-options">
-    <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+    <div class="boton">
+      <button type="submit" class="submit-button btnComenzar" (click)="login()">
+        Iniciar Sesión
+      </button>
+    </div>
+
+    <div class="additional-options">
+      <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+    </div>
   </div>
-</div>
 </main>

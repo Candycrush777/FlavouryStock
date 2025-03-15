@@ -20,7 +20,6 @@ import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.com
 import { LoginComponent } from './shared/login/login.component';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
 import { CreateAccountHeaderComponent } from './shared/create-account/create-account-header/create-account-header.component';
-import { CreateAccountFooterComponent } from './shared/create-account/create-account-footer/create-account-footer.component';
 import { StockComponent } from './shared/stock/stock.component';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { StockComponent } from './shared/stock/stock.component';
     InicioAdminComponent,
     LoginComponent,
     CreateAccountComponent,
-    CreateAccountFooterComponent,
     CreateAccountHeaderComponent,
     StockComponent,
   ],

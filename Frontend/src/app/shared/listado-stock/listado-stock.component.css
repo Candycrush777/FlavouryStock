@@ -1,5 +1,5 @@
-
 .product-table {
+  background-color: #ffffff;
   font-family: 'Arial', sans-serif;
       max-width: 1200px;
   margin: 2rem auto;
@@ -21,7 +21,7 @@
 }
 
 h1 {
-  color: #333;
+  color: #1d1c1c;
   padding-bottom: 0.5rem;
 }
 
@@ -31,18 +31,20 @@ table {
     margin: 1rem 0;
 }
 
-th, td {
+td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dbd9d9;
 }
 
 th {
-  background-color: #f8f9fa;
-  color: #333;
+  padding: 8px;
+  background-color: #e9e9eb;
+  color: #131212;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 2px;
 }
+
 
 .alimento-container {
   display: flex;
@@ -51,7 +53,7 @@ th {
   min-width: 90px; /* Reducir el tamaño del contenedor */
 }
 .id-alimento {
-  color: #6c757d;
+  color: #0d0d0e;
   
   
 }
@@ -148,12 +150,13 @@ th {
 .form-container {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: #b3c4d6;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px; 
   margin-left: auto; 
   margin-right: auto; 
+  margin-bottom: 20px;
 }
 
 .form-container label {
@@ -191,11 +194,6 @@ th {
   background-color: #007bff;
 }
 
-body {
-  background-color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
-
-}
 
 
 
@@ -288,9 +286,9 @@ body {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 40px;
- 
-  background-color: #fcfdfd;
+   background-color: #fcfdfd;
 }
+
 
 .row{
 

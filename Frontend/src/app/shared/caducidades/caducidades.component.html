@@ -1,0 +1,256 @@
+<div class="fondo">
+    <div class="container">
+        <section class="caducidad">
+
+            <h1 class="title text-center p-3 fs-2">
+                Aprovecha todo tu stock
+            </h1>
+
+            <button 
+                class="btn btn-dark my-3 justify-content-center" 
+                (click)="cambioVista()"
+                >
+                    Cambiar de Vista
+                </button>
+
+
+            *<ng-container *ngIf="vista; else elseTemplate">
+                <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4">
+                    <div class="col p-3">
+                        <div class="tarjeta">
+                            <img src="../assets/carneRoja.jpg" class="card-img-top" alt="...">
+                            <div class="card-body p-3 g-3" style="background-image: url('./assets/fondo-card/f-red.png');">
+    
+                                <div class="campo">
+                                    
+                                    <div class="nombre fw-bold w-100 nombre-alim">
+                                        <p>ENTRECOT DE TERNERA</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-regular fa-calendar-xmark fa-2xl"></i>
+                                        <!-- <p>asfdhadsjl</p> -->
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>31/05/25</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-solid fa-scale-balanced fa-2xl"></i>
+                                       
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>12 KG</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-solid fa-box-open fa-2xl"></i>
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>CONGELADOR</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col p-3">
+                        <div class="tarjeta">
+                            <img src="../assets/carneRoja.jpg" class="card-img-top" alt="...">
+                            <div class="card-body p-3 g-3" style="background-image: url('./assets/fondo-card/f-yellow.png');">
+    
+                                <div class="campo">
+                                    
+                                    <div class="nombre fw-bold w-100 nombre-alim">
+                                        <p>ENTRECOT DE TERNERA</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-regular fa-calendar-xmark fa-2xl"></i>
+                                        <!-- <p>asfdhadsjl</p> -->
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>31/05/25</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-solid fa-scale-balanced fa-2xl"></i>
+                                       
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>12 KG</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-solid fa-box-open fa-2xl"></i>
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>NEVERA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                    <div class="col p-3">
+                        <div class="tarjeta">
+                            <img src="../assets/salmon.jpg" class="card-img-top" alt="...">
+                            <div class="card-body p-3 g-3" style="background-image: url('./assets/fondo-card/f-green.png');">
+    
+                                <div class="campo">
+                                    
+                                    <div class="nombre fw-bold w-100 nombre-alim">
+                                        <p>SALMÓN</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-regular fa-calendar-xmark fa-2xl"></i>
+                                        <!-- <p>asfdhadsjl</p> -->
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>31/05/25</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-solid fa-scale-balanced fa-2xl"></i>
+                                       
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>12 KG</p>
+                                    </div>
+                                </div>
+    
+                                <div class="campo">
+                                    <div class="icon d-flex justify-content-center align-items-center">
+                                        <i class="fa-solid fa-box-open fa-2xl"></i>
+                                    </div>
+                                    <div class="nombre fw-bold">
+                                        <p>NEVERA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <!-- AQUI ALTERNATIVA -->
+
+                <div class="fondo">
+                    
+                      <section class="tabla-vista">
+                        <!-- Registro 1 -->
+                        <div class="tabla-row">
+                          <div class="table-image">
+                            <img src="../assets/carneRoja.jpg" alt="ENTRECOT DE TERNERA">
+                          </div>
+                          <div class="table-content">
+                            <div class="table-cell-nombre">
+                              <p>ENTRECOT DE TERNERA</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-regular fa-calendar-xmark fa-xl"></i>
+                              <p>31/05/25</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-solid fa-scale-balanced fa-xl"></i>
+                              <p>12 KG</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-solid fa-box-open fa-xl"></i>
+                              <p>CONGELADOR</p>
+                            </div>
+                          </div>
+                        </div>
+                  
+                        <!-- Registro 2 -->
+                        <div class="tabla-row" style="background-color: rgba(178, 0, 0, 0.356);">
+                          <div class="table-image">
+                            <img src="../assets/carneRoja.jpg" alt="ENTRECOT DE TERNERA">
+                          </div>
+                          <div class="table-content">
+                            <div class="table-cell-nombre">
+                              <p>ENTRECOT DE TERNERA</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-regular fa-calendar-xmark fa-xl"></i>
+                              <p>31/05/25</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-solid fa-scale-balanced fa-xl"></i>
+                              <p>12 KG</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-solid fa-box-open fa-xl"></i>
+                              <p>NEVERA</p>
+                            </div>
+                          </div>
+                        </div>
+                  
+                        <!-- Registro 3 -->
+                        <div class="tabla-row">
+                          <div class="table-image">
+                            <img src="../assets/salmon.jpg" alt="SALMÓN">
+                          </div>
+                          <div class="table-content">
+                            <div class="table-cell-nombre">
+                              <p>SALMÓN</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-regular fa-calendar-xmark fa-xl"></i>
+                              <p>31/05/25</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-solid fa-scale-balanced fa-xl"></i>
+                              <p>12 KG</p>
+                            </div>
+                            <div class="table-cell">
+                              <i class="fa-solid fa-box-open fa-xl"></i>
+                              <p>NEVERA</p>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    
+                  </div>
+                  
+
+                <!-- FIN ALTERNATIVA DE CHAT -->
+            </ng-template>
+            
+<!-- AQUI HAY QUE TOMAR EL COLOR TOMANDO LOS DIAS HASTA SU CADUCIDAD-->
+
+            
+
+        </section>
+
+
+
+        <section class="recetas">
+
+            <h2 class="title text-center p-3 fs-2">
+                Recetas creativas para alimentos proximos a su caducidad
+            </h2>
+
+        </section>
+    </div>
+
+</div>

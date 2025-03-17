@@ -1,11 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.css',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'FlavouryStock';
@@ -29,16 +29,14 @@ export class AppComponent {
       }
     }); */
 
-    
-      let user = this.user;
-      if (user=='admin') {
-        this.currentHeader.set('header-admin');
-      } else if (user=='usuario') {
-        this.currentHeader.set('header-usuario');
-      } else {
-        this.currentHeader.set('inicio');
-      }
-    
+    let user = this.user;
+    if (user=='admin') {
+      this.currentHeader.set('header-admin');
+    } else if (user=='usuario') {
+      this.currentHeader.set('header-usuario');
+    } else {
+      this.currentHeader.set('inicio');
+    }
   }
 
   /* nombre: string = '';

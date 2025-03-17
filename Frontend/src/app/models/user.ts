@@ -7,3 +7,7 @@ export interface User {
     email: string;
     passwd: string;
 } 
+export interface LoginResponse {
+    message: string;
+    userLogin: User;  // userLogin contiene los datos del usuario
+}

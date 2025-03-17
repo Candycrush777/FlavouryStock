@@ -1,0 +1,265 @@
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+.card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.col-md-4 {
+  height: 100%;
+  padding: 0;
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.img-fluid.rounded-start {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 20px 20px 0;
+}
+
+.card {
+    background-image: url("../../../../public/assets/fondo-inicio.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+}
+
+.row.g-0 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.card-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.card-text {
+  max-width: 450px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.texto-tiempo,
+.texto, .texto-recetas {
+  background-color: rgba(255, 255, 255, 0.878);
+  font-size: 0.875rem;
+  padding: 4px 12px;
+  border-radius: 1rem;
+  width: auto;
+  min-width: 120px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.texto-recetas {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.btn-recipe {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  width: auto;
+  min-width: 150px;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-recipe:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.btnVer{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+
+}
+.btnVer:hover{
+    background-color: #ed7557d8 ;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+/* Estilos para las categorías */
+
+.categoria-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #ed7557c3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.categoria-icon i {
+  font-size: 24px;
+  color: white;
+}
+
+.categoria-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.categoria-content {
+  background-image: url("../../../../public/assets/fondo-inicio.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: auto;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  margin-top: -50px;
+  position: relative;
+  z-index: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.categoria-content h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .card {
+    margin: 0;
+    padding: 0;
+  }
+
+  .col-md-4 {
+    height: 250px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .img-container {
+    height: 100%;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-title.fs-2 {
+    font-size: 1.5rem !important;
+  }
+
+  .card-text {
+    font-size: 0.9rem !important;
+  }
+
+  .card-text.fs-6 {
+    font-size: 0.9rem !important;
+  }
+
+  .d-flex.gap-3 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  .texto-tiempo,
+  .texto {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    min-width: 100px;
+  }
+
+  .btn-recipe {
+    width: 100%;
+    min-width: unset;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-title.fs-2 {
+    font-size: 1.25rem !important;
+  }
+
+  .card-text.fs-6 {
+    font-size: 0.85rem !important;
+  }
+
+  .texto-tiempo,
+  .texto {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    min-width: 90px;
+  }
+
+  .btn-recipe {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.8rem;
+  }
+}

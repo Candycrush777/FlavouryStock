@@ -6,10 +6,10 @@ const bcrypt = require('bcryptjs')//para encriptar constraseña
 
 exports.register = (req, res) =>{
 
-    const {nombre, apellido1, apellido2, empresa, email, password, id_rol}= req.body
+    const {nombre, apellido1, apellido2, empresa, email, passwd, id_rol}= req.body
 
     //encriptar contraseña 
-    const hashedPassword = bcrypt.hashSync(password, 10)
+    const hashedPassword = bcrypt.hashSync(passwd, 10)
 
     const sql = "INSERT INTO Usuarios (id_rol, nombre, apellido1, apellido2, empresa, email, passwd) values (?,?,?,?,?,?,?)"
     db.query(sql, [id_rol,nombre,apellido1,apellido2,empresa,email,hashedPassword], (err, result) => {
@@ -52,6 +52,6 @@ exports.login = (req, res) =>{
         if (!passMatch) {
             return res.status(401).json({error: 'Contraseña incorrecta'})
         }
-        res.status(200).json({message: 'Login exitoso', userLogin})
+        res.status(200).json({message: 'Login exitoso', id_rol: userLogin.id_rol})
     })
 }

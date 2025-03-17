@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { StockComponent } from './shared/stock/stock.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'inicio-admin', component: InicioAdminComponent },
   { path: 'listado-stock', component: ListadoStockComponent },
   { path: 'stock', component: StockComponent },
+  { path: 'recipe', component: RecipeComponent },
 
   //revisar si es necesario
 ];

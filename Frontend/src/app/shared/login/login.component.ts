@@ -26,7 +26,7 @@ export class LoginComponent {
   ) {}
 
   login() {
-    console.log('Intentando login con usuario:', this.user);
+    /* console.log('Intentando login con usuario:', this.user); */
     
     if (!this.user.email || !this.user.passwd) {
       console.log('Email o contraseña vacíos');
@@ -36,8 +36,12 @@ export class LoginComponent {
     this.userService.login(this.user).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response);
+        console.log('Rol recibido:', response.userLogin.id_rol);
+        
+        
+        
         // Aquí puedes redirigir según el rol
-        if (response.id_rol === 1) {
+        if (response.userLogin.id_rol === 1) {
           this.router.navigate(['/inicio-admin']);
         } else {
           this.router.navigate(['/usuario']);

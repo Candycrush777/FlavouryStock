@@ -23,6 +23,7 @@ import { CreateAccountHeaderComponent } from './shared/create-account/create-acc
 import { StockComponent } from './shared/stock/stock.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CreateAccountHeaderComponent,
     StockComponent,
     ListadoStockComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule, 

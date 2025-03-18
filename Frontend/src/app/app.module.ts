@@ -24,6 +24,7 @@ import { StockComponent } from './shared/stock/stock.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CaducidadesComponent } from './shared/caducidades/caducidades.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CaducidadesComponent } from './shared/caducidades/caducidades.component
     StockComponent,
     ListadoStockComponent,
     CaducidadesComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule, 

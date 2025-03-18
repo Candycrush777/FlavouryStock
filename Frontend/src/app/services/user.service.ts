@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, tap } from 'rxjs';
+import {  Observable, catchError, tap } from 'rxjs';
 import { LoginResponse, User } from '../models/user';
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
     private apiUrl = 'http://localhost:3000/api/users'; 
+    
 
     constructor(private http: HttpClient) { }
 
@@ -26,7 +28,11 @@ export class UserService {
         console.log('¿Passwd está vacío?', !loginData.passwd); 
         
         return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginData).pipe(
-            tap(response => console.log('Respuesta completa:', response)),
+            tap((response) => {
+                console.log('Respuesta completa', response);
+                
+                
+            }),
             catchError(error => {
                 console.log('Error completo:', error);
                 console.log('Mensaje del backend:', error.error);
@@ -34,4 +40,6 @@ export class UserService {
             })
         ); 
     }
+
+    
 } 

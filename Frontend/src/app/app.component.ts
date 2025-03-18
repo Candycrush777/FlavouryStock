@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-root',
   standalone: false,
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'FlavouryStock';
   //todo: Prueba de user
-  user= "inicio"
+  user = 'inicio'
 
   private router = inject(Router); // Nueva forma de inyectar Router en Angular 19
   currentHeader = signal('inicio'); // Usa signals en lugar de variables reactivas tradicionales
@@ -36,8 +37,9 @@ export class AppComponent {
       this.currentHeader.set('header-usuario');
     } else {
       this.currentHeader.set('inicio');
-    }
+    } 
   }
+ 
 
   /* nombre: string = '';
   primerApellido: string = '';

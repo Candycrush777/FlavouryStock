@@ -55,3 +55,4 @@ exports.login = (req, res) =>{
         res.status(200).json({message: 'Login exitoso', id_rol: userLogin.id_rol})
     })
 }
+

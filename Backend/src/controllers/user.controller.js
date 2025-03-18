@@ -56,3 +56,54 @@ exports.login = (req, res) =>{
     })
 }
 
+ //funcion de borrar usuario
+
+exports.deleteUser = (req, res) =>{
+    const {id} = req.params
+
+    sql = "DELETE FROM Usuarios WHERE id_usuario = ?"
+    db.query(sql, [id], (err, result) =>{
+        if (err) {
+            return  res.status(500).json({error: err.message})
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({error: 'Usuario no encontrado'})
+        }
+        res.status(200).json({message: 'Usuario eliminado correctamente'})
+    })
+}
+
+
+exports.getUserId = (req, res)=>{
+    const {id} = req.params
+    sql = "SELECT * FROM Usuarios WHERE id_usuario = ?"
+    db.query(sql,[id], (err, result) => {
+        if (err) {
+            return res.status(500).json({error: err.message})
+        }
+        if (result.length === 0) {
+            return res.status(404).json({error: 'Usuario no encontrado'})
+        }
+        res.status(200).json(result[0])//devuelve los datos del usuario
+    })
+}
+
+//funcion de modificar 
+exports.updateUser =(req, res) =>{
+    const {id} = req.params
+    const {nombre, apellido1, apellido2, empresa, email, id_rol} = req.body
+
+    sql = "UPDATE Usuarios SET nombre = ?, apellido1 = ?, apellido2 = ?, empresa = ?, email = ?, id_rol = ?"
+    db.query(sql, [nombre, apellido1, apellido2, empresa, email, id_rol], (err, result) =>{
+        if (err) {
+            return res.status(500).json({error: err.message})
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({error: 'Usuario no encontrado'})
+        }
+        res.status(200).json({message: 'Usuario actualizado correctamente'})
+    })
+
+}
+

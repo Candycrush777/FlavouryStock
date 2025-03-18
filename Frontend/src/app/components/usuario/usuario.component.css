@@ -67,3 +67,24 @@
     }
 
 }
+
+
+@media (max-width: 420px){
+    .btnAcceder{
+        margin-bottom: 15px;
+    }
+
+    .cuadrado {
+        padding: 25px;
+        text-align: center;
+    }
+   
+    .cuadrado a{
+        font-size: 1.7rem;
+    }
+   
+    .fondo{
+        min-height: fit-content;
+    }
+
+}

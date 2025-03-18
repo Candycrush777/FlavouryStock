@@ -7,7 +7,7 @@
             
             <div class="col-12 col-xl-6">
                 <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto4.png');">
-                    <div class="cuadrado-admin-user text-center">
+                    <div class="cuadrado cuadrado-admin-user text-center">
                         <a style=" color: #8093ff ;" class="link1">Administación de Usuarios</a>
                     </div>
                 </div>
@@ -20,11 +20,10 @@
                             gestionar lo referente a los usuarios, 
                             agregar, modificar o cambiar rol, o eliminarlos.
                         </p>
-                        <div class="botonera d-flex justify-content-around ">
+                        <div class="botonera">
 
-                            <button class="btn btnBotonera" [routerLink]="'/create-account'">Crear nuevo</button>
-                            <button class="btn btnBotonera">Modificar</button>
-                            <button class="btn btnBotonera">Eliminar</button>
+                            <button class="btn btnAcceder" [routerLink]="'/create-account'">Acceder(de momento al form)</button>
+                           
                         </div>
                     </div>
                 </div>
@@ -34,7 +33,7 @@
             <div class="segundo">
                 <div class="col-12 col-xl-6">
                     <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto7.png');">
-                        <div class="cuadrado-admin-receta text-center">
+                        <div class="cuadrado cuadrado-admin-receta text-center">
                             <a href="" style=" color: #F18C57;" class="link1">Administración de Recetas</a>
                         </div>
                     </div>
@@ -49,12 +48,11 @@
                                  modificar las existentes (alérgenos, 
                                  ingredientes, cantidades...) o eliminar recetas.
                             </p>
-                            <div class="botonera d-flex justify-content-around ">
+                            <div class="botonera">
 
-                                <button class="btn btnBotonera">Crear nueva</button>
-                                <button class="btn btnBotonera">Modificar</button>
-                                <button class="btn btnBotonera">Eliminar</button>
-                                <button class="btn btnBotonera" routerLink="/recipe">Recetas Inteligentes</button>
+                                <button class="btn btnAcceder">Acceder</button>
+                                
+                                <button class="btn btnAcceder" routerLink="/recipe">Recetas Inteligentes</button>
                             </div>
                         </div>
                     </div>
@@ -66,7 +64,7 @@
 
                 <div class="col-12 col-xl-6">
                     <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto6.png');">
-                        <div class="cuadrado-gestion-stock text-center">
+                        <div class="cuadrado cuadrado-gestion-stock text-center">
                             <a href="" style=" color: #398d69 ;" class="link1">Gestión de Stock</a>
                         </div>
                     </div>
@@ -81,12 +79,11 @@
                                 no coincidir con la realidad, o eliminar
                                 los productos que se han desechado.
                             </p>
-                            <div class="botonera d-flex justify-content-around ">
+                            <div class="botonera ">
 
-                                <button class="btn btnBotonera" routerLink="/listado-stock">Registrar</button>
-                                <button class="btn btnBotonera">Modificar</button>
-                                <button class="btn btnBotonera">Eliminar</button>
-                                <button class="btn btnBotonera">Próximas caducidades</button>
+                                <button class="btn btnAcceder">Acceder</button>
+                                
+                                <button class="btn btnAcceder">Próximas caducidades</button>
                             </div>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ import { StockComponent } from './shared/stock/stock.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'stock', component: StockComponent },
   { path: 'caducidades', component: CaducidadesComponent},
   { path: 'recipe', component: RecipeComponent },
+  { path: 'gestionUser', component: GestionUserComponent },
 
   //revisar si es necesario
 ];

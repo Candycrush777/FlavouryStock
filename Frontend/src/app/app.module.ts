@@ -25,6 +25,7 @@ import { ListadoStockComponent } from './shared/listado-stock/listado-stock.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { CaducidadesComponent } from './shared/caducidades/caducidades.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
     ListadoStockComponent,
     CaducidadesComponent,
     RecipeComponent,
+    GestionUserComponent,
   ],
   imports: [
     BrowserModule, 

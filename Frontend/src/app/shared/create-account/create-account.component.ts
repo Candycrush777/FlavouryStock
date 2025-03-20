@@ -13,7 +13,7 @@ export class CreateAccountComponent {
   confirmPassword: string = '';
   passwordErrors: string[] = [];
   passwordsMatch: boolean = true;
-
+  
 
   user: User = {
     id_rol: 1, // Por defecto será usuario ser admin
@@ -27,6 +27,7 @@ export class CreateAccountComponent {
 
   constructor(
     private userService: UserService,
+    public router: Router
   ) {}
 
  /*  cambiarRol(rol: number) {

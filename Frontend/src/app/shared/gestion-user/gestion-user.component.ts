@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-gestion-user',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './gestion-user.component.css'
 })
 export class GestionUserComponent {
+
+listaUsers: User []=[]
+
+guardarUsuario(){}
 
 }

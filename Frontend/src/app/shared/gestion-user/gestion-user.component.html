@@ -1,6 +1,29 @@
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-2 justify-content-between">
-        <div class="col-12 col-md-4"><h1>PIPIPI</h1></div>
-        <div class="col-12 col-md-7"><h1>POPOPO</h1></div>
+
+    <div class="container-fluid">
+
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="text-center pt-4">CREA UN NUEVO USUARIO</h3>
+                    <!-- HACER QUE CUANDO CLIQUES EN EDITAR USER, EN EL FORM APAREZCAN LOS DATOS COMO
+                     EL EJERCICIO DE PHP EN LUGAR DEL CREATE ACCOUNT -->
+                    <app-create-account></app-create-account>
+                </div>
+                <div class="col-12 col-md-7 text-center">
+                    <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
+                    <h5>CREAR LA TABLA PARA PINTAR DINAMICAMENTE: tipo form horizontal</h5>
+                    <ul class="text-start">
+                        <li>CREAR ARRAY DE USER FICTICIOS (REALMENTE LEERA DE LA DB)</li>
+                        <li>CON SU BOTON EDITAR: Que habilite los input del user </li>
+                        <li>Al clicar editar, desaparecera editar(TIPO AL MOSTRAR QUE HIZO BORJA), y aparecera GUARDAR (AL CLICAR, envia los cambios a la DB)</li>
+                        <li>BOTON ELIMINAR QUE ELIMINA AL USUARIO, PREVIA PREGUNTA DE CONFIRMACION</li>
+                        <li>LUEGO CADA REGISTRO SE REPETIRA CON NGFOR del ARRAY (*ngFor="let user of usuarios")</li>
+                    </ul> 
+                    <h6>CREAR BOTON ACTUALIZAR, CON UNA QUERY QUE VUELVA A LEER LOS USUARIOS DE LA DB PARA ACTUALIZAR</h6>
+                </div>
+            </div>
     </div>
-</div>
+    </div>
+
+
+

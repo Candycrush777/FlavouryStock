@@ -32,6 +32,9 @@
 .form-group {
   margin-bottom: 1.2rem;
 }
+.form-group-gestion {
+  margin-bottom: 15px;
+}
 
 .form-label {
   display: block;
@@ -43,7 +46,8 @@
 
 .form-input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.6rem 0.6rem 0.2rem;
+  /* padding: 0.6rem; */
   border: none;
   border-bottom: 2px solid #dee2e6;
   background: transparent;

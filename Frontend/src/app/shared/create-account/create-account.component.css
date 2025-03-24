@@ -1,15 +1,23 @@
 .main {
-  background-image: url("../../../../public/assets/fondo-inicio.jpg");
-  background-size: cover;
-  background-position: center;
-
-  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
+
+.main-bg{
+  background-image: url("../../../../public/assets/fondo-inicio.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hiddenOut{
+  display: none !important;
+}
+
+
+
 .form-container {
   max-width: 500px;
   width: 100%;
@@ -24,6 +32,10 @@
 .form-group {
   margin-bottom: 1.2rem;
 }
+.form-group-gestion {
+  margin-bottom: 15px;
+}
+
 .form-label {
   display: block;
   margin-bottom: 0.5rem;
@@ -34,7 +46,8 @@
 
 .form-input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.6rem 0.6rem 0.2rem;
+  /* padding: 0.6rem; */
   border: none;
   border-bottom: 2px solid #dee2e6;
   background: transparent;
@@ -52,6 +65,7 @@
   margin: 1.5rem 0;
   display: flex;
 }
+
 .check {
   display: flex;
   gap: 70px;
@@ -68,6 +82,11 @@
   color: #555;
 }
 
+.radios {
+  display: flex;
+  gap: 50px;
+}
+
 .btnComenzar {
   width: 180px;
   height: 40px;
@@ -76,15 +95,18 @@
   border-radius: 20px;
   border: none;
 }
+
 .btnComenzar:hover {
   background-color: rgba(237, 117, 87, 0.645);
 }
+
 .btnComenzar:active {
   border-color: rgb(237, 117, 87);
   box-shadow: 0 0 5px rgba(238, 53, 6, 0.5);
   outline: none;
   color: white;
 }
+
 .boton {
   display: flex;
   align-items: center;

@@ -1,155 +1,168 @@
-<div class="main">
-  <div class="form-container">
-    <div class="form-group">
-      <label class="form-label"><b>Nombre</b></label>
-      <input
-        type="text"
-        class="form-input"
-        [(ngModel)]="user.nombre"
-        placeholder="Ingresa tu nombre"
-      />
-    </div>
 
-    <div class="form-group">
-      <label class="form-label"><b>Primer Apellido</b></label>
-      <input
-        type="text"
-        class="form-input"
-        [(ngModel)]="user.apellido1"
-        placeholder="Ingresa tu primer apellido"
-        required
-      />
-    </div>
+<!-- <div class="main"> -->
+  <div [ngClass]="['main', router.url === '/create-account' ? 'main-bg' : '']">
 
-    <div class="form-group">
-      <label class="form-label"><b>Segundo Apellido</b></label>
-      <input
-        type="text"
-        class="form-input"
-        [(ngModel)]="user.apellido2"
-        placeholder="Ingresa tu segundo apellido"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label class="radio-label"><b>Elige tu tipo de usuario</b></label
-      ><br />
-      <div class="radio-options">
+    <div class="form-container">
+
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label for="nombre" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Nombre</b></label>
+        <input
+          id="nombre"
+          type="text"
+          class="form-input"
+          [(ngModel)]="user.nombre"
+          placeholder="Ingresa tu nombre"
+        />
+      </div>
+
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label for="apellido1" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Primer Apellido</b></label>
+        <input
+          id="apellido1"
+          type="text"
+          class="form-input"
+          [(ngModel)]="user.apellido1"
+          placeholder="Ingresa tu primer apellido"
+          required
+        />
+      </div>
+
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label for="apellido2" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Segundo Apellido</b></label>
+        <input
+          id="apellido2"
+          type="text"
+          class="form-input"
+          [(ngModel)]="user.apellido2"
+          placeholder="Ingresa tu segundo apellido"
+          
+        />
+      </div>
+    
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label for="tipo" class="radio-label"><b>Elige tu tipo de usuario</b></label
+        ><br /><br>
+
         <div class="radios">
-          <label class="radio-option">
-            <input
-              type="radio"
-              class="form-radio"
-              id="administrador"
-              name="userType"
-              required
-              [checked]="user.id_rol === 1"
-              (change)="cambiarRol(1)"
-            />
-            <span class="radio-custom"></span>
-            Administrador
-          </label>
-          <label class="radio-option">
-            <input
-              type="radio"
-              class="form-radio"
-              id="usuario"
-              name="userType"
-              [checked]="user.id_rol === 2"
-              (change)="cambiarRol(2)"
-              required
-            />
-            <span class="radio-custom"></span>
-            Usuario
-          </label>
+
+        <div class="radio-options">
+          <div class="radios">
+            <label class="radio-option">
+              <input
+                type="radio"
+                class="form-radio"
+                id="administrador"
+                name="userType"
+                required
+                [(ngModel)]="user.id_rol" [value]="1"
+                
+              />
+              <span class="radio-custom"></span>
+              Administrador
+            </label>
+            <label class="radio-option">
+              <input
+                type="radio"
+                class="form-radio"
+                id="usuario"
+                name="userType"
+                [(ngModel)]="user.id_rol" [value]="2"
+                required
+              />
+              <span class="radio-custom"></span>
+              Usuario
+            </label>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label class="form-label"><b>Empresa</b></label>
-      <input
-        type="text"
-        class="form-input"
-        [(ngModel)]="user.empresa"
-        placeholder="Ingresa el nombre de tu empresa"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <label class="form-label"><b>Email</b></label>
-      <input
-        type="email"
-        class="form-input"
-        [(ngModel)]="user.email"
-        placeholder="Ingresa tu email"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <label class="form-label"><b>Contraseña</b></label>
-      <input
-        type="password"
-        class="form-input"
-        [(ngModel)]="user.passwd"
-        (ngModelChange)="validatePassword()"   
-        name="passwd"
-        placeholder="Ingresa tu contraseña"
-        required
-      /> <!-- ngModelChange permite ejecutar la logica en tiempo real detecta cambios en el valor del campo del formulario  -->
-      <div class="password-requirements" *ngIf="user.passwd">
-        <p>La contraseña debe tener:</p>
-        <ul>
-          <li [ngClass]="{valid: passwordErrors.indexOf( 'La contraseña debe tener al menos 8 caracteres') === -1 }">
-            Al menos 8 caracteres <!-- si sale esta frase en el array entonces las letras salen rojas y se pone en verde si se modifica -->
-          </li>
-          <li [ngClass]="{valid: passwordErrors.indexOf('Debe contener al menos una mayúscula') === -1}">
-            Una letra mayúscula
-          </li>
-          <li [ngClass]="{valid: passwordErrors.indexOf('Debe contener al menos un número') === -1}">
-            Un número
-          </li>
-          <li [ngClass]="{valid: passwordErrors.indexOf('Debe contener al menos un símbolo') ===-1 }" >
-            Un símbolo especial
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label"><b>Vuelve a Ingresar tu contraseña</b></label>
-      <input type="password" class="form-input" [(ngModel)]="confirmPassword" (ngModelChange)="validatePassword()" name="confirmPassword" placeholder="Ingresa tu contraseña" [ngClass]="{ error: !passwordsMatch && confirmPassword }"
-        required
-      />
-      <div class="password-error" *ngIf="!passwordsMatch && confirmPassword">
-        <p class="error-message">Las contraseñas no coinciden</p>
-      </div>
-    </div>
-
-    <div class="check">
-      <div class="checkbox-group">
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label for="empresa" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Empresa</b></label>
         <input
-          type="checkbox"
-          class="form-checkbox"
-          id="aceptarCondiciones"
+          id="empresa"
+          type="text"
+          class="form-input"
+          [(ngModel)]="user.empresa"
+          placeholder="Ingresa el nombre de tu empresa"
           required
         />
-        <label class="checkbox-label" for="aceptarCondiciones"
-          >Acepto las condiciones</label
+      </div>
+
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label for="email" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Email</b></label>
+        <input
+          id="email"
+          type="email"
+          class="form-input"
+          [(ngModel)]="user.email"
+          placeholder="Ingresa tu email"
+          required
+        />
+      </div>
+
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label  [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Contraseña</b></label>
+        <input
+          type="password"
+          class="form-input"
+          [(ngModel)]="user.passwd"
+          (ngModelChange)="validatePassword()"   
+          name="passwd"
+          placeholder="Ingresa tu contraseña"
+          required
+        /> <!-- ngModelChange permite ejecutar la logica en tiempo real detecta cambios en el valor del campo del formulario  -->
+        <div class="password-requirements" *ngIf="user.passwd">
+          <p>La contraseña debe tener:</p>
+          <ul>
+            <li [ngClass]="{valid: passwordErrors.indexOf( 'La contraseña debe tener al menos 8 caracteres') === -1 }">
+              Al menos 8 caracteres <!-- si sale esta frase en el array entonces las letras salen rojas y se pone en verde si se modifica -->
+            </li>
+            <li [ngClass]="{valid: passwordErrors.indexOf('Debe contener al menos una mayúscula') === -1}">
+              Una letra mayúscula
+            </li>
+            <li [ngClass]="{valid: passwordErrors.indexOf('Debe contener al menos un número') === -1}">
+              Un número
+            </li>
+            <li [ngClass]="{valid: passwordErrors.indexOf('Debe contener al menos un símbolo') ===-1 }" >
+              Un símbolo especial
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
+        <label  [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Vuelve a Ingresar tu contraseña</b></label>
+        <input type="password" class="form-input" [(ngModel)]="confirmPassword" (ngModelChange)="validatePassword()" name="confirmPassword" placeholder="Vuelve a Ingresar tu contraseña" [ngClass]="{ error: !passwordsMatch && confirmPassword }"
+          required
+        />
+        <div class="password-error" *ngIf="!passwordsMatch && confirmPassword">
+          <p class="error-message">Las contraseñas no coinciden</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="checkbox-group">
+          <input
+            type="checkbox"
+            class="form-checkbox"
+            id="aceptarCondiciones"
+            required
+          />
+          <label class="checkbox-label" for="aceptarCondiciones"
+            >Acepto las condiciones</label
+          >
+        </div>
+      </div>
+
+      <div class="boton">
+        <button
+          type="submit"
+          class="submit-button btnComenzar"
+          (click)="crearCuenta()"
         >
+          Crear Cuenta
+        </button>
       </div>
     </div>
-
-    <div class="boton">
-      <button
-        type="submit"
-        class="submit-button btnComenzar"
-        (click)="crearCuenta()"
-      >
-        Crear Cuenta
-      </button>
-    </div>
-  </div>
 </div>

@@ -1,0 +1,182 @@
+
+
+p {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+
+}
+
+
+.fondo{
+    background-image: url('../../../../public/assets/fondo-inicio.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+}
+
+
+.tarjeta{
+    border-radius: 16px;
+    
+    overflow: hidden; 
+    box-shadow:  0 8px 8px 0 rgba(0,0,0,0.25);
+}
+
+.card-img-top{
+    width: 100%;            /* Que ocupen todo el ancho del contenedor */
+  height: 200px;          /* Altura fija, ajústala a tu gusto */
+  object-fit: cover;      /* Mantiene la proporción y recorta si es necesario */
+  object-position: center; /* Centra el recorte vertical y horizontal */
+  display: block;    
+}
+
+
+.campo{
+    min-height: 60px;
+    background-color: rgba(241, 241, 241, 0.356);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 6px 15px;
+    display: flex;
+    justify-content: space-around;
+    
+    gap: 20px;
+    box-shadow:  0 4px 4px 0 rgba(0,0,0,0.25);
+}
+
+.icon{
+    width: 15%;
+}
+.icon img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.nombre{
+    width: 85%;
+    display: flex;
+    align-items: center;
+
+  
+    
+    
+}
+.nombre-alim{
+    width: 85%;
+    margin: 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+    
+    
+    
+}
+
+/* VISTA EN TABLA ALTERNATIVA */
+/* Contenedor general de la vista tipo tabla */
+.tabla-vista {
+    width: 100%;
+    
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+  
+/* Cada "fila" de información */
+.tabla-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 4px solid #a7a7a7;
+}
+  
+.tabla-row:last-child {
+    border-bottom: none;
+}
+  
+/* Contenedor para la imagen con tamaño fijo */
+.table-image {
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+  
+.table-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+  
+/* Contenedor de la información (datos) */
+.table-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+  
+/* Cada "celda" de información */
+.table-cell-nombre {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Opcional: define un ancho mínimo para alinear columnas */
+    min-width: 180px;
+}
+  
+/* Cada "celda" de información */
+.table-cell {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* Opcional: define un ancho mínimo para alinear columnas */
+    min-width: 80px;
+}
+  
+.table-cell p, .table-cell-nombre p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+  .tabla-row {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .table-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .table-cell, .table-cell-nombre {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+  
+
+/* FIN VISTA EN TABLA ALTERNATIVA */
+
+@media (max-width: 768px){
+    .nombre{
+        font-size: 1.5rem;
+    }
+
+}

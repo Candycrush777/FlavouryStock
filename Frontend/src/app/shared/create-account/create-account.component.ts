@@ -13,6 +13,7 @@ export class CreateAccountComponent {
   confirmPassword: string = '';
   passwordErrors: string[] = [];
   passwordsMatch: boolean = true;
+  
 
   user: User = {
     id_rol: 1, // Por defecto será usuario ser admin
@@ -26,12 +27,13 @@ export class CreateAccountComponent {
 
   constructor(
     private userService: UserService,
+    public router: Router
   ) {}
 
-  cambiarRol(rol: number) {
+ /*  cambiarRol(rol: number) {
     this.user.id_rol = rol;
     console.log('Rol cambiado a:', rol);
-  }
+  } */
 
   validatePassword() {
     this.passwordErrors = [];
@@ -72,7 +74,7 @@ export class CreateAccountComponent {
 
     this.userService.createUser(this.user).subscribe({
       next: (response) => {
-        console.log('Usuario creado exitosamente:', response);
+        console.log('Usuario creado exitosamente:', response.id_rol);
       },
       error: (error) => {
         console.error('Error al crear usuario:', error);

@@ -20,8 +20,12 @@ import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.com
 import { LoginComponent } from './shared/login/login.component';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
 import { CreateAccountHeaderComponent } from './shared/create-account/create-account-header/create-account-header.component';
-import { CreateAccountFooterComponent } from './shared/create-account/create-account-footer/create-account-footer.component';
 import { StockComponent } from './shared/stock/stock.component';
+import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CaducidadesComponent } from './shared/caducidades/caducidades.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
+import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 
 @NgModule({
   declarations: [
@@ -36,15 +40,19 @@ import { StockComponent } from './shared/stock/stock.component';
     InicioAdminComponent,
     LoginComponent,
     CreateAccountComponent,
-    CreateAccountFooterComponent,
     CreateAccountHeaderComponent,
     StockComponent,
+    ListadoStockComponent,
+    CaducidadesComponent,
+    RecipeComponent,
+    GestionUserComponent,
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],

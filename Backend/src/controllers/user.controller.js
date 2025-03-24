@@ -103,7 +103,7 @@ exports.getUserId = (req, res)=>{
 }
 
 //funcion de modificar 
-exports.updateUser =(req, res) =>{
+exports.updateUser =(req, res) =>{//hay que modificar esta funcion
     const {id} = req.params
     const {nombre, apellido1, apellido2, empresa, email, id_rol} = req.body
 

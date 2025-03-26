@@ -12,3 +12,13 @@
     background-position: center center;
     background-repeat: no-repeat;
 }
+
+/* table{
+    background-color: black;
+    border-radius: 16px;
+} */
+
+td:hover{
+    background-color:  rgb(238, 158, 138);
+    transition: 1s ease;
+}

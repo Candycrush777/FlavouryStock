@@ -12,42 +12,42 @@
 
             <div class="col-12 col-md-7 text-center">
                 <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
-                <button class="btn btn-primary" (click)="mostrarListado()">Mostrar User</button>
+                <button class="btn btn-primary m-4" (click)="mostrarListado()">Mostrar User</button>
                 
                 <div class="rounded-5 overflow-hidden border">
                     <table *ngIf="mostrar" class="table rounded-5">
                         <thead>
                           <tr>
+                            <th scope="col"></th>
                             <th scope="col">Rol</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellido 1</th>
-                            <th scope="col">Apellido 2</th>
+                            <th scope="col">Apellido</th>
                             <th scope="col">Empresa</th>
-                            <th scope="col">email</th>
-                            <th scope="col">btn</th>
-                            <th scope="col">btn</th>
+                            <th colspan="2" scope="col">btn</th>
+                            
+                            <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                          <tr>
+                          <tr *ngFor="let item of listaUsers">
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Bismark</td>
-                            <td>Flavoury</td>
-                            <td><p>Markflavoury.com</p></td>
+                            <td>{{ item.id_rol }}</td>
+                            <td>{{ item.nombre }}</td>
+                            <td>{{ item.apellido1 }}</td>
+                            <td>{{ item.empresa }}</td>
+                            
+                            <td class="nhv">
+                                <button class="btn btn-primary">Editar</button>
+                            </td>
+                            <td class="nhv">
+                                <button class="btn btn-danger">Eliminar</button>
+                            </td>
+                            
+                            <td></td>
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>twitter</td>
-                          </tr>
+                         
+                          
+                          
                         </tbody>
                       </table>
                 </div>

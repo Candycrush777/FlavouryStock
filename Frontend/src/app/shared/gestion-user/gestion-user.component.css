@@ -13,12 +13,18 @@
     background-repeat: no-repeat;
 }
 
-/* table{
-    background-color: black;
-    border-radius: 16px;
-} */
+table{
+    border: 2px solid rgb(209, 209, 209);
+    background-color: rgb(243, 243, 236);
+    border-radius:8px;
+    
+}
 
+td{
+    background-color: rgb(243, 243, 236);
+}
 td:hover{
     background-color:  rgb(238, 158, 138);
     transition: 1s ease;
 }
+

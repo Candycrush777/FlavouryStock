@@ -20,11 +20,39 @@ table{
     
 }
 
+
+
 td{
-    background-color: rgb(243, 243, 236);
+    /* background-color: rgb(243, 243, 236); */
+    min-height: 100%;
+    vertical-align: middle;
 }
-td:hover{
+/* td:hover{
     background-color:  rgb(238, 158, 138);
     transition: 1s ease;
+} */
+
+.btn-edit{
+    padding: 6px 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 15px;
+    border: none;
+    justify-content: stretch;
+    align-items: stretch;
 }
+
+
+
+.btn-edit:hover{
+    background-color: rgba(237, 117, 87, 0.645);
+  }
+  
+/*   .btnComenzar:active {
+    border-color: rgb(237, 117, 87);
+    box-shadow: 0 0 5px rgba(238, 53, 6, 0.5);
+    outline: none;
+    color: white;
+  }
+   */
 

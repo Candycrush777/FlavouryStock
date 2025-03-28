@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
   styleUrl: './gestion-user.component.css',
 })
 export class GestionUserComponent {
+  vistaTabla = false;
   mostrar = false;
+  editarUser: Number | null = null
 
   /* 
 ESTA SERA LA USADA PARA GUARDAR LOS LEIDOS DE LA DB
@@ -20,6 +22,7 @@ listaUsers: User []=[]
   /* ESTA LISTA ES LA FICTICIA */
   listaUsers: User[] = [
     {
+      
       id_rol: 1,
       nombre: 'Vinicius',
       apellido1: 'Junior',
@@ -65,7 +68,8 @@ listaUsers: User []=[]
   emailUser = '';
   passwdUser = '';
 
-  guardarUsuario() {
+  guardarUsuarioEditado() {
+
     /* NO TIENE MUCHO SENTIDO, PORQUE AL CREAR USER SE DEBERIA LEER DE LA DB */
     if (this.nombreUser.length == 0) {
       /* Si estan vacios un alert */
@@ -91,7 +95,23 @@ listaUsers: User []=[]
     }
   }
 
-  mostrarListado() {
+  prueba(){}
+
+ /*  editar(id: Number){
+    this.editarUser = this.editarUser === id ? null : id
+  }
+
+  guardar(id: number) {
+    //console.log(`Guardando cambios de ID: ${id}`);
+    this.editarUser = null; // Ocultar edición tras guardar
+  } */
+
+
+  /* METODOS PARA MOSTRAR OCULTAR LOS ELEMENTOS */
+  mostrarCrear() {
     this.mostrar = !this.mostrar;
+  }
+  mostrarTabla() {
+    this.vistaTabla = !this.vistaTabla;
   }
 }

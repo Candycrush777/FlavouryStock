@@ -1,71 +1,88 @@
 
 <div class="container-fluid">
     <div class="container">
-        <div class="row justify-content-between">
+
+        <div class="row justify-content-center">
             
-            <div class="col-12 col-md-5 text-center">
+            <div class="col-12 col-lg-5 text-center">
                 <h3 class="text-center pt-4">CREA UN NUEVO USUARIO</h3>
+                <button class="btn btn-edit m-4" (click)="mostrarCrear()">Abrir Formulario</button>
                 <!-- HACER QUE CUANDO CLIQUES EN EDITAR USER, EN EL FORM APAREZCAN LOS DATOS COMO
                  EL EJERCICIO DE PHP EN LUGAR DEL CREATE ACCOUNT -->
-                <app-create-account></app-create-account>
+                <app-create-account *ngIf="mostrar"></app-create-account>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-7 text-center">
+            <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
+            <button class="btn btn-edit m-4" (click)="mostrarTabla()">Mostrar tabla</button>
+            
+            <div class="rounded-5 overflow-hidden border">
+                <table *ngIf="vistaTabla" class="table rounded-5">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col" class="d-none d-sm-block">Rol</th>
+                        <th colspan="2" scope="col">Nombre</th>
+                        
+                        <th scope="col" class="d-none d-lg-block">Empresa</th>
+                        <th colspan="2" scope="col">Acciones</th>
+                        
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider">
+                      <tr *ngFor="let item of listaUsers">
+                        <td scope="row"></td>
+                        <td class="d-none d-sm-table-cell">{{ item.id_rol }}</td>
+                        <td colspan="2">{{ item.nombre }} {{ item.apellido1 }}</td>
+                        
+                        <td class="d-none d-lg-table-cell">{{ item.empresa }}</td>
+                        
+                        <td>
+                            <button class="btn btn-edit" (click)="prueba()">Editar</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-edit">Eliminar</button>
+                        </td>
+                        
+                        <td></td>
+                      </tr>
+
+                      <!-- Fila extra para edición -->
+                       <!-- AQUI METER UN COLSPAN 8, y meter un mini form para editar los datos -->
+                      <!-- <tr *ngIf="editar === item.id_rol">
+                        <td colspan="8">
+                          <input type="text" class="form-control" [(ngModel)]="item.id_rol">
+                        </td>
+                        <td>
+                          <button class="btn btn-success" (click)="guardar(item.id)">Guardar</button>
+                        </td>
+                      </tr> -->
+                      
+                     
+                      
+                      
+                    </tbody>
+                  </table>
             </div>
 
-            <div class="col-12 col-md-7 text-center">
-                <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
-                <button class="btn btn-primary m-4" (click)="mostrarListado()">Mostrar User</button>
-                
-                <div class="rounded-5 overflow-hidden border">
-                    <table *ngIf="mostrar" class="table rounded-5">
-                        <thead>
-                          <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Rol</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Empresa</th>
-                            <th colspan="2" scope="col">btn</th>
-                            
-                            <th scope="col"></th>
-                          </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                          <tr *ngFor="let item of listaUsers">
-                            <th scope="row">1</th>
-                            <td>{{ item.id_rol }}</td>
-                            <td>{{ item.nombre }}</td>
-                            <td>{{ item.apellido1 }}</td>
-                            <td>{{ item.empresa }}</td>
-                            
-                            <td class="nhv">
-                                <button class="btn btn-primary">Editar</button>
-                            </td>
-                            <td class="nhv">
-                                <button class="btn btn-danger">Eliminar</button>
-                            </td>
-                            
-                            <td></td>
-                          </tr>
-                         
-                          
-                          
-                        </tbody>
-                      </table>
-                </div>
+        </div>
 
-            </div>
-
-            <div class="col-10 text-center">
-                <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
-                <h5>CREAR LA TABLA PARA PINTAR DINAMICAMENTE: tipo form horizontal</h5>
-                <ul class="text-start">
-                    <li>CREAR ARRAY DE USER FICTICIOS (REALMENTE LEERA DE LA DB)</li>
-                    <li>CON SU BOTON EDITAR: Que habilite los input del user </li>
-                    <li>Al clicar editar, desaparecera editar(TIPO AL MOSTRAR QUE HIZO BORJA), y aparecera GUARDAR (AL CLICAR, envia los cambios a la DB)</li>
-                    <li>BOTON ELIMINAR QUE ELIMINA AL USUARIO, PREVIA PREGUNTA DE CONFIRMACION</li>
-                    <li>LUEGO CADA REGISTRO SE REPETIRA CON NGFOR del ARRAY (*ngFor="let user of usuarios")</li>
-                </ul> 
-                <h6>CREAR BOTON ACTUALIZAR, CON UNA QUERY QUE VUELVA A LEER LOS USUARIOS DE LA DB PARA ACTUALIZAR</h6>
-            </div>
+        <div class="col-10 text-center">
+            <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
+            <h5>CREAR LA TABLA PARA PINTAR DINAMICAMENTE: tipo form horizontal</h5>
+            <ul class="text-start">
+                <li>CREAR ARRAY DE USER FICTICIOS (REALMENTE LEERA DE LA DB)</li>
+                <li>CON SU BOTON EDITAR: Que habilite los input del user </li>
+                <li>Al clicar editar, desaparecera editar(TIPO AL MOSTRAR QUE HIZO BORJA), y aparecera GUARDAR (AL CLICAR, envia los cambios a la DB)</li>
+                <li>BOTON ELIMINAR QUE ELIMINA AL USUARIO, PREVIA PREGUNTA DE CONFIRMACION</li>
+                <li>LUEGO CADA REGISTRO SE REPETIRA CON NGFOR del ARRAY (*ngFor="let user of usuarios")</li>
+            </ul> 
+            <h6>CREAR BOTON ACTUALIZAR, CON UNA QUERY QUE VUELVA A LEER LOS USUARIOS DE LA DB PARA ACTUALIZAR</h6>
+        </div>
         </div>
 </div>
 </div>

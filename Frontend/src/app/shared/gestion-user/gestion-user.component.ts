@@ -22,7 +22,7 @@ listaUsers: User []=[]
   /* ESTA LISTA ES LA FICTICIA */
   listaUsers: User[] = [
     {
-      
+      id_user: 1,
       id_rol: 1,
       nombre: 'Vinicius',
       apellido1: 'Junior',
@@ -32,6 +32,7 @@ listaUsers: User []=[]
       passwd: '12345678',
     },
     {
+      id_user: 2,
       id_rol: 2,
       nombre: 'Rosendo',
       apellido1: 'Mercado',
@@ -41,6 +42,7 @@ listaUsers: User []=[]
       passwd: '12345678',
     },
     {
+      id_user: 3,
       id_rol: 2,
       nombre: 'Fito',
       apellido1: 'Cabrales',
@@ -50,6 +52,7 @@ listaUsers: User []=[]
       passwd: '12345678',
     },
     {
+      id_user: 4,
       id_rol: 2,
       nombre: 'Antoine',
       apellido1: 'Griezmann',
@@ -83,6 +86,7 @@ listaUsers: User []=[]
       /* CREAR USER FICTICIO PARA GUARDAR AL LISTADO */
       let user: User = {
         id_rol: this.idRolUser,
+        id_user: this.idRolUser,
         nombre: this.nombreUser,
         apellido1: this.apellido1User,
         apellido2: this.apellido2User,

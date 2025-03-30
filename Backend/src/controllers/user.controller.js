@@ -2,7 +2,7 @@ const db = require('../config/bd')//importar la conexion
 const bcrypt = require('bcryptjs')//para encriptar constraseña
 
 
-//esportamos la funcion
+//exportamos la funcion
 
 exports.register = (req, res) =>{
 

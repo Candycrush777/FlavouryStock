@@ -161,10 +161,12 @@ align-items: center;
 
   width: 100px;
   padding: 8px;
-  background-color: rgb(115, 190, 92);
+  /* background-color: rgb(115, 190, 92); */
+  background-color: rgba(0, 0, 0, 0.7) ;
   font-family: cursive;
   border-radius: 40px;
   border: none;
+  color: white;
   
 }
 
@@ -179,10 +181,12 @@ align-items: center;
 
   width: 100px;
   padding: 8px;
-  background-color: rgb(247, 85, 85);
+ /*  background-color: rgb(247, 85, 85); */
+ background-color: rgba(0, 0, 0, 0.7) ;
   font-family: cursive;
   border-radius: 40px;
   border: none;
+  color: white;
 
 }
 

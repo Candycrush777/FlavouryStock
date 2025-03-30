@@ -52,6 +52,7 @@ th {
   color: #131212;
   font-weight: 600;
   border-radius: 2px;
+  text-align: center;
 }
 
 
@@ -116,9 +117,85 @@ th {
   background-color: #c9515d;
 }
 
-.action-btn:hover {
-  opacity: 0.9;
+.btnComenzar {
+  width: 180px !important;
+  height: 40px !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  color: white !important;
+  border-radius: 20px !important;
+  font-family:cursive;
+  border: none !important;
 }
+
+.btnComenzar:hover {
+  background-color: rgba(237, 117, 87, 0.645) !important;
+}
+
+.btnComenzar:active {
+  border-color: rgb(237, 117, 87) !important;
+  box-shadow: 0 0 5px rgba(238, 53, 6, 0.5) !important;
+  outline: none !important;
+  color: white !important;
+}
+
+.flex{
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+}
+
+.flex1{
+
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  
+  }
+
+.editar{
+
+  width: 100px;
+  padding: 8px;
+  background-color: rgb(115, 190, 92);
+  font-family: cursive;
+  border-radius: 40px;
+  border: none;
+  
+}
+
+.editar:hover{
+
+  background-color: rgb(50, 170, 13);
+
+
+}
+
+.eliminar{
+
+  width: 100px;
+  padding: 8px;
+  background-color: rgb(247, 85, 85);
+  font-family: cursive;
+  border-radius: 40px;
+  border: none;
+
+}
+
+.eliminar:hover{
+
+  background-color: rgb(240, 14, 14);
+
+
+}
+
+
+
+
 
 .pagination {
   display: flex;
@@ -157,51 +234,86 @@ th {
 }
 
 .form-container {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #b3c4d6;
+  width: 90%; /* Usa un porcentaje en lugar de un valor fijo */
+
+  margin: 1rem auto 20px auto;
+  padding: 40px;
+  background-image: url('../../../../public/assets/fondo-limpio.png')!important; 
+  background-size: cover; 
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 400px; 
-  margin-left: auto; 
-  margin-right: auto; 
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.form-container label {
-  display: block;
-  margin-bottom: 0.5rem;
-  text-align: center;
-  font-weight: bold; 
-}
-
-.form-container input {
-  width: 90%; 
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  display: block;
-  margin-left: auto; 
-  margin-right: auto; 
-}
-
-.form-container button {
-  display: block;
+.form-row {
+  display: flex;
+  justify-content: space-evenly; /* Mantiene la separación equilibrada */
+  align-items: center;
+  gap: 40px; /* Reduce la distancia entre el input de alimento y los tres inputs */
   width: 100%;
-  background-color: #298cf7;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold; 
 }
 
-.form-container button:hover {
-  background-color: #007bff;
+
+.solo {
+  flex: 1; /* Hace que este input ocupe espacio proporcional */
+  max-width: 250px; /* Evita que crezca demasiado */
+  display: flex;
+  align-items: center;
 }
+
+.solo input {
+  width: 220px !important;
+  padding: 15px;
+  border: 2px solid #e4e1e1;
+  border-radius: 16px;
+  background-color:white ;
+  /* outline: none; */
+}
+
+
+.tres {
+  flex: 1; /* También ocupa espacio proporcional */
+  max-width: 250px; /* Limita el ancho */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Ajusta la distancia entre los inputs */
+}
+
+.tres input {
+  width: 220px !important;
+  padding: 10px;
+  border: 2px solid #e4e1e1;
+  box-shadow: #0d0d0e 2px;
+  border-radius: 16px;
+  background-color: white;
+  /* outline: none; */
+ 
+  
+}
+input::placeholder {
+ /*  font-weight: bolder;  */        
+  font-size: 16px;          
+  color: #302f2f;            
+  font-family:cursive;  
+  
+}
+
+
+input:focus {
+     /* Mantén el borde del input igual */
+  outline: 2px solid rgba(250, 145, 119, 0.645) ;
+    /* Cambia el color del borde interior al hacer foco */
+}
+
+/* Botón centrado */
+.boton-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 
 
 
@@ -338,6 +450,13 @@ th {
       width: 35px;
       height: 35px;
   }
+  .form-row {
+    gap: 20px; /* Reduce más la separación */
+  }
+
+  .solo, .tres {
+    max-width: 200px; /* Reduce el tamaño de los inputs */
+  }
 }
 
 /* Media Query para pantallas de móviles (más pequeñas que 768px) */
@@ -378,7 +497,34 @@ th {
       padding: 6px 12px;
       font-size: 0.8rem;
   }
+  .form-row {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px; 
+  }
+
+  /* Unificamos el comportamiento de .solo y .tres */
+  .solo,
+  .tres {
+    width: 100%; 
+    max-width: 300px; 
+    display: flex; 
+    flex-direction: column; /* Para que el contenido se apile en columna */
+    align-items: center;    /* Centra horizontalmente */
+    gap: 20px;              /* Espacio entre los elementos internos */
+  }
+
+  /* Ajustamos el width de todos los inputs en .solo y .tres */
+  .solo input,
+  .tres input {
+    width: 100% !important;  /* Que ocupen todo el contenedor */
+  }
 }
+
+
+
+
 
 /* Media Query para pantallas de móviles muy pequeñas (menores de 480px) */
 @media (max-width: 480px) {
@@ -432,5 +578,16 @@ th {
     align-items: center;
     justify-content: center;
     gap: 10px;  
+  }
+
+  .form-row {
+    flex-direction: column; /* Se apilan en columna */
+    align-items: center;
+    gap: 15px;
+  }
+
+  .solo, .tres {
+    width: 100%; /* Ocupan todo el ancho */
+    max-width: 300px; /* Pero con límite */
   }
 }

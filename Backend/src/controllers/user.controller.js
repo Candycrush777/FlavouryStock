@@ -1,5 +1,6 @@
 const db = require('../config/bd')//importar la conexion 
 const bcrypt = require('bcryptjs')//para encriptar constraseña
+const { getIngredientsByCategory } = require('./ingredient.controller')
 
 
 //exportamos la funcion

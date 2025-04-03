@@ -1,5 +1,6 @@
 export interface User {
     id_rol: number;
+    id_user: number;
     nombre: string;
     apellido1: string;
     apellido2: string;

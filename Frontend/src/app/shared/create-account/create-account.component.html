@@ -5,7 +5,7 @@
     <div class="form-container">
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label for="nombre" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Nombre</b></label>
+        <label for="nombre" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Nombre</strong></label>
         <input
           id="nombre"
           type="text"
@@ -16,7 +16,7 @@
       </div>
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label for="apellido1" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Primer Apellido</b></label>
+        <label for="apellido1" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Primer Apellido</strong></label>
         <input
           id="apellido1"
           type="text"
@@ -28,7 +28,7 @@
       </div>
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label for="apellido2" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Segundo Apellido</b></label>
+        <label for="apellido2" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Segundo Apellido</strong></label>
         <input
           id="apellido2"
           type="text"
@@ -40,45 +40,45 @@
       </div>
     
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label for="tipo" class="radio-label"><b>Elige tu tipo de usuario</b></label
-        ><br /><br>
+        <label for="tipo" class="radio-label mb-4"><strong>Elige tu tipo de usuario</strong></label
+        >
 
         <div class="radios">
 
-        <div class="radio-options">
-          <div class="radios">
-            <label class="radio-option">
-              <input
-                type="radio"
-                class="form-radio"
-                id="administrador"
-                name="userType"
-                required
-                [(ngModel)]="user.id_rol" [value]="1"
-                
-              />
-              <span class="radio-custom"></span>
-              Administrador
-            </label>
-            <label class="radio-option">
-              <input
-                type="radio"
-                class="form-radio"
-                id="usuario"
-                name="userType"
-                [(ngModel)]="user.id_rol" [value]="2"
-                required
-              />
-              <span class="radio-custom"></span>
-              Usuario
-            </label>
-          </div>
-        </div>
+        
+          
+        <label class="radio-option">
+          <input
+            type="radio"
+            class="form-radio"
+            id="administrador"
+            name="userType"
+            required
+            [(ngModel)]="user.id_rol" [value]="1"
+            
+          />
+          <span class="radio-custom"></span>
+          Administrador
+        </label>
+        <label class="radio-option">
+          <input
+            type="radio"
+            class="form-radio"
+            id="usuario"
+            name="userType"
+            [(ngModel)]="user.id_rol" [value]="2"
+            required
+          />
+          <span class="radio-custom"></span>
+          Usuario
+        </label>
+          
+        
       </div>
     </div>
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label for="empresa" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Empresa</b></label>
+        <label for="empresa" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Empresa</strong></label>
         <input
           id="empresa"
           type="text"
@@ -90,7 +90,7 @@
       </div>
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label for="email" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Email</b></label>
+        <label for="email" [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Email</strong></label>
         <input
           id="email"
           type="email"
@@ -102,7 +102,7 @@
       </div>
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label  [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Contraseña</b></label>
+        <label  [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Contraseña</strong></label>
         <input
           type="password"
           class="form-input"
@@ -132,7 +132,7 @@
       </div>
 
       <div [ngClass]="['form-group', router.url != '/create-account' ? 'form-group-gestion' : '']">
-        <label  [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><b>Vuelve a Ingresar tu contraseña</b></label>
+        <label  [ngClass]="['form-label', router.url != '/create-account' ? 'hiddenOut' : '']"><strong>Vuelve a Ingresar tu contraseña</strong></label>
         <input type="password" class="form-input" [(ngModel)]="confirmPassword" (ngModelChange)="validatePassword()" name="confirmPassword" placeholder="Vuelve a Ingresar tu contraseña" [ngClass]="{ error: !passwordsMatch && confirmPassword }"
           required
         />

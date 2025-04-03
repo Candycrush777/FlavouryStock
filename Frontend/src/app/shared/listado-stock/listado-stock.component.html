@@ -1,116 +1,122 @@
-
 <div class="contenedor">
-<div class="product-table">
-  <div class="cabecera">
-    <div class="titulo"><h1>Añadir Stock</h1></div>
-    <div class="botones">
-      <!-- Botón para mostrar/ocultar formulario -->
-      <button class="action-btn" (click)="toggleForm()">
-        + Añadir Producto
-      </button>
-      <button class="action-btn delete">Eliminar</button>
-      <button class="action-btn" (click)="toggleTable()">Ver Tabla</button>
-    </div>
-  </div>
-
-  <!-- Usando ng-template para controlar la visibilidad del formulario -->
-  <ng-template [ngIf]="isFormVisible">
-    <div class="form-container">
-      <form>
-        <label for="alimento">Alimento:</label>
-        <input
-          type="text"
-          id="alimento"
-          formControlName="alimento"
-          name="alimento"
-          required
-        />
-
-        <label for="peso">Peso:</label>
-        <input
-          type="number"
-          id="peso"
-          formControlName="peso"
-          name="peso"
-          required
-        />
-
-        <button type="submit" class="action-btn">Añadir Producto</button>
-      </form>
-    </div>
-  </ng-template>
-
-  <ng-template [ngIf]="isTableVisible">
-    <div class="container principal">
-      <div class="row row-cols-1 row-cols-md-4 g-3">
-        @for (item of stockItems; track item.id) {
-
-        <div class="col">
-          <div class="card shadow-sm text-center">
-            <img
-              [src]="item.alimento.foto"
-              [alt]="item.alimento.nombre"
-              class="card-img-top"
-            />
-            <div class="card-body">
-              <p class="card-title">{{ item.alimento.nombre }}</p>
-              <p class="card-text">{{ item.peso }}</p>
-              <p class="categoria">{{ item.categoria }}</p>
-            </div>
-          </div>
-        </div>
-        }
+  <div class="product-table">
+    <div class="cabecera">
+      <div class="titulo"><h1>Añadir Stock</h1></div>
+      <div class="botones">
+        <button class="btnComenzar" (click)="toggleForm()">
+          + Añadir Producto
+        </button>
+        
+        <button class="btnComenzar" (click)="toggleTable()">Vista</button>
       </div>
     </div>
-  </ng-template>
 
-  <table *ngIf="!isTableVisible">
-    <thead>
-      <tr>
-        <th>Alimento</th>
-        <th>ID</th>
-        <th>Peso</th>
-        <th>Categoría</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of stockItems; track item.id) {
-      <tr>
-        <td class="id-alimento">
-          <div class="alimento-container">
-            <img
-              [src]="item.alimento.foto"
-              [alt]="item.alimento.nombre"
-              class="alimento-imagen"
-            />
-            <span class="alimento-nombre">{{ item.alimento.nombre }}</span>
+    <ng-template [ngIf]="isFormVisible">
+      <div class="form-container">
+        <form>
+          <div class="form-row">
+            <div class="solo">
+              <input
+                type="text"
+                id="alimento"
+                formControlName="alimento"
+                name="alimento"
+                placeholder="Introduzca producto"
+                required
+              />
+            </div>
+            <div class="tres">
+              <input
+                type="number"
+                id="nevera"
+                formControlName="nevera"
+                name="nevera"
+                placeholder="Cantidad en Nevera"
+                required
+              />
+              <input
+                type="number"
+                id="almacen"
+                formControlName="almacen"
+                name="almacen"
+                placeholder="Cantidad en Almacén"
+              />
+              <input
+                type="number"
+                id="congelador"
+                formControlName="congelador"
+                name="congelador"
+                placeholder="Cantidad en Congelador"
+              />
+            </div>
           </div>
-        </td>
-        <td>{{ item.id }}</td>
-        <td>{{ item.peso }}</td>
-        <td>{{ item.categoria }}</td>
-        <td>
-          <button
-            class="estado-btn"
-            [ngClass]="{
-              'en-stock': item.estado === 'En Stock',
-              'sin-stock': item.estado === 'Sin Stock',
-              pedido: item.estado === 'Pedido'
-            }"
-          >
-            {{ item.estado }}
-          </button>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
+          <div class="boton-row">
+            <button type="submit" class="btnComenzar">Añadir producto</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+    
+    <ng-template [ngIf]="isTableVisible">
+      <div class="container principal">
+        <div class="row row-cols-1 row-cols-md-4 g-3">
+          @for (item of stockItems; track item.id) {
+          <div class="col">
+            <div class="card shadow-sm text-center">
+              <img
+                [src]="item.alimento.foto"
+                [alt]="item.alimento.nombre"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <p class="card-title">{{ item.alimento.nombre }}</p>
+                <p class="card-text">{{ item.peso }}</p>
+                <p class="categoria">{{ item.categoria }}</p>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </ng-template>
 
-  <div class="pagination">
-    <button>Anterior</button>
-    <span>01 02 03 04 ... 10 11</span>
-    <button>Siguiente</button>
+    <table *ngIf="!isTableVisible">
+      <thead>
+        <tr>
+          <th>Alimento</th>
+          <th>Cantidad</th>
+          <th>Categoría</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of stockItems; track item.id) {
+        <tr>
+          <td class="id-alimento">
+            <div class="alimento-container">
+              <img
+                [src]="item.alimento.foto"
+                [alt]="item.alimento.nombre"
+                class="alimento-imagen"
+              />
+              <span class="alimento-nombre">{{ item.alimento.nombre }}</span>
+            </div>
+          </td>
+          <td>{{ item.peso }}</td>
+          <td>{{ item.categoria }}</td>
+          <td>
+            <div class="flex1"><button class="editar" type="button">Editar</button><button class="eliminar" type="button">Eliminar</button></div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button>Anterior</button>
+      <span>01 02 03 04 ... 10 11</span>
+      <button>Siguiente</button>
+    </div>
   </div>
 </div>
-</div>
+

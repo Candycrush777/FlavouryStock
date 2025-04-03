@@ -31,6 +31,8 @@
 
 .form-group {
   margin-bottom: 1.2rem;
+  font-family: "Arial", sans-serif;
+  font-weight: 600;
 }
 .form-group-gestion {
   margin-bottom: 15px;
@@ -53,6 +55,10 @@
   background: transparent;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+}
+
+.radio-option{
+  font-weight: 200;
 }
 
 .form-input:focus {
@@ -84,7 +90,7 @@
 
 .radios {
   display: flex;
-  gap: 50px;
+  justify-content: space-around;
 }
 
 .btnComenzar {
@@ -92,7 +98,8 @@
   height: 40px;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  border-radius: 20px;
+  padding: 6px 12px;
+  border-radius: 15px;
   border: none;
 }
 
@@ -163,7 +170,7 @@
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 992px) {
   .form-container {
     margin: 1rem;
     padding: 1rem;

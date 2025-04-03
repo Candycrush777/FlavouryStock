@@ -24,7 +24,7 @@ color: #3f3a3a;
     padding: 20px;
     font-weight: 600;
     font-size: 50px;
-    box-shadow: 5px 5px 50px 0px #d4cfcf;
+    /* box-shadow: 5px 5px 50px 0px #d4cfcf; */
     border-radius:20%;
     margin-bottom: 50px;
   }

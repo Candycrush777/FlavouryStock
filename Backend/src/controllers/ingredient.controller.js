@@ -6,124 +6,38 @@ const db = require("../config/bd") //importar la conex
 
 //funcion para registrar productos adquiridos recientemente
 
-exports.registerBasket = (req, res) => {
-  // req es el request, peticion HTTP que el servidor recibe del cliente (front)
+exports.registerBasket = (req, res) =>{//todo hay que modificar el user_activo
+    const fechaEtiqueta = new Date
+    const id_usuario = 3
+    const {id_ingrediente, cantidad_almacen,cantidad_nevera, cantidad_congelador } = req.body
 
-  // res el response, representa la respuesta HTTP que server envia al front
+    const insertarEtiquetaFunct = (lugar_almacen, cantidad)=>{
+        if (cantidad>0) {
+             // todo calcular sumandole los dias ( sacados de otra consulta en id_ing.lugar)
+            const fecha_caducidad = new Date
 
-  //todo esta funcion lo que hace es generar una etiqueta del producto
-  //al clicar el boton enviar, guarda los  datos en estas variables, y acto seguido lanza las querys
-  const {
-    id_ingrediente,
-    cantidad_almacen,
-    cantidad_nevera,
-    cantidad_congelador
-  } = req.body
-  const usuarioActivo = null
-  const fechaActual = new Date()
-
-  //Para obtener las caducidades desde la db
-  /* let caducidadAlmacen = fechaActual - Ingrediente.caducidad_almacen 
-    let caducidadNevera = fechaActual - Ingrediente.caducidad_nevera 
-    let caducidadCongelador = fechaActual - Ingrediente.caducidad_congelador  */
-
-  db.query(
-    "SELECT caducidad_almacen, caducidad_nevera, caducidad_congelador FROM Ingredientes WHERE id = ?",
-    [id_ingrediente],
-    (err, results) => {
-      if (err) {
-        return res.status(500).json({ error: err.message })
-      }
-
-      if (results.length === 0) {
-        return res.status(404).json({ message: "Ingrediente no encontrado" })
-      }
-
-      const ingrediente = results[0]
-      const caducidadAlmacen = new Date(
-        fechaActual.getTime() +
-          ingrediente.caducidad_almacen * 24 * 60 * 60 * 1000
-      ) // Ejemplo: caducidad en días
-      const caducidadNevera = new Date(
-        fechaActual.getTime() +
-          ingrediente.caducidad_nevera * 24 * 60 * 60 * 1000
-      )
-      const caducidadCongelador = new Date(
-        fechaActual.getTime() +
-          ingrediente.caducidad_congelador * 24 * 60 * 60 * 1000
-      )
-
-      if (cantidad_almacen > 0) {
-        //todo aqui recoger el usuario activo
-        const sql1 = "INSERT INTO Etiquetas "
-        ;("( id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad)")
-        ;("VALUES (?,?,?,?,?,?)")
-        db.query(
-          sql1,
-          [
-            id_ingrediente,
-            usuarioActivo,
-            fechaActual,
-            "almacen",
-            caducidadAlmacen,
-            cantidad_almacen
-          ],
-          (err, result) => {
-            if (err) {
-              return res.status(500).json({ erro: err.message })
-            }
-            res.status(201).json({ message: "Etiqueta generada correctamente" })
-          }
-        )
-      }
-      if (cantidad_nevera > 0) {
-        //todo aqui recoger el usuario activo
-        const sql1 = "INSERT INTO Etiquetas "
-        ;("( id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad)")
-        ;("VALUES (?,?,?,?,?,?)")
-        db.query(
-          sql1,
-          [
-            id_ingrediente,
-            usuarioActivo,
-            fechaActual,
-            "nevera",
-            caducidadNevera,
-            cantidad_almacen
-          ],
-          (err, result) => {
-            if (err) {
-              return res.status(500).json({ erro: err.message })
-            }
-            res.status(201).json({ message: "Etiqueta generada correctamente" })
-          }
-        )
-      }
-      if (cantidad_congelador > 0) {
-        //todo aqui recoger el usuario activo
-        const sql1 = "INSERT INTO Etiquetas "
-        ;("( id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad)")
-        ;("VALUES (?,?,?,?,?,?)")
-        db.query(
-          sql1,
-          [
-            id_ingrediente,
-            usuarioActivo,
-            fechaActual,
-            "congelador",
-            caducidadCongelador,
-            cantidad_almacen
-          ],
-          (err, result) => {
-            if (err) {
-              return res.status(500).json({ erro: err.message })
-            }
-            res.status(201).json({ message: "Etiqueta generada correctamente" })
-          }
-        )
-      }
+            const sql = "INSERT INTO etiquetas "+ 
+            "(id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad) "+
+            `VALUES(?,?,?,?,?,?)`
+            db.query(sql, [id_ingrediente, id_usuario, fechaEtiqueta, lugar_almacen, fecha_caducidad, cantidad], (err, result)=>{
+                if (err) {
+                    console.log("Error completo:"+ err)
+                    return res.status(500).json({error: err.message})
+                }else if(result.affectedRows===0){
+                    return res.status(404).json({err:"No se han insertado los datos en Etiqueta"})
+                }else{
+                    res.status(200).json({message:` Etiquetas generadas en BD correctamente`})
+                }
+            }) 
+        }
+        
+        
+        
+        //res.status(200).json({message:` Etiquetas generada para ${lugar_almacen} en BD correctamente`})
     }
-  )
+        insertarEtiquetaFunct("almacen", cantidad_almacen)
+        insertarEtiquetaFunct("nevera", cantidad_nevera)
+        insertarEtiquetaFunct("congelador", cantidad_congelador)
 }
 
 exports.getAllIngredients = (req, res)=>{
@@ -171,16 +85,32 @@ exports.getIngredientsByCategory = (req, res)=>{
             return res.status(500).json({error: err.message})
         }
         if(result.length===0){
-            return res.status(404).json({eror: "Ingredientes por categoria no encontrados"})
+            return res.status(404).json({error: "Ingredientes por categoria no encontrados"})
         }
         res.status(200).json(result)
     })
 
 }
 
+exports.getIngredientByNombre = (req, res)=>{
+    const nombre = req.params.nombre
+    sql = `SELECT * FROM ingredientes WHERE nombre = ${nombre}`
+
+    db.query(sql, (err, result)=>{
+        if(err){
+            return res.status(500).json({error: err.message})
+        }
+        if(result.length===0){
+            return res.status(404).json({error:"El ingrediente no encontrado o está mal escrito"})
+        }
+        res.status(200).json(result)
+        
+    })
+}
+
 exports.updateIngredient = (req,res)=>{
     const {nombre, categoria, imagen, unidad_medida, caducidad_almacen, caducidad_nevera, caducidad_congelador}= req.body
-    const{ id_ingrediente}= req.params.id_ingrediente
+    const id_ingrediente= req.params.id_ingrediente
 
     sql="UPDATE Ingredientes "+
     "SET nombre = ?, categoria = ?, imagen = ?, unidad_medida = ?, caducidad_almacen = ?, caducidad_nevera = ?, caducidad_congelador = ? "+
@@ -192,9 +122,11 @@ exports.updateIngredient = (req,res)=>{
             console.error("Error completo:", err);
             return res.status(500).json({error: err.message})
         }
-        if (result.affectedRows===0){
+        else if (result.affectedRows===0){
             return res.status(404).json({error: "No se realizaron los cambios en Ingrediente"})
+        }else{
+
+            res.status(200).json({result, message: "Ingrediente actualizado correctamente"})
         }
-        res.status(200).json({message: "Ingrediente actualizado correctamente"})
     })
 }

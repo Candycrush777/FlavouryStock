@@ -1,6 +1,6 @@
 const db = require('../config/bd')//importar la conexion 
 const bcrypt = require('bcryptjs')//para encriptar constraseña
-const { getIngredientsByCategory } = require('./ingredient.controller')
+
 
 
 //exportamos la funcion
@@ -104,7 +104,7 @@ exports.getUserId = (req, res)=>{
 }
 
 //funcion de modificar 
-exports.updateUser =(req, res) =>{//hay que modificar esta funcion
+exports.updateUser =(req, res) =>{
     const { id_rol, nombre, apellido1, apellido2, empresa, email } = req.body;
     const userId = req.params.id;
 

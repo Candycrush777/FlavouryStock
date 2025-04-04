@@ -9,8 +9,7 @@
 
 .product-table {
   background-color: #ffffff;
-  font-family: 'Arial', sans-serif;
-      max-width: 1200px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
@@ -35,9 +34,9 @@ h1 {
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
-    margin: 1rem 0;
+  margin: 0 auto;
 }
 
 td {
@@ -64,8 +63,6 @@ th {
 }
 .id-alimento {
   color: #0d0d0e;
-  
-  
 }
 
 .estado-btn {

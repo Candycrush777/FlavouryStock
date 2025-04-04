@@ -97,8 +97,6 @@ throw new Error('Method not implemented.');
     },
   ];
  
- 
- 
   isFormVisible: boolean = false;  
   isTableVisible: boolean = false; 
 

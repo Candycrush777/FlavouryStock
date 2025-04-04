@@ -15,12 +15,12 @@
               fácil preparación. Con unos ingredientes sencillos y muy
               económicos, tenemos una comida estupenda que gusta a todos.
             </p>
-            <div class="d-flex gap-3">
-              <p class="card-text texto-tiempo">
+            <div class="d-flex gap-3 justify-content-between">
+              <p class="card-text texto-recetas">
                 <i class="fa-regular fa-clock"></i>
                 2 horas y 40 minutos
               </p>
-              <p class="card-text texto">Cerdo</p>
+              <p class="card-text texto-recetas">Cerdo</p>
             </div>
             <div class="card-text mt-2">
               <button class="btn btn-recipe">
@@ -60,7 +60,7 @@
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
         <div class="categoria-icon">
-          <i class="fa-solid fa-sun" style="color: rgb(199, 56, 4);"></i>
+          <i class="fa-solid fa-sun"></i>
         </div>
         <div class="categoria-content">
           <h3>Desayuno</h3>
@@ -71,7 +71,7 @@
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
         <div class="categoria-icon">
-          <i class="fa-solid fa-utensils" style="color: rgb(231, 65, 5);"></i>
+          <i class="fa-solid fa-utensils"></i>
         </div>
         <div class="categoria-content">
           <h3>Comida</h3>
@@ -82,7 +82,7 @@
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
         <div class="categoria-icon">
-          <i class="fa-solid fa-moon" style="color: rgb(246, 68, 3);"></i>
+          <i class="fa-solid fa-moon"></i>
         </div>
         <div class="categoria-content">
           <h3>Cena</h3>
@@ -93,7 +93,7 @@
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
         <div class="categoria-icon">
-          <i class="fa-solid fa-leaf" style="color: rgb(251, 109, 57);"></i>
+          <i class="fa-solid fa-leaf"></i>
         </div>
         <div class="categoria-content">
           <h3>Vegano</h3>
@@ -104,7 +104,7 @@
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
         <div class="categoria-icon">
-          <i class="fa-solid fa-ice-cream" style="color: rgb(249, 179, 154);"></i>
+          <i class="fa-solid fa-ice-cream"></i>
         </div>
         <div class="categoria-content">
           <h3>Postre</h3>
@@ -136,7 +136,7 @@
               <i class="fa-regular fa-clock"></i>
               {{recipe.tiempo_preparacion}} min
             </p>
-            <p class="card-text texto-recetas">
+            <p class="card-text texto-recetas ">
               <i class="fa-solid fa-utensils"></i> {{recipe.categoria}}
             </p>
           </div>

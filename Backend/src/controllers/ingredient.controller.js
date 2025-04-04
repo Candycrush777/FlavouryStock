@@ -1,12 +1,14 @@
 //const result = require("underscore/cjs/result.js")
 const db = require("../config/bd") //importar la conex
-//const { default: Ingrediente } = require("../models/ingredient.model")
+//const { ingredienteModel: Ingrediente } = require("../models/ingredient.model")
 
 /* AQUI VAN TODAS LAS FUNCIONES A USAR DEL CRUD */
 
 //funcion para registrar productos adquiridos recientemente
 
-exports.registerBasket = (req, res) =>{//todo hay que modificar el user_activo
+exports.registerBasket = (req, res) =>{//todo ver posibles cambios dentro de la funct.
+// todo: hay que modificar el user_activo, 
+// todo: quizas cambiar id_ingrediente, por nombre 
     const fechaEtiqueta = new Date
     const id_usuario = 3
     const {id_ingrediente, cantidad_almacen,cantidad_nevera, cantidad_congelador } = req.body
@@ -39,6 +41,42 @@ exports.registerBasket = (req, res) =>{//todo hay que modificar el user_activo
         insertarEtiquetaFunct("nevera", cantidad_nevera)
         insertarEtiquetaFunct("congelador", cantidad_congelador)
 }
+
+exports.registerBasket2Caducidad = (req, res) =>{//todo ver posibles cambios dentro de la funct.
+    // todo: hay que modificar el user_activo, 
+    // todo: quizas cambiar id_ingrediente, por nombre 
+        const fechaEtiqueta = new Date
+        const id_usuario = 3
+        const {id_ingrediente, cantidad_almacen,cantidad_nevera, cantidad_congelador } = req.body
+    
+        const insertarEtiquetaFunct = (lugar_almacen, cantidad)=>{
+            if (cantidad>0) {
+                 // todo calcular sumandole los dias ( sacados de otra consulta en id_ing.lugar)
+                const fecha_caducidad = new Date
+    
+                const sql = "INSERT INTO etiquetas "+ 
+                "(id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad) "+
+                `VALUES(?,?,?,?,?,?)`
+                db.query(sql, [id_ingrediente, id_usuario, fechaEtiqueta, lugar_almacen, fecha_caducidad, cantidad], (err, result)=>{
+                    if (err) {
+                        console.log("Error completo:"+ err)
+                        return res.status(500).json({error: err.message})
+                    }else if(result.affectedRows===0){
+                        return res.status(404).json({err:"No se han insertado los datos en Etiqueta"})
+                    }else{
+                        res.status(200).json({message:` Etiquetas generadas en BD correctamente`})
+                    }
+                }) 
+            }
+            
+            
+            
+            //res.status(200).json({message:` Etiquetas generada para ${lugar_almacen} en BD correctamente`})
+        }
+            insertarEtiquetaFunct("almacen", cantidad_almacen)
+            insertarEtiquetaFunct("nevera", cantidad_nevera)
+            insertarEtiquetaFunct("congelador", cantidad_congelador)
+    }
 
 exports.getAllIngredients = (req, res)=>{
     const sql= "SELECT * FROM Ingredientes"
@@ -127,6 +165,20 @@ exports.updateIngredient = (req,res)=>{
         }else{
 
             res.status(200).json({result, message: "Ingrediente actualizado correctamente"})
+        }
+    })
+}
+
+function calcularFechaCaducidad(id_ingrediente, req, res){//todo: ver posibles cambios ligados a regBasket
+    //todo: si cambiamos en registerBasket el id_ingred <-> nombre, cambiarlo aquí
+    sql="SELECT nombre, caducidad_almacen, caducidad_nevera, caducidad_congelador"
+    db.query(sql, (err, result)=>{
+        if (err) {
+            return res.status(500).json({error:err.message})
+        }else if(result.length===0){
+            res.status(404).json({error: "Ingrediente no encontrado"})
+        }else{
+            res.status(200).json(result)
         }
     })
 }

@@ -8,7 +8,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .col-md-4 {
@@ -72,7 +72,7 @@
   line-height: 1.6;
 }
 
-.texto-tiempo,
+
 .texto, .texto-recetas {
   background-color: rgba(255, 255, 255, 0.878);
   font-size: 0.875rem;
@@ -191,7 +191,9 @@ hr{
 }
 
 /* Estilos responsive */
-@media (max-width: 820px) {
+@media (max-width: 1024px) {
+
+  
   .card {
     margin: 0;
     padding: 0;
@@ -233,7 +235,7 @@ hr{
   }
 
   .texto-tiempo,
-  .texto {
+  .texto .texto-recetas{
     font-size: 0.75rem;
     padding: 4px 8px;
     min-width: 100px;
@@ -247,7 +249,8 @@ hr{
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+
   .card-title.fs-2 {
     font-size: 1.25rem !important;
   }
@@ -256,11 +259,11 @@ hr{
     font-size: 0.85rem !important;
   }
 
-  .texto-tiempo,
-  .texto {
+  
+  .texto .texto-recetas {
     font-size: 0.7rem;
     padding: 3px 6px;
-    min-width: 90px;
+    width: 180px;
   }
 
   .btn-recipe {

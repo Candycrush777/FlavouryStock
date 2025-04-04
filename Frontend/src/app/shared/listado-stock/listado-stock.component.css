@@ -1,48 +1,50 @@
-.contenedor{
-  background-image: url('../../../../public/assets/fondo-inicio.jpg');
+.contenedor {
+  background-image: url("../../../../public/assets/fondo-inicio.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   padding: 20px;
 }
 
-
 .product-table {
   background-color: #ffffff;
-  font-family: 'Arial', sans-serif;
-      max-width: 1200px;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.cabecera{
+.cabecera {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  padding: 0 5%;
+  width: 100%;
 }
 
-.botones{
+.botones {
   display: flex;
   gap: 1rem;
 }
 
 h1 {
   color: #1d1c1c;
-  padding-bottom: 0.5rem;
+  font-size: 3rem;
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
-    margin: 1rem 0;
+  margin: 0 auto;
 }
 
 td {
   padding: 12px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #dbd9d9;
 }
 
@@ -55,17 +57,14 @@ th {
   text-align: center;
 }
 
-
 .alimento-container {
   display: flex;
   align-items: center;
   gap: 1rem;
-  min-width: 90px; /* Reducir el tamaño del contenedor */
+  padding: 0 0 0 20px;
 }
 .id-alimento {
   color: #0d0d0e;
-  
-  
 }
 
 .estado-btn {
@@ -102,33 +101,23 @@ th {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-  .action-btn {
-  padding: 6px 12px;
-  background-color: #298cf7;
-  color: white;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  margin-right: 5px;
-  transition: background-color 0.3s;
-}
-
 .action-btn.delete {
   background-color: #c9515d;
 }
 
 .btnComenzar {
-  width: 180px !important;
-  height: 40px !important;
+  width: 160px;
+  padding: 6px 12px;
   background-color: rgba(0, 0, 0, 0.7) !important;
-  color: white !important;
-  border-radius: 20px !important;
-  font-family:cursive;
-  border: none !important;
+  color: white;
+  border-radius: 15px;
+  border: none;
 }
 
 .btnComenzar:hover {
   background-color: rgba(237, 117, 87, 0.645) !important;
+  transition: 0.15s ease-in-out;
+  box-shadow: 0.15s ease-in-out;
 }
 
 .btnComenzar:active {
@@ -138,68 +127,33 @@ th {
   color: white !important;
 }
 
-.flex{
-
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
-}
-
-.flex1{
-
-  display: flex;
+.flex1 {
   flex-direction: row;
-  gap: 5px;
-  justify-content: center;
   align-items: center;
-  
-  }
+}
 
-.editar{
-
+.editar,
+.eliminar {
   width: 100px;
-  padding: 8px;
-  /* background-color: rgb(115, 190, 92); */
-  background-color: rgba(0, 0, 0, 0.7) ;
-  font-family: cursive;
-  border-radius: 40px;
+  padding: 6px 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
   border: none;
   color: white;
-  
 }
 
-.editar:hover{
-
-  background-color: rgb(50, 170, 13);
-
-
+.editar:hover {
+  transition: 0.15s ease-in-out;
+  /* color: #000000; */
+  box-shadow: 0.15s ease-in-out;
+  background-color: #579e82;
 }
 
-.eliminar{
-
-  width: 100px;
-  padding: 8px;
- /*  background-color: rgb(247, 85, 85); */
- background-color: rgba(0, 0, 0, 0.7) ;
-  font-family: cursive;
-  border-radius: 40px;
-  border: none;
-  color: white;
-
+.eliminar:hover {
+  transition: 0.15s ease-in-out;
+  box-shadow: 0.15s ease-in-out;
+  background-color: #ed7557;
 }
-
-.eliminar:hover{
-
-  background-color: rgb(240, 14, 14);
-
-
-}
-
-
-
-
 
 .pagination {
   display: flex;
@@ -234,18 +188,19 @@ align-items: center;
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid #eee;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-container {
   width: 90%; /* Usa un porcentaje en lugar de un valor fijo */
 
-  margin: 1rem auto 20px auto;
+  margin: 1rem 0;
   padding: 40px;
-  background-image: url('../../../../public/assets/fondo-limpio.png')!important; 
-  background-size: cover; 
+  background-color: rgba(0, 0, 0, 0.007);
+  /* background-image: url("../../../../public/assets/fondo-inicio.jpg") !important; */
+  /*   background-size: cover; */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -259,7 +214,6 @@ align-items: center;
   width: 100%;
 }
 
-
 .solo {
   flex: 1; /* Hace que este input ocupe espacio proporcional */
   max-width: 250px; /* Evita que crezca demasiado */
@@ -269,13 +223,12 @@ align-items: center;
 
 .solo input {
   width: 220px !important;
-  padding: 15px;
+  padding: 10px;
   border: 2px solid #e4e1e1;
-  border-radius: 16px;
-  background-color:white ;
+  border-radius: 10px;
+  background-color: white;
   /* outline: none; */
 }
-
 
 .tres {
   flex: 1; /* También ocupa espacio proporcional */
@@ -290,25 +243,20 @@ align-items: center;
   padding: 10px;
   border: 2px solid #e4e1e1;
   box-shadow: #0d0d0e 2px;
-  border-radius: 16px;
+  border-radius: 10px;
   background-color: white;
   /* outline: none; */
- 
-  
 }
 input::placeholder {
- /*  font-weight: bolder;  */        
-  font-size: 16px;          
-  color: #302f2f;            
-  font-family:cursive;  
-  
+  /*  font-weight: bolder;  */
+  font-size: 16px;
+  color: #302f2f;
 }
 
-
 input:focus {
-     /* Mantén el borde del input igual */
-  outline: 2px solid rgba(250, 145, 119, 0.645) ;
-    /* Cambia el color del borde interior al hacer foco */
+  /* Mantén el borde del input igual */
+  outline: 2px solid rgba(250, 145, 119, 0.645);
+  /* Cambia el color del borde interior al hacer foco */
 }
 
 /* Botón centrado */
@@ -318,17 +266,12 @@ input:focus {
   margin-top: 20px;
 }
 
-
-
-
-
 .stock-title {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   font-size: 40px;
   margin: 20px 0;
   padding: 10px 20px;
-   color: rgb(24, 24, 24);
+  color: rgb(24, 24, 24);
   display: inline-block;
   border-radius: 8px;
   text-transform: uppercase;
@@ -355,7 +298,6 @@ input:focus {
   cursor: pointer;
   margin: 20px;
   background-color: rgb(247, 245, 239);
-
 }
 
 .card:hover {
@@ -390,7 +332,6 @@ input:focus {
 
 .card-text {
   font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   color: #333;
   margin-top: 5px;
@@ -401,64 +342,73 @@ input:focus {
   font-size: 13px;
   color: rgb(32, 34, 34);
   font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 0;
 }
 
 .principal {
-  border:solid  #d6dadf 2px;
+  border: solid #d6dadf 2px;
   border-radius: 10px;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 40px;
-   background-color: #fcfdfd;
+  background-color: #fcfdfd;
 }
 
-
-.row{
-
-/*   display: flex;
+.row {
+  /*   display: flex;
   justify-content: center; */
   margin-left: 50px;
   margin-right: 10px;
-/*   gap: 10px; */
+  /*   gap: 10px; */
 }
 
+@media (min-width: 620px) {
+  .font-xxl {
+    font-size: 1.5rem;
+  }
+}
 
 /* Media Query para tabletas */
 @media (max-width: 1024px) {
   .product-table {
-      padding: 1rem;
+    padding: 1rem;
   }
 
   .cabecera {
-      flex-direction: column;
-      gap: 1rem;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .botones {
-      width: 100%;
-      justify-content: flex-end;
-      margin-bottom: 1rem;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .editar,
+  .eliminar {
+    width: 80px;
   }
 
   table {
-      margin: 0;
+    margin: 0;
   }
 
-  th, td {
-      padding: 10px;
+  th,
+  td {
+    padding: 10px;
   }
 
   .alimento-imagen {
-      width: 35px;
-      height: 35px;
+    width: 35px;
+    height: 35px;
   }
   .form-row {
     gap: 20px; /* Reduce más la separación */
   }
 
-  .solo, .tres {
+  .solo,
+  .tres {
     max-width: 200px; /* Reduce el tamaño de los inputs */
   }
 }
@@ -466,122 +416,138 @@ input:focus {
 /* Media Query para pantallas de móviles (más pequeñas que 768px) */
 @media (max-width: 768px) {
   .product-table {
-      padding: 0.5rem;
+    padding: 0.5rem;
   }
 
   .cabecera {
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center; 
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
   }
 
   .botones {
-      width: 100%;
-      justify-content: center; 
-      gap: 1rem;
-      margin-top: 1rem; 
-      margin-bottom: 1rem;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .editar,
+  .eliminar {
+    width: 60px;
   }
 
   .alimento-container {
-      gap: 0.8rem;
+    gap: 0.8rem;
   }
 
   .alimento-imagen {
-      width: 30px;
-      height: 30px;
+    width: 30px;
+    height: 30px;
   }
 
   .estado-btn {
-      font-size: 0.8rem;
-      min-width: 80px;
+    font-size: 0.8rem;
+    min-width: 80px;
   }
 
   .pagination button {
-      padding: 6px 12px;
-      font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.8rem;
   }
   .form-row {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
   }
 
   /* Unificamos el comportamiento de .solo y .tres */
   .solo,
   .tres {
-    width: 100%; 
-    max-width: 300px; 
-    display: flex; 
+    width: 100%;
+    max-width: 300px;
+    display: flex;
     flex-direction: column; /* Para que el contenido se apile en columna */
-    align-items: center;    /* Centra horizontalmente */
-    gap: 20px;              /* Espacio entre los elementos internos */
+    align-items: center; /* Centra horizontalmente */
+    gap: 20px; /* Espacio entre los elementos internos */
   }
 
   /* Ajustamos el width de todos los inputs en .solo y .tres */
   .solo input,
   .tres input {
-    width: 100% !important;  /* Que ocupen todo el contenedor */
+    width: 100% !important; /* Que ocupen todo el contenedor */
   }
 }
 
-
-
-
+@media (max-width: 576px) {
+  td {
+    padding: 10px 0;
+  }
+  .flex1 {
+    justify-content: space-between;
+  }
+  .btnComenzar {
+    font-size: 0.8rem;
+    width: 140px;
+  }
+  .eliminar,
+  .editar {
+    width: 60px;
+  }
+  .alimento-nombre {
+    font-size: 1rem;
+  }
+}
 
 /* Media Query para pantallas de móviles muy pequeñas (menores de 480px) */
 @media (max-width: 480px) {
   .product-table {
-      padding: 0.5rem;
+    padding: 0.5rem;
   }
 
   table {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 
-  th, td {
-      padding: 8px;
-  }
-
-  .alimento-container {
-      flex-direction: column;
-      align-items: flex-start;
-  }
-
-  .id-alimento {
-      display: none; 
+  th,
+  td {
+    padding: 8px;
   }
 
   .alimento-imagen {
-      width: 28px;
-      height: 28px;
+    width: 28px;
+    height: 28px;
   }
 
   .estado-btn {
-      font-size: 0.75rem;
-      min-width: 70px;
+    font-size: 0.75rem;
+    min-width: 70px;
   }
 
   .pagination button {
-      font-size: 0.75rem;
-      padding: 6px 10px;
+    font-size: 0.75rem;
+    padding: 6px 10px;
   }
 
   .botones {
-      margin-top: 1rem; 
-      justify-content: center; 
-      margin-bottom: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
 
-  .row{
+  .editar,
+  .eliminar {
+    width: 40px;
+  }
 
-
+  .row {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;  
+    gap: 10px;
   }
 
   .form-row {
@@ -590,7 +556,8 @@ input:focus {
     gap: 15px;
   }
 
-  .solo, .tres {
+  .solo,
+  .tres {
     width: 100%; /* Ocupan todo el ancho */
     max-width: 300px; /* Pero con límite */
   }

@@ -1,98 +1,119 @@
-
 <div class="fondo-pantalla">
-    <div class="container ">
-        <div class="row g-0">
+  <div class="container">
+    <div class="row g-0">
+      <!--  elem. 1 -->
 
-            <!--  elem. 1 -->
-            
-            <div class="col-12 col-xl-6">
-                <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto4.png');">
-                    <div class="cuadrado cuadrado-admin-user text-center">
-                        <a style=" color: #8093ff ;" class="link1">Administación de Usuarios</a>
-                    </div>
-                </div>
+      <div class="col-12 col-xl-6">
+        <div
+          class="fondo mt-3"
+          style="background-image: url('assets/fondo-admin/foto4.png')"
+        >
+          <div class="cuadrado cuadrado-admin-user text-center">
+            <a style="color: #8093ff" class="link1"
+              >Administación de Usuarios</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-xl-6">
+        <div
+          class="fondo mt-0 mt-xl-3"
+          style="background-image: url('assets/fondo-admin/rectangulo4.png')"
+        >
+          <div class="texto">
+            <p>
+              Desde este panel, podrás administrar y gestionar lo referente a
+              los usuarios, agregar, modificar o cambiar rol, o eliminarlos.
+            </p>
+            <div class="botonera">
+              <button class="btn btnAcceder" [routerLink]="'/create-account'">
+                Acceder(de momento al form)
+              </button>
             </div>
-    
-            <div class="col-12 col-xl-6">
-                <div class="fondo mt-0 mt-xl-3" style="background-image: url('assets/fondo-admin/rectangulo4.png');">
-                    <div class="texto">
-                        <p>Desde este panel, podrás administrar y 
-                            gestionar lo referente a los usuarios, 
-                            agregar, modificar o cambiar rol, o eliminarlos.
-                        </p>
-                        <div class="botonera">
+          </div>
+        </div>
+      </div>
 
-                            <button class="btn btnAcceder" [routerLink]="'/create-account'">Acceder(de momento al form)</button>
-                           
-                        </div>
-                    </div>
-                </div>
+      <!-- elem. 2 -->
+      <div class="segundo">
+        <div class="col-12 col-xl-6">
+          <div
+            class="fondo mt-3"
+            style="background-image: url('assets/fondo-admin/foto7.png')"
+          >
+            <div class="cuadrado cuadrado-admin-receta text-center">
+              <a href="" style="color: #f18c57" class="link1"
+                >Administración de Recetas</a
+              >
             </div>
+          </div>
+        </div>
 
-            <!-- elem. 2 -->
-            <div class="segundo">
-                <div class="col-12 col-xl-6">
-                    <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto7.png');">
-                        <div class="cuadrado cuadrado-admin-receta text-center">
-                            <a href="" style=" color: #F18C57;" class="link1">Administración de Recetas</a>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-12 col-xl-6">
-                    <div class="fondo mt-0 mt-xl-3" style="background-image: url('assets/fondo-admin/rectangulo5.png');">
-                        <div class="texto">
-                            <p>
-                                Desde este panel, podras gestionar lo 
-                                referente a las recetas como añadir nuevas,
-                                 modificar las existentes (alérgenos, 
-                                 ingredientes, cantidades...) o eliminar recetas.
-                            </p>
-                            <div class="botonera">
+        <div class="col-12 col-xl-6">
+          <div
+            class="fondo mt-0 mt-xl-3"
+            style="background-image: url('assets/fondo-admin/rectangulo5.png')"
+          >
+            <div class="texto">
+              <p>
+                Desde este panel, podras gestionar lo referente a las recetas
+                como añadir nuevas, modificar las existentes (alérgenos,
+                ingredientes, cantidades...) o eliminar recetas.
+              </p>
+              <div class="botonera">
+                <button class="btn btnAcceder" [routerLink]="'/recetas-form'">
+                  Acceder
+                </button>
 
-                                <button class="btn btnAcceder">Acceder</button>
-                                
-                                <button class="btn btnAcceder" routerLink="/recipe">Recetas Inteligentes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="btn btnAcceder" routerLink="/recipe">
+                  Recetas Inteligentes
+                </button>
+              </div>
             </div>
-    
-    
-                <!-- elem. 3 -->
+          </div>
+        </div>
+      </div>
 
-                <div class="col-12 col-xl-6">
-                    <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto6.png');">
-                        <div class="cuadrado cuadrado-gestion-stock text-center">
-                            <a href="" style=" color: #398d69 ;" class="link1">Gestión de Stock</a>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="col-12 col-xl-6">
-                    <div class="fondo mt-0 mt-xl-3 mb-3" style="background-image: url('assets/fondo-users/rectangulo2.PNG');">
-                        <div class="texto">
-                            <p>
-                                Desde este panel, podrás gestionar el stock 
-                                disponible, asi cómo modificarlo, en caso de
-                                no coincidir con la realidad, o eliminar
-                                los productos que se han desechado.
-                            </p>
-                            <div class="botonera ">
+      <!-- elem. 3 -->
 
-                                <button class="btn btnAcceder">Acceder</button>
-                                
-                                <button class="btn btnAcceder">Próximas caducidades</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="col-12 col-xl-6">
+        <div
+          class="fondo mt-3"
+          style="background-image: url('assets/fondo-admin/foto6.png')"
+        >
+          <div class="cuadrado cuadrado-gestion-stock text-center">
+            <a href="" style="color: #398d69" class="link1">Gestión de Stock</a>
+          </div>
+        </div>
+      </div>
 
-                
-    
-            <!-- elem. 4 -->
-             <!--
+      <div class="col-12 col-xl-6">
+        <div
+          class="fondo mt-0 mt-xl-3 mb-3"
+          style="background-image: url('assets/fondo-users/rectangulo2.PNG')"
+        >
+          <div class="texto">
+            <p>
+              Desde este panel, podrás gestionar el stock disponible, asi cómo
+              modificarlo, en caso de no coincidir con la realidad, o eliminar
+              los productos que se han desechado.
+            </p>
+            <div class="botonera">
+              <button class="btn btnAcceder" [routerLink]="'/listado-stock'">
+                Acceder
+              </button>
+
+              <button class="btn btnAcceder" [routerLink]="'/caducidades'">
+                Próximas caducidades
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- elem. 4 -->
+      <!--
             <div class="segundo">
              <div class="col-12 col-xl-6">
                     <div class="fondo mt-3" style="background-image: url('assets/fondo-users/foto3.png');">
@@ -114,9 +135,9 @@
             </div>
             -->
 
-            <!-- elem. 5 -->
+      <!-- elem. 5 -->
 
-               <!-- <div class="col-12 col-xl-6">
+      <!-- <div class="col-12 col-xl-6">
                     <div class="fondo mt-3" style="background-image: url('assets/fondo-admin/foto5.png');">
                         <div class="cuadrado-registro-productos text-center">
                             <a href="" style=" color: #62C49A ;" class="link1">Registro de Productos</a>
@@ -135,14 +156,8 @@
                         </div>
                     </div>
                 </div> -->
-            
-            
 
-
-
-
-            <!-- FIN ELEMENTOS -->
-        </div>
+      <!-- FIN ELEMENTOS -->
     </div>
-    
+  </div>
 </div>

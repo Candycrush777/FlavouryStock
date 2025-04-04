@@ -6,7 +6,7 @@
         <button class="btnComenzar" (click)="toggleForm()">
           + Añadir Producto
         </button>
-        
+
         <button class="btnComenzar" (click)="toggleTable()">Vista</button>
       </div>
     </div>
@@ -19,7 +19,6 @@
               <input
                 type="text"
                 id="alimento"
-                formControlName="alimento"
                 name="alimento"
                 placeholder="Introduzca producto"
                 required
@@ -29,7 +28,6 @@
               <input
                 type="number"
                 id="nevera"
-                formControlName="nevera"
                 name="nevera"
                 placeholder="Cantidad en Nevera"
                 required
@@ -37,14 +35,12 @@
               <input
                 type="number"
                 id="almacen"
-                formControlName="almacen"
                 name="almacen"
                 placeholder="Cantidad en Almacén"
               />
               <input
                 type="number"
                 id="congelador"
-                formControlName="congelador"
                 name="congelador"
                 placeholder="Cantidad en Congelador"
               />
@@ -56,7 +52,7 @@
         </form>
       </div>
     </ng-template>
-    
+
     <ng-template [ngIf]="isTableVisible">
       <div class="container principal">
         <div class="row row-cols-1 row-cols-md-4 g-3">
@@ -83,32 +79,38 @@
     <table *ngIf="!isTableVisible">
       <thead>
         <tr>
-          <th>Alimento</th>
-          <th>Cantidad</th>
-          <th>Categoría</th>
-          <th>Acción</th>
+          <th scope="col">Alimento</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col" class="d-none d-md-block">Categoría</th>
+          <th scope="col">Acción</th>
         </tr>
       </thead>
       <tbody>
-        @for (item of stockItems; track item.id) {
-        <tr>
+        <tr *ngFor="let item of stockItems">
           <td class="id-alimento">
             <div class="alimento-container">
               <img
                 [src]="item.alimento.foto"
                 [alt]="item.alimento.nombre"
-                class="alimento-imagen"
+                class="alimento-imagen d-none d-sm-table-cell"
               />
-              <span class="alimento-nombre">{{ item.alimento.nombre }}</span>
+              <span class="alimento-nombre font-xxl">{{
+                item.alimento.nombre
+              }}</span>
             </div>
           </td>
-          <td>{{ item.peso }}</td>
-          <td>{{ item.categoria }}</td>
+          <td class="font-xxl">{{ item.peso }}</td>
+          <td class="d-none d-md-table-cell font-xxl">{{ item.categoria }}</td>
           <td>
-            <div class="flex1"><button class="editar" type="button">Editar</button><button class="eliminar" type="button">Eliminar</button></div>
+            <div class="flex1 d-flex justify-content-around">
+              <button class="editar" type="button">
+                <i class="fa-solid fa-pen-to-square"></i></button
+              ><button class="eliminar" type="button">
+                <i class="fa-solid fa-trash-arrow-up"></i>
+              </button>
+            </div>
           </td>
         </tr>
-        }
       </tbody>
     </table>
 
@@ -119,4 +121,3 @@
     </div>
   </div>
 </div>
-

@@ -1,63 +1,64 @@
 <div class="container-fluid">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-5 text-center">
-        <h3 class="text-center pt-4">CREA UN NUEVO USUARIO</h3>
-        <button class="btn btn-edit m-4" (click)="mostrarCrear()">
-          Abrir Formulario
-        </button>
+  <div class="container-gestion p-3">
+    <div class="row flex-column align-items-center">
+      <div class="col-12 col-lg-12 text-center columna-gest my-5">
+        <div class="cabecero d-flex justify-content-around">
+
+          <h3 class="text-center pt-3 fs-1 fw-bold">GESTION DE LOS USUARIOS</h3>
+          <button
+            class="btn btn-crear m-4 d-flex align-items-center"
+            (click)="mostrarCrear()"
+          >
+            <span>Añadir nuevo</span>
+            <span>&nbsp;&nbsp;</span>
+            <i class="fa-solid fa-user-plus"></i>
+          </button>
+        </div>
         <!-- HACER QUE CUANDO CLIQUES EN EDITAR USER, EN EL FORM APAREZCAN LOS DATOS COMO
                  EL EJERCICIO DE PHP EN LUGAR DEL CREATE ACCOUNT -->
         <app-create-account *ngIf="mostrar"></app-create-account>
-      </div>
-    </div>
 
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-7 text-center">
-        <h3 class="text-center pt-4">GESTIONA LOS USUARIOS</h3>
-        <button class="btn btn-edit m-4" (click)="mostrarTabla()">
-          Mostrar tabla
-        </button>
+        <h3 class="text-center p-3">LISTADO DE USUARIOS</h3>
 
-        <div class="rounded-5 overflow-hidden border">
-          <table *ngIf="vistaTabla" class="table rounded-5">
+        
+          <table class="table mx-auto">
             <thead>
               <tr>
-                <th scope="col"></th>
+                <th class="d-none d-xs-table-cell" scope="col"></th>
                 <th scope="col" class="d-none d-sm-block">Rol</th>
                 <th colspan="2" scope="col">Nombre</th>
 
                 <th scope="col" class="d-none d-lg-block">Empresa</th>
                 <th colspan="2" scope="col">Acciones</th>
 
-                <th scope="col"></th>
+                <th class="d-none d-xs-table-cell" scope="col"></th>
               </tr>
             </thead>
 
             <tbody class="table-group-divider">
-              <tr *ngFor="let item of listaUsers">
-                <td scope="row"></td>
-                <td class="d-none d-sm-table-cell">{{ item.id_rol }}</td>
-                <td colspan="2">{{ item.nombre }} {{ item.apellido1 }}</td>
+              <tr *ngFor="let user of users">
+                <td class="d-none d-xs-table-cell" scope="row"></td>
+                <td class="fs-5 d-none d-sm-table-cell">{{ user.id_rol }}</td>
+                <td class="fs-5" colspan="2">{{ user.nombre }} {{ user.apellido1 }}</td>
 
-                <td class="d-none d-lg-table-cell">{{ item.empresa }}</td>
+                <td class="fs-5 d-none d-lg-table-cell">{{ user.empresa }}</td>
 
                 <td>
-                  <button class="btn btn-edit" (click)="prueba()">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <button class="btn btn-edit w-100">
+                    <i class="fa-solid fa-user-pen"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-edit">
-                    <i class="fa-solid fa-trash-arrow-up"></i>
+                  <button class="btn-del w-100">
+                    <i class="fa-solid fa-user-xmark"></i>
                   </button>
                 </td>
 
-                <td></td>
+                <td class="d-none d-xs-table-cell"></td>
               </tr>
             </tbody>
           </table>
-        </div>
+        
       </div>
     </div>
   </div>

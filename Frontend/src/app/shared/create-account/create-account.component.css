@@ -9,7 +9,8 @@
 .main-bg{
   background-image: url("../../../../public/assets/fondo-inicio.jpg");
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .hiddenOut{
@@ -27,6 +28,14 @@
   border: solid white 2px;
 
   background: Rgba(255, 255, 255, 0.6);
+}
+.form-container-gestion {
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.007);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {

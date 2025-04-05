@@ -1,3 +1,7 @@
+export interface UserResponse {
+    result: User[]
+}
+
 export interface User {
     id_rol: number;
     id_user: number;

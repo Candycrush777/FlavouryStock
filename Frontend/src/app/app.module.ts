@@ -27,6 +27,7 @@ import { CaducidadesComponent } from './shared/caducidades/caducidades.component
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
+import { EditUserModalComponent } from './components/edit-user-modal/edit-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { RecetasFormComponent } from './shared/recetas-form/recetas-form.compone
     RecipeComponent,
     GestionUserComponent,
     RecetasFormComponent,
+    EditUserModalComponent,
   ],
   imports: [
     BrowserModule, 

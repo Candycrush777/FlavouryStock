@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {  Observable, catchError, tap } from 'rxjs';
-import { LoginResponse, User } from '../models/user';
+import { Observable, catchError, tap, map } from 'rxjs';
+import { LoginResponse, User, UserResponse } from '../models/user';
 
 
 @Injectable({
@@ -9,6 +9,7 @@ import { LoginResponse, User } from '../models/user';
 })
 export class UserService {
     private apiUrl = 'http://localhost:3000/api/users'; 
+    private apiGet = 'http://localhost:3000/api/getUser'; 
     
 
     constructor(private http: HttpClient) { }
@@ -41,5 +42,18 @@ export class UserService {
         ); 
     }
 
-    
+    getAllUser():Observable<User[]>{
+        /* const url = `${this.apiUrl}`;
+        console.log('URL DE GET ALL USER? que esta actuando',url);
+ */
+        return this.http.get<UserResponse>(`${this.apiUrl}/getUser`).pipe(
+            map((res)=> {
+                console.log('Respuesta de la api: ', res)
+                return res.result
+            })
+        )
+            
+        
+    }
+   
 } 

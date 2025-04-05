@@ -1,58 +1,70 @@
-/* @media (max-width: 768px){
-    .rowGest{
-        justify-content: center;
-    }
-    
-   
-
-} */
-.container-fluid{
-    background-image: url('../../../../public/assets/fondo-inicio.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+.container-fluid {
+  background-image: url("../../../../public/assets/fondo-inicio.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
-table{
-    border: 2px solid rgb(209, 209, 209);
-    background-color: rgb(243, 243, 236);
-    border-radius:8px;
-    
+.columna-gest {
+  border-radius: 12px;
+  background-color: white;
+  max-width: 1000px;
 }
 
+table {
+  background-color: rgb(243, 243, 236);
 
-
-td{
-    /* background-color: rgb(243, 243, 236); */
-    min-height: 100%;
-    vertical-align: middle;
-}
-/* td:hover{
-    background-color:  rgb(238, 158, 138);
-    transition: 1s ease;
-} */
-
-.btn-edit{
-    padding: 6px 12px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border-radius: 15px;
-    border: none;
-    justify-content: stretch;
-    align-items: stretch;
+  width: 90%;
 }
 
+td {
+  padding: 12px;
+  min-height: 100%;
+  vertical-align: middle;
+}
 
+.btn-edit,
+.btn-del,
+.btn-crear {
+  padding: 6px 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 15px;
+  border: none;
+}
 
-.btn-edit:hover{
-    background-color: rgba(237, 117, 87, 0.645);
+.btn-crear:hover {
+  background-color: rgba(237, 117, 87, 0.645);
+}
+
+.btn-del:hover {
+  transition: 0.15s ease-in-out;
+  box-shadow: 0.15s ease-in-out;
+  background-color: #ed7557;
+}
+
+.btn-edit:hover {
+  transition: 0.15s ease-in-out;
+  box-shadow: 0.15s ease-in-out;
+  background-color: #579e82;
+}
+
+.btn-edit .btn-del {
+  width: 1200px !important;
+}
+
+@media (max-width: 1024px) {
+  .cabecero {
+    flex-direction: column;
+    align-items: center;
   }
-  
-/*   .btnComenzar:active {
-    border-color: rgb(237, 117, 87);
-    box-shadow: 0 0 5px rgba(238, 53, 6, 0.5);
-    outline: none;
-    color: white;
-  }
-   */
 
+  .btn-edit.btn-del {
+    min-width: 80px;
+  }
+}
+@media (max-width: 576px) {
+  .fs-5 {
+    font-size: 16px!important;
+  }
+}

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from './../../models/user';
 import Swal from 'sweetalert2';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-gestion-user',
@@ -9,18 +10,30 @@ import Swal from 'sweetalert2';
   styleUrl: './gestion-user.component.css',
 })
 export class GestionUserComponent {
-  vistaTabla = false;
+  users:User[]= []
+
+  constructor(private userService: UserService){}
+
+  ngOnInit(): void {
+    this.getUsers()//llamamos a la funcion al iniciar el componente
+  }
+
+  getUsers(){
+    console.log('Intentando obtener usuarios...SE MUESTRA');
+    this.userService.getAllUser().subscribe(user=>{
+      this.users = user
+    },error=>{
+      console.log("Error obtenido en usuarios",error);
+      
+    })
+  }
+
+  vistaTabla = true;
   mostrar = false;
   editarUser: Number | null = null
 
-  /* 
-ESTA SERA LA USADA PARA GUARDAR LOS LEIDOS DE LA DB
-
-listaUsers: User []=[] 
-*/
-
   /* ESTA LISTA ES LA FICTICIA */
-  listaUsers: User[] = [
+  /* listaUsers: User[] = [
     {
       id_user: 1,
       id_rol: 1,
@@ -61,61 +74,23 @@ listaUsers: User []=[]
       email: 'grizzCocina@mail.com',
       passwd: '12345678',
     },
-  ];
+  ]; */
 
-  idRolUser = -1;
+/*   idRolUser = -1;
   nombreUser = '';
   apellido1User = '';
   apellido2User = '';
   empresaUser = '';
   emailUser = '';
-  passwdUser = '';
+  passwdUser = ''; */
 
-  guardarUsuarioEditado() {
+ openModal(user: User){
 
-    /* NO TIENE MUCHO SENTIDO, PORQUE AL CREAR USER SE DEBERIA LEER DE LA DB */
-    if (this.nombreUser.length == 0) {
-      /* Si estan vacios un alert */
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Someone of your fields are empty!',
-        footer: '<a href="#">Why do I have this issue?</a>',
-      });
-    } else {
-      /* CREAR USER FICTICIO PARA GUARDAR AL LISTADO */
-      let user: User = {
-        id_rol: this.idRolUser,
-        id_user: this.idRolUser,
-        nombre: this.nombreUser,
-        apellido1: this.apellido1User,
-        apellido2: this.apellido2User,
-        empresa: this.empresaUser,
-        email: this.emailUser,
-        passwd: this.passwdUser,
-      };
+ }
 
-      this.listaUsers.push(user);
-    }
-  }
-
-  prueba(){}
-
- /*  editar(id: Number){
-    this.editarUser = this.editarUser === id ? null : id
-  }
-
-  guardar(id: number) {
-    //console.log(`Guardando cambios de ID: ${id}`);
-    this.editarUser = null; // Ocultar edición tras guardar
-  } */
-
-
-  /* METODOS PARA MOSTRAR OCULTAR LOS ELEMENTOS */
+  /* METODO PARA MOSTRAR-OCULTAR LOS ELEMENTOS */
   mostrarCrear() {
     this.mostrar = !this.mostrar;
   }
-  mostrarTabla() {
-    this.vistaTabla = !this.vistaTabla;
-  }
+ 
 }

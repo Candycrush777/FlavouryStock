@@ -9,7 +9,7 @@ import { LoginResponse, User, UserResponse } from '../models/user';
 })
 export class UserService {
     private apiUrl = 'http://localhost:3000/api/users'; 
-    private apiGet = 'http://localhost:3000/api/getUser'; 
+    private apiGet = 'http://localhost:3000/api/getUsers'; 
     
 
     constructor(private http: HttpClient) { }
@@ -43,10 +43,10 @@ export class UserService {
     }
 
     getAllUser():Observable<User[]>{
-        /* const url = `${this.apiUrl}`;
+/*  BUSCANDO EL FALLO       const url = `${this.apiUrl}`;
         console.log('URL DE GET ALL USER? que esta actuando',url);
- */
-        return this.http.get<UserResponse>(`${this.apiUrl}/getUser`).pipe(
+ */       
+        return this.http.get<UserResponse>(`${this.apiUrl}/getUsers`).pipe(
             map((res)=> {
                 console.log('Respuesta de la api: ', res)
                 return res.result

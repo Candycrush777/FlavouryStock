@@ -36,7 +36,7 @@
             </thead>
 
             <tbody class="table-group-divider">
-              <tr *ngFor="let user of users">
+              <tr *ngFor="let user of usersList">
                 <td class="d-none d-xs-table-cell" scope="row"></td>
                 <td class="fs-5 d-none d-sm-table-cell">{{ user.id_rol }}</td>
                 <td class="fs-5" colspan="2">{{ user.nombre }} {{ user.apellido1 }}</td>
@@ -44,12 +44,12 @@
                 <td class="fs-5 d-none d-lg-table-cell">{{ user.empresa }}</td>
 
                 <td>
-                  <button class="btn btn-edit w-100">
+                  <button class="btn btn-edit w-100" (click)="openModal('edit')" data-bs-toggle="modal" data-bs-target="#flavouryModalEdit" >
                     <i class="fa-solid fa-user-pen"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn-del w-100">
+                  <button class="btn-del w-100" (click)="openModal('delete')" data-bs-toggle="modal" data-bs-target="#flavouryModalEdit" >
                     <i class="fa-solid fa-user-xmark"></i>
                   </button>
                 </td>

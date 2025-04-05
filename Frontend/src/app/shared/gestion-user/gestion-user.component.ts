@@ -10,87 +10,46 @@ import { UserService } from '../../services/user.service';
   styleUrl: './gestion-user.component.css',
 })
 export class GestionUserComponent {
-  users:User[]= []
+  usersList: User[] = [] //ARRAY para leer desde BD
 
-  constructor(private userService: UserService){}
+  modalTitle=""//para MODALS
+  modalContent=""
+
+  vistaTabla = true;//para mostrar FORM crearUser
+  mostrar = false;
+
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getUsers()//llamamos a la funcion al iniciar el componente
+    this.getUsers(); //llamamos a la funcion al iniciar el componente
   }
 
-  getUsers(){
+  getUsers() {
     console.log('Intentando obtener usuarios...SE MUESTRA');
-    this.userService.getAllUser().subscribe(user=>{
-      this.users = user
-    },error=>{
-      console.log("Error obtenido en usuarios",error);
-      
-    })
+    this.userService.getAllUser().subscribe(
+      (user) => {
+        this.usersList = user;
+        console.log('Datos recibidos en GetUSERS() gestion.ts:', this.usersList);
+      },error=> {
+        console.log('Error obtenido en usuarios', error);
+      }
+    );
   }
 
-  vistaTabla = true;
-  mostrar = false;
-  editarUser: Number | null = null
 
-  /* ESTA LISTA ES LA FICTICIA */
-  /* listaUsers: User[] = [
-    {
-      id_user: 1,
-      id_rol: 1,
-      nombre: 'Vinicius',
-      apellido1: 'Junior',
-      apellido2: '',
-      empresa: 'RMadrid',
-      email: 'viniChef@mail.com',
-      passwd: '12345678',
-    },
-    {
-      id_user: 2,
-      id_rol: 2,
-      nombre: 'Rosendo',
-      apellido1: 'Mercado',
-      apellido2: '',
-      empresa: 'Rock&Roll',
-      email: 'rosenCocina@mail.com',
-      passwd: '12345678',
-    },
-    {
-      id_user: 3,
-      id_rol: 2,
-      nombre: 'Fito',
-      apellido1: 'Cabrales',
-      apellido2: '',
-      empresa: 'Musica',
-      email: 'fitoCocina@mail.com',
-      passwd: '12345678',
-    },
-    {
-      id_user: 4,
-      id_rol: 2,
-      nombre: 'Antoine',
-      apellido1: 'Griezmann',
-      apellido2: '',
-      empresa: 'AtMadrid',
-      email: 'grizzCocina@mail.com',
-      passwd: '12345678',
-    },
-  ]; */
 
-/*   idRolUser = -1;
-  nombreUser = '';
-  apellido1User = '';
-  apellido2User = '';
-  empresaUser = '';
-  emailUser = '';
-  passwdUser = ''; */
-
- openModal(user: User){
-
- }
+  openModal(content: string) {
+    if (content === 'edit'){
+      this.modalTitle="EDITANDO USUARIO"
+      this.modalContent="SE HA QUEDADO BUENA LA TARDE"
+    }else if (content ==="delete"){
+      this.modalTitle="ELIMINANDO USUARIO"
+      this.modalContent="SE HA QUEDADO BUENA LA TARDE, Pero seguro vas a eliminar este Usuario??"
+    }
+  }
 
   /* METODO PARA MOSTRAR-OCULTAR LOS ELEMENTOS */
   mostrarCrear() {
     this.mostrar = !this.mostrar;
   }
- 
 }

@@ -13,11 +13,17 @@ export class RecipeService {
   constructor(private http: HttpClient) { }
 
   getAllRecipes():Observable<Recipe[]>{
-    return this.http.get<RecipeResponse>(`${this.api}/getRecipes`).pipe(
+    return this.http.get<RecipeResponse>(`${this.api}/getRecipes?page=1`).pipe(
       map((res) => {
         console.log('Respuesta de la api: ', res);
-        return res.result
+        return res.recetas
       })
+    )
+  }
+
+  loadPage(page: number): Observable<Recipe[]> {
+    return this.http.get<RecipeResponse>(`${this.api}/getRecipes?page=${page}`).pipe(
+      map(result => result.recetas)
     )
   }
 }

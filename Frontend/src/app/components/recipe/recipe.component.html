@@ -116,7 +116,8 @@
 
 
   <div class="container mt-3">
-    <button class="btn btnVer">Ver todo</button>
+    <button class="btn btnVer" (click)="loadPreviesRecipe()" [disabled]="currentPage === 1"><i class="fa-solid fa-circle-arrow-left"></i></button>
+    <button class="btn btnVer" (click)="loadMoreRecipes(currentPage + 1)"><i class="fa-solid fa-circle-arrow-right"></i></button>
   </div>
 
   <!-- recetas  -->

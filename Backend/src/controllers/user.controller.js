@@ -75,7 +75,7 @@ exports.deleteUser = (req, res) =>{
     })
 }
 
-exports.getUser = (req, res)=>{
+exports.getUsers = (req, res)=>{
     sql = "SELECT id_usuario, id_rol, nombre, apellido1, apellido2, empresa, email FROM Usuarios "
     db.query(sql, (err, result) =>{
         if (err) {
@@ -84,7 +84,7 @@ exports.getUser = (req, res)=>{
         if (result.length === 0) {
             return res.status(404).json({error: "Usuario no encontrado"})
         }
-        res.status(200).json(result)
+        res.status(200).json({result})
     })
 }
 

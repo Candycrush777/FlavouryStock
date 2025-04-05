@@ -1,0 +1,112 @@
+.swiper {
+    width: 100%; 
+    height: auto; 
+    border-radius: 20px;
+    
+}
+.swiper-slide {
+    width: 100%;
+}
+
+
+.card img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+} 
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #000;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+.card-body {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 2rem;
+}
+
+.col-md-4 {
+    height: 100%;
+    padding: 0;
+}
+
+.card {
+    background-image: url("../../../../public/assets/fondo-inicio.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+}
+
+.card-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.card-text {
+    color: #666;
+    line-height: 1.6;
+}
+
+.texto, .texto-recetas {
+    background-color: rgba(255, 255, 255, 0.878);
+    font-size: 0.875rem;
+    padding: 4px 12px;
+    border-radius: 10px;
+    width: 40%;
+    min-width: 120px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.btn-recipe {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform all 0.3s ease;
+    width: 100%;
+    min-width: unset;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+}
+
+.btn-recipe:hover {
+    background-color: rgba(237, 117, 87, .2);
+    color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-with: 1198) {
+
+}

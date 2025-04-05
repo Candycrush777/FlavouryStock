@@ -1,0 +1,38 @@
+<!-- Swiper Container -->
+<div class="swiper mySwiper mt-5">
+    <div class="swiper-wrapper">
+  
+      <!-- Slide -->
+      <div class="swiper-slide" *ngFor="let recipe of recipes">
+        <div class="card h-100">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title text-center">
+                  <i class="fa-solid fa-fire-flame-curved"></i> {{ recipe.nombre }}
+                </h5>
+                <p class="card-text tex text-center">{{ recipe.descripcion }}</p>
+                <div class="d-flex gap-3 justify-content-around">
+                  <p class="card-text texto-recetas"><i class="fa-regular fa-clock"></i> 2h 40min</p>
+                  <p class="card-text texto-recetas">Cerdo</p>
+                </div>
+                <button class="btn btn-recipe mt-2">Ver receta <i class="fa-solid fa-square-caret-right"></i></button>
+              </div>
+            </div>
+            <div class="col-md-6 img-container">
+              <img
+                [src]="'https://carniceriavictorsalvo.com/wp-content/uploads/2024/12/costillas-de-cerdo-a-la-parrilla.webp'"
+                class="img-fluid rounded-end"
+                alt="{{ recipe.nombre }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- Navigation buttons -->
+    <div class="swiper-button-prev" (click)="onSlidePreview()"></div>
+    <div class="swiper-button-next" (click)="onSlideNext()"></div>
+</div>

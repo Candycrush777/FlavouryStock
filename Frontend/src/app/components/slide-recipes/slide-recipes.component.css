@@ -28,12 +28,10 @@
 }
 
 .card-body {
-    width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
+    align-self: center;
     padding: 2rem;
 }
 
@@ -68,7 +66,7 @@
 
 .texto, .texto-recetas {
     background-color: rgba(255, 255, 255, 0.878);
-    font-size: 0.875rem;
+    font-size: 1.2rem;
     padding: 4px 12px;
     border-radius: 10px;
     width: 40%;
@@ -90,14 +88,12 @@
 .btn-recipe {
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
-    padding: 0.5rem 1.5rem;
     border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform all 0.3s ease;
-    width: 100%;
-    min-width: unset;
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
+    font-size: 1.5rem;
+    justify-content: center;
+    gap: 15px;
 }
 
 .btn-recipe:hover {
@@ -106,7 +102,16 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+.fa-solid{
+    align-self: center;
+}
 
-@media (max-with: 1198) {
-
+@media (max-width: 576px) {
+    .tiempo{
+        flex-direction: column;
+    }
+    .texto-recetas{
+        width: 75%;
+        margin: 0 auto;
+    }
 }

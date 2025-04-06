@@ -44,12 +44,12 @@
                 <td class="fs-5 d-none d-lg-table-cell">{{ user.empresa }}</td>
 
                 <td>
-                  <button class="btn btn-edit w-100" (click)="openModal('edit')" data-bs-toggle="modal" data-bs-target="#flavouryModalEdit" >
+                  <button class="btn btn-edit w-100" (click)="openModal('edit')" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
                     <i class="fa-solid fa-user-pen"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn-del w-100" (click)="openModal('delete')" data-bs-toggle="modal" data-bs-target="#flavouryModalEdit" >
+                  <button class="btn-del w-100" (click)="openModal('delete')" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
                     <i class="fa-solid fa-user-xmark"></i>
                   </button>
                 </td>
@@ -58,7 +58,7 @@
               </tr>
             </tbody>
           </table>
-        
+        <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent"></app-modal>
       </div>
     </div>
   </div>

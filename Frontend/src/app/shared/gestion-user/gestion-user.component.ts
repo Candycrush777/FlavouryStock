@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './../../models/user';
 import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
+import { CreateAccountComponent } from '../create-account/create-account.component';
 
 @Component({
   selector: 'app-gestion-user',
@@ -44,7 +45,10 @@ export class GestionUserComponent {
       this.modalContent="SE HA QUEDADO BUENA LA TARDE"
     }else if (content ==="delete"){
       this.modalTitle="ELIMINANDO USUARIO"
-      this.modalContent="SE HA QUEDADO BUENA LA TARDE, Pero seguro vas a eliminar este Usuario??"
+      this.modalContent==="SE HA QUEDADO BUENA LA TARDE, Pero seguro vas a eliminar este Usuario??"
+    }else if (content=== "crear") {
+      this.modalTitle= "CREANDO USUARIO"
+      this.modalContent=""
     }
   }
 

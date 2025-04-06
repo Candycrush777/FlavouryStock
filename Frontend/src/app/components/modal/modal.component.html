@@ -7,6 +7,9 @@
         </div>
         <div class="modal-body">
             <p>{{ modalContent }}</p>
+
+            <!-- PARA PODER MOSTRAR CONTENIDO DE OTROS COMPONENTES -->
+            <ng-content></ng-content>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btnModal" data-bs-dismiss="modal">Cerrar</button>

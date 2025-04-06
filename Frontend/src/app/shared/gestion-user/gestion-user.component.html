@@ -7,7 +7,7 @@
           <h3 class="text-center pt-3 fs-1 fw-bold">GESTION DE LOS USUARIOS</h3>
           <button
             class="btn btn-crear m-4 d-flex align-items-center"
-            (click)="mostrarCrear()"
+            (click)="openModal('crear')" data-bs-toggle="modal" data-bs-target="#flavouryModal"
           >
             <span>Añadir nuevo</span>
             <span>&nbsp;&nbsp;</span>
@@ -16,7 +16,7 @@
         </div>
         <!-- HACER QUE CUANDO CLIQUES EN EDITAR USER, EN EL FORM APAREZCAN LOS DATOS COMO
                  EL EJERCICIO DE PHP EN LUGAR DEL CREATE ACCOUNT -->
-        <app-create-account *ngIf="mostrar"></app-create-account>
+        <!-- <app-create-account *ngIf="mostrar"></app-create-account> -->
 
         <h3 class="text-center p-3">LISTADO DE USUARIOS</h3>
 
@@ -58,7 +58,16 @@
               </tr>
             </tbody>
           </table>
-        <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent"></app-modal>
+        <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent">
+          <!-- aqui metemos el form con un ngIF template -->
+           <ng-container *ngIf="modalTitle === 'CREANDO USUARIO'; else elseTemplate">
+              <app-create-account></app-create-account>
+           </ng-container>
+           <ng-template #elseTemplate>
+            
+           </ng-template>
+           
+        </app-modal>
       </div>
     </div>
   </div>

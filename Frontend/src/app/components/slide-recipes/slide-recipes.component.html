@@ -9,14 +9,17 @@
             <div class="col-md-6">
               <div class="card-body">
                 <h5 class="card-title text-center">
-                  <i class="fa-solid fa-fire-flame-curved"></i> {{ recipe.nombre }}
+                  <i class="fa-solid fa-utensils"></i> {{ recipe.nombre }}
                 </h5>
                 <p class="card-text tex text-center">{{ recipe.descripcion }}</p>
-                <div class="d-flex gap-3 justify-content-around">
-                  <p class="card-text texto-recetas"><i class="fa-regular fa-clock"></i> 2h 40min</p>
-                  <p class="card-text texto-recetas">Cerdo</p>
+                <div class="caracteristicas p-4">
+                  <div class="d-flex gap-3 justify-content-between mb-4 tiempo">
+                    <p class="card-text texto-recetas"><i class="fa-regular fa-clock"></i> {{recipe.tiempo_preparacion}} min</p>
+                    <p class="card-text texto-recetas">{{recipe.categoria}}</p>
+                  </div>
+                  <button class="btn btn-recipe mt-2 px-3 w-75 d-grid mx-auto d-flex">Ver receta <i class="fa-solid fa-square-caret-right"></i></button>
                 </div>
-                <button class="btn btn-recipe mt-2">Ver receta <i class="fa-solid fa-square-caret-right"></i></button>
+                
               </div>
             </div>
             <div class="col-md-6 img-container">

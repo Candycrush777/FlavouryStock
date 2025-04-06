@@ -26,7 +26,7 @@ exports.getAllRecipes= (req, res)=>{
             if (err) {
                 return res.status(500).json({Error: err.message})
             }
-    
+
             if (dataResult === 0) {
                 return res.status(404).json({Error: "Receta no encontrada"})
             }

@@ -15,6 +15,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

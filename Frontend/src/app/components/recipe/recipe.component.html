@@ -1,46 +1,6 @@
 <div class="container ">
   <!-- Receta destacada -->
-  <div class="row mt-3 p-3 rounded justify-content-center">
-    <div class="card mb-3" style="max-width: 900px;">
-      <div class="row g-0">
-        <div class="col-md-7">
-          <div class="card-body">
-            <h5 class="card-title fs-2">
-              <i class="fa-solid fa-fire-flame-curved"></i> Costilla de cerdo a
-              la parrilla
-            </h5>
-            <p class="card-text fs-6">
-              Las costillas a la barbacoa es una receta clásica americana que se
-              popularizó en todo el mundo debido a su delicioso sabor y a su
-              fácil preparación. Con unos ingredientes sencillos y muy
-              económicos, tenemos una comida estupenda que gusta a todos.
-            </p>
-            <div class="d-flex gap-3 justify-content-between">
-              <p class="card-text texto-recetas">
-                <i class="fa-regular fa-clock"></i>
-                2 horas y 40 minutos
-              </p>
-              <p class="card-text texto-recetas">Cerdo</p>
-            </div>
-            <div class="card-text mt-2">
-              <button class="btn btn-recipe">
-                Ver receta <i class="fa-solid fa-square-caret-right"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <div class="img-container">
-            <img
-              src="https://carniceriavictorsalvo.com/wp-content/uploads/2024/12/costillas-de-cerdo-a-la-parrilla.webp"
-              class="img-fluid"
-              alt="..."
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-slide-recipes [recipes]="recipes"></app-slide-recipes>
 
   <!-- texto de separacion  -->
   <h1 class="text-center mt-5">Recetas, cocina con creatividad y eficiencia</h1>
@@ -116,7 +76,8 @@
 
 
   <div class="container mt-3">
-    <button class="btn btnVer">Ver todo</button>
+    <button class="btn btnVer" (click)="loadPreviesRecipe()" [disabled]="currentPage === 1"><i class="fa-solid fa-circle-arrow-left"></i></button>
+    <button class="btn btnVer" (click)="loadMoreRecipes(currentPage + 1)"><i class="fa-solid fa-circle-arrow-right"></i></button>
   </div>
 
   <!-- recetas  -->

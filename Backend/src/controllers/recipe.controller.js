@@ -1,45 +1,171 @@
-const db = require('../config/bd')
+const db = require("../config/bd");
 
-exports.getAllRecipes= (req, res)=>{
-    const page = parseInt(req.query.page) || 1
-    const limit = parseInt(req.query.limit) || 6
-    const offset = (page - 1) * limit
+exports.getAllRecipes = (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const offset = (page - 1) * limit;
 
-    //consulta para obtener el total de recetas
-    const countQuery = "SELECT COUNT(*) AS total From recetas"
+  //consulta para obtener el total de recetas
+  const countQuery = "SELECT COUNT(*) AS total From recetas";
 
-    //consulta para obtener las recetas pagonadas
-    const dataQuery = "SELECT * FROM recetas LIMIT ? OFFSET ?"
+  //consulta para obtener las recetas pagonadas
+  const dataQuery = "SELECT * FROM recetas LIMIT ? OFFSET ?";
 
-    //primero obtenemos el total de las recetas
-    db.query(countQuery, (err, countResult)=>{
+  //primero obtenemos el total de las recetas
+  db.query(countQuery, (err, countResult) => {
+    if (err) {
+      return res.status(500).json({ Error: err.message });
+    }
+
+    const total = countResult[0].total;
+    const totlaPages = Math.ceil(total / limit);
+
+    //obtenemos las recetas paginada
+    db.query(dataQuery, [limit, offset], (err, dataResult) => {
+      if (err) {
+        return res.status(500).json({ Error: err.message });
+      }
+
+      if (dataResult === 0) {
+        return res.status(404).json({ Error: "Receta no encontrada" });
+      }
+
+      res.status(200).json({
+        total,
+        totlaPages,
+        currentPage: page,
+        limit,
+        recetas: dataResult,
+      });
+    });
+  });
+
+  //Crear una nueva receta
+
+  exports.registerRecipe = (req, res) => {
+    const { nombre, descripcion, tiempo_preparacion, categoria, estacion } =
+      req.body;
+
+    // momentaneo, hasta decidir donde guardar las imagenes
+
+    const imagen = req.body.imagen || "ruta/por/cualquierruta.jpg";
+
+    // tiene que rellenar todos los campos obligatorio
+
+    if (
+      !nombre ||
+      !descripcion ||
+      !tiempo_preparacion ||
+      !categoria ||
+      !estacion
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Todos los campos son obligatorios" });
+    }
+
+    const insertQuery = `
+      INSERT INTO recetas (nombre, imagen, descripcion, tiempo_preparacion, categoria, estacion)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+      insertQuery,
+      [nombre, imagen, descripcion, tiempo_preparacion, categoria, estacion],
+      (err, result) => {
         if (err) {
-            return res.status(500).json({Error: err.message})
+          return res.status(500).json({ error: err.message });
         }
+        res.status(201).json({
+          message: "Receta creada correctamente",
+          id: result.insertId,
+        });
+      }
+    );
+  };
 
-        const total = countResult[0].total
-        const totlaPages = Math.ceil(total/limit)
-        
+  //Obtener una receta por ID
 
-        //obtenemos las recetas paginada
-        db.query(dataQuery,[limit, offset] ,(err, dataResult)=>{
-            if (err) {
-                return res.status(500).json({Error: err.message})
-            }
-    
-            if (dataResult === 0) {
-                return res.status(404).json({Error: "Receta no encontrada"})
-            }
-    
-            res.status(200).json({
-                total,
-                totlaPages,
-                currentPage: page,
-                limit,
-                recetas: dataResult
-            })
-        })
-    })
-    
-    
+  exports.getRecipeById = (req, res) => {
+    const id = req.params.id;
+    const selectQuery = "SELECT * FROM recetas WHERE id_receta = ?";
+
+    db.query(selectQuery, [id], (err, result) => {
+      if (err) {
+        return res.status(500).jason({ error: err.message });
+      }
+      if (result.length == 0) {
+        return res.status(404).json({ error: "Receta no encontrada" });
+      }
+
+      res.status(200).json(result[0]);
+    });
+  };
+
+  //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
+
+  exports.updateRecipe = (req, res) => {
+    const id = req.params.id;
+  
+    // Primero, obtenemos la receta existente para cambiar los datos 
+    const selectQuery = "SELECT * FROM recetas WHERE id_receta = ?";
+    db.query(selectQuery, [id], (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ error: "Receta no encontrada" });
+      }
+  
+      const recetaExistente = results[0];
+  
+      // Para cada campo, si se envía un valor nuevo se actualiza, si no, se mantiene el valor actual
+      const nombre = req.body.nombre || recetaExistente.nombre;
+      const imagen = req.body.imagen || recetaExistente.imagen;
+      const descripcion = req.body.descripcion || recetaExistente.descripcion;
+      const tiempo_preparacion = req.body.tiempo_preparacion || recetaExistente.tiempo_preparacion;
+      const categoria = req.body.categoria || recetaExistente.categoria;
+      const estacion = req.body.estacion || recetaExistente.estacion;
+  
+      const updateQuery = `
+        UPDATE recetas
+        SET nombre = ?, imagen = ?, descripcion = ?, tiempo_preparacion = ?, categoria = ?, estacion = ?
+        WHERE id_receta = ?
+      `;
+      db.query(updateQuery, [nombre, imagen, descripcion, tiempo_preparacion, categoria, estacion, id], (err, result) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ error: "No se actualizó la receta" });
+        }
+        res.status(200).json({ message: "Receta actualizada correctamente" });
+      });
+    });
+  };
+
+
+// Eliminar una receta
+exports.deleteRecipe = (req, res) => {
+    const id = req.params.id;
+    const deleteQuery = "DELETE FROM recetas WHERE id_receta = ?";
+  
+    db.query(deleteQuery, [id], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: "Receta no encontrada o ya eliminada" });
+      }
+      res.status(200).json({ message: "Receta eliminada correctamente" });
+    });
+  };
+
+
+
+
+
+
+
+
 }

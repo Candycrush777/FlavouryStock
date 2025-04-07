@@ -44,12 +44,12 @@
                 <td class="fs-5 d-none d-lg-table-cell">{{ user.empresa }}</td>
 
                 <td>
-                  <button class="btn btn-edit w-100" (click)="openModal('edit')" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
+                  <button class="btn btn-edit w-100" (click)="openModal('edit', user)" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
                     <i class="fa-solid fa-user-pen"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn-del w-100" (click)="openModal('delete')" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
+                  <button class="btn-del w-100" (click)="openModal('delete', user)" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
                     <i class="fa-solid fa-user-xmark"></i>
                   </button>
                 </td>
@@ -60,11 +60,43 @@
           </table>
         <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent">
           <!-- aqui metemos el form con un ngIF template -->
-           <ng-container *ngIf="modalTitle === 'CREANDO USUARIO'; else elseTemplate">
+
+           <ng-container *ngIf="modalTitle === 'CREANDO USUARIO'; else editTemplate">
               <app-create-account></app-create-account>
            </ng-container>
-           <ng-template #elseTemplate>
-            
+
+           <ng-template #editTemplate>
+            <ng-container *ngIf="modalTitle === 'EDITANDO USUARIO' && usuarioAEditar">
+
+              <form>
+                <div class="mb-3">
+                  <label for="idRol" class="form-label">Rol</label>
+                  <input type="redio" class="form-control" id="idRol" [value]="usuarioAEditar.id_rol === 1 ? 'Admin' : 'Usuario'">
+                </div>
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" [(ngModel)]="usuarioAEditar.nombre" name="nombre">
+                </div>
+                <div class="mb-3">
+                  <label for="apellido1" class="form-label">Apellido 1</label>
+                  <input type="text" class="form-control" id="apellido1" [(ngModel)]="usuarioAEditar.apellido1" name="apellido1">
+                </div>
+                <div class="mb-3">
+                  <label for="apellido2" class="form-label">Apellido 2</label>
+                  <input type="text" class="form-control" id="apellido2" [(ngModel)]="usuarioAEditar.apellido2" name="apellido2">
+                </div>
+                <div class="mb-3">
+                  <label for="empresa" class="form-label">Empresa</label>
+                  <input type="text" class="form-control" id="empresa" [(ngModel)]="usuarioAEditar.empresa" name="empresa">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" [(ngModel)]="usuarioAEditar.email" name="email">
+                </div>
+                <button type="button" class="btn btn-edit" (click)="editUser()">Guardar Cambios</button>
+              </form>
+
+            </ng-container>
            </ng-template>
            
         </app-modal>

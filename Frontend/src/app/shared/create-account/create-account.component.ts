@@ -17,7 +17,7 @@ export class CreateAccountComponent {
 
   user: User ={
     id_rol: 1, // Por defecto será usuario ser admin
-    id_user: 0,
+    id_usuario: 0,
     nombre: '',
     apellido1: '',
     apellido2: '',
@@ -87,7 +87,7 @@ export class CreateAccountComponent {
   clearUser(){
     this.user = {
       id_rol: 1, // Reiniciamos también el id_rol al valor por defecto
-      id_user:0,
+      id_usuario:0,
       nombre: '',
       apellido1: '',
       apellido2: '',

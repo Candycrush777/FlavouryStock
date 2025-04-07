@@ -9,14 +9,12 @@ import { LoginResponse, User, UserResponse } from '../models/user';
 })
 export class UserService {
     private apiUrl = 'http://localhost:3000/api/users'; 
-    private apiGet = 'http://localhost:3000/api/getUsers'; 
+    
     
 
     constructor(private http: HttpClient) { }
 
-    createUser(user: User): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/register`, user);
-    }
+    
 
     login(user: User): Observable<LoginResponse> {
 
@@ -42,6 +40,10 @@ export class UserService {
         ); 
     }
 
+    createUser(user: User): Observable<User> {
+        return this.http.post<User>(`${this.apiUrl}/register`, user);
+    }
+
     getAllUser():Observable<User[]>{
 /*  BUSCANDO EL FALLO       const url = `${this.apiUrl}`;
         console.log('URL DE GET ALL USER? que esta actuando',url);
@@ -54,6 +56,14 @@ export class UserService {
         )
             
         
+    }
+
+    UpdateUserById(userId : number,user: User):Observable<User>{
+        //BUSCANDO EL FALLO       
+        const url = `${this.apiUrl}/update/${userId}`;
+        console.log('URL DE PATCH EDIT USER? que esta actuando',url);
+ 
+        return this.http.patch<User>(`${this.apiUrl}/update/${userId}`, user)
     }
    
 } 

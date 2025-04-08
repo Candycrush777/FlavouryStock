@@ -65,5 +65,9 @@ export class UserService {
  
         return this.http.patch<User>(`${this.apiUrl}/update/${userId}`, user)
     }
+
+    deleteUserById(userId: number):Observable<User>{
+        return this.http.delete<User>(`${this.apiUrl}/delete/${userId}`)
+    }
    
 } 

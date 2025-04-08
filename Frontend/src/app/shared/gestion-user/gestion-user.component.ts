@@ -18,7 +18,7 @@ export class GestionUserComponent {
   modalTitle=""//para MODALS
   modalContent=""
   usuarioAEditar: User | null = null//para el edit
-  UsuarioAEliminar: User | null = null//para delete
+  usuarioAEliminar: User | null = null//para delete
   mostrarModal = false
 
 /*   vistaTabla = true;//para mostrar FORM crearUser
@@ -50,9 +50,10 @@ export class GestionUserComponent {
       this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!/* asercion */, this.usuarioAEditar).subscribe({
         next: (response) =>{
           console.log('Comprobar Usuario modificado correctamente', response);
-          Swal.fire("Usuario actualizado correctamente", "success")
-          this.closeModal()
           this.getUsers()// Para actualizar los cambios
+          /* this.closeModal() */
+          Swal.fire("Usuario actualizado correctamente", "success")
+          
           //todo falta limpiar los campos del edit
         },
         error: (error) => {
@@ -65,7 +66,7 @@ export class GestionUserComponent {
 
   deleteUser(){
     
-    console.log('Usuario a Eliminar:', this.UsuarioAEliminar); 
+    console.log('Usuario a Eliminar:', this.usuarioAEliminar); 
 
     //Swal de confirmacion
     Swal.fire({
@@ -78,13 +79,13 @@ export class GestionUserComponent {
     }).then((result) => {
       //dentro del confirmar meto la funcion EJECUTORA
       if (result.isConfirmed) {
-        if (this.UsuarioAEliminar) {
-          this.userService.deleteUserById(this.UsuarioAEliminar.id_usuario!).subscribe({
+        if (this.usuarioAEliminar) {
+          this.userService.deleteUserById(this.usuarioAEliminar.id_usuario!).subscribe({
             next: (response)=>{
               console.log("USER ELIM", response);
               
               Swal.fire("Usuario eliminado con exito", "","success")
-              this.closeModal()
+              /* this.closeModal() */
               this.getUsers()
             }, error: (error)=>{
               console.log('Error al editar usuario', error)
@@ -97,10 +98,10 @@ export class GestionUserComponent {
       }
     });
 
-    /* if (this.UsuarioAEliminar) {
-      this.userService.deleteUserById(this.UsuarioAEliminar.id_usuario!).subscribe({
+    /* if (this.usuarioAEliminar) {
+      this.userService.deleteUserById(this.usuarioAEliminar.id_usuario!).subscribe({
         next: (response)=>{
-          console.log('Usuario a Eliminar:', this.UsuarioAEliminar); 
+          console.log('Usuario a Eliminar:', this.usuarioAEliminar); 
           Swal.fire("Usuario eliminado con exito", "","success")
           this.getUsers()
         }, error: (error)=>{
@@ -120,30 +121,32 @@ export class GestionUserComponent {
     this.mostrarModal = true;
     //reseteo de users
     this.usuarioAEditar= null
-    this.UsuarioAEliminar= null
+    this.usuarioAEliminar= null
 
 
     if (content === 'edit'){
       this.modalTitle="EDITANDO USUARIO"
       this.usuarioAEditar = usuario? { ...usuario} : null
-      console.log('Usuario a editar:', this.usuarioAEditar); 
+      
       
     }else if (content=== "crear") {
       this.modalTitle= "CREANDO USUARIO"
       this.modalContent=""
     }
     
-    /* else if (content ==="delete"){
+    else if (content ==="delete"){
       this.modalTitle="ELIMINANDO USUARIO"
-      this.modalContent==="SE HA QUEDADO BUENA LA TARDE, Pero seguro vas a eliminar este Usuario??"
-    } */
+      this.usuarioAEliminar= usuario? { ...usuario} : null
+      
+    }
   }
 
   closeModal(){
     this.mostrarModal = false;
     this.usuarioAEditar = null;
-    this.UsuarioAEliminar = null;
+    this.usuarioAEliminar = null;
     this.modalTitle = ""; // Resetear el título del modal
+    this.modalContent = ""; 
   }
 
  

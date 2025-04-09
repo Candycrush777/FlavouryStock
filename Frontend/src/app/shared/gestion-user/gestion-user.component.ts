@@ -176,6 +176,7 @@ export class GestionUserComponent {
 
     if (content === 'edit'){
       this.modalTitle="EDITANDO USUARIO"
+      this.modalContent=""
       this.usuarioAEditar = usuario? { ...usuario} : null
       console.log('Usuario a editar:', this.usuarioAEditar); 
       

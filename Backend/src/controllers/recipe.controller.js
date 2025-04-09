@@ -38,51 +38,9 @@ exports.getAllRecipes = (req, res) => {
         recetas: dataResult,
       });
     });
-  });
+  });}
 
-  //Crear una nueva receta
-
-  exports.registerRecipe = (req, res) => {
-    const { nombre, descripcion, tiempo_preparacion, categoria, estacion } =
-      req.body;
-
-    // momentaneo, hasta decidir donde guardar las imagenes
-
-    const imagen = req.body.imagen || "ruta/por/cualquierruta.jpg";
-
-    // tiene que rellenar todos los campos obligatorio
-
-    if (
-      !nombre ||
-      !descripcion ||
-      !tiempo_preparacion ||
-      !categoria ||
-      !estacion
-    ) {
-      return res
-        .status(400)
-        .json({ error: "Todos los campos son obligatorios" });
-    }
-
-    const insertQuery = `
-      INSERT INTO recetas (nombre, imagen, descripcion, tiempo_preparacion, categoria, estacion)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `;
-
-    db.query(
-      insertQuery,
-      [nombre, imagen, descripcion, tiempo_preparacion, categoria, estacion],
-      (err, result) => {
-        if (err) {
-          return res.status(500).json({ error: err.message });
-        }
-        res.status(201).json({
-          message: "Receta creada correctamente",
-          id: result.insertId,
-        });
-      }
-    );
-  };
+  
 
   //Obtener una receta por ID
 
@@ -168,4 +126,4 @@ exports.deleteRecipe = (req, res) => {
 
 
 
-}
+

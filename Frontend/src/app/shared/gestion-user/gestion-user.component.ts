@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { User } from './../../models/user';
 import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
 import { CreateAccountComponent } from '../create-account/create-account.component';
 import { response } from 'express';
+import { Modal } from 'bootstrap';
+
 
 
 @Component({
@@ -26,7 +28,7 @@ export class GestionUserComponent {
 
   constructor(private userService: UserService) {}
 
- 
+
 
   ngOnInit(): void {
     this.getUsers(); //llamamos a la funcion al iniciar el componente
@@ -44,15 +46,40 @@ export class GestionUserComponent {
     );
   }
 
-  editUser(){
+  /* editUser2(){//todo con SWAL
+    if (this.usuarioAEditar) {
+      
+      this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!, this.usuarioAEditar).subscribe({
+        next: (response) =>{
+          console.log('Comprobar Usuario modificado correctamente', response);
+          this.getUsers()// Para actualizar los cambios
+          Swal.fire({
+            title: "Usuario actualizado correctamente",  
+            icon: "success",
+            timer:2000,
+            
+          })
+          
+          //this.closeModal()
+          
+          //todo falta limpiar los campos del edit
+        },
+        error: (error) => {
+          console.log('Error al editar usuario', error)
+          Swal.fire('Error', 'No se pudo actualizar el usuario', 'error')
+        }
+      })
+    }
+  } */
+  
+    editUser(){//todo sin SWAL
     if (this.usuarioAEditar) {
       
       this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!/* asercion */, this.usuarioAEditar).subscribe({
         next: (response) =>{
           console.log('Comprobar Usuario modificado correctamente', response);
-          this.getUsers()// Para actualizar los cambios
-          /* this.closeModal() */
-          Swal.fire("Usuario actualizado correctamente", "success")
+          this.getUsers()// Para actualizar los cambios      
+          this.closeModal(this.usuarioAEditar!)
           
           //todo falta limpiar los campos del edit
         },
@@ -63,29 +90,65 @@ export class GestionUserComponent {
       })
     }
   }
-
-  deleteUser(){
+ 
+  deleteUser(idUser:number){
     
-    console.log('Usuario a Eliminar:', this.usuarioAEliminar); 
+    console.log('Usuario a Eliminar:', idUser); 
 
     //Swal de confirmacion
     Swal.fire({
       title: "¿Estás seguro de eliminar el usuario?",
       text: "Esta acción no tiene vuelta atrás",
-      showDenyButton: true,
+      //showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Eliminar",
-      denyButtonText: `Me lo he pensado mejor`
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: `No, mantener`,
+      confirmButtonColor: '#000000B3',
+      cancelButtonColor: '#888888B3',
+      
+      didOpen: () => {
+
+        const addHoverEffects = (button: HTMLElement, originalColor: string) => {
+          // Transición para suavizar el cambio de estilo
+          button.style.transition = '0.15s ease-in-out';
+    
+          button.addEventListener('mouseenter', () => {
+            // Aplica color de hover y sombra cuando el cursor entra
+            button.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+            button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+          });
+          button.addEventListener('mouseleave', () => {
+            // Restaura el color original y elimina la sombra cuando el cursor sale
+            button.style.backgroundColor = "#000000B3";
+            button.style.boxShadow = 'none';
+          });
+        };
+
+        
+        // Obtiene el botón de confirmación y aplica border-radius
+        const confirmBtn = Swal.getConfirmButton();
+        if (confirmBtn) {
+          confirmBtn.style.borderRadius = '10px'; // Cambia este valor según lo necesario
+          addHoverEffects(confirmBtn, '#3085d6');
+        }
+        // Obtiene el botón de denegación y aplica border-radius
+        const cancelBtn = Swal.getCancelButton();
+        if (cancelBtn) {
+          cancelBtn.style.borderRadius = '10px';
+          addHoverEffects(cancelBtn, '#3085d6');
+        }
+      }
+
+      
     }).then((result) => {
       //dentro del confirmar meto la funcion EJECUTORA
       if (result.isConfirmed) {
-        if (this.usuarioAEliminar) {
-          this.userService.deleteUserById(this.usuarioAEliminar.id_usuario!).subscribe({
+        if (idUser) {
+          this.userService.deleteUserById(idUser!).subscribe({
             next: (response)=>{
               console.log("USER ELIM", response);
               
               Swal.fire("Usuario eliminado con exito", "","success")
-              /* this.closeModal() */
               this.getUsers()
             }, error: (error)=>{
               console.log('Error al editar usuario', error)
@@ -97,19 +160,6 @@ export class GestionUserComponent {
         Swal.fire("El usuario no ha sido eliminado", "", "info");
       }
     });
-
-    /* if (this.usuarioAEliminar) {
-      this.userService.deleteUserById(this.usuarioAEliminar.id_usuario!).subscribe({
-        next: (response)=>{
-          console.log('Usuario a Eliminar:', this.usuarioAEliminar); 
-          Swal.fire("Usuario eliminado con exito", "","success")
-          this.getUsers()
-        }, error: (error)=>{
-          console.log('Error al editar usuario', error)
-          Swal.fire('Error', 'No se pudo Eliminar el usuario', 'error')
-        }
-      })
-    } */
 
   }
 
@@ -127,27 +177,27 @@ export class GestionUserComponent {
     if (content === 'edit'){
       this.modalTitle="EDITANDO USUARIO"
       this.usuarioAEditar = usuario? { ...usuario} : null
+      console.log('Usuario a editar:', this.usuarioAEditar); 
       
       
     }else if (content=== "crear") {
       this.modalTitle= "CREANDO USUARIO"
       this.modalContent=""
     }
-    
-    else if (content ==="delete"){
-      this.modalTitle="ELIMINANDO USUARIO"
-      this.usuarioAEliminar= usuario? { ...usuario} : null
-      
-    }
+  
   }
 
-  closeModal(){
+  closeModal(user:User){
+
     this.mostrarModal = false;
     this.usuarioAEditar = null;
     this.usuarioAEliminar = null;
-    this.modalTitle = ""; // Resetear el título del modal
-    this.modalContent = ""; 
+    this.modalTitle = "CONFIRMACIÓN"; // Resetear el título del modal
+    this.modalContent = ` El usuario ${user.nombre} ${user.apellido1}, ha sido editado con exito`; 
+
   }
+  
+
 
  
 }

@@ -49,7 +49,8 @@
                   </button>
                 </td>
                 <td>
-                  <button class="btn-del w-100" (click)="openModal('delete',user)" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
+                  <!-- <button class="btn-del w-100" (click)="openModal('delete',user)" data-bs-toggle="modal" data-bs-target="#flavouryModal" > -->
+                  <button class="btn-del w-100" (click)="deleteUser(user.id_usuario)">
                     <i class="fa-solid fa-user-xmark"></i>
                   </button>
                 </td>
@@ -66,7 +67,7 @@
            </ng-container>
 
            <ng-template #editTemplate>
-            <ng-container *ngIf="modalTitle === 'EDITANDO USUARIO' && usuarioAEditar; else deleteTemplate">
+            <ng-container *ngIf="modalTitle === 'EDITANDO USUARIO' && usuarioAEditar"><!-- ; else deleteTemplate -->
 
               <form>
                 
@@ -118,23 +119,6 @@
 
             </ng-container>
            </ng-template>
-           
-           <ng-template #deleteTemplate>
-            <ng-container *ngIf="modalTitle === 'ELIMINANDO USUARIO' && usuarioAEliminar">
-
-              <form>
-                <div>
-
-                  <p>¿Estás seguro de eliminar a este usuario?</p>
-                  <button type="button" class="btn btn-edit mt-3" (click)="deleteUser()">Sí, Eliminar</button>
-                  <button type="button" class="btn btn-edit mt-3" (click)="closeModal()">No, Volver</button>
-                </div>
-
-              </form>
-              
-            </ng-container>
-           </ng-template>
-           
 
         </app-modal>
       </div>

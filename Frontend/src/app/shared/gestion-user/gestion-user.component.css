@@ -55,6 +55,7 @@ td {
   width: 1200px !important;
 }
 
+
 /* FORMULARIO EDIT/DELETE */
 
 
@@ -89,6 +90,9 @@ td {
 .rolOption{
   color:#6c757d ;
 }
+
+
+
 
 @media (max-width: 1024px) {
   .cabecero {

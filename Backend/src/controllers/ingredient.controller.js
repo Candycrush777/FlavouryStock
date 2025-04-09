@@ -6,7 +6,7 @@ const db = require("../config/bd") //importar la conex
 
 //funcion para registrar productos adquiridos recientemente
 
-exports.registerBasket = (req, res) =>{//todo ver posibles cambios dentro de la funct.
+exports.registerBasket2 = (req, res) =>{//todo original sin fechas calculadas
 // todo: hay que modificar el user_activo, 
 // todo: quizas cambiar id_ingrediente, por nombre 
     const fechaEtiqueta = new Date
@@ -42,29 +42,37 @@ exports.registerBasket = (req, res) =>{//todo ver posibles cambios dentro de la 
         insertarEtiquetaFunct("congelador", cantidad_congelador)
 }
 
-exports.registerBasket2Caducidad = (req, res) =>{//todo ver posibles cambios dentro de la funct.
+exports.registerBasket = async (req, res) =>{//todo ver posibles cambios dentro de la funct. NECESITA EL ASYNC
     // todo: hay que modificar el user_activo, 
     // todo: quizas cambiar id_ingrediente, por nombre 
+    // esta funcion necesita para postman id_ingrediente, y cantidades
+    try{
+
         const fechaEtiqueta = new Date
         const id_usuario = 3
         const {id_ingrediente, cantidad_almacen,cantidad_nevera, cantidad_congelador } = req.body
     
-        const insertarEtiquetaFunct = (lugar_almacen, cantidad)=>{
-            if (cantidad>0) {
+            //aqui llamamos a la funcion de calculo de fechas
+        const caducidades = await obtenerCaducidad(db,id_ingrediente)
+
+        const insertarEtiquetaFunct = (lugar_almacen, cantidad,diasCaducidad)=>{
+            if (cantidad>0 && diasCaducidad !== null && diasCaducidad !== undefined) {
                  // todo calcular sumandole los dias ( sacados de otra consulta en id_ing.lugar)
-                const fecha_caducidad = new Date
+                const fecha_caducidad = new Date(fechaEtiqueta)
+                fecha_caducidad.setDate(fecha_caducidad.getDate()+ diasCaducidad)
     
                 const sql = "INSERT INTO etiquetas "+ 
                 "(id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad) "+
                 `VALUES(?,?,?,?,?,?)`
                 db.query(sql, [id_ingrediente, id_usuario, fechaEtiqueta, lugar_almacen, fecha_caducidad, cantidad], (err, result)=>{
                     if (err) {
-                        console.log("Error completo:"+ err)
+                        console.log(`Error al insertar etiqueta de ${lugar_almacen}:`+ err)
                         return res.status(500).json({error: err.message})
                     }else if(result.affectedRows===0){
                         return res.status(404).json({err:"No se han insertado los datos en Etiqueta"})
                     }else{
-                        res.status(200).json({message:` Etiquetas generadas en BD correctamente`})
+                        console.log(`Etiquetas generadas para ${lugar_almacen} correctamente`);
+                        
                     }
                 }) 
             }
@@ -73,10 +81,18 @@ exports.registerBasket2Caducidad = (req, res) =>{//todo ver posibles cambios den
             
             //res.status(200).json({message:` Etiquetas generada para ${lugar_almacen} en BD correctamente`})
         }
-            insertarEtiquetaFunct("almacen", cantidad_almacen)
-            insertarEtiquetaFunct("nevera", cantidad_nevera)
-            insertarEtiquetaFunct("congelador", cantidad_congelador)
+        insertarEtiquetaFunct("almacen", cantidad_almacen, caducidades.almacen)
+        insertarEtiquetaFunct("nevera", cantidad_nevera, caducidades.nevera)
+        insertarEtiquetaFunct("congelador", cantidad_congelador, caducidades.congelador)
+        
+        res.status(200).json({message:` Etiquetas generadas en BD correctamente`})
+
+    }catch (error){
+        console.error("Error al registrar las etiquetas:", error)
+        return res.status(500).json({error: error.message || "Error al procesar la solicitud"})
     }
+        
+    } 
 
 exports.getAllIngredients = (req, res)=>{
     const sql= "SELECT * FROM Ingredientes"
@@ -169,16 +185,22 @@ exports.updateIngredient = (req,res)=>{
     })
 }
 
-function calcularFechaCaducidad(id_ingrediente, req, res){//todo: ver posibles cambios ligados a regBasket
-    //todo: si cambiamos en registerBasket el id_ingred <-> nombre, cambiarlo aquí
-    sql="SELECT nombre, caducidad_almacen, caducidad_nevera, caducidad_congelador"
-    db.query(sql, (err, result)=>{
-        if (err) {
-            return res.status(500).json({error:err.message})
-        }else if(result.length===0){
-            res.status(404).json({error: "Ingrediente no encontrado"})
-        }else{
-            res.status(200).json(result)
-        }
+async function obtenerCaducidad(db, ingredienteId){
+    return new Promise((resolve,reject)=>{
+        const sql="SELECT caducidad_almacen, caducidad_nevera, caducidad_congelador FROM ingredientes WHERE id_ingrediente = ?"
+        db.query(sql, [ingredienteId], (err, result)=>{
+            if (err){
+                reject(err)
+            }else if(result.length===0){
+                reject({message: "Ingrediente no encontrado"})
+            }else{
+                resolve({
+                    almacen: result[0].caducidad_almacen,
+                    nevera: result[0].caducidad_nevera,
+                    congelador: result[0].caducidad_congelador
+                })
+            }
+        })
     })
+    
 }

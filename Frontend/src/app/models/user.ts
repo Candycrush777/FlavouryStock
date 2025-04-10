@@ -4,7 +4,7 @@ export interface UserResponse {
 
 export interface User {
     id_rol: number;
-    id_user: number;
+    id_usuario: number;
     nombre: string;
     apellido1: string;
     apellido2: string;

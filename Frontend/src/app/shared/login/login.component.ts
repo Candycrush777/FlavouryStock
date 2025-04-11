@@ -12,7 +12,7 @@ import { User } from '../../models/user';
 export class LoginComponent {
   user: User = {
     id_rol: 0,
-    id_user: 0,
+    id_usuario: 0,
     nombre: '',
     apellido1: '',
     apellido2: '',

@@ -1,3 +1,4 @@
+
 .container-fluid {
   background-image: url("../../../../public/assets/fondo-inicio.jpg");
   background-size: cover;
@@ -33,6 +34,7 @@ td {
   border: none;
 }
 
+
 .btn-crear:hover {
   background-color: rgba(237, 117, 87, 0.645);
 }
@@ -53,6 +55,45 @@ td {
   width: 1200px !important;
 }
 
+
+/* FORMULARIO EDIT/DELETE */
+
+
+.row-form{
+  box-sizing: border-box;
+  padding: 0 15px;
+  align-items: center;
+  border-bottom: 1px solid rgb(165, 165, 165);
+  /* margin: 0 0 4px !important; */
+
+}
+
+
+.form-label{
+  margin: 0;
+  width: 40%;
+  padding: 0 15px 0 0;
+  text-align: end;
+}
+.form-control{
+  border: none;
+  gap: 5%;
+  width: 55%;
+  
+}
+
+.rolClass{
+  border-bottom: none;
+  margin: 0 0 ;
+}
+
+.rolOption{
+  color:#6c757d ;
+}
+
+
+
+
 @media (max-width: 1024px) {
   .cabecero {
     flex-direction: column;
@@ -66,5 +107,18 @@ td {
 @media (max-width: 576px) {
   .fs-5 {
     font-size: 16px!important;
+  }
+
+  .row-form{
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .form-label{
+    text-align: start;
+    padding: 0 12px;
+    width:100%
+  }
+  .form-control{
+    width:100%
   }
 }

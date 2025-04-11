@@ -74,13 +74,15 @@ exports.registerRecipe = (req, res) => {
       [nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion],
       (err, result) => {
         if (err) {
+          console.log("Nombre", nombre);
+          
           console.log("Error sacado en recipe controller.js");
           
           return res.status(500).json({ error: err.message });
         }
         res.status(201).json({
           message: "Receta creada correctamente",
-          id: result.insertId,
+          result
         });
       }
     );

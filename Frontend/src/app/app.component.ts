@@ -1,5 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -10,54 +11,34 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'FlavouryStock';
-  //todo: Prueba de user para cambiar el header momentaneo
-  user = 'inicio'; // poner admin/ usuario / o cualquiera
 
-  private router = inject(Router); // Nueva forma de inyectar Router en Angular 19
   currentHeader = signal('inicio'); // Usa signals en lugar de variables reactivas tradicionales
 
-  constructor() {
-    // Computed se actualiza automáticamente cuando cambia la URL
-    //todo comentado mientras prueba de user
-    /* computed(() => {
-      const url = this.router.url;
-      if (url.includes('/header-admin')) {
-        this.currentHeader.set('header-admin');
-      } else if (url.includes('/header-usuario')) {
-        this.currentHeader.set('header-usuario');
-      } else {
-        this.currentHeader.set('inicio');
-      }
-    }); */
+  constructor(private router: Router) {
+    router.events.pipe(
+    filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+    this.changeHeader()
+    })
+  }
 
-    let user = this.user;
-    if (user=='admin') {
-      this.currentHeader.set('header-admin');
-    } else if (user=='usuario') {
-      this.currentHeader.set('header-usuario');
-    } else {
+  ngOnInit(): void {
+    this.changeHeader()
+    
+  }
+
+  changeHeader(){
+    const user = typeof window !== 'undefined' ? localStorage.getItem('id_rol') : null //esto es para chequear que localStorage este disponible
+    if (user === '1' || user === '2') {
+      this.currentHeader.set('usuario-header');
+    }  else {
       this.currentHeader.set('inicio');
     } 
   }
- 
+  onLogOut(){
+    localStorage.clear()
+    this.currentHeader.set('inicio')
+    this.router.navigate(['/login'])
+  }
 
-  /* nombre: string = '';
-  primerApellido: string = '';
-  segundoApellido: string = '';
-  empresa: string = '';
-  email: string = '';
-  contraseña: string = '';
-  aceptarCondiciones: boolean = false;
-
-  crearCuenta() {
-    console.log('Cuenta creada:', {
-      nombre: this.nombre,
-      primerApellido: this.primerApellido,
-      segundoApellido: this.segundoApellido,
-      empresa: this.empresa,
-      email: this.email,
-      contraseña: this.contraseña, //esto tiene que ir encriptado
-      aceptarCondiciones: this.aceptarCondiciones,
-    });
-  } */
 }

@@ -40,6 +40,10 @@ export class UserService {
         ); 
     }
 
+    logOut() {
+        localStorage.clear()
+    }
+
     createUser(user: User): Observable<User> {
         return this.http.post<User>(`${this.apiUrl}/register`, user);
     }

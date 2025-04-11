@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -31,19 +32,20 @@ export class LoginComponent {
     
     if (!this.user.email || !this.user.passwd) {
       console.log('Email o contraseña vacíos');
+      alert('Email o contraseña vacíos')
       return;
     }
 
     this.userService.login(this.user).subscribe({
       next: (response) => {
-        console.log('Login exitoso:', response);
-        console.log('Rol recibido:', response.id_rol);
-        
-        
-        
+        alert("lOGIN EXITOSO")
+
+        localStorage.setItem('token', response.token)
+        localStorage.setItem("id_rol", response.id_rol.toString())
         // Aquí puedes redirigir según el rol
         if (response.id_rol === 1) {
           this.router.navigate(['/inicio-admin']);
+          
         } else {
           this.router.navigate(['/usuario']);
         }

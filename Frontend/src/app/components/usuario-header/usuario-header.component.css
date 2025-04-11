@@ -9,6 +9,7 @@
     font-size: 1.4rem;
     font-weight: bold;
     text-shadow: 4px 4px 10px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
 }
 .nav-link:hover{
     color: #ED7557;

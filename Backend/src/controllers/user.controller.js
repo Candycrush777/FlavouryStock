@@ -1,5 +1,6 @@
 const db = require('../config/bd')//importar la conexion 
 const bcrypt = require('bcryptjs')//para encriptar constraseña
+const jwt = require('jsonwebtoken')
 
 
 
@@ -36,24 +37,39 @@ exports.login = (req, res) =>{
         if (err) {
             return res.status(500).json({error: err.message})
         }
-        console.log("Resultado de la consulta:", result); // Debug
+
         if (result.length === 0) {
             return res.status(404).json({error: "Usuario no encontrado"})
         }
 
         const userLogin = result[0]//email
-        console.log("Datos del usuario:", userLogin); // Debug
-
-        if (!userLogin.passwd) {
-            return res.status(500).json({ error: "Error en la base de datos: el campo password está vacío" });
-        }
-
         //comparamos contraseñas
         const passMatch = bcrypt.compareSync(passwd, userLogin.passwd)
         if (!passMatch) {
             return res.status(401).json({error: 'Contraseña incorrecta'})
         }
-        res.status(200).json({message: 'Login exitoso', id_rol: userLogin.id_rol})
+
+        //se crea un token para almacenarlo en el localStorage
+        const token = jwt.sign(
+            {
+                id_usuario: userLogin.id_usuario,
+                nombre: userLogin.nombre,
+                email: userLogin.email,
+                id_rol: userLogin.id_rol
+            },
+            process.env.SECRET_JWT_KEY
+        )
+
+        if (!userLogin.passwd) {
+            return res.status(500).json({ error: "Error en la base de datos: el campo password está vacío" });
+        }
+
+        
+        res.status(200).json({
+            message: 'Login exitoso', 
+            token,
+            id_rol: userLogin.id_rol
+        })
     })
 }
 

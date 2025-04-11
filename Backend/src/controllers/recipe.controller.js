@@ -1,6 +1,9 @@
 const db = require("../config/bd");
 
 exports.getAllRecipes = (req, res) => {
+  /*Para probar en POSTMAN 
+  http://localhost:3000/api/recipes/getRecipes?page=1&limit=6*/
+  
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 6;
   const offset = (page - 1) * limit;
@@ -40,7 +43,47 @@ exports.getAllRecipes = (req, res) => {
     });
   });}
 
-  
+exports.registerRecipe = (req, res) => {
+    const { nombre, descripcion, paso_paso, tiempo_preparacion, categoria, estacion } =
+      req.body;
+ 
+    // momentaneo, hasta decidir donde guardar las imagenes
+ 
+    const imagen = req.body.imagen || "ruta/por/cualquierruta.jpg";
+ 
+    // tiene que rellenar todos los campos obligatorio
+ 
+    if (
+      !nombre ||
+      !descripcion ||
+      !tiempo_preparacion ||
+      !categoria ||
+      !estacion
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Todos los campos son obligatorios" });
+    }
+ 
+    const insertQuery = `
+      INSERT INTO recetas (nombre, imagen, descripcion, paso_paso,tiempo_preparacion, categoria, estacion)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+ 
+    db.query(
+      insertQuery,
+      [nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion],
+      (err, result) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        res.status(201).json({
+          message: "Receta creada correctamente",
+          id: result.insertId,
+        });
+      }
+    );
+};
 
   //Obtener una receta por ID
 
@@ -63,45 +106,27 @@ exports.getAllRecipes = (req, res) => {
   //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
 
   exports.updateRecipe = (req, res) => {
-    const id = req.params.id;
-  
-    // Primero, obtenemos la receta existente para cambiar los datos 
-    const selectQuery = "SELECT * FROM recetas WHERE id_receta = ?";
-    db.query(selectQuery, [id], (err, results) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      if (results.length === 0) {
-        return res.status(404).json({ error: "Receta no encontrada" });
-      }
-  
-      const recetaExistente = results[0];
-  
-      // Para cada campo, si se envía un valor nuevo se actualiza, si no, se mantiene el valor actual
-      const nombre = req.body.nombre || recetaExistente.nombre;
-      const imagen = req.body.imagen || recetaExistente.imagen;
-      const descripcion = req.body.descripcion || recetaExistente.descripcion;
-      const tiempo_preparacion = req.body.tiempo_preparacion || recetaExistente.tiempo_preparacion;
-      const categoria = req.body.categoria || recetaExistente.categoria;
-      const estacion = req.body.estacion || recetaExistente.estacion;
-  
-      const updateQuery = `
-        UPDATE recetas
-        SET nombre = ?, imagen = ?, descripcion = ?, tiempo_preparacion = ?, categoria = ?, estacion = ?
-        WHERE id_receta = ?
-      `;
-      db.query(updateQuery, [nombre, imagen, descripcion, tiempo_preparacion, categoria, estacion, id], (err, result) => {
-        if (err) {
-          return res.status(500).json({ error: err.message });
-        }
-        if (result.affectedRows === 0) {
-          return res.status(404).json({ error: "No se actualizó la receta" });
-        }
-        res.status(200).json({ message: "Receta actualizada correctamente" });
-      });
-    });
-  };
 
+    const { nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion} = req.body
+    const idReceta = req.params.id;
+
+
+    sql = `
+    UPDATE recetas
+    SET nombre = ?, imagen = ?, descripcion = ?, paso_paso = ?, tiempo_preparacion = ?, categoria = ?, estacion = ?
+    WHERE id_receta = ?
+  `
+    db.query(sql,[nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion, idReceta],(err,result)=>{
+      if(err){
+        return res.status(500).json({ error: err.message });
+      }else if(result.affectedRows===0){
+        return res.status(404).json({ error: "No se actualizó la receta" });
+      }else{
+        res.status(200).json({ message: "Receta actualizada correctamente" });
+      }
+    })
+
+  }
 
 // Eliminar una receta
 exports.deleteRecipe = (req, res) => {

@@ -10,9 +10,11 @@ export interface RecipeResponse {
 export interface Recipe {
     id_receta:          number;
     nombre:             string;
-    imagen:             null;
+    imagen:             null; //probar string sino funciona
     descripcion:        string;
+    paso_paso:          string;
     tiempo_preparacion: number;
     categoria:          string;
     estacion:           null | string;
 }
+

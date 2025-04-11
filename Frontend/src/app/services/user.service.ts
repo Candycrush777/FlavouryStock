@@ -9,14 +9,12 @@ import { LoginResponse, User, UserResponse } from '../models/user';
 })
 export class UserService {
     private apiUrl = 'http://localhost:3000/api/users'; 
-    private apiGet = 'http://localhost:3000/api/getUsers'; 
+    
     
 
     constructor(private http: HttpClient) { }
 
-    createUser(user: User): Observable<User> {
-        return this.http.post<User>(`${this.apiUrl}/register`, user);
-    }
+    
 
     login(user: User): Observable<LoginResponse> {
 
@@ -31,7 +29,7 @@ export class UserService {
         return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginData).pipe(
             tap((response) => {
                 console.log('Respuesta completa', response);
-                
+                localStorage.setItem('UserLogin', response.id_rol.toString())
                 
             }),
             catchError(error => {
@@ -40,6 +38,10 @@ export class UserService {
                 throw error;
             })
         ); 
+    }
+
+    createUser(user: User): Observable<User> {
+        return this.http.post<User>(`${this.apiUrl}/register`, user);
     }
 
     getAllUser():Observable<User[]>{
@@ -54,6 +56,18 @@ export class UserService {
         )
             
         
+    }
+
+    UpdateUserById(userId : number,user: User):Observable<User>{
+        //BUSCANDO EL FALLO       
+        const url = `${this.apiUrl}/update/${userId}`;
+        console.log('URL DE PATCH EDIT USER? que esta actuando',url);
+ 
+        return this.http.patch<User>(`${this.apiUrl}/update/${userId}`, user)
+    }
+
+    deleteUserById(userId: number):Observable<User>{
+        return this.http.delete<User>(`${this.apiUrl}/delete/${userId}`)
     }
    
 } 

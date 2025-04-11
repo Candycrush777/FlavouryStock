@@ -1,5 +1,6 @@
 class Usuario {
-    constructor(id_rol, nombre, apellido1, apellido2, empresa, email, passwd,) {
+    constructor(id_usuario, id_rol, nombre, apellido1, apellido2, empresa, email, passwd,) {
+        this.id_usuario = id_usuario
         this.id_rol = id_rol
         this.nombre = nombre
         this.apellido1 = apellido1

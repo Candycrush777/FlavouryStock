@@ -4,26 +4,52 @@ import { map, Observable } from 'rxjs';
 import { Recipe, RecipeResponse } from '../models/recipes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipeService {
+  private api = 'http://localhost:3000/api/recipes';
 
-  private api = 'http://localhost:3000/api/recipes'; 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getAllRecipes():Observable<Recipe[]>{
+  getAllRecipes(): Observable<Recipe[]> {
     return this.http.get<RecipeResponse>(`${this.api}/getRecipes?page=1`).pipe(
       map((res) => {
         console.log('Respuesta de la api: ', res);
-        return res.recetas
+        return res.recetas;
       })
-    )
+    );
   }
 
   loadPage(page: number): Observable<Recipe[]> {
-    return this.http.get<RecipeResponse>(`${this.api}/getRecipes?page=${page}`).pipe(
-      map(result => result.recetas)
-    )
+    return this.http
+      .get<RecipeResponse>(`${this.api}/getRecipes?page=${page}`)
+      .pipe(map((result) => result.recetas));
+  }
+
+  //POST
+  registerRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http
+      .post<Recipe>(`${this.api}`, recipe)
+      .pipe(map((res) => res));
+  }
+
+  //GET
+
+  getRecipeById(id: number): Observable<Recipe> {
+    return this.http.get<Recipe>(
+      `${this.api}/getRecipeById/${id}`
+    );
+  }
+
+  //PATCH
+
+  updateRecipe(id: number, recipe: Partial<Recipe>): Observable<Recipe> {
+    return this.http.put<Recipe>(`${this.api}/updateRecipe/${id}`, recipe);
+  }
+
+  //DELETE
+
+  deleteRecipe(id: number): Observable<Recipe> {
+    return this.http.delete<Recipe>(`${this.api}/deleteRecipe/${id}`);
   }
 }

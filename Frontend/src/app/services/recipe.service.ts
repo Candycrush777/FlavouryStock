@@ -28,9 +28,7 @@ export class RecipeService {
 
   //POST
   registerRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http
-      .post<Recipe>(`${this.api}`, recipe)
-      .pipe(map((res) => res));
+    return this.http.post<Recipe>(`${this.api}/registerRecipe`, recipe)
   }
 
   //GET

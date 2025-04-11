@@ -15,11 +15,9 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioHeaderComponent } from './components/usuario-header/usuario-header.component';
-import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { LoginComponent } from './shared/login/login.component';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
-import { CreateAccountHeaderComponent } from './shared/create-account/create-account-header/create-account-header.component';
 import { StockComponent } from './shared/stock/stock.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +25,6 @@ import { CaducidadesComponent } from './shared/caducidades/caducidades.component
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
-import { EditUserModalComponent } from './components/edit-user-modal/edit-user-modal.component';
 import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.component';
 
 @NgModule({
@@ -39,18 +36,15 @@ import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.
     ModalComponent,
     UsuarioComponent,
     UsuarioHeaderComponent,
-    HeaderAdminComponent,
     InicioAdminComponent,
     LoginComponent,
     CreateAccountComponent,
-    CreateAccountHeaderComponent,
     StockComponent,
     ListadoStockComponent,
     CaducidadesComponent,
     RecipeComponent,
     GestionUserComponent,
     RecetasFormComponent,
-    EditUserModalComponent,
     SlideRecipesComponent,
   ],
   imports: [

@@ -14,6 +14,7 @@
             name="nombre"
             class="form-input"
             placeholder="Ej. Paella Valenciana"
+            [(ngModel)] ="recipes.nombre"
             required
           />
         </div>
@@ -27,6 +28,7 @@
             name="imagen"
             class="form-input"
             accept="image/*"
+            
             required
           />
         </div>
@@ -39,6 +41,20 @@
             name="descripcion"
             class="form-input"
             placeholder="ej. Arroz dorado con azafrán, pollo, conejo y verduras, típico de Valencia."
+            [(ngModel)] ="recipes.descripcion"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <!-- Paso a oaso -->
+        <div class="form-group">
+          <label for="pasoPaso" class="form-label">Paso a paso</label>
+          <textarea
+            id="pasoPaso"
+            name="pasoPaso"
+            class="form-input"
+            placeholder="ej. Arroz dorado con azafrán, pollo, conejo y verduras, típico de Valencia."
+            [(ngModel)] ="recipes.paso_paso"
             rows="4"
             required
           ></textarea>
@@ -53,6 +69,7 @@
             name="tiempo-preparacion"
             class="form-input"
             placeholder="Ej. 30 minutos"
+            [(ngModel)] ="recipes.tiempo_preparacion"
             required
           />
         </div>
@@ -66,6 +83,7 @@
             name="categoria"
             class="form-input"
             placeholder="Ej. Plato Principal"
+            [(ngModel)] ="recipes.categoria"
             required
           />
         </div>
@@ -79,13 +97,14 @@
             name="estacion"
             class="form-input"
             placeholder="Ej. Verano"
+            [(ngModel)] ="recipes.estacion"
             required
           />
         </div>
   
         <!-- Botón de Envío -->
         <div class="boton">
-          <button type="submit" class="btnComenzar">Agregar Receta</button>
+          <button type="submit" class="btnComenzar" (click)="registerRecipe()">Agregar Receta</button>
         </div>
       </form>
     </div>

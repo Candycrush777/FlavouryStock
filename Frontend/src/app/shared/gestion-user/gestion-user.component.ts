@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
 import { CreateAccountComponent } from '../create-account/create-account.component';
 import { response } from 'express';
-import { Modal } from 'bootstrap';
+
 
 
 

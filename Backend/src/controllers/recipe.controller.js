@@ -44,12 +44,11 @@ exports.getAllRecipes = (req, res) => {
   });}
 
 exports.registerRecipe = (req, res) => {
-    const { nombre, descripcion, paso_paso, tiempo_preparacion, categoria, estacion } =
-      req.body;
+    const { nombre, descripcion, paso_paso, tiempo_preparacion, categoria, estacion } = req.body;
  
     // momentaneo, hasta decidir donde guardar las imagenes
  
-    const imagen = req.body.imagen || "ruta/por/cualquierruta.jpg";
+    const imagen = "ruta/por/cualquierruta.jpg";
  
     // tiene que rellenar todos los campos obligatorio
  
@@ -63,7 +62,7 @@ exports.registerRecipe = (req, res) => {
       return res
         .status(400)
         .json({ error: "Todos los campos son obligatorios" });
-    }
+    } 
  
     const insertQuery = `
       INSERT INTO recetas (nombre, imagen, descripcion, paso_paso,tiempo_preparacion, categoria, estacion)
@@ -75,6 +74,8 @@ exports.registerRecipe = (req, res) => {
       [nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion],
       (err, result) => {
         if (err) {
+          console.log("Error sacado en recipe controller.js");
+          
           return res.status(500).json({ error: err.message });
         }
         res.status(201).json({

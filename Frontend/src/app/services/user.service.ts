@@ -29,7 +29,7 @@ export class UserService {
         return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginData).pipe(
             tap((response) => {
                 console.log('Respuesta completa', response);
-                
+                localStorage.setItem('UserLogin', response.id_rol.toString())
                 
             }),
             catchError(error => {

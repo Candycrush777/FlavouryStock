@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../../models/recipes';
+import { ApiResponse, Recipe } from '../../models/recipes';
 import { RecipeService } from '../../services/recipe.service';
-import { error } from 'console';
 import { filter } from 'rxjs';
 
 @Component({
@@ -14,6 +13,8 @@ export class RecipeComponent implements OnInit {
 
   recipes: Recipe[] = []
   currentPage: number = 1
+  selectedRecipe: Recipe | null = null;
+  isUpdated: boolean = false;
 
   constructor(private recipeService: RecipeService){}
 
@@ -45,6 +46,54 @@ export class RecipeComponent implements OnInit {
       this.recipeService.loadPage(this.currentPage).subscribe(recipe =>{
         this.recipes = recipe
       })
+    }
+  }
+
+  getRecipeById(id: number) {
+    this.recipeService.getRecipeById(id).subscribe({
+      next: (response: ApiResponse<Recipe>) => {
+        if (response.data) {
+          this.selectedRecipe = response.data;
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener la receta por ID', err);
+      }
+    });
+  }
+
+  updateRecipe() {
+    if (this.selectedRecipe) {
+      const updatedRecipe = { ...this.selectedRecipe }; 
+      this.recipeService.updateRecipe(updatedRecipe.id_receta, updatedRecipe).subscribe({
+        next: (response: ApiResponse) => {
+          if (response.message) {
+            alert('Receta actualizada correctamente');
+            this.isUpdated = true;
+            this.getRecipes();  // Actualizamos la lista de recetas
+          }
+        },
+        error: (err) => {
+          console.error('Error actualizando la receta', err);
+        }
+      });
+    }
+  }
+
+  deleteRecipe() {
+    if (this.selectedRecipe) {
+      this.recipeService.deleteRecipe(this.selectedRecipe.id_receta).subscribe({
+        next: (response: ApiResponse) => {
+          if (response.message) {
+            alert('Receta eliminada correctamente');
+            this.selectedRecipe = null;  // Quitamos la receta seleccionada
+            this.getRecipes();  
+          }
+        },
+        error: (err) => {
+          console.error('Error eliminando la receta', err);
+        }
+      });
     }
   }
 

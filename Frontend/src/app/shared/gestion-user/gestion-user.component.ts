@@ -15,7 +15,7 @@ import { response } from 'express';
   styleUrl: './gestion-user.component.css',
 })
 export class GestionUserComponent {
-  usersList: User[] = [] //ARRAY para leer desde BD
+  usersList?: User[]//ARRAY para leer desde BD
   user?: User
   modalTitle=""//para MODALS
   modalContent=""
@@ -45,32 +45,6 @@ export class GestionUserComponent {
       }
     );
   }
-
-  /* editUser2(){//todo con SWAL
-    if (this.usuarioAEditar) {
-      
-      this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!, this.usuarioAEditar).subscribe({
-        next: (response) =>{
-          console.log('Comprobar Usuario modificado correctamente', response);
-          this.getUsers()// Para actualizar los cambios
-          Swal.fire({
-            title: "Usuario actualizado correctamente",  
-            icon: "success",
-            timer:2000,
-            
-          })
-          
-          //this.closeModal()
-          
-          //todo falta limpiar los campos del edit
-        },
-        error: (error) => {
-          console.log('Error al editar usuario', error)
-          Swal.fire('Error', 'No se pudo actualizar el usuario', 'error')
-        }
-      })
-    }
-  } */
   
     editUser(){//todo sin SWAL
     if (this.usuarioAEditar) {
@@ -81,7 +55,6 @@ export class GestionUserComponent {
           this.getUsers()// Para actualizar los cambios      
           this.closeModal(this.usuarioAEditar!)
           
-          //todo falta limpiar los campos del edit
         },
         error: (error) => {
           console.log('Error al editar usuario', error)

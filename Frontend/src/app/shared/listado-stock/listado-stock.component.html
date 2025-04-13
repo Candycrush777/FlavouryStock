@@ -66,8 +66,6 @@
               />
               <div class="card-body">
                 <p class="card-title">{{ item.alimento.nombre }}</p>
-                <p class="card-text">{{ item.peso }}</p>
-                <p class="categoria">{{ item.categoria }}</p>
               </div>
             </div>
           </div>
@@ -76,15 +74,27 @@
       </div>
     </ng-template>
 
+    <!-- Tabla con columnas: Alimento, Almacén, Nevera, Congelador y Acción -->
     <table *ngIf="!isTableVisible">
       <thead>
         <tr>
           <th scope="col">Alimento</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col" class="d-none d-md-block">Categoría</th>
+          <th scope="col" class="th-icon almacen">
+            <img src="congelador.png" alt="Almacén" class="th-img" />
+            <span class="th-text">Almacén</span>
+          </th>
+          <th scope="col" class="th-icon nevera">
+            <img src="nevera.png" alt="Nevera" class="th-img" />
+            <span class="th-text">Nevera</span>
+          </th>
+          <th scope="col" class="th-icon congelador">
+            <img src="congelador.png" alt="Congelador" class="th-img" />
+            <span class="th-text">Congelador</span>
+          </th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
+      
       <tbody>
         <tr *ngFor="let item of stockItems">
           <td class="id-alimento">
@@ -94,18 +104,20 @@
                 [alt]="item.alimento.nombre"
                 class="alimento-imagen d-none d-sm-table-cell"
               />
-              <span class="alimento-nombre font-xxl">{{
-                item.alimento.nombre
-              }}</span>
+              <span class="alimento-nombre font-xxl">
+                {{ item.alimento.nombre }}
+              </span>
             </div>
           </td>
-          <td class="font-xxl">{{ item.peso }}</td>
-          <td class="d-none d-md-table-cell font-xxl">{{ item.categoria }}</td>
+          <td class="font-xxl">{{ item.almacen }}</td>
+          <td class="font-xxl">{{ item.nevera }}</td>
+          <td class="font-xxl">{{ item.congelador }}</td>
           <td>
             <div class="flex1 d-flex justify-content-around">
               <button class="editar" type="button">
-                <i class="fa-solid fa-pen-to-square"></i></button
-              ><button class="eliminar" type="button">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="eliminar" type="button">
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
             </div>
@@ -121,3 +133,5 @@
     </div>
   </div>
 </div>
+
+

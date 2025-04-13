@@ -362,6 +362,15 @@ input:focus {
   /*   gap: 10px; */
 }
 
+/* Estilo base: mostrar texto y ocultar imagen por defecto */
+.th-icon .th-img {
+  display: none;
+}
+
+.th-icon .th-text {
+  display: inline;
+}
+
 @media (min-width: 620px) {
   .font-xxl {
     font-size: 1.5rem;
@@ -478,6 +487,25 @@ input:focus {
   .solo input,
   .tres input {
     width: 100% !important; /* Que ocupen todo el contenedor */
+  }
+}
+
+/* A partir de 650px o menos: ocultar texto, mostrar icono */
+@media (max-width: 650px) {
+  .th-icon .th-img {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .th-icon .th-text {
+    display: none;
+  }
+
+  /* Ajustes opcionales si necesitas más espacio en columnas */
+  th {
+    padding: 8px;
+    text-align: center;
   }
 }
 

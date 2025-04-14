@@ -362,7 +362,7 @@ input:focus {
   /*   gap: 10px; */
 }
 
-/* Estilo base: mostrar texto y ocultar imagen por defecto */
+
 .th-icon .th-img {
   display: none;
 }
@@ -488,10 +488,6 @@ input:focus {
   .tres input {
     width: 100% !important; /* Que ocupen todo el contenedor */
   }
-}
-
-/* A partir de 650px o menos: ocultar texto, mostrar icono */
-@media (max-width: 650px) {
   .th-icon .th-img {
     display: inline-block;
     width: 24px;
@@ -502,12 +498,33 @@ input:focus {
     display: none;
   }
 
-  /* Ajustes opcionales si necesitas más espacio en columnas */
+ 
   th {
     padding: 8px;
     text-align: center;
   }
 }
+
+/* A partir de 650px o menos: ocultar texto, mostrar icono */
+
+
+/* @media (max-width: 650px) {
+  .th-icon .th-img {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .th-icon .th-text {
+    display: none;
+  }
+
+ 
+  th {
+    padding: 8px;
+    text-align: center;
+  }
+} */
 
 @media (max-width: 576px) {
   td {
@@ -567,7 +584,8 @@ input:focus {
 
   .editar,
   .eliminar {
-    width: 40px;
+    width: 30px;
+    padding: 6px 6px;
   }
 
   .row {

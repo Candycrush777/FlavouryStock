@@ -13,7 +13,7 @@ manejado desde ingrediente */
 
 //router.get("/getAllIngredients", ingredientController.getAllIngredients)
 
-router.get("/getEtiquetas", etiquetaController.getAllEtiquetas)
+router.get("/getEtiquetas", etiquetaController.getEtiquetas)
 router.get("/getCaducaP", etiquetaController.getCaducaPronto)
 router.get("/getCaducaMP", etiquetaController.getCaducaMuyPronto)
 router.get("/getCaducado", etiquetaController.getCaducado)

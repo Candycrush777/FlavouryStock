@@ -1,182 +1,129 @@
 
-
-p {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-
-}
-
-
-.fondo{
-    background-image: url('../../../../public/assets/fondo-inicio.jpg');
+.container-fluid {
+    background-image: url("../../../../public/assets/fondo-inicio.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    
-}
-
-
-.tarjeta{
-    border-radius: 16px;
-    
-    overflow: hidden; 
-    box-shadow:  0 8px 8px 0 rgba(0,0,0,0.25);
-}
-
-.card-img-top{
-    width: 100%;            /* Que ocupen todo el ancho del contenedor */
-  height: 200px;          /* Altura fija, ajústala a tu gusto */
-  object-fit: cover;      /* Mantiene la proporción y recorta si es necesario */
-  object-position: center; /* Centra el recorte vertical y horizontal */
-  display: block;    
-}
-
-
-.campo{
-    min-height: 60px;
-    background-color: rgba(241, 241, 241, 0.356);
-    border-radius: 8px;
-    margin-bottom: 15px;
-    padding: 6px 15px;
-    display: flex;
-    justify-content: space-around;
-    
-    gap: 20px;
-    box-shadow:  0 4px 4px 0 rgba(0,0,0,0.25);
-}
-
-.icon{
-    width: 15%;
-}
-.icon img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.nombre{
-    width: 85%;
-    display: flex;
+  }
+  
+  .columna-gest {
+    border-radius: 12px;
+    background-color: white;
+    max-width: 1000px;
+  }
+  
+  table {
+    background-color: rgb(243, 243, 236);
+  
+    width: 90%;
+  }
+  
+  td {
+    padding: 12px;
+    min-height: 100%;
+    vertical-align: middle;
+  }
+  
+  .btn-edit,
+  .btn-del,
+  .btn-crear {
+    padding: 6px 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 15px;
+    border: none;
+  }
+  
+  
+  .btn-crear:hover {
+    background-color: rgba(237, 117, 87, 0.645);
+  }
+  
+  .btn-del:hover {
+    transition: 0.15s ease-in-out;
+    box-shadow: 0.15s ease-in-out;
+    background-color: #ed7557;
+  }
+  
+  .btn-edit:hover {
+    transition: 0.15s ease-in-out;
+    box-shadow: 0.15s ease-in-out;
+    background-color: #579e82;
+  }
+  
+  .btn-edit .btn-del {
+    width: 1200px !important;
+  }
+  
+  
+  /* FORMULARIO EDIT/DELETE */
+  
+  
+  .row-form{
+    box-sizing: border-box;
+    padding: 0 15px;
     align-items: center;
-
+    border-bottom: 1px solid rgb(165, 165, 165);
+    /* margin: 0 0 4px !important; */
   
-    
-    
-}
-.nombre-alim{
-    width: 85%;
-    margin: 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- 
-    
-    
-    
-}
-
-/* VISTA EN TABLA ALTERNATIVA */
-/* Contenedor general de la vista tipo tabla */
-.tabla-vista {
-    width: 100%;
-    
-    border-radius: 8px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-    margin-bottom: 20px;
-}
+  }
   
-/* Cada "fila" de información */
-.tabla-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    border-bottom: 4px solid #a7a7a7;
-}
   
-.tabla-row:last-child {
-    border-bottom: none;
-}
-  
-/* Contenedor para la imagen con tamaño fijo */
-.table-image {
-    flex: 0 0 50px;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-}
-  
-.table-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-}
-  
-/* Contenedor de la información (datos) */
-.table-content {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-  
-/* Cada "celda" de información */
-.table-cell-nombre {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    /* Opcional: define un ancho mínimo para alinear columnas */
-    min-width: 180px;
-}
-  
-/* Cada "celda" de información */
-.table-cell {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    /* Opcional: define un ancho mínimo para alinear columnas */
-    min-width: 80px;
-}
-  
-.table-cell p, .table-cell-nombre p {
+  .form-label{
     margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-/* Ajustes Responsive */
-@media (max-width: 768px) {
-  .tabla-row {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    width: 40%;
+    padding: 0 15px 0 0;
+    text-align: end;
+  }
+  .form-control{
+    border: none;
+    gap: 5%;
+    width: 55%;
+    
   }
   
-  .table-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
+  .rolClass{
+    border-bottom: none;
+    margin: 0 0 ;
   }
   
-  .table-cell, .table-cell-nombre {
-    width: 100%;
-    justify-content: flex-start;
+  .rolOption{
+    color:#6c757d ;
   }
-}
-
   
-
-/* FIN VISTA EN TABLA ALTERNATIVA */
-
-@media (max-width: 768px){
-    .nombre{
-        font-size: 1.5rem;
+  
+  
+  
+  @media (max-width: 1024px) {
+    .cabecero {
+      flex-direction: column;
+      align-items: center;
     }
-
-}
+  
+    .btn-edit.btn-del {
+      min-width: 80px;
+    }
+  }
+  @media (max-width: 576px) {
+    .fs-5 {
+      font-size: 16px!important;
+    }
+  
+    .row-form{
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .form-label{
+      text-align: start;
+      padding: 0 12px;
+      width:100%
+    }
+    .form-control{
+      width:100%
+    }
+    .btn-crear .btn-del{
+        width: 50%;
+        margin: 10px 24px!important;
+      }
+  }
+  

@@ -22,6 +22,7 @@ export class GestionUserComponent {
   usuarioAEditar: User | null = null//para el edit
   usuarioAEliminar: User | null = null//para delete
   mostrarModal = false
+ 
 
 /*   vistaTabla = true;//para mostrar FORM crearUser
   mostrar = false; */

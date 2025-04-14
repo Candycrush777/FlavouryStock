@@ -1,4 +1,4 @@
-export interface EtiqietaResponse{
+export interface EtiquetaResponse{
     result: Etiqueta[]
 }
 
@@ -10,7 +10,7 @@ export interface Etiqueta {
     
     id_etiqueta: number,
     id_ingrediente: number,
-    nombre_ingredente: string,
+    nombre: string,
     id_usuario: number,
     nombre_usuario: string
     fecha_etiquetado: Date,

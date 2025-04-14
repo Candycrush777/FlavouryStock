@@ -1,6 +1,6 @@
 const db = require('../config/bd')
 
-exports.getAllEtiquetas = (req,res)=>{
+exports.getEtiquetas = (req,res)=>{
     sql= "SELECT * FROM vista_etiqueta_detalle"
     db.query(sql,(err,result)=>{
         if (err){
@@ -80,7 +80,7 @@ WHERE
         }else if (result.length===0){
             return res.status(404).json({error: "No hay alimentos proximos a caducar, no se pueden sugerir recetas"})
         }else{
-            return res.status(200).json({result})
+            return res.status(200).json()
         }
     })
 }

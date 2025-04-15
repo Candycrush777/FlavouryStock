@@ -54,6 +54,9 @@ import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.
     FormsModule,
     ReactiveFormsModule
   ],
+  exports:[
+    SlideRecipesComponent
+  ],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],
 })

@@ -47,7 +47,7 @@ export class GestionUserComponent {
     );
   }
   
-    editUser(){//todo sin SWAL
+  editUser(){//todo sin SWAL
     if (this.usuarioAEditar) {
       
       this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!/* asercion */, this.usuarioAEditar).subscribe({

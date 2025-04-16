@@ -81,7 +81,7 @@
 
               <td class="fs-5 d-none d-md-table-cell">
                 <!--EN BOTON QUIZAS VER RECETAS CON ESTE INGREDIENTE...veremos -->
-                <button class="btn-del w-100">
+                <button class="btn-del w-100" (click)="getRecetasPosibleId(item.id_ingrediente)">
                   <i class="fa-solid fa-receipt"></i>
                 </button>
               </td>
@@ -153,7 +153,7 @@
     </div>
     <div class="row">
         <div class="col-12 text-center">
-            
+            <!-- <app-slide-recipes [caducidadesList]="caducidadesList"></app-slide-recipes> -->
       </div>
     </div>
   </div>

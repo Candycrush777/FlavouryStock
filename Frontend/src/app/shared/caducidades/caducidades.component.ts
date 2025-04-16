@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EtiquetaService } from './../../services/etiqueta.service';
 import { Etiqueta } from '../../models/etiqueta';
 import { error } from 'console';
 import Swal from 'sweetalert2';
 import { Recipe } from '../../models/recipes';
+import { response } from 'express';
 
 @Component({
   selector: 'app-caducidades',
@@ -13,10 +14,11 @@ import { Recipe } from '../../models/recipes';
   styleUrl: './caducidades.component.css',
 })
 export class CaducidadesComponent {
-  caducidadesList?: Etiqueta[];
-  etiqueta?: Etiqueta;
-  modalTitle = ''; //para MODALS
-  modalContent = '';
+  caducidadesList?: Etiqueta[]
+  etiqueta?: Etiqueta
+  recipesPosibles?: Recipe[]
+  modalTitle = '' //para MODALS
+  modalContent = ''
 
   constructor(private etiquetaService: EtiquetaService) {}
 
@@ -80,13 +82,21 @@ export class CaducidadesComponent {
         console.log('Etiquetas recibidas Caducado', this.caducidadesList);
       },
       (error) => {
-        console.log('Error obtenido en caducidades', error);
+        console.log('Error obtenido en caducidades/caducado', error);
       }
     );
   }
 
-  getRecetas() {
-    //todo AQUI YA NECESITO MENTE DESPEJADO, porque hay que coger la fecha como parametro
+  getRecetasPosibleId(idIngred:number) {
+    //this.caducidadesList = []
+    this.etiquetaService.getRecetasPosId(idIngred).subscribe({
+      next: (response)=>{
+        //this.caducidadesList = etiqueta;
+        console.log('Etiquetas recibidas para posible receta', response)
+      }, error:(error) => {
+        console.log('Error obtenido en recetaPosibleId', error);
+      }
+    })
   }
 
   

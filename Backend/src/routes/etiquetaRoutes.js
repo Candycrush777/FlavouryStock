@@ -18,5 +18,6 @@ router.get("/getCaducaP", etiquetaController.getCaducaPronto)
 router.get("/getCaducaMP", etiquetaController.getCaducaMuyPronto)
 router.get("/getCaducado", etiquetaController.getCaducado)
 router.get("/getPosibleRecipe",etiquetaController.getRecetasPosibles)
+router.get("/getPosibleRecipeId/:id",etiquetaController.getRecetasPosiblesIdIng)
 
 module.exports = router

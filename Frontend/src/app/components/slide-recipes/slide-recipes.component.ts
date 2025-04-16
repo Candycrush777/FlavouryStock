@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Inject, Input, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { Recipe } from '../../models/recipes';
+import { Etiqueta } from '../../models/etiqueta';
 import Swiper from 'swiper'
 import { isPlatformBrowser } from '@angular/common';
 
@@ -14,6 +15,7 @@ export class SlideRecipesComponent implements AfterViewInit {
 
   mySwiper?: Swiper;
   @Input() recipes?: Recipe[] 
+  @Input() caducidadesList?: Etiqueta[]
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object){}
 

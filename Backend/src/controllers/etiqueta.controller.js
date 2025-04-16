@@ -121,3 +121,5 @@ const {id} =req.params
         }
     })
 }
+
+//todo para caducado, crear una tabla que almacene etiquetas desechadas, y sean eliminadas de etiquetas normales

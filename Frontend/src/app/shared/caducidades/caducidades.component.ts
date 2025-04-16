@@ -92,9 +92,9 @@ export class CaducidadesComponent {
     this.etiquetaService.getRecetasPosId(idIngred).subscribe({
       next: (response)=>{
         //this.caducidadesList = etiqueta;
-        console.log('Etiquetas recibidas para posible receta', response)
+        console.log('Etiquetas recibidas para posible receta por ID', response)
       }, error:(error) => {
-        console.log('Error obtenido en recetaPosibleId', error);
+        console.log(`Error obtenido en recetaPosibleId, el idRecogido: ${idIngred}`, error);
       }
     })
   }

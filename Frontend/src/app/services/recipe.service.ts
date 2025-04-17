@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Recipe, RecipeResponse } from '../models/recipes';
+import { Recipe, RecipeResponse, RecipeViewDetail } from '../models/recipes';
 
 @Injectable({
   providedIn: 'root',
@@ -33,8 +33,8 @@ export class RecipeService {
 
   //GET
 
-  getRecipeById(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(
+  getRecipeById(id: number): Observable<RecipeViewDetail> {
+    return this.http.get<RecipeViewDetail>(
       `${this.api}/getRecipeById/${id}`
     );
   }

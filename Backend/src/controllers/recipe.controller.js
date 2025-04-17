@@ -93,7 +93,7 @@ exports.registerRecipe = (req, res) => {
 
   exports.getRecipeById = (req, res) => {
     const id = req.params.id;
-    const selectQuery = "SELECT * FROM recetas WHERE id_receta = ?";
+    const selectQuery = "SELECT * FROM vista_receta_detalle WHERE receta_id = ?";
 
     db.query(selectQuery, [id], (err, result) => {
       if (err) {

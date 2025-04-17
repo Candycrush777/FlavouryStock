@@ -12,7 +12,7 @@ import { filter } from 'rxjs';
 export class AppComponent {
   title = 'FlavouryStock';
 
-  currentHeader = signal('inicio'); // Usa signals en lugar de variables reactivas tradicionales
+  currentHeader = signal('inicio'); 
 
   constructor(private router: Router) {
     router.events.pipe(

@@ -18,3 +18,12 @@ export interface Recipe {
     estacion:           null | string;
 }
 
+export interface RecipeViewDetail {
+    receta_id:                 number;
+    receta_nombre:             string;
+    receta_descripcion:        string;
+    receta_paso_paso:          string;
+    receta_tiempo_preparacion: number;
+    receta_categoria:          string;
+    ingredientes_formato:      string;
+}

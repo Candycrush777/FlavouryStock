@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
+import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'caducidades', component: CaducidadesComponent},
   { path: 'recipe', component: RecipeComponent },
   { path: 'gestionUser', component: GestionUserComponent },
-  { path: 'recetas-form', component: RecetasFormComponent }
+  { path: 'recetas-form', component: RecetasFormComponent },
+  { path: 'suggested-recipes/:id', component: SuggestedRecipesComponent }
 
   //revisar si es necesario
 ];

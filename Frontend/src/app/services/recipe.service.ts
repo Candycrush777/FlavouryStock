@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Recipe, RecipeResponse } from '../models/recipes';
+import { Recipe, RecipeResponse, RecipeArray } from '../models/recipes';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +39,14 @@ export class RecipeService {
     );
   }
 
+  getRecipeByIdIngrediente(id:number):Observable<Recipe[]>{
+    return this.http.get<RecipeArray>(`${this.api}/getRecipesByIdIngredient/${id}`).pipe(
+      map((res)=>{
+        console.log("Respuesta de la Api: en recipeByIngred", res)
+        return res.result
+      })
+    )
+  }
   //PATCH
 
   updateRecipe(id: number, recipe: Partial<Recipe>): Observable<Recipe> {

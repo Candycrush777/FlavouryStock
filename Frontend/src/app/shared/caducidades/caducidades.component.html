@@ -80,8 +80,9 @@
               </td>
 
               <td class="fs-5 d-none d-md-table-cell">
-                <!--EN BOTON QUIZAS VER RECETAS CON ESTE INGREDIENTE...veremos -->
-                <button class="btn-del w-100" (click)="getRecetasPosibleId(item.id_ingrediente)">
+                <!--Duplicado de momento para llevarlo a otro component con su id-ingred -->
+                <!-- <button class="btn-del w-100" (click)="getRecetasPosibleId(item.id_ingrediente)"> -->
+                <button class="btn-del w-100" [routerLink]="['/suggested-recipes', item.id_ingrediente]">
                   <i class="fa-solid fa-receipt"></i>
                 </button>
               </td>

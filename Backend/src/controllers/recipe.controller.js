@@ -90,14 +90,13 @@ exports.registerRecipe = (req, res) => {
 };
 
   //Obtener una receta por ID
-
   exports.getRecipeById = (req, res) => {
     const id = req.params.id;
     const selectQuery = "SELECT * FROM recetas WHERE id_receta = ?";
 
     db.query(selectQuery, [id], (err, result) => {
       if (err) {
-        return res.status(500).jason({ error: err.message });
+        return res.status(500).json({ error: err.message });
       }
       if (result.length == 0) {
         return res.status(404).json({ error: "Receta no encontrada" });
@@ -107,8 +106,31 @@ exports.registerRecipe = (req, res) => {
     });
   };
 
-  //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
+  //obtener recetas por idIngredientes
+  exports.getRecipesByIdIngredient = (req, res)=>{
+    const id = req.params.id
+    const sql = ` SELECT r.nombre, r.imagen, r.descripcion, r.tiempo_preparacion, r.categoria, i.id_ingrediente
+                  FROM recetas r
+                  LEFT JOIN ingredientes_de_receta i
+                  USING(id_receta)
+                  WHERE i.id_ingrediente = ?
+                  GROUP BY r.nombre, r.imagen, r.descripcion, r.tiempo_preparacion, r.categoria, i.id_ingrediente
+                  ;`
 
+    db.query(sql,[id],(err,result)=>{
+
+      if(err){
+        return res.status(500).json({error: err.message})
+      }else if(result.length===0){
+        return res.status(404).json({error: "Recetas no encontradas,(controller)"})
+      }else{
+        res.status(200).json({result})
+      }
+
+    })
+  }
+
+  //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
   exports.updateRecipe = (req, res) => {
 
     const { nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion} = req.body

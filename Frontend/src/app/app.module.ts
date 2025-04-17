@@ -26,6 +26,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
 import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.component';
+import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.
     GestionUserComponent,
     RecetasFormComponent,
     SlideRecipesComponent,
+    SuggestedRecipesComponent,
   ],
   imports: [
     BrowserModule, 

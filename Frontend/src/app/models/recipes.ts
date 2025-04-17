@@ -18,3 +18,7 @@ export interface Recipe {
     estacion:           null | string;
 }
 
+export interface RecipeArray{
+    result: Recipe[]
+}
+

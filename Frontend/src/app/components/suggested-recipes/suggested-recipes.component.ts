@@ -15,6 +15,7 @@ export class SuggestedRecipesComponent {
   parametro?: any 
   recetasEncontradas?: Recipe[]
   recipes?: Recipe[]
+  imagenDefecto = "/defaultImage.jpg"
 
   constructor(private route:ActivatedRoute, private etiquetaService:EtiquetaService, private recipeService:RecipeService){}
 

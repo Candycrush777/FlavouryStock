@@ -1,0 +1,7 @@
+<div class="container">
+<h1  class="text-capitalize mt-5">Buscar recetas <small>{{nombre}}</small></h1>
+<hr>
+
+<app-recipe-list [recipes]="recipes" *ngIf="recipes.length > 0"></app-recipe-list>
+<h3 class="text-warning" *ngIf="noRecipe"><strong>{{noRecipe}}</strong></h3>
+</div>

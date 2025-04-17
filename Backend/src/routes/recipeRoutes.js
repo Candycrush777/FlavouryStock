@@ -8,5 +8,6 @@ router.post('/registerRecipe', recipeController.registerRecipe);
 router.get('/getRecipeById/:id', recipeController.getRecipeById);
 router.patch('/updateRecipe/:id', recipeController.updateRecipe); 
 router.delete('/deleteRecipe/:id', recipeController.deleteRecipe);
+router.get('/search', recipeController.searchRecipeName)
 
 module.exports = router;

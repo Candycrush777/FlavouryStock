@@ -17,8 +17,8 @@
             
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar receta" aria-label="Search">
-                    <button class="btn btnBuscar" type="submit">Buscar</button>
+                    <input #txtSearch class="form-control me-2" type="search" placeholder="Buscar receta" aria-label="Search">
+                    <button class="btn btnBuscar" type="submit" (click)="searchRecipe(txtSearch.value)">Buscar</button>
                 </form>
                 </div>
             </div>

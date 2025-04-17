@@ -31,6 +31,10 @@ export class RecipeService {
     return this.http.post<Recipe>(`${this.api}/registerRecipe`, recipe)
   }
 
+  searchRecipe(nombre: string): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.api}/search?nombre=${nombre}`)
+  }
+
   //GET
 
   getRecipeById(id: number): Observable<RecipeViewDetail> {

@@ -58,6 +58,9 @@ import { RecipeListComponent } from './components/recipe-list/recipe-list.compon
     FormsModule,
     ReactiveFormsModule
   ],
+  exports:[
+    SlideRecipesComponent
+  ],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],
 })

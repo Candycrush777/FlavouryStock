@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Inject, Input, Output, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { Recipe, RecipeViewDetail } from '../../models/recipes';
+import { Etiqueta } from '../../models/etiqueta';
 import Swiper from 'swiper'
 import { isPlatformBrowser } from '@angular/common';
 import { RecipeService } from '../../services/recipe.service';
@@ -16,11 +17,12 @@ export class SlideRecipesComponent implements AfterViewInit {
 
   mySwiper?: Swiper;
   @Input() recipes?: Recipe[] 
+  @Input() caducidadesList?: Etiqueta[]
   selectedRecpe: RecipeViewDetail | null = null
   ingredienteList: string[] = []
   pasosList: string[] = []
   @Output() showDetail = new EventEmitter<Recipe>()
-  
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private recipeService: RecipeService){}
 

@@ -15,6 +15,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
 import { SearchComponent } from './components/search/search.component';
+import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 
 
 const routes: Routes = [

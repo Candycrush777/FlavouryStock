@@ -27,3 +27,7 @@ export interface RecipeViewDetail {
     receta_categoria:          string;
     ingredientes_formato:      string;
 }
+
+export interface RecipeArray{
+    result: Recipe[]
+}

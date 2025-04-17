@@ -10,11 +10,7 @@ import { LoginResponse, User, UserResponse } from '../models/user';
 export class UserService {
     private apiUrl = 'http://localhost:3000/api/users'; 
     
-    
-
     constructor(private http: HttpClient) { }
-
-    
 
     login(user: User): Observable<LoginResponse> {
 

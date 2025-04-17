@@ -152,20 +152,6 @@ exports.registerRecipe = (req, res) => {
   }
 
   //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
-    db.query(sql,[id],(err,result)=>{
-
-      if(err){
-        return res.status(500).json({error: err.message})
-      }else if(result.length===0){
-        return res.status(404).json({error: "Recetas no encontradas,(controller)"})
-      }else{
-        res.status(200).json({result})
-      }
-
-    })
-  
-
-  //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
   exports.updateRecipe = (req, res) => {
 
     const { nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion} = req.body

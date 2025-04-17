@@ -25,13 +25,19 @@ export class SearchComponent {
       this.nombre = params['nombre']
       console.log(this.nombre);
 
-      this.recipeService.searchRecipe(this.nombre).subscribe(recipe => {
-        this.recipes = recipe
-
-        if (recipe.length === 0) {
-          this.noRecipe = 'No se encontro ninguna receta con ese nombre.'
+      this.recipeService.searchRecipe(this.nombre).subscribe({
+        next: (recipe) => {
+          this.recipes = recipe;
+          if (recipe.length === 0) {
+            this.noRecipe = 'No se encontró ninguna receta con ese nombre.';
+          }
+        },
+        error: (err) => {
+          console.error(err);
+          this.recipes = []; // asegura que el array esté vacío
+          this.noRecipe = err.error?.message || 'Ocurrió un error al buscar recetas.';
         }
-      })
+      });
       
     })
     

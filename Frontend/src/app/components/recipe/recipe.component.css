@@ -166,12 +166,6 @@ hr{
     min-width: 100px;
   }
 
- /*  .btn-recipe {
-    width: 100%;
-    min-width: unset;
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
-  } */
 }
 
 @media (max-width: 767px) {

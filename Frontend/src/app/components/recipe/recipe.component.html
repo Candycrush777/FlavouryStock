@@ -1,6 +1,6 @@
 <div class="container ">
   <!-- Receta destacada -->
-  <app-slide-recipes [recipes]="recipes"></app-slide-recipes>
+  <app-slide-recipes [recipes]="recipes" (showDetail)="viewDetail($event)"></app-slide-recipes>
 
   <!-- texto de separacion  -->
   <h1 class="text-center mt-5">Recetas, cocina con creatividad y eficiencia</h1>
@@ -19,7 +19,7 @@
   <div class="row justify-content-center g-4 my-4">
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
-        <div class="categoria-icon">
+        <div class="categoria-icon" (click)="filterByCategory('desayuno')">
           <i class="fa-solid fa-sun"></i>
         </div>
         <div class="categoria-content">
@@ -30,7 +30,7 @@
 
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
-        <div class="categoria-icon">
+        <div class="categoria-icon" (click)="filterByCategory('comida')">
           <i class="fa-solid fa-utensils"></i>
         </div>
         <div class="categoria-content">
@@ -41,7 +41,7 @@
 
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
-        <div class="categoria-icon">
+        <div class="categoria-icon" (click)="filterByCategory('cena')">
           <i class="fa-solid fa-moon"></i>
         </div>
         <div class="categoria-content">
@@ -52,7 +52,7 @@
 
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
-        <div class="categoria-icon">
+        <div class="categoria-icon" (click)="filterByCategory('vegano')">
           <i class="fa-solid fa-leaf"></i>
         </div>
         <div class="categoria-content">
@@ -63,7 +63,7 @@
 
     <div class="col-12 col-md-6 col-lg-2 mb-4">
       <div class="categoria-card">
-        <div class="categoria-icon">
+        <div class="categoria-icon" (click)="filterByCategory('postre')">
           <i class="fa-solid fa-ice-cream"></i>
         </div>
         <div class="categoria-content">
@@ -82,7 +82,7 @@
 
   <!-- recetas  -->
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="col mb-2" *ngFor="let recipe of recipes">
+    <div class="col mb-2" *ngFor="let recipe of allRecipes">
       <div class="card" >
         <img
           src="https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/C8418F2E-FCDF-4612-AB4D-790369D8B767/Derivates/AABF216C-6591-44BC-A5C2-FC8A4A5482E5.jpg"
@@ -102,7 +102,7 @@
             </p>
           </div>
           <div class="card-text mt-2">
-            <button class="btn btn-recipe">
+            <button class="btn btn-recipe" data-bs-toggle="modal" data-bs-target="#flavouryModal" (click)="viewDetail(recipe)">
               Ver receta <i class="fa-solid fa-square-caret-right"></i>
             </button>
           </div>
@@ -110,6 +110,24 @@
       </div>
     </div>
   </div>
+  <app-modal  [modalTitle]="selectedRecipe?.receta_nombre ?? ''" [modalContent]="''">
+    <div *ngIf="selectedRecipe"  class="animate__animated animate__fadeIn">
+      <p><strong>Descripción:</strong> {{selectedRecipe.receta_descripcion}}</p>
+
+      <strong>Ingredientes:</strong>
+      <ul>
+        <li *ngFor="let ingrediente of ingredienteList">{{ ingrediente }}</li>
+      </ul>
+
+      <strong>Tiempo de preparación:</strong>
+      <p><i class="fa-regular fa-clock"></i> {{selectedRecipe.receta_tiempo_preparacion}} min</p>
+
+      <p><strong>Pasos:</strong></p>
+      <ul>
+        <li *ngFor="let paso of pasosList">{{ paso }}</li>
+      </ul>
+    </div>
+  </app-modal>
 
 
 

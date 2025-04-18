@@ -20,4 +20,13 @@ export class UsuarioHeaderComponent {
     this.onLogOut.emit()
   }
 
+  searchRecipe(nombre: string) {
+    nombre = nombre.trim()
+    if (nombre.length === 0) {
+      return
+    }
+
+    this.router.navigate(['/search', nombre])
+  }
+
 }

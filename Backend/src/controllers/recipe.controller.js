@@ -106,6 +106,27 @@ exports.registerRecipe = (req, res) => {
     });
   };
 
+  //obtener recetas por nombre
+  exports.searchRecipeName = (req, res) =>{
+    const nombre = req.query.nombre
+    
+    if (!nombre) {
+      return res.status(400).json({error: 'Falta el parametro nombre'})
+    }
+
+    const sql = 'SELECT * FROM recetas WHERE nombre LIKE ?'
+
+    db.query(sql, [`%${nombre}%`], (err, result) => {
+      if (err) {
+        return res.status(500).json({error: err.message})
+      }else if (result.length === 0) {
+        return res.status(404).json({message: 'No se encontraron recetas con ese nombre'})
+      }
+
+      res.status(200).json(result)
+    })
+  }
+
   //obtener recetas por idIngredientes
   exports.getRecipesByIdIngredient = (req, res)=>{
     const id = req.params.id

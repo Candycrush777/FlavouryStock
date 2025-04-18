@@ -9,107 +9,14 @@
   </p>
 
 
-  <!-- Seccion de categoria  -->
-<div class="categories-section mt-5">
-  <div class="d-flex align-items-center mb-4">
-    <h1 class="mb-0">Categorías</h1>
-    <hr class="flex-grow-1 mx-3">
-  </div>
-
-  <div class="row justify-content-center g-4 my-4">
-    <div class="col-12 col-md-6 col-lg-2 mb-4">
-      <div class="categoria-card">
-        <div class="categoria-icon" (click)="filterByCategory('desayuno')">
-          <i class="fa-solid fa-sun"></i>
-        </div>
-        <div class="categoria-content">
-          <h3>Desayuno</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-2 mb-4">
-      <div class="categoria-card">
-        <div class="categoria-icon" (click)="filterByCategory('comida')">
-          <i class="fa-solid fa-utensils"></i>
-        </div>
-        <div class="categoria-content">
-          <h3>Comida</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-2 mb-4">
-      <div class="categoria-card">
-        <div class="categoria-icon" (click)="filterByCategory('cena')">
-          <i class="fa-solid fa-moon"></i>
-        </div>
-        <div class="categoria-content">
-          <h3>Cena</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-2 mb-4">
-      <div class="categoria-card">
-        <div class="categoria-icon" (click)="filterByCategory('vegano')">
-          <i class="fa-solid fa-leaf"></i>
-        </div>
-        <div class="categoria-content">
-          <h3>Vegano</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-2 mb-4">
-      <div class="categoria-card">
-        <div class="categoria-icon" (click)="filterByCategory('postre')">
-          <i class="fa-solid fa-ice-cream"></i>
-        </div>
-        <div class="categoria-content">
-          <h3>Postre</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
   <div class="container mt-3">
     <button class="btn btnVer" (click)="loadPreviesRecipe()" [disabled]="currentPage === 1"><i class="fa-solid fa-circle-arrow-left"></i></button>
     <button class="btn btnVer" (click)="loadMoreRecipes(currentPage + 1)"><i class="fa-solid fa-circle-arrow-right"></i></button>
   </div>
 
   <!-- recetas  -->
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="col mb-2" *ngFor="let recipe of allRecipes">
-      <div class="card" >
-        <img
-          src="https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/C8418F2E-FCDF-4612-AB4D-790369D8B767/Derivates/AABF216C-6591-44BC-A5C2-FC8A4A5482E5.jpg"
-          class="card-img-top img-fluid"
-          alt="..."
-          height="250px"
-        />
-        <div class="card-body">
-          <h5 class="card-title text-center">{{recipe.nombre}}</h5>
-          <div class="d-flex gap-3 justify-content-between">
-            <p class="card-text texto-recetas">
-              <i class="fa-regular fa-clock"></i>
-              {{recipe.tiempo_preparacion}} min
-            </p>
-            <p class="card-text texto-recetas ">
-              <i class="fa-solid fa-utensils"></i> {{recipe.categoria}}
-            </p>
-          </div>
-          <div class="card-text mt-2">
-            <button class="btn btn-recipe" data-bs-toggle="modal" data-bs-target="#flavouryModal" (click)="viewDetail(recipe)">
-              Ver receta <i class="fa-solid fa-square-caret-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-recipe-list [recipes]="recipes" (showDetail)="viewDetail($event)"></app-recipe-list>
+
   <app-modal  [modalTitle]="selectedRecipe?.receta_nombre ?? ''" [modalContent]="''">
     <div *ngIf="selectedRecipe"  class="animate__animated animate__fadeIn">
       <p><strong>Descripción:</strong> {{selectedRecipe.receta_descripcion}}</p>

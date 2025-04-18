@@ -9,5 +9,6 @@ router.get('/getRecipeById/:id', recipeController.getRecipeById);
 router.get('/getRecipesByIdIngredient/:id', recipeController.getRecipesByIdIngredient);
 router.patch('/updateRecipe/:id', recipeController.updateRecipe); 
 router.delete('/deleteRecipe/:id', recipeController.deleteRecipe);
+router.get('/search', recipeController.searchRecipeName)
 
 module.exports = router;

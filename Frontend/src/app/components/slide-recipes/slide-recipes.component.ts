@@ -23,6 +23,8 @@ export class SlideRecipesComponent implements AfterViewInit {
   pasosList: string[] = []
   @Output() showDetail = new EventEmitter<Recipe>()
 
+  imagenDefecto = "/defaultImage.jpg"
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private recipeService: RecipeService){}
 

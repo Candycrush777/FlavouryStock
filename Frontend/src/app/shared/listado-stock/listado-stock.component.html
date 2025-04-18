@@ -6,11 +6,8 @@
         <button class="btnComenzar" (click)="toggleForm()">
           + Añadir Producto
         </button>
-
-        <button class="btnComenzar" (click)="toggleTable()">Vista</button>
       </div>
     </div>
-
     <ng-template [ngIf]="isFormVisible">
       <div class="form-container">
         <form>
@@ -53,29 +50,7 @@
       </div>
     </ng-template>
 
-    <ng-template [ngIf]="isTableVisible">
-      <div class="container principal">
-        <div class="row row-cols-1 row-cols-md-4 g-3">
-          @for (item of stockItems; track item.id) {
-          <div class="col">
-            <div class="card shadow-sm text-center">
-              <img
-                [src]="item.alimento.foto"
-                [alt]="item.alimento.nombre"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <p class="card-title">{{ item.alimento.nombre }}</p>
-              </div>
-            </div>
-          </div>
-          }
-        </div>
-      </div>
-    </ng-template>
-
-    <!-- Tabla con columnas: Alimento, Almacén, Nevera, Congelador y Acción -->
-    <table *ngIf="!isTableVisible">
+    <table>
       <thead>
         <tr>
           <th scope="col">Alimento</th>
@@ -88,31 +63,31 @@
             <span class="th-text">Nevera</span>
           </th>
           <th scope="col" class="th-icon congelador">
-            <!-- <i class="fa-solid fa-snowflake th-img"></i> -->
-          <img src="congelador3.png" alt="Congelador" class="th-img" /> 
-            <span class="th-text">Congelador</span> 
+            <img src="congelador3.png" alt="Congelador" class="th-img" />
+            <span class="th-text">Congelador</span>
           </th>
+          <th scope="col">Total</th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
-      
       <tbody>
         <tr *ngFor="let item of stockItems">
           <td class="id-alimento">
             <div class="alimento-container">
-              <img
+            <!--   <img
                 [src]="item.alimento.foto"
                 [alt]="item.alimento.nombre"
                 class="alimento-imagen d-none d-sm-table-cell"
-              />
+              /> -->
               <span class="alimento-nombre font-xxl">
-                {{ item.alimento.nombre }}
+                {{ item.ingrediente }}
               </span>
             </div>
           </td>
-          <td class="font-xxl">{{ item.almacen }}</td>
-          <td class="font-xxl">{{ item.nevera }}</td>
-          <td class="font-xxl">{{ item.congelador }}</td>
+          <td class="font-xxl">{{ item.cantidad_almacen }}</td>
+          <td class="font-xxl">{{ item.cantidad_nevera }}</td>
+          <td class="font-xxl">{{ item.cantidad_congelador }}</td>
+          <td class="font-xxl">{{ item.qty_total }}</td>
           <td>
             <div class="flex1 d-flex justify-content-around">
               <button class="editar" type="button">
@@ -134,5 +109,6 @@
     </div>
   </div>
 </div>
+
 
 

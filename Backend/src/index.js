@@ -13,6 +13,6 @@ app.use("/api/users", userRoutes)
 app.use("/api/ingredients", ingredientRoutes)
 app.use("/api/recipes", recipeRoutes)
 app.use("/api/stockage", stockageRoutes)
-const PORT = process.env.PORT  || 3000
+const PORT = process.env.PORT  
 
 app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`))

@@ -26,6 +26,9 @@ import { RecipeComponent } from './components/recipe/recipe.component';
 import { GestionUserComponent } from './shared/gestion-user/gestion-user.component';
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
 import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.component';
+import { SearchComponent } from './components/search/search.component';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
+import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.
     GestionUserComponent,
     RecetasFormComponent,
     SlideRecipesComponent,
+    SearchComponent,
+    RecipeListComponent,
+    SuggestedRecipesComponent
   ],
   imports: [
     BrowserModule, 
@@ -53,6 +59,9 @@ import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  exports:[
+    SlideRecipesComponent
   ],
   providers: [provideClientHydration(withEventReplay())],
   bootstrap: [AppComponent],

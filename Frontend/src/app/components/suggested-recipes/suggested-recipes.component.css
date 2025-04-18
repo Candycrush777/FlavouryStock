@@ -1,0 +1,175 @@
+.card img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-recipe {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform all 0.3s ease;
+  width: 100%;
+  min-width: unset;
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+}
+
+.btn-recipe:hover {
+  background-color: rgba(237, 117, 87, 0.2);
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.btnVer {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.btnVer:hover {
+  background-color: #ed7557d8;
+}
+
+.card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 2rem;
+}
+
+.card {
+  background-image: url("../../../../public/assets/fondo-inicio.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+}
+
+.card-title{
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+}
+
+.card-text {
+  color: #666;
+  line-height: 1.6;
+}
+
+.texto,
+.texto-recetas {
+  background-color: rgba(255, 255, 255, 0.878);
+  font-size: 0.875rem;
+  padding: 4px 12px;
+  border-radius: 10px;
+  width: 40%;
+  min-width: 120px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-recipe {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform all 0.3s ease;
+  font-size: 1.5rem;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-recipe:hover {
+  background-color: rgba(237, 117, 87, 0.2);
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.fa-solid {
+  align-self: center;
+}
+/*  */
+
+/* Estilos responsive */
+@media (max-width: 992px) {
+  .card {
+    margin: 0;
+    padding: 0;
+  }
+
+  .col-md-4 {
+    height: 250px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .img-container {
+    height: 100%;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .d-flex.gap-3 {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .texto {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-text.fs-6 {
+    font-size: 0.85rem !important;
+  }
+
+  .texto,
+  .texto-recetas {
+    padding: 3px 6px;
+    width: 188px;
+  }
+
+  .btn-recipe {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .texto-recetas {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform all 0.3s ease;
+    width: 100%;
+    min-width: unset;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+}

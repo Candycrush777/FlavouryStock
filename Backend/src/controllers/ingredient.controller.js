@@ -124,6 +124,7 @@ exports.getIngredientById = (req,res)=>{
 
 }
 
+//todo Hacer parecido en recetas para filtrado en recetas
 exports.getIngredientsByCategory = (req, res)=>{
     /* CATEGORIAS ACTUALES, no son una clase aún:
     aceites, bebidas, carnes, cereales, condimentos, dulces, 

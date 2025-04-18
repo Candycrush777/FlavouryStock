@@ -17,17 +17,22 @@
                     <p class="card-text texto-recetas"><i class="fa-regular fa-clock"></i> {{recipe.tiempo_preparacion}} min</p>
                     <p class="card-text texto-recetas">{{recipe.categoria}}</p>
                   </div>
-                  <button class="btn btn-recipe mt-2 px-3 w-75 d-grid mx-auto d-flex">Ver receta <i class="fa-solid fa-square-caret-right"></i></button>
+                  <button class="btn btn-recipe mt-2 px-3 w-75 d-grid mx-auto d-flex" data-bs-toggle="modal" data-bs-target="#flavouryModal"  (click)="viewDetail(recipe)">Ver receta <i class="fa-solid fa-square-caret-right"></i></button>
                 </div>
                 
               </div>
             </div>
             <div class="col-md-6 img-container">
-              <img
-                [src]="'https://carniceriavictorsalvo.com/wp-content/uploads/2024/12/costillas-de-cerdo-a-la-parrilla.webp'"
-                class="img-fluid rounded-end"
-                alt="{{ recipe.nombre }}"
-              />
+              <img *ngIf="recipe.imagen; else imagenLocal"
+            [src]="recipe.imagen"
+            class="card-img-top img-fluid"
+            alt="imagen de {{recipe.nombre}} no disponible"
+            height="250px"
+            >
+                
+            <ng-template #imagenLocal>
+                <img [src]="imagenDefecto" alt="imagen no disponible">
+            </ng-template>
             </div>
           </div>
         </div>
@@ -39,3 +44,22 @@
     <div class="swiper-button-prev" (click)="onSlidePreview()"></div>
     <div class="swiper-button-next" (click)="onSlideNext()"></div>
 </div>
+
+<app-modal  [modalTitle]="selectedRecpe?.receta_nombre ?? ''" [modalContent]="''">
+  <div *ngIf="selectedRecpe"  class="animate__animated animate__fadeIn">
+    <p><strong>Descripción:</strong> {{selectedRecpe.receta_descripcion}}</p>
+
+    <strong>Ingredientes:</strong>
+    <ul>
+      <li *ngFor="let ingrediente of ingredienteList">{{ ingrediente }}</li>
+    </ul>
+
+    <strong>Tiempo de preparación:</strong>
+    <p><i class="fa-regular fa-clock"></i> {{selectedRecpe.receta_tiempo_preparacion}} min</p>
+
+    <p><strong>Pasos:</strong></p>
+    <ul>
+      <li *ngFor="let paso of pasosList">{{ paso }}</li>
+    </ul>
+  </div>
+</app-modal>

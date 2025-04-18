@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Recipe, RecipeResponse } from '../models/recipes';
+import { Recipe, RecipeResponse, RecipeViewDetail, RecipeArray } from '../models/recipes';
 
 @Injectable({
   providedIn: 'root',
@@ -31,14 +31,26 @@ export class RecipeService {
     return this.http.post<Recipe>(`${this.api}/registerRecipe`, recipe)
   }
 
+  searchRecipe(nombre: string): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.api}/search?nombre=${nombre}`)
+  }
+
   //GET
 
-  getRecipeById(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(
+  getRecipeById(id: number): Observable<RecipeViewDetail> {
+    return this.http.get<RecipeViewDetail>(
       `${this.api}/getRecipeById/${id}`
     );
   }
 
+  getRecipeByIdIngrediente(id:number):Observable<Recipe[]>{
+    return this.http.get<RecipeArray>(`${this.api}/getRecipesByIdIngredient/${id}`).pipe(
+      map((res)=>{
+        console.log("Respuesta de la Api: en recipeByIngred", res)
+        return res.result
+      })
+    )
+  }
   //PATCH
 
   updateRecipe(id: number, recipe: Partial<Recipe>): Observable<Recipe> {

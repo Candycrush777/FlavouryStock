@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../../models/recipes';
+import { Recipe, RecipeViewDetail } from '../../models/recipes';
 import { RecipeService } from '../../services/recipe.service';
 import { filter } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-recipe',
@@ -13,6 +14,10 @@ export class RecipeComponent implements OnInit {
 
   recipes: Recipe[] = []
   currentPage: number = 1
+  selectedRecipe: RecipeViewDetail | null = null
+  ingredienteList: string[] = []
+  pasosList: string[] = []
+
 
   constructor(private recipeService: RecipeService){}
 
@@ -47,6 +52,28 @@ export class RecipeComponent implements OnInit {
     }
   }
 
-  
+  viewDetail(recipe: Recipe){
+    this.recipeService.getRecipeById(recipe.id_receta).subscribe(
+      (detailRecipe) =>{
+        this.selectedRecipe = detailRecipe
+        this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
+        this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso)
+      }, (error) => {
+        console.log('Error al obtener detaller de la receta', error);
+        
+      }
+    )
+  }
+
+  parseIngredientes(ingredientes: string): string[]{
+    return ingredientes
+    .split(' , ')
+    .map(item => item.replace(/[\[\]]/g, ''));
+  }
+
+  parsePaso(pasos: string): string[]{
+    return pasos.split(/\s(?=\d+\.)/)
+  }
+
 
 }

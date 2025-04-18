@@ -1,0 +1,28 @@
+<div class="container">
+<h1  class="text-capitalize mt-5">Buscar recetas <small>{{nombre}}</small></h1>
+<hr>
+
+<div *ngIf="noRecipe" class="text-warning">{{ noRecipe }}</div>
+
+<app-recipe-list [recipes]="recipes" *ngIf="recipes.length > 0" (showDetail)="viewDetail($event)"></app-recipe-list>
+<app-modal
+  [modalTitle]="selectedRecipe?.receta_nombre ?? ''"
+  [modalContent]="''">
+  <div *ngIf="selectedRecipe" class="animate__animated animate__fadeIn">
+    <p><strong>Descripción:</strong> {{selectedRecipe.receta_descripcion}}</p>
+
+    <strong>Ingredientes:</strong>
+    <ul>
+      <li *ngFor="let ingrediente of ingredienteList">{{ ingrediente }}</li>
+    </ul>
+
+    <strong>Tiempo de preparación:</strong>
+    <p><i class="fa-regular fa-clock"></i> {{selectedRecipe.receta_tiempo_preparacion}} min</p>
+
+    <p><strong>Pasos:</strong></p>
+    <ul>
+      <li *ngFor="let paso of pasosList">{{ paso }}</li>
+    </ul>
+  </div>
+</app-modal>
+</div>

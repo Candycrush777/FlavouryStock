@@ -1,5 +1,5 @@
 <div class="container p-4">
-    <!-- <app-recipe-list></app-recipe-list> -->
+    <!-- <app-recipe-list [recipes]="recipes" (showDetail)="viewDetail($event)"></app-recipe-list> -->
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-around my-3">
         <div class="col mb-3" *ngFor="let recipe of recipes">
@@ -30,12 +30,33 @@
                 </p>
               </div>
               <div class="card-text mt-3">
-                <button class="btn btn-recipe">
+                <button class="btn btn-recipe"data-bs-toggle="modal" data-bs-target="#flavouryModal" (click)="viewDetail(recipe)">
                   Ver receta <i class="fa-solid fa-square-caret-right"></i>
                 </button>
               </div>
             </div>
           </div>
         </div>
+    </div>
+    <app-modal  [modalTitle]="selectedRecipe?.receta_nombre ?? ''" [modalContent]="''">
+      <div *ngIf="selectedRecipe"  class="animate__animated animate__fadeIn">
+        <p><strong>Descripción:</strong> {{selectedRecipe.receta_descripcion}}</p>
+  
+        <strong>Ingredientes:</strong>
+        <ul>
+          <li *ngFor="let ingrediente of ingredienteList">{{ ingrediente }}</li>
+        </ul>
+  
+        <strong>Tiempo de preparación:</strong>
+        <p><i class="fa-regular fa-clock"></i> {{selectedRecipe.receta_tiempo_preparacion}} min</p>
+  
+        <p><strong>Pasos:</strong></p>
+        <ul>
+          <li *ngFor="let paso of pasosList">{{ paso }}</li>
+        </ul>
       </div>
+    </app-modal>
+
+
+
 </div>

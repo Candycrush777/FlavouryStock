@@ -118,6 +118,10 @@ hr {
     align-items: center;
 }
 
+.card-title h5{
+  text-align: center;
+}
+
 /* Estilos responsive */
 @media (max-width: 992px) {
   .card {

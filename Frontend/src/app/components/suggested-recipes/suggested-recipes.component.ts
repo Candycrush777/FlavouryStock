@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Recipe } from '../../models/recipes';
+import { Recipe, RecipeViewDetail } from '../../models/recipes';
 import { ActivatedRoute } from '@angular/router';
 import { EtiquetaService } from './../../services/etiqueta.service';
 import { RecipeService } from '../../services/recipe.service';
@@ -16,6 +16,10 @@ export class SuggestedRecipesComponent {
   recetasEncontradas?: Recipe[]
   recipes: Recipe[]=[]
   imagenDefecto = "/defaultImage.jpg"
+
+    selectedRecipe: RecipeViewDetail | null = null
+    ingredienteList: string[] = []
+    pasosList: string[] = []
 
   constructor(private route:ActivatedRoute, private etiquetaService:EtiquetaService, private recipeService:RecipeService){}
 
@@ -44,14 +48,24 @@ export class SuggestedRecipesComponent {
   viewDetail(recipe: Recipe){
     this.recipeService.getRecipeById(recipe.id_receta).subscribe(
       (detailRecipe) =>{
-        /* this.selectedRecipe = detailRecipe
+        this.selectedRecipe = detailRecipe
         this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
-        this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso) */
+        this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso)
       }, (error) => {
         console.log('Error al obtener detaller de la receta', error);
         
       }
     )
+  }
+
+  parseIngredientes(ingredientes: string): string[]{
+    return ingredientes
+    .split(' , ')
+    .map(item => item.replace(/[\[\]]/g, ''));
+  }
+
+  parsePaso(pasos: string): string[]{
+    return pasos.split(/\s(?=\d+\.)/)
   }
 
 

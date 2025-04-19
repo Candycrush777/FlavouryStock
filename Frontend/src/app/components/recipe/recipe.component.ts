@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component,  Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import { Recipe, RecipeViewDetail } from '../../models/recipes';
 import { RecipeService } from '../../services/recipe.service';
 import { filter } from 'rxjs';
-import Swal from 'sweetalert2';
+import { isPlatformBrowser } from '@angular/common';
+
+
+
 
 @Component({
   selector: 'app-recipe',
@@ -11,19 +14,26 @@ import Swal from 'sweetalert2';
   styleUrl: './recipe.component.css'
 })
 export class RecipeComponent implements OnInit {
-
   recipes: Recipe[] = []
   currentPage: number = 1
   selectedRecipe: RecipeViewDetail | null = null
   ingredienteList: string[] = []
   pasosList: string[] = []
+  isLoggedIn = false
 
 
-  constructor(private recipeService: RecipeService){}
+  constructor(private recipeService: RecipeService, @Inject(PLATFORM_ID) private platformId: Object){}
 
   ngOnInit(): void {
-    this.getRecipes()//llamamos a la funcion al iniciar el componente
+    if (isPlatformBrowser(this.platformId)) {
+      const user = localStorage.getItem('token');
+      this.isLoggedIn = !!user;
+    }
+    this.getRecipes()
   }
+
+
+
 
   getRecipes(){
     this.recipeService.getAllRecipes().subscribe(recipe => {
@@ -38,6 +48,7 @@ export class RecipeComponent implements OnInit {
     this.recipeService.loadPage(page).pipe(
       filter(recipe => recipe.length > 1)
     ).subscribe(recipes => {
+      if (!this.isLoggedIn && page > 1) return
       this.currentPage = page
       this.recipes = recipes
     })

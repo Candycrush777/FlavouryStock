@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  isLoggedIn: boolean | undefined;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkLogin();
+    }
+  }
+
+  checkLogin(): void {
+    const user = localStorage.getItem('token');
+    this.isLoggedIn = !!user;
+  }
 }

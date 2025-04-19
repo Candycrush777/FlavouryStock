@@ -9,6 +9,8 @@ import { Recipe } from '../../models/recipes';
 })
 export class RecipeListComponent {
 
+  imagenDefecto="/defaultImage.jpg"
+
   @Input() recipes: Recipe[] = [];
   @Output() showDetail = new EventEmitter<Recipe>();
 

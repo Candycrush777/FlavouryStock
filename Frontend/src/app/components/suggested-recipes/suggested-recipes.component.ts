@@ -14,7 +14,8 @@ export class SuggestedRecipesComponent {
 
   parametro?: any 
   recetasEncontradas?: Recipe[]
-  recipes?: Recipe[]
+  recipes: Recipe[]=[]
+  imagenDefecto = "/defaultImage.jpg"
 
   constructor(private route:ActivatedRoute, private etiquetaService:EtiquetaService, private recipeService:RecipeService){}
 
@@ -39,5 +40,19 @@ export class SuggestedRecipesComponent {
       }
     })
   }
+
+  viewDetail(recipe: Recipe){
+    this.recipeService.getRecipeById(recipe.id_receta).subscribe(
+      (detailRecipe) =>{
+        /* this.selectedRecipe = detailRecipe
+        this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
+        this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso) */
+      }, (error) => {
+        console.log('Error al obtener detaller de la receta', error);
+        
+      }
+    )
+  }
+
 
 }

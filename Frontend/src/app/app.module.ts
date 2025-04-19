@@ -28,6 +28,7 @@ import { RecetasFormComponent } from './shared/recetas-form/recetas-form.compone
 import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.component';
 import { SearchComponent } from './components/search/search.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
+import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RecipeListComponent } from './components/recipe-list/recipe-list.compon
     SlideRecipesComponent,
     SearchComponent,
     RecipeListComponent,
+    SuggestedRecipesComponent
   ],
   imports: [
     BrowserModule, 

@@ -2,14 +2,18 @@
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     <div class="col mb-2" *ngFor="let recipe of recipes">
       <div class="card" >
-        <img
-          src="https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/C8418F2E-FCDF-4612-AB4D-790369D8B767/Derivates/AABF216C-6591-44BC-A5C2-FC8A4A5482E5.jpg"
-          class="card-img-top img-fluid"
-          alt="..."
-          height="250px"
-        />
+        <img *ngIf="recipe.imagen; else imagenLocal"
+            [src]="recipe.imagen"
+            class="card-img-top img-fluid"
+            alt="imagen de {{recipe.nombre}} no disponible"
+            height="250px"
+            >
+                
+            <ng-template #imagenLocal>
+                <img [src]="imagenDefecto" alt="imagen no disponible">
+            </ng-template>
         <div class="card-body">
-          <h5 class="card-title text-center">{{recipe.nombre}}</h5>
+          <h5 class="card-title text-center fs-2">{{recipe.nombre}}</h5>
           <div class="d-flex gap-3 justify-content-between">
             <p class="card-text texto-recetas">
               <i class="fa-regular fa-clock"></i>

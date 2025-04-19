@@ -31,7 +31,8 @@ const routes: Routes = [
   { path: 'recipe', component: RecipeComponent },
   { path: 'gestionUser', component: GestionUserComponent },
   { path: 'recetas-form', component: RecetasFormComponent },
-  {path: 'search/:nombre', component: SearchComponent}
+  { path: 'search/:nombre', component: SearchComponent },
+  { path: 'suggested-recipes/:id',component: SuggestedRecipesComponent }
 
   //revisar si es necesario
 ];

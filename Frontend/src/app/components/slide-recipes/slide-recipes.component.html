@@ -23,11 +23,16 @@
               </div>
             </div>
             <div class="col-md-6 img-container">
-              <img
-                [src]="'https://carniceriavictorsalvo.com/wp-content/uploads/2024/12/costillas-de-cerdo-a-la-parrilla.webp'"
-                class="img-fluid rounded-end"
-                alt="{{ recipe.nombre }}"
-              />
+              <img *ngIf="recipe.imagen; else imagenLocal"
+            [src]="recipe.imagen"
+            class="card-img-top img-fluid"
+            alt="imagen de {{recipe.nombre}} no disponible"
+            height="250px"
+            >
+                
+            <ng-template #imagenLocal>
+                <img [src]="imagenDefecto" alt="imagen no disponible">
+            </ng-template>
             </div>
           </div>
         </div>

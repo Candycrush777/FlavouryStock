@@ -109,6 +109,15 @@ hr {
   color: #333;
 }
 
+.card-title{
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+}
+
 /* Estilos responsive */
 @media (max-width: 992px) {
   .card {
@@ -130,21 +139,14 @@ hr {
     padding: 1.5rem;
   }
 
-  .card-title {
-    font-size: 1.5rem;
-  }
-
-  .card-title.fs-2 {
-    font-size: 1.5rem;
-  }
-
+/* 
   .card-text {
     font-size: 0.7rem;
   }
 
   .card-text.fs-6 {
     font-size: 0.9rem;
-  }
+  } */
 
   .d-flex.gap-3 {
     flex-wrap: wrap;
@@ -159,9 +161,9 @@ hr {
 }
 
 @media (max-width: 767px) {
-  .card-title.fs-2 {
+/*   .card-title.fs-2 {
     font-size: 1.25rem !important;
-  }
+  } */
 
   .card-text.fs-6 {
     font-size: 0.85rem !important;
@@ -169,7 +171,6 @@ hr {
 
   .texto,
   .texto-recetas {
-    font-size: 0.7rem;
     padding: 3px 6px;
     width: 188px;
   }

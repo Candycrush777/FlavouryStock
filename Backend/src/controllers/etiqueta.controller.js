@@ -60,7 +60,7 @@ exports.getCaducaMuyPronto = (req, res)=>{
 exports.getRecetasPosibles = (req,res)=>{
     sql=`SELECT DISTINCT
     vrd.receta_id,
-    vrd.receta_nombre,
+    vrd.receta_nombre,A
     vrd.receta_descripcion,
     vrd.receta_paso_paso,
     vrd.receta_tiempo_preparacion,

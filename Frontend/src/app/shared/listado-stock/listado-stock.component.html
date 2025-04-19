@@ -1,87 +1,93 @@
 <div class="contenedor">
   <div class="product-table">
+    <!-- CABECERA -->
     <div class="cabecera">
-      <div class="titulo"><h1>Añadir Stock</h1></div>
+      <div class="titulo"><h1>Gestión de Stock</h1></div>
       <div class="botones">
-        <button class="btnComenzar" (click)="toggleForm()">
-          + Añadir Producto
-        </button>
-
-        <button class="btnComenzar" (click)="toggleTable()">Vista</button>
+        <button class="btnComenzar" (click)="toggleForm()">Buscar Producto</button>
       </div>
     </div>
 
+    <!-- FORMULARIO DE BÚSQUEDA -->
     <ng-template [ngIf]="isFormVisible">
       <div class="form-container">
-        <form>
+        <form (ngSubmit)="buscarStockage()">
           <div class="form-row">
+            <!-- Input para buscar por nombre -->
             <div class="solo">
               <input
                 type="text"
                 id="alimento"
                 name="alimento"
+                [(ngModel)]="searchTerm"
                 placeholder="Introduzca producto"
-                required
               />
             </div>
+    
+            <!-- Select para filtrar por categoría -->
             <div class="tres">
-              <input
-                type="number"
-                id="nevera"
-                name="nevera"
-                placeholder="Cantidad en Nevera"
-                required
-              />
-              <input
-                type="number"
-                id="almacen"
-                name="almacen"
-                placeholder="Cantidad en Almacén"
-              />
-              <input
-                type="number"
-                id="congelador"
-                name="congelador"
-                placeholder="Cantidad en Congelador"
-              />
+              <select
+                id="categoria"
+                name="categoria"
+                [(ngModel)]="selectedCategory"
+                (change)="filterByCategory()"
+              >
+                <option value="" selected>Selecciona categoría</option>
+                <option value="aceites">Aceites</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="carnes">Carnes</option>
+                <option value="cereales">Cereales</option>
+                <option value="condimentos">Condimentos</option>
+                <option value="dulces">Dulces</option>
+                <option value="endulzantes">Endulzantes</option>
+                <option value="especias">Especias</option>
+                <option value="frutas">Frutas</option>
+                <option value="frutos secos">Frutos secos</option>
+                <option value="hongos">Hongos</option>
+                <option value="huevos">Huevos</option>
+                <option value="lácteos">Lácteos</option>
+                <option value="legumbres">Legumbres</option>
+                <option value="panaderia">Panadería</option>
+                <option value="pescados">Pescados</option>
+                <option value="salsas">Salsas</option>
+                <option value="tortillas">Tortillas</option>
+                <option value="tuberculos">Tubérculos</option>
+                <option value="vegano">Vegano</option>
+                <option value="vegetales">Vegetales</option>
+              </select>
             </div>
           </div>
+    
+          <!-- Botón que solo activa búsqueda por nombre -->
           <div class="boton-row">
-            <button type="submit" class="btnComenzar">Añadir producto</button>
+            <button type="submit" class="btnComenzar">Buscar</button>
           </div>
         </form>
       </div>
     </ng-template>
+    
+    
+    
+    
 
-    <ng-template [ngIf]="isTableVisible">
-      <div class="container principal">
-        <div class="row row-cols-1 row-cols-md-4 g-3">
-          @for (item of stockItems; track item.id) {
-          <div class="col">
-            <div class="card shadow-sm text-center">
-              <img
-                [src]="item.alimento.foto"
-                [alt]="item.alimento.nombre"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <p class="card-title">{{ item.alimento.nombre }}</p>
-                <p class="card-text">{{ item.peso }}</p>
-                <p class="categoria">{{ item.categoria }}</p>
-              </div>
-            </div>
-          </div>
-          }
-        </div>
-      </div>
-    </ng-template>
-
-    <table *ngIf="!isTableVisible">
+    <!-- TABLA DE STOCK -->
+    <table>
       <thead>
         <tr>
           <th scope="col">Alimento</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col" class="d-none d-md-block">Categoría</th>
+          <th scope="col" class="th-icon almacen">
+            <img src="almacen2.png" alt="Almacén" class="th-img" />
+            <span class="th-text">Almacén</span>
+          </th>
+          <th scope="col" class="th-icon nevera">
+            <img src="nevera3.png" alt="Nevera" class="th-img" />
+            <span class="th-text">Nevera</span>
+          </th>
+          <th scope="col" class="th-icon congelador">
+            <img src="congelador3.png" alt="Congelador" class="th-img" />
+            <span class="th-text">Congelador</span>
+          </th>
+          <th scope="col">Total</th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
@@ -89,23 +95,21 @@
         <tr *ngFor="let item of stockItems">
           <td class="id-alimento">
             <div class="alimento-container">
-              <img
-                [src]="item.alimento.foto"
-                [alt]="item.alimento.nombre"
-                class="alimento-imagen d-none d-sm-table-cell"
-              />
-              <span class="alimento-nombre font-xxl">{{
-                item.alimento.nombre
-              }}</span>
+              <span class="alimento-nombre font-xxl">
+                {{ item.ingrediente }}
+              </span>
             </div>
           </td>
-          <td class="font-xxl">{{ item.peso }}</td>
-          <td class="d-none d-md-table-cell font-xxl">{{ item.categoria }}</td>
+          <td class="font-xxl">{{ item.cantidad_almacen }}</td>
+          <td class="font-xxl">{{ item.cantidad_nevera }}</td>
+          <td class="font-xxl">{{ item.cantidad_congelador }}</td>
+          <td class="font-xxl">{{ item.qty_total }}</td>
           <td>
             <div class="flex1 d-flex justify-content-around">
-              <button class="editar" type="button">
-                <i class="fa-solid fa-pen-to-square"></i></button
-              ><button class="eliminar" type="button">
+              <button class="editar" type="button" (click)="openEditForm(item)">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="eliminar" type="button" (click)="deleteIngredient(item.id_ingrediente)">
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
             </div>
@@ -113,11 +117,63 @@
         </tr>
       </tbody>
     </table>
-
-    <div class="pagination">
-      <button>Anterior</button>
-      <span>01 02 03 04 ... 10 11</span>
-      <button>Siguiente</button>
-    </div>
   </div>
 </div>
+
+<!-- MODAL DE EDICIÓN DE STOCK -->
+<ng-template [ngIf]="mostrarModal">
+  <div class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="titulo-ingrediente">{{ selectedIngredientName }}</h2>
+      </div>
+
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmitForm()" #stockForm="ngForm">
+          <input type="hidden" [(ngModel)]="selectedIngredientId" name="idIngrediente" />
+
+          <!-- contenedor inputs -->
+          <div class="tres-inputs">
+            <input
+              type="number"
+              id="almacen"
+              name="cantidad_almacen"
+              placeholder="Cantidad en Almacén"
+              required
+              [(ngModel)]="formModel.cantidad_almacen"
+              min="0"
+            />
+            <input
+              type="number"
+              id="nevera"
+              name="cantidad_nevera"
+              placeholder="Cantidad en Nevera"
+              required
+              [(ngModel)]="formModel.cantidad_nevera"
+              min="0"
+            />
+            <input
+              type="number"
+              id="congelador"
+              name="cantidad_congelador"
+              placeholder="Cantidad en Congelador"
+              required
+              [(ngModel)]="formModel.cantidad_congelador"
+              min="0"
+            />
+          </div>
+
+          <!-- botones -->
+          <div class="modal-footer">
+            <button type="submit" class="btnComenzar" [disabled]="stockForm.invalid">Guardar</button>
+            <button type="button" class="btnComenzar" (click)="closeModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
+

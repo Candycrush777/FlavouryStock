@@ -18,3 +18,7 @@ export interface Stockage {
   cantidad_nevera?: number;
   cantidad_congelador?: number;
 }
+
+export interface DeleteResponse {
+  message: string;
+}

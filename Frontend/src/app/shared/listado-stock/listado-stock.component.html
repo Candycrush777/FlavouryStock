@@ -109,7 +109,7 @@
               <button class="editar" type="button" (click)="openEditForm(item)">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
-              <button class="eliminar" type="button">
+              <button class="eliminar" type="button" (click)="deleteIngredient(item.id_ingrediente)">
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
             </div>

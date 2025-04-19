@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Stockage, StockageView } from '../../models/stockageView';
 import { StockageService } from '../../services/stockage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listado-stock',
@@ -122,14 +123,16 @@ export class ListadoStockComponent implements OnInit {
     // Mostrar ID en consola
     console.log('ID a actualizar:', this.selectedIngredientId);
   
-    // Preparar datos para el servicio
+
+    
     const updateData = {
       cantidad_almacen: cantidad_almacen,
       cantidad_nevera: cantidad_nevera,
       cantidad_congelador: cantidad_congelador
     };
   
-    // Llamar al servicio usando selectedIngredientId (más confiable)
+    // Llamar al servicio usando selectedIngredientId
+    
     this.stockageService.updateStockage(this.selectedIngredientId!, updateData).subscribe({
       next: () => {
         console.log('Actualización exitosa');
@@ -142,6 +145,66 @@ export class ListadoStockComponent implements OnInit {
       }
     });
   }
+
+  deleteIngredient(idIngrediente: number): void {
+    console.log('Ingrediente a eliminar:', idIngrediente); 
+  
+    Swal.fire({
+      title: "¿Estás seguro de eliminar este ingrediente?",
+      text: "Esta acción no se puede deshacer",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: `No, mantener`,
+      confirmButtonColor: '#000000B3',
+      cancelButtonColor: '#888888B3',
+  
+      didOpen: () => {
+        const addHoverEffects = (button: HTMLElement, originalColor: string) => {
+          button.style.transition = '0.15s ease-in-out';
+  
+          button.addEventListener('mouseenter', () => {
+            button.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+            button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+          });
+          button.addEventListener('mouseleave', () => {
+            button.style.backgroundColor = "#000000B3";
+            button.style.boxShadow = 'none';
+          });
+        };
+  
+        const confirmBtn = Swal.getConfirmButton();
+        if (confirmBtn) {
+          confirmBtn.style.borderRadius = '10px';
+          addHoverEffects(confirmBtn, '#3085d6');
+        }
+  
+        const cancelBtn = Swal.getCancelButton();
+        if (cancelBtn) {
+          cancelBtn.style.borderRadius = '10px';
+          addHoverEffects(cancelBtn, '#3085d6');
+        }
+      }
+  
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.stockageService.deleteIngredientById(idIngrediente).subscribe({
+          next: (response) => {
+            console.log("Ingrediente eliminado:", response);
+            Swal.fire("Ingrediente eliminado con éxito", "", "success");
+            
+            this.getStockItems(); 
+          },
+          error: (error) => {
+            console.error("Error al eliminar ingrediente", error);
+            Swal.fire("Error", "No se pudo eliminar el ingrediente", "error");
+          }
+        });
+      } else if (result.isDismissed) {
+        Swal.fire("El ingrediente no ha sido eliminado", "", "info");
+      }
+    });
+  }
+  
 
 
   toggleForm(): void {

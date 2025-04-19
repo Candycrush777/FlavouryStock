@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Stockage, StockageView } from '../models/stockageView';
+import { DeleteResponse, Stockage, StockageView } from '../models/stockageView';
 // Asegúrate de que la ruta sea correcta
 
 @Injectable({
@@ -27,5 +27,9 @@ export class StockageService {
     return this.http.get<StockageView[]>(`${this.apiUrl}/buscarStockage`, {
       params: { busqueda: busqueda }
     });
+  }
+
+  deleteIngredientById(id: number): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(`${this.apiUrl}/deleteIngredientById/${id}`);
   }
 }

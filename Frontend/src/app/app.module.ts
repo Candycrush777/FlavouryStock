@@ -29,6 +29,7 @@ import { SlideRecipesComponent } from './components/slide-recipes/slide-recipes.
 import { SearchComponent } from './components/search/search.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
+import { NotFoundComponent } from './error/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SuggestedRecipesComponent } from './components/suggested-recipes/sugges
     SlideRecipesComponent,
     SearchComponent,
     RecipeListComponent,
-    SuggestedRecipesComponent
+    SuggestedRecipesComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule, 

@@ -22,4 +22,10 @@ export class StockageService {
     console.log('URL de PATCH para actualizar stock:', url); 
     return this.http.patch<Stockage>(url, stockData);
   }
+
+  buscarStockage(busqueda: string): Observable<StockageView[]> {
+    return this.http.get<StockageView[]>(`${this.apiUrl}/buscarStockage`, {
+      params: { busqueda: busqueda }
+    });
+  }
 }

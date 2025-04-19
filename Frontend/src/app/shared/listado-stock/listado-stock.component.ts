@@ -9,13 +9,15 @@ import { StockageService } from '../../services/stockage.service';
   styleUrls: ['./listado-stock.component.css'],
 })
 export class ListadoStockComponent implements OnInit {
+  allItems: StockageView[] = [];
   stockItems: StockageView[] = [];
   selectedIngredientId: number | null = null;
   selectedIngredientName: string = '';
   mostrarModal = false;
   modalTitle = '';
   isFormVisible = false;
-
+  selectedCategory: string = '';
+  searchTerm: string = '';
 
 
 
@@ -30,7 +32,10 @@ export class ListadoStockComponent implements OnInit {
   constructor(private stockageService: StockageService) {}
 
   ngOnInit() {
-    this.getStockItems();
+    this.stockageService.getAllStockages().subscribe(items => {
+      this.allItems = items;
+      this.stockItems = [...items];  // al principio muestro todo
+    });
   }
 
   getStockItems(): void {
@@ -38,6 +43,35 @@ export class ListadoStockComponent implements OnInit {
       (data) => (this.stockItems = data),
       (error) => console.error('Error obteniendo stock', error)
     );
+  }
+ 
+  
+  filterByCategory() {
+    if (!this.selectedCategory) {
+      // si es cadena vacía (o “Todas”), volver a mostrar todo
+      this.stockItems = [...this.allItems];
+    } else {
+      this.stockItems = this.allItems.filter(
+        item => item.categoria === this.selectedCategory
+      );
+    }
+  }
+
+  buscarStockage() {
+    if (this.searchTerm.trim() !== '') {
+      this.stockageService.buscarStockage(this.searchTerm).subscribe({
+        next: (result) => {
+          this.stockItems = result;
+        },
+        error: (error) => {
+          console.error('Error al buscar:', error);
+          this.stockItems = [];
+        }
+      });
+    } else {
+      
+      this.stockItems = [...this.allItems];
+    }
   }
 
 

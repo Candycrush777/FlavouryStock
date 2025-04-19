@@ -11,24 +11,28 @@
     <!-- FORMULARIO DE BÚSQUEDA -->
     <ng-template [ngIf]="isFormVisible">
       <div class="form-container">
-        <form>
+        <form (ngSubmit)="buscarStockage()">
           <div class="form-row">
+            <!-- Input para buscar por nombre -->
             <div class="solo">
               <input
                 type="text"
                 id="alimento"
                 name="alimento"
+                [(ngModel)]="searchTerm"
                 placeholder="Introduzca producto"
-                required
               />
             </div>
+    
+            <!-- Select para filtrar por categoría -->
             <div class="tres">
               <select
                 id="categoria"
                 name="categoria"
-                required
+                [(ngModel)]="selectedCategory"
+                (change)="filterByCategory()"
               >
-                <option value=""  selected>Selecciona categoría</option>
+                <option value="" selected>Selecciona categoría</option>
                 <option value="aceites">Aceites</option>
                 <option value="bebidas">Bebidas</option>
                 <option value="carnes">Carnes</option>
@@ -53,12 +57,16 @@
               </select>
             </div>
           </div>
+    
+          <!-- Botón que solo activa búsqueda por nombre -->
           <div class="boton-row">
             <button type="submit" class="btnComenzar">Buscar</button>
           </div>
         </form>
       </div>
     </ng-template>
+    
+    
     
     
 

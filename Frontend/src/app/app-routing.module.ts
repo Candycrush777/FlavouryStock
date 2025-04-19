@@ -16,6 +16,7 @@ import { GestionUserComponent } from './shared/gestion-user/gestion-user.compone
 import { RecetasFormComponent } from './shared/recetas-form/recetas-form.component';
 import { SearchComponent } from './components/search/search.component';
 import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
+import { NotFoundComponent } from './error/not-found-404/not-found.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,10 @@ const routes: Routes = [
   { path: 'gestionUser', component: GestionUserComponent },
   { path: 'recetas-form', component: RecetasFormComponent },
   { path: 'search/:nombre', component: SearchComponent },
-  { path: 'suggested-recipes/:id',component: SuggestedRecipesComponent }
+  { path: 'suggested-recipes/:id',component: SuggestedRecipesComponent },
+  { path: 'not-found',component: NotFoundComponent },
+  
+  
 
   //revisar si es necesario
 ];

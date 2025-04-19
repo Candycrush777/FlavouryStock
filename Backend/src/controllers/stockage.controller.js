@@ -75,7 +75,7 @@ exports.getStockageById = (req, res) => {
 exports.deleteIngredientById = (req, res) => {
   const { id } = req.params; // Se espera el id en la URL, como /stockage/delete/5
 
-  const deleteQuery = "DELETE FROM ingredientes WHERE id_ingrediente = ?";
+  const deleteQuery = "DELETE FROM stockages WHERE id_ingrediente = ?";
   db.query(deleteQuery, [id], (err, result) => {
     if (err) {
       return res.status(500).json({ error: err.message });

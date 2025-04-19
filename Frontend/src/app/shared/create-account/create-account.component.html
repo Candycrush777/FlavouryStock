@@ -3,7 +3,7 @@
   <!-- <div class="form-container"> -->
   <div
     [ngClass]="[
-      'form-container',
+      'form-container mt-4',
       router.url != '/create-account' ? 'form-container-gestion' : ''
     ]"
   >
@@ -13,6 +13,7 @@
         router.url != '/create-account' ? 'form-group-gestion' : ''
       ]"
     >
+    <h1 class="text-center mb-5">Formulario de registro</h1>
       <label
         for="nombre"
         [ngClass]="[

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe, RecipeViewDetail } from '../../models/recipes';
 import { ActivatedRoute } from '@angular/router';
 import { EtiquetaService } from './../../services/etiqueta.service';
@@ -20,6 +20,8 @@ export class SuggestedRecipesComponent {
     selectedRecipe: RecipeViewDetail | null = null
     ingredienteList: string[] = []
     pasosList: string[] = []
+
+     @Output() showDetail = new EventEmitter<Recipe>()
 
   constructor(private route:ActivatedRoute, private etiquetaService:EtiquetaService, private recipeService:RecipeService){}
 
@@ -52,7 +54,7 @@ export class SuggestedRecipesComponent {
         this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
         this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso)
       }, (error) => {
-        console.log('Error al obtener detaller de la receta', error);
+        console.log('Error al obtener detalle de la receta TIKITI', error);
         
       }
     )

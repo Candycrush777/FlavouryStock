@@ -1,5 +1,5 @@
 <!-- recetas  -->
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-around my-2">
     <div class="col mb-2" *ngFor="let recipe of recipes">
       <div class="card" >
         <img *ngIf="recipe.imagen; else imagenLocal"

@@ -122,6 +122,18 @@ hr {
   text-align: center;
 }
 
+.card {
+  background-image: url("../../../../public/assets/fondo-inicio.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+}
+
 /* Estilos responsive */
 @media (max-width: 992px) {
   .card {

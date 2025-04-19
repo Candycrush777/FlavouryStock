@@ -4,16 +4,18 @@ const db = require("../config/bd");
 
 exports.getAllStockage = (req, res) => {
   const sql = `
-    SELECT id_ingrediente,
-           ingrediente,
-           categoria,
-           cantidad_almacen,
-           cantidad_nevera,
-           cantidad_congelador, 
-           qty_total  
-    FROM vista_stockage
-   
-  `;
+  SELECT
+    vista_stockage.id_ingrediente,
+    vista_stockage.ingrediente,
+    vista_stockage.cantidad_almacen,
+    vista_stockage.cantidad_nevera,
+    vista_stockage.cantidad_congelador,
+    vista_stockage.qty_total,
+    ingredientes.categoria
+  FROM vista_stockage
+  JOIN ingredientes
+    ON vista_stockage.id_ingrediente = ingredientes.id_ingrediente
+`;
 
   db.query(sql, (err, result) => {
     if (err) {
@@ -70,7 +72,7 @@ exports.getStockageById = (req, res) => {
   });
 };
 
-//hay un problema con una tabla de etiquetas
+
 
 exports.deleteIngredientById = (req, res) => {
   const { id } = req.params; // Se espera el id en la URL, como /stockage/delete/5

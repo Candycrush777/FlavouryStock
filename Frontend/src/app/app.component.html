@@ -1,5 +1,5 @@
 <div class="page-container">
-<header>
+<header *ngIf="showLayout()">
     <app-header *ngIf="currentHeader() === 'inicio'"></app-header>
 
     <app-usuario-header
@@ -9,7 +9,7 @@
     <router-outlet />
   </main> 
 
-  <footer>
+  <footer *ngIf="showLayout()" >
     <app-footer></app-footer>
   </footer>
 

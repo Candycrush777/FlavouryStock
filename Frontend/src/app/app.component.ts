@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { NotFoundComponent } from './error/not-found-404/not-found.component';
 
 
 @Component({
@@ -13,12 +14,16 @@ export class AppComponent {
   title = 'FlavouryStock';
 
   currentHeader = signal('inicio'); 
+  showLayout = signal(true)
 
   constructor(private router: Router) {
     router.events.pipe(
     filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
     this.changeHeader()
+
+    const isErrorRoutes = this.router.routerState.snapshot.root.firstChild?.component === NotFoundComponent
+    this.showLayout.set(!isErrorRoutes)
     })
   }
 
@@ -35,6 +40,7 @@ export class AppComponent {
       this.currentHeader.set('inicio');
     } 
   }
+
   onLogOut(){
     localStorage.clear()
     this.currentHeader.set('inicio')

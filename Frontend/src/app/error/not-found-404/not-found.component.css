@@ -1,13 +1,9 @@
-.not-found-container{
-
-
-    background-image:url("/Frontend/public/fondo-inicio.jpg") ;
-}
-
-
-
 
 .not-found-container {
+    background-image:url("../../../../public/fondo-inicio.jpg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,14 +13,14 @@
     padding: 2rem;
   }
   
-  .error {
-    max-width: 900px; 
+  .error { 
+    max-width: 950px;
     width: 100%;
     padding: 2rem;
   }
   
   .cuatro {
-    width: 50%; 
+    width: 70%; 
     height: auto;
     margin-bottom: 1rem; 
   }

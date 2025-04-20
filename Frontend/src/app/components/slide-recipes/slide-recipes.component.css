@@ -34,6 +34,17 @@
     align-self: center;
     padding: 2rem;
 }
+.card {
+    background-image: url("../../../../public/assets/fondo-inicio.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+  }
 
 .col-md-4 {
     height: 100%;

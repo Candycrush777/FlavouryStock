@@ -19,7 +19,7 @@
 
   <!-- recetas  -->
   <app-recipe-list [recipes]="recipes" (showDetail)="viewDetail($event)"></app-recipe-list>
-
+  <!-- modal para el slide de recetas y recipe-list -->
   <app-modal  [modalTitle]="selectedRecipe?.receta_nombre ?? ''" [modalContent]="''">
     <div *ngIf="selectedRecipe"  class="animate__animated animate__fadeIn">
       <p><strong>Descripción:</strong> {{selectedRecipe.receta_descripcion}}</p>
@@ -38,7 +38,4 @@
       </ul>
     </div>
   </app-modal>
-
-
-
 </div>

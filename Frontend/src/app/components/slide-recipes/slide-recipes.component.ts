@@ -26,7 +26,7 @@ export class SlideRecipesComponent implements AfterViewInit {
   imagenDefecto = "/defaultImage.jpg"
 
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private recipeService: RecipeService){}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object){}
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -50,28 +50,6 @@ export class SlideRecipesComponent implements AfterViewInit {
   }
 
   viewDetail(recipe: Recipe){
-    this.recipeService.getRecipeById(recipe.id_receta).subscribe(
-      (detailRecipe) => {
-        console.log('Detalle desde el slide', detailRecipe);
-        this.selectedRecpe = detailRecipe
-        this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
-        this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso)
-        
-      }, (error) => {
-        console.error('Error al obtener detalles de la receta desde el slide', error)
-      }
-    )
+    this.showDetail.emit(recipe);
   }
-
-  parseIngredientes(ingredientes: string): string[]{
-    return ingredientes
-    .split(' , ')
-    .map(item => item.replace(/[\[\]]/g, ''));
-  }
-
-  parsePaso(pasos: string): string[]{
-    return pasos.split(/\s(?=\d+\.)/)
-  }
-
-
 }

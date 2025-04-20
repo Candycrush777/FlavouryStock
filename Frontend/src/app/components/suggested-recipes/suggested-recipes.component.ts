@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Recipe, RecipeViewDetail } from '../../models/recipes';
 import { ActivatedRoute } from '@angular/router';
 import { EtiquetaService } from './../../services/etiqueta.service';
@@ -21,7 +21,7 @@ export class SuggestedRecipesComponent {
     ingredienteList: string[] = []
     pasosList: string[] = []
 
-     @Output() showDetail = new EventEmitter<Recipe>()
+    
 
   constructor(private route:ActivatedRoute, private etiquetaService:EtiquetaService, private recipeService:RecipeService){}
 
@@ -48,8 +48,12 @@ export class SuggestedRecipesComponent {
   }
 
   viewDetail(recipe: Recipe){
+    console.log("lo que recibo de sugested", recipe);
+    
     this.recipeService.getRecipeById(recipe.id_receta).subscribe(
       (detailRecipe) =>{
+        console.log("lo que recibo de detalle de receta sugerida", detailRecipe);
+        
         this.selectedRecipe = detailRecipe
         this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
         this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso)

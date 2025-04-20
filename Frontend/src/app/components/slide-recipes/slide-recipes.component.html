@@ -45,21 +45,4 @@
     <div class="swiper-button-next" (click)="onSlideNext()"></div>
 </div>
 
-<app-modal  [modalTitle]="selectedRecpe?.receta_nombre ?? ''" [modalContent]="''">
-  <div *ngIf="selectedRecpe"  class="animate__animated animate__fadeIn">
-    <p><strong>Descripción:</strong> {{selectedRecpe.receta_descripcion}}</p>
 
-    <strong>Ingredientes:</strong>
-    <ul>
-      <li *ngFor="let ingrediente of ingredienteList">{{ ingrediente }}</li>
-    </ul>
-
-    <strong>Tiempo de preparación:</strong>
-    <p><i class="fa-regular fa-clock"></i> {{selectedRecpe.receta_tiempo_preparacion}} min</p>
-
-    <p><strong>Pasos:</strong></p>
-    <ul>
-      <li *ngFor="let paso of pasosList">{{ paso }}</li>
-    </ul>
-  </div>
-</app-modal>

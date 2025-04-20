@@ -5,8 +5,6 @@ import { filter } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
 
-
-
 @Component({
   selector: 'app-recipe',
   standalone: false,
@@ -66,9 +64,14 @@ export class RecipeComponent implements OnInit {
   viewDetail(recipe: Recipe){
     this.recipeService.getRecipeById(recipe.id_receta).subscribe(
       (detailRecipe) =>{
+        console.log("Respuesta de el detalle de cada receta en recipe.ts", detailRecipe);
+        
         this.selectedRecipe = detailRecipe
         this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)
         this.pasosList = this.parsePaso(detailRecipe.receta_paso_paso)
+    
+        
+        
       }, (error) => {
         console.log('Error al obtener detaller de la receta', error);
         

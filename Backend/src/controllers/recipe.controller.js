@@ -130,7 +130,7 @@ exports.registerRecipe = (req, res) => {
   //obtener recetas por idIngredientes
   exports.getRecipesByIdIngredient = (req, res)=>{
     const id = req.params.id
-    const sql = ` SELECT r.nombre, r.imagen, r.descripcion, r.tiempo_preparacion, r.categoria, i.id_ingrediente
+    const sql = ` SELECT r.id_receta, r.nombre, r.imagen, r.descripcion, r.tiempo_preparacion, r.categoria, i.id_ingrediente
                   FROM recetas r
                   LEFT JOIN ingredientes_de_receta i
                   USING(id_receta)

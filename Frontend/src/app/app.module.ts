@@ -30,6 +30,7 @@ import { SearchComponent } from './components/search/search.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 import { NotFoundComponent } from './error/not-found-404/not-found.component';
+import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { NotFoundComponent } from './error/not-found-404/not-found.component';
     SearchComponent,
     RecipeListComponent,
     SuggestedRecipesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GestionRecipeComponent
   ],
   imports: [
     BrowserModule, 

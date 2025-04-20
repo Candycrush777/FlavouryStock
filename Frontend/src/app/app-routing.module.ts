@@ -17,6 +17,7 @@ import { RecetasFormComponent } from './shared/recetas-form/recetas-form.compone
 import { SearchComponent } from './components/search/search.component';
 import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 import { NotFoundComponent } from './error/not-found-404/not-found.component';
+import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.component';
 
 
 const routes: Routes = [
@@ -30,11 +31,12 @@ const routes: Routes = [
   { path: 'stock', component: StockComponent },
   { path: 'caducidades', component: CaducidadesComponent},
   { path: 'recipe', component: RecipeComponent },
-  { path: 'gestionUser', component: GestionUserComponent },
+  { path: 'gestion-user', component: GestionUserComponent },
   { path: 'recetas-form', component: RecetasFormComponent },
   { path: 'search/:nombre', component: SearchComponent },
   { path: 'suggested-recipes/:id',component: SuggestedRecipesComponent },
-  { path: 'not-found',component: NotFoundComponent },
+  { path: 'gestion-recipe', component: GestionRecipeComponent },
+  { path: '**',component: NotFoundComponent },
   
   
 

@@ -12,7 +12,7 @@ import { RecipeService } from '../../services/recipe.service';
 })
 export class SuggestedRecipesComponent {
 
-  parametro?: any 
+  parametro?: number
   recetasEncontradas?: Recipe[]
   recipes: Recipe[]=[]
   imagenDefecto = "/defaultImage.jpg"
@@ -28,7 +28,7 @@ export class SuggestedRecipesComponent {
   ngOnInit(): void {
     // Obtener el idIngrediente de los parámetros de la ruta
     this.route.params.subscribe(params => {
-      this.parametro = +params['id']; // parsear el param a numero(esta tipo any)
+      this.parametro = params['id']; // parsear el param a numero(esta tipo any)
       if (this.parametro) {
         this.getRecetasPosibleIdIng(this.parametro);
       }

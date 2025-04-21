@@ -76,7 +76,6 @@
 a.disabled {
     pointer-events: auto;
     opacity: 0.5;
-    cursor: not-allowed;
 }
 
 

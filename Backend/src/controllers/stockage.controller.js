@@ -34,7 +34,19 @@ exports.getAllStockage = (req, res) => {
 exports.buscarStockage = (req, res) => {
   const busquedaNombre = req.query.busqueda || "";
 
-  const sql = `SELECT * FROM vista_stockage WHERE ingrediente LIKE ? `;
+  const sql = `SELECT
+    vista_stockage.id_ingrediente,
+    vista_stockage.ingrediente,
+    vista_stockage.cantidad_almacen,
+    vista_stockage.cantidad_nevera,
+    vista_stockage.cantidad_congelador,
+    vista_stockage.qty_total,
+    ingredientes.categoria,
+    unidad_medida
+    FROM vista_stockage
+    JOIN ingredientes
+    ON vista_stockage.id_ingrediente = ingredientes.id_ingrediente
+  WHERE ingrediente LIKE ? `;
   const valorLike = `%${busquedaNombre}%`; //asi eliminamos injecciones de sql
 
   db.query(sql, [valorLike], (err, result) => {

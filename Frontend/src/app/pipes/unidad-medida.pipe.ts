@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UnidadMedidaPipe implements PipeTransform {
   transform(value: string): string {
-    switch (value) {
+    switch (value.toLowerCase()) {
       case 'kilos':
         return 'Kg';
       case 'gramos':

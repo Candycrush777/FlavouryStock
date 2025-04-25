@@ -7,7 +7,8 @@ router.get("/getAllStockage", stockageController.getAllStockage);//bien
 router.get("/buscarStockage", stockageController.buscarStockage); //bien
 router.get("/getStockageById/:id", stockageController.getStockageById);//bien
 router.patch("/updateStockage/:id", stockageController.updateStockage);//bien
-router.delete("/deleteIngredientById/:id", stockageController.deleteIngredientById);
+router.delete("/deleteIngredientById/:id", stockageController.deleteIngredientById);//bien
+router.patch("/clearStockage/:id", stockageController.clearStockage);//birn
 
 module.exports = router;
 

@@ -1,6 +1,6 @@
 <div class="contenedor">
   <div class="product-table">
-    <!-- CABECERA -->
+
     <div class="cabecera">
       <div class="titulo"><h1>Gestión de Stock</h1></div>
       <div class="botones">
@@ -18,7 +18,7 @@
       <div class="form-container">
         <form (ngSubmit)="buscarStockage()">
           <div class="form-row">
-            <!-- Input para buscar por nombre -->
+            
             <div class="solo">
               <input
                 type="text"
@@ -29,7 +29,7 @@
               />
             </div>
 
-            <!-- Select para filtrar por categoría -->
+           
             <div class="tres">
               <select
                 id="categoria"
@@ -63,7 +63,7 @@
             </div>
           </div>
 
-          <!-- Botón que solo activa búsqueda por nombre -->
+        
           <div class="boton-row">
             <button type="submit" class="btnComenzar">Buscar</button>
           </div>
@@ -72,28 +72,33 @@
     </ng-template>
 
     <!-- TABLA DE STOCK -->
-    <table>
+    <table class="table">
       <thead>
         <tr>
+        
           <th scope="col">Alimento</th>
-          <th scope="col" class="th-icon almacen">
+    
+         
+          <th scope="col" class="th-icon almacen d-none d-sm-table-cell">
             <img src="almacen2.png" alt="Almacén" class="th-img" />
             <span class="th-text">Almacén</span>
           </th>
-          <th scope="col" class="th-icon nevera">
+          <th scope="col" class="th-icon nevera d-none d-sm-table-cell">
             <img src="nevera3.png" alt="Nevera" class="th-img" />
             <span class="th-text">Nevera</span>
           </th>
-          <th scope="col" class="th-icon congelador">
+          <th scope="col" class="th-icon congelador d-none d-sm-table-cell">
             <img src="congelador3.png" alt="Congelador" class="th-img" />
             <span class="th-text">Congelador</span>
           </th>
+    
           <th scope="col">Total</th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of stockItems">
+        
           <td class="id-alimento">
             <div class="alimento-container">
               <div class="alimento-nombre-wrapper">
@@ -101,33 +106,37 @@
                   {{ item.ingrediente }}
                 </span>
                 <small class="unidad-medida">
-                   ({{ item.unidad_medida | unidadMedida }})
+                  ({{ item.unidad_medida | unidadMedida }})
                 </small>
-                            </div>
+              </div>
             </div>
           </td>
-                    <td class="font-xxl">
-            {{ item.cantidad_almacen }} 
+    
+          <td class="font-xxl d-none d-sm-table-cell">
+            {{ item.cantidad_almacen }}
           </td>
-          <td class="font-xxl">
-            {{ item.cantidad_nevera }} 
+          <td class="font-xxl d-none d-sm-table-cell">
+            {{ item.cantidad_nevera }}
           </td>
-          <td class="font-xxl">
-            {{ item.cantidad_congelador }} 
+          <td class="font-xxl d-none d-sm-table-cell">
+            {{ item.cantidad_congelador }}
           </td>
-          <td class="font-xxl">
-            {{ item.qty_total }}  
-           
-          </td>
+    
+        
+          <td class="font-xxl">{{ item.qty_total }}</td>
           <td>
-            <div class="flex1 d-flex justify-content-around">
-              <button class="editar" type="button" (click)="openEditForm(item)">
+            <div class="d-flex justify-content-around">
+              <button
+                class="editar"
+                type="button"
+                (click)="openEditForm(item)"
+              >
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
               <button
                 class="eliminar"
                 type="button"
-                (click)="deleteIngredient(item.id_ingrediente)"
+                (click)="clearStockage(item.id_ingrediente)"
               >
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
@@ -136,6 +145,8 @@
         </tr>
       </tbody>
     </table>
+  
+    
   </div>
 </div>
 
@@ -186,7 +197,7 @@
             />
           </div>
 
-          <!-- botones -->
+     
           <div class="modal-footer">
             <button
               type="submit"

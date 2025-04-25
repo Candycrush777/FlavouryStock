@@ -86,6 +86,37 @@ exports.getStockageById = (req, res) => {
 };
 
 
+// cantidades a 0
+
+exports.clearStockage = (req, res) => {
+  const idIngrediente = req.params.id; // ID del ingrediente pasado como parámetro
+
+  const sql = `
+    UPDATE stockages
+    SET cantidad_almacen    = 0,
+        cantidad_nevera     = 0,
+        cantidad_congelador = 0
+    WHERE id_ingrediente = ?
+  `;
+
+  db.query(sql, [idIngrediente], (err, result) => {
+    if (err) {
+      // Error de base de datos
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (result.affectedRows === 0) {
+      // No existía ningún registro con ese id_ingrediente
+      return res.status(404).json({ error: "Ingrediente no encontrado" });
+    }
+
+    // Actualización exitosa
+    res.status(200).json({ message: "Cantidades reseteadas a 0 correctamente." });
+  });
+};
+
+
+
 
 exports.deleteIngredientById = (req, res) => {
   const { id } = req.params; // Se espera el id en la URL, como /stockage/delete/5

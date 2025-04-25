@@ -11,7 +11,8 @@ exports.getAllStockage = (req, res) => {
     vista_stockage.cantidad_nevera,
     vista_stockage.cantidad_congelador,
     vista_stockage.qty_total,
-    ingredientes.categoria
+    ingredientes.categoria,
+    unidad_medida
   FROM vista_stockage
   JOIN ingredientes
     ON vista_stockage.id_ingrediente = ingredientes.id_ingrediente

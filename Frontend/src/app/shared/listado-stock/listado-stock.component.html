@@ -4,7 +4,12 @@
     <div class="cabecera">
       <div class="titulo"><h1>Gestión de Stock</h1></div>
       <div class="botones">
-        <button class="btnComenzar" (click)="toggleForm()">Buscar Producto</button>
+        <button class="btnComenzar" (click)="toggleForm()">
+          Buscar Producto
+        </button>
+      </div>
+      <div class="botones">
+        <button class="btnComenzar">+ Nuevo Producto</button>
       </div>
     </div>
 
@@ -23,7 +28,7 @@
                 placeholder="Introduzca producto"
               />
             </div>
-    
+
             <!-- Select para filtrar por categoría -->
             <div class="tres">
               <select
@@ -57,7 +62,7 @@
               </select>
             </div>
           </div>
-    
+
           <!-- Botón que solo activa búsqueda por nombre -->
           <div class="boton-row">
             <button type="submit" class="btnComenzar">Buscar</button>
@@ -65,10 +70,6 @@
         </form>
       </div>
     </ng-template>
-    
-    
-    
-    
 
     <!-- TABLA DE STOCK -->
     <table>
@@ -95,21 +96,40 @@
         <tr *ngFor="let item of stockItems">
           <td class="id-alimento">
             <div class="alimento-container">
-              <span class="alimento-nombre font-xxl">
-                {{ item.ingrediente }}
-              </span>
+              <div class="alimento-nombre-wrapper">
+                <span class="alimento-nombre font-xxl">
+                  {{ item.ingrediente }}
+                </span>
+                <small class="unidad-medida">
+                   ({{ item.unidad_medida | unidadMedida }})
+                </small>
+              </div>
             </div>
           </td>
-          <td class="font-xxl">{{ item.cantidad_almacen }}</td>
-          <td class="font-xxl">{{ item.cantidad_nevera }}</td>
-          <td class="font-xxl">{{ item.cantidad_congelador }}</td>
-          <td class="font-xxl">{{ item.qty_total }}</td>
+          
+          <td class="font-xxl">
+            {{ item.cantidad_almacen }} 
+          </td>
+          <td class="font-xxl">
+            {{ item.cantidad_nevera }} 
+          </td>
+          <td class="font-xxl">
+            {{ item.cantidad_congelador }} 
+          </td>
+          <td class="font-xxl">
+            {{ item.qty_total }}  
+           
+          </td>
           <td>
             <div class="flex1 d-flex justify-content-around">
               <button class="editar" type="button" (click)="openEditForm(item)">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
-              <button class="eliminar" type="button" (click)="deleteIngredient(item.id_ingrediente)">
+              <button
+                class="eliminar"
+                type="button"
+                (click)="deleteIngredient(item.id_ingrediente)"
+              >
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
             </div>
@@ -130,7 +150,11 @@
 
       <div class="modal-body">
         <form (ngSubmit)="onSubmitForm()" #stockForm="ngForm">
-          <input type="hidden" [(ngModel)]="selectedIngredientId" name="idIngrediente" />
+          <input
+            type="hidden"
+            [(ngModel)]="selectedIngredientId"
+            name="idIngrediente"
+          />
 
           <!-- contenedor inputs -->
           <div class="tres-inputs">
@@ -165,15 +189,19 @@
 
           <!-- botones -->
           <div class="modal-footer">
-            <button type="submit" class="btnComenzar" [disabled]="stockForm.invalid">Guardar</button>
-            <button type="button" class="btnComenzar" (click)="closeModal()">Cancelar</button>
+            <button
+              type="submit"
+              class="btnComenzar"
+              [disabled]="stockForm.invalid"
+            >
+              Guardar
+            </button>
+            <button type="button" class="btnComenzar" (click)="closeModal()">
+              Cancelar
+            </button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </ng-template>
-
-
-
-

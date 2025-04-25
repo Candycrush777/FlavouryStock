@@ -8,7 +8,7 @@ import { DeleteResponse, Stockage, StockageView } from '../models/stockageView';
   providedIn: 'root'
 })
 export class StockageService {
-  private apiUrl = 'http://localhost:3000/api/stockage'; 
+  private apiUrl = 'http://localhost:3000/api/stockage'; //poner la otra api conectandome a ingrdredientes
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,12 @@ export class StockageService {
     console.log('URL de PATCH para actualizar stock:', url); 
     return this.http.patch<Stockage>(url, stockData);
   }
+
+/*   registerBasket(idIngrediente: number, stockData: Partial<Stockage>): Observable<Stockage> {
+    const url = `${this.apiUrl}/updateStockage/${idIngrediente}`;
+    console.log('URL de PATCH para actualizar stock:', url); 
+    return this.http.patch<Stockage>(url, stockData);
+  } */
 
   buscarStockage(busqueda: string): Observable<StockageView[]> {
     return this.http.get<StockageView[]>(`${this.apiUrl}/buscarStockage`, {

@@ -49,13 +49,13 @@ table {
 }
 
 td {
-  padding: 12px;
+  padding: 8px;
   text-align: center;
   border-bottom: 1px solid #dbd9d9;
 }
 
 th {
-  padding: 12px;
+  padding: 8px;
   background-color: #e9e9eb;
   color: #131212;
   font-weight: 600;
@@ -65,9 +65,19 @@ th {
 
 .alimento-container {
   display: flex;
-  align-items: center;
+ /*  flex-direction: column; */
+  align-items: flex-start; 
   gap: 1rem;
   padding: 0 0 0 20px;
+}
+.alimento-nombre-wrapper {
+  display: flex;
+ /*  flex-direction: column; */
+  align-items: flex-start; 
+}
+.alimento-nombre {
+  line-height: 1.2;
+  text-align: start;
 }
 .id-alimento {
   color: #0d0d0e;
@@ -462,11 +472,21 @@ input:focus {
   margin-top: 1.5rem;
 }
 
+/* Para el pipe */
+
+.unidad-medida {
+  font-size: 0.75em;
+  margin-left: 1.5px;
+  margin-top: 2px;
+ 
+  color: #777;
+}
+
 
 
 @media (min-width: 620px) {
   .font-xxl {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -636,6 +656,7 @@ input:focus {
   }
   .alimento-nombre {
     font-size: 1rem;
+    
   }
 }
 

@@ -11,7 +11,8 @@ exports.getAllStockage = (req, res) => {
     vista_stockage.cantidad_nevera,
     vista_stockage.cantidad_congelador,
     vista_stockage.qty_total,
-    ingredientes.categoria
+    ingredientes.categoria,
+    unidad_medida
   FROM vista_stockage
   JOIN ingredientes
     ON vista_stockage.id_ingrediente = ingredientes.id_ingrediente
@@ -33,7 +34,19 @@ exports.getAllStockage = (req, res) => {
 exports.buscarStockage = (req, res) => {
   const busquedaNombre = req.query.busqueda || "";
 
-  const sql = `SELECT * FROM vista_stockage WHERE ingrediente LIKE ? `;
+  const sql = `SELECT
+    vista_stockage.id_ingrediente,
+    vista_stockage.ingrediente,
+    vista_stockage.cantidad_almacen,
+    vista_stockage.cantidad_nevera,
+    vista_stockage.cantidad_congelador,
+    vista_stockage.qty_total,
+    ingredientes.categoria,
+    unidad_medida
+    FROM vista_stockage
+    JOIN ingredientes
+    ON vista_stockage.id_ingrediente = ingredientes.id_ingrediente
+  WHERE ingrediente LIKE ? `;
   const valorLike = `%${busquedaNombre}%`; //asi eliminamos injecciones de sql
 
   db.query(sql, [valorLike], (err, result) => {
@@ -71,6 +84,37 @@ exports.getStockageById = (req, res) => {
     res.status(200).json(result[0]); 
   });
 };
+
+
+// cantidades a 0
+
+exports.clearStockage = (req, res) => {
+  const idIngrediente = req.params.id; // ID del ingrediente pasado como parámetro
+
+  const sql = `
+    UPDATE stockages
+    SET cantidad_almacen    = 0,
+        cantidad_nevera     = 0,
+        cantidad_congelador = 0
+    WHERE id_ingrediente = ?
+  `;
+
+  db.query(sql, [idIngrediente], (err, result) => {
+    if (err) {
+      // Error de base de datos
+      return res.status(500).json({ error: err.message });
+    }
+
+    if (result.affectedRows === 0) {
+      // No existía ningún registro con ese id_ingrediente
+      return res.status(404).json({ error: "Ingrediente no encontrado" });
+    }
+
+    // Actualización exitosa
+    res.status(200).json({ message: "Cantidades reseteadas a 0 correctamente." });
+  });
+};
+
 
 
 

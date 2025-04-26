@@ -3,6 +3,7 @@ class StockageView {
     this.id_ingrediente = id_ingrediente;
     this.ingrediente = ingrediente;
     this.categoria=categoria;
+    this.unidad_medida= unidad_medida;
     this.cantidad_almacen = cantidad_almacen;
     this.cantidad_nevera = cantidad_nevera;
     this.canditad_congelador = canditad_congelador;

@@ -2,6 +2,7 @@ export interface StockageView {
   id_ingrediente: number; 
   ingrediente: string;
   categoria:string;
+  unidad_medida:string;
   cantidad_almacen: number;
   cantidad_nevera: number;
   cantidad_congelador: number;

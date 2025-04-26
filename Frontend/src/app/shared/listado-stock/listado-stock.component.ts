@@ -75,10 +75,64 @@ export class ListadoStockComponent implements OnInit {
     }
   }
 
-
-
-
-  openEditForm(item: StockageView): void {
+  clearStockage(idIngrediente: number): void {
+    console.log('Ingrediente a resetear stock:', idIngrediente);
+  
+    Swal.fire({
+      title: '¿Estás seguro de resetear el stock a 0?',
+      text: 'Esta acción pondrá todas las cantidades de este ingrediente a cero y no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, resetear',
+      cancelButtonText: 'No, mantener',
+      confirmButtonColor: '#000000B3',
+      cancelButtonColor: '#888888B3',
+      didOpen: () => {
+        const addHoverEffects = (button: HTMLElement, originalColor: string) => {
+          button.style.transition = '0.15s ease-in-out';
+  
+          button.addEventListener('mouseenter', () => {
+            button.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+            button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+          });
+          button.addEventListener('mouseleave', () => {
+            button.style.backgroundColor = originalColor;
+            button.style.boxShadow = 'none';
+          });
+        };
+  
+        const confirmBtn = Swal.getConfirmButton();
+        if (confirmBtn) {
+          confirmBtn.style.borderRadius = '10px';
+          addHoverEffects(confirmBtn, '#000000B3');
+        }
+  
+        const cancelBtn = Swal.getCancelButton();
+        if (cancelBtn) {
+          cancelBtn.style.borderRadius = '10px';
+          addHoverEffects(cancelBtn, '#888888B3');
+        }
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+      
+        this.stockageService.clearStocage(idIngrediente, {}).subscribe({
+          next: (updated) => {
+            console.log('Stock reseteado:', updated);
+            Swal.fire('Stock reseteado a 0 con éxito', '', 'success');
+            this.getStockItems(); 
+          },
+          error: (err) => {
+            console.error('Error al resetear stock', err);
+            Swal.fire('Error', 'No se pudo resetear el stock', 'error');
+          }
+        });
+      } else if (result.isDismissed) {
+        Swal.fire('Stock no modificado', '', 'info');
+      }
+    });
+  }
+   openEditForm(item: StockageView): void {
 
     console.log('Item recibido:', item); 
     this.selectedIngredientId = item.id_ingrediente;
@@ -210,5 +264,10 @@ export class ListadoStockComponent implements OnInit {
   toggleForm(): void {
     this.isFormVisible = !this.isFormVisible;
   }
+
+
+
+
+  
 }
 

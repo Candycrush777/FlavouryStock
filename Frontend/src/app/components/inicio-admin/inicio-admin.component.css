@@ -85,7 +85,7 @@
     background-color: rgba(255,255,255,0.3);
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1170px){
     .segundo{
         flex-direction: column;
         

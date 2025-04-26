@@ -2,6 +2,7 @@ import { Component,EventEmitter, Output } from '@angular/core';
 import { AppComponent } from '../../app.component';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class UsuarioHeaderComponent {
   @Output() onLogOut = new EventEmitter<void>()
 
-  constructor(private userService: UserService, private router: Router){}
+  constructor(private userService: UserService, private router: Router, private location:Location){}
 
   logOut(){
     this.userService.logOut();
@@ -27,6 +28,10 @@ export class UsuarioHeaderComponent {
     }
 
     this.router.navigate(['/search', nombre])
+  }
+
+  volver(): void{
+    this.location.back();
   }
 
 }

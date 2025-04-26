@@ -1,113 +1,265 @@
+<div
+  [ngClass]="[
+    'main',
+    router.url === '/recetas-form' ? 'main-bg' : ''
+  ]"
+>
+  <h2
+    [ngClass]="[
+      'text-center mb-4',
+      router.url != '/recetas-form' ? 'hiddenOut' : ''
+    ]"
+  >
+    Crea tus recetas
+  </h2>
+
+  <div
+    [ngClass]="[
+      'form-container',
+      'mt-4',
+      router.url !== '/recetas-form' ? 'form-container-gestion' : ''
+    ]"
+  >
+    <form>
+      <!-- Nombre Receta -->
+      <div
+        [ngClass]="[
+          'form-group',
+          router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+        ]"
+      >
+        <label
+          for="nombre"
+          [ngClass]="[
+            'form-label',
+            router.url !== '/recetas-form' ? 'hiddenOut' : ''
+          ]"
+        >
+          Nombre Receta
+        </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          [ngClass]="['form-input']"
+          [placeholder]="
+            router.url === '/recetas-form'
+              ? 'Ej. Paella Valenciana'
+              : 'Nombre de receta'
+          "
+          [(ngModel)]="recipes.nombre"
+          required
+        />
+      </div>
+
+      <!-- Imagen -->
+      <div
+        [ngClass]="[
+          'form-group',
+          router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+        ]"
+      >
+        <label
+          for="imagen"
+          [ngClass]="[
+            'form-label',
+            router.url !== '/recetas-form' ? 'hiddenOut' : ''
+          ]"
+        >
+          Imagen
+        </label>
+        <input
+          type="file"
+          id="imagen"
+          name="imagen"
+          [ngClass]="['form-input',
+          router.url !== '/recetas-form' ? 'hiddenOut' : ''
+        ]"
+          accept="image/*"
+          
+        />
+      </div>
+
+      <!-- Descripción -->
+      <div
+        [ngClass]="[
+          'form-group',
+          router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+        ]"
+      >
+        <label
+          for="descripcion"
+          [ngClass]="[
+            'form-label',
+            router.url !== '/recetas-form' ? 'hiddenOut' : ''
+          ]"
+        >
+          Descripción
+        </label>
+        <textarea
+          id="descripcion"
+          name="descripcion"
+          [ngClass]="['form-input']"
+          [placeholder]="
+            router.url === '/recetas-form'
+              ? 'ej. Arroz dorado con azafrán…'
+              : 'Descripción'
+          "
+          [(ngModel)]="recipes.descripcion"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Paso a paso -->
+      <div
+        [ngClass]="[
+          'form-group',
+          router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+        ]"
+      >
+        <label
+          for="pasoPaso"
+          [ngClass]="[
+            'form-label',
+            router.url !== '/recetas-form' ? 'hiddenOut' : ''
+          ]"
+        >
+          Paso a paso
+        </label>
+        <textarea
+          id="pasoPaso"
+          name="pasoPaso"
+          [ngClass]="['form-input']"
+
+          
+          [placeholder]="
+          router.url === '/recetas-form'
+            ? 'ej. 1. Sofríe cebolla, 2. añade…'
+            : 'Pasó a Paso'
+        "
+          [(ngModel)]="recipes.paso_paso"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Tiempo de Preparación -->
+      <div
+        [ngClass]="[
+          'form-group',
+          router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+        ]"
+      >
+        <label
+          for="tiempo-preparacion"
+          [ngClass]="[
+            'form-label',
+            router.url !== '/recetas-form' ? 'hiddenOut' : ''
+          ]"
+        >
+          Tiempo de Preparación
+        </label>
+        <input
+          type="number"
+          id="tiempo-preparacion"
+          name="tiempo-preparacion"
+          [ngClass]="['form-input']"
+          [placeholder]="
+          router.url === '/recetas-form'
+            ? 'Ej. 30 minutos'
+            : 'Tiempo de preparacion en minutos'
+        "
+          placeholder="Ej. 30 minutos"
+          [(ngModel)]="recipes.tiempo_preparacion"
+          required
+        />
+      </div>
+
+      <!-- Select Categoría -->
+<div
+[ngClass]="[
+  'form-group',
+  router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+]"
+>
+<label
+  for="categoria"
+  [ngClass]="[
+    'form-label',
+    router.url !== '/recetas-form' ? 'hiddenOut' : ''
+  ]"
+>
+  Categoría
+</label>
+<select
+  id="categoria"
+  name="categoria"
+  [ngClass]="['form-input form-select']"
+  [(ngModel)]="recipes.categoria"
+  required
+>
+  
+  <option value="" disabled selected>
+    {{ router.url === '/recetas-form'
+       ? 'Selecciona categoría'
+       : 'Selecciona categoría' }}
+  </option>
+  <option value="desayuno">Desayuno</option>
+  <option value="comida">Comida</option>
+  <option value="cena">Cena</option>
+  <option value="postre">Postre</option>
+  <option value="vegano">Vegano</option>
+</select>
+</div>
+
+<!--Estación -->
+<div
+[ngClass]="[
+  'form-group',
+  router.url !== '/recetas-form' ? 'form-group-gestion' : ''
+]"
+>
+<label
+  for="estacion"
+  [ngClass]="[
+    'form-label',
+    router.url !== '/recetas-form' ? 'hiddenOut' : ''
+  ]"
+>
+  Estacion
+</label>
+<select
+  id="estacion"
+  name="estacion"
+  [ngClass]="['form-input form-select']"
+  [(ngModel)]="recipes.estacion"
+  required
+>
+
+  <option value="" disabled selected>
+    {{ router.url === '/recetas-form'
+       ? 'Selecciona estación'
+       : 'Selecciona estación' }}
+  </option>
+  <option value="primavera">Primavera</option>
+  <option value="verano">Verano</option>
+  <option value="otoño">Otoño</option>
+  <option value="invierno">Invierno</option>
+</select>
+</div>
 
 
-<div class="main main-bg">
-
-    <h2 >Crea tus recetas</h2>
-    <div class="form-container">
-      <form>
-        <!-- Campo Nombre -->
-        <div class="form-group">
-          <label for="nombre" class="form-label">Nombre Receta</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            class="form-input"
-            placeholder="Ej. Paella Valenciana"
-            [(ngModel)] ="recipes.nombre"
-            required
-          />
-        </div>
-  
-        <!-- Campo Imagen -->
-        <div class="form-group">
-          <label for="imagen" class="form-label">Imagen</label>
-          <input
-            type="file"
-            id="imagen"
-            name="imagen"
-            class="form-input"
-            accept="image/*"
-            
-            required
-          />
-        </div>
-  
-        <!-- Campo Descripción -->
-        <div class="form-group">
-          <label for="descripcion" class="form-label">Descripción</label>
-          <textarea
-            id="descripcion"
-            name="descripcion"
-            class="form-input"
-            placeholder="ej. Arroz dorado con azafrán, pollo, conejo y verduras, típico de Valencia."
-            [(ngModel)] ="recipes.descripcion"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-        <!-- Paso a oaso -->
-        <div class="form-group">
-          <label for="pasoPaso" class="form-label">Paso a paso</label>
-          <textarea
-            id="pasoPaso"
-            name="pasoPaso"
-            class="form-input"
-            placeholder="ej. Arroz dorado con azafrán, pollo, conejo y verduras, típico de Valencia."
-            [(ngModel)] ="recipes.paso_paso"
-            rows="4"
-            required
-          ></textarea>
-        </div>
-  
-        <!-- Campo Tiempo de Preparación -->
-        <div class="form-group">
-          <label for="tiempo-preparacion" class="form-label">Tiempo de Preparación</label>
-          <input
-            type="text"
-            id="tiempo-preparacion"
-            name="tiempo-preparacion"
-            class="form-input"
-            placeholder="Ej. 30 minutos"
-            [(ngModel)] ="recipes.tiempo_preparacion"
-            required
-          />
-        </div>
-  
-        <!-- Campo Categoría -->
-        <div class="form-group">
-          <label for="categoria" class="form-label">Categoría</label>
-          <input
-            type="text"
-            id="categoria"
-            name="categoria"
-            class="form-input"
-            placeholder="Ej. Plato Principal"
-            [(ngModel)] ="recipes.categoria"
-            required
-          />
-        </div>
-  
-        <!-- Campo Estación -->
-        <div class="form-group">
-          <label for="estacion" class="form-label">Estación</label>
-          <input
-            type="text"
-            id="estacion"
-            name="estacion"
-            class="form-input"
-            placeholder="Ej. Verano"
-            [(ngModel)] ="recipes.estacion"
-            required
-          />
-        </div>
-  
-        <!-- Botón de Envío -->
-        <div class="boton">
-          <button type="submit" class="btnComenzar" (click)="registerRecipe()">Agregar Receta</button>
-        </div>
-      </form>
-    </div>
+      <!-- Botón de Envío -->
+      <div [ngClass]="['boton']">
+        <button
+          type="submit"
+          [ngClass]="['submit-button', 'btnComenzar']"
+          (click)="registerRecipe()"
+        >
+          Agregar Receta
+        </button>
+      </div>
+    </form>
   </div>
-  
-
+</div>

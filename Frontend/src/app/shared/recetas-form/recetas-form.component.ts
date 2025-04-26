@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { RecipeService } from '../../services/recipe.service'; 
 import { Recipe } from '../../models/recipes';
 import { error } from 'console';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recetas-form',
@@ -21,11 +22,11 @@ export class RecetasFormComponent {
   paso_paso: '',
   tiempo_preparacion: 0,
   categoria: '',
-  estacion: null
+  estacion: ''
   }
 
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, public router:Router) {}
 
 
   registerRecipe(){

@@ -17,6 +17,8 @@ export class GestionRecipeComponent {
   recipeAEditar: Recipe | null = null//para el edit
   recipeAEliminar: Recipe | null = null//para delete
   mostrarModal = false
+  searchTerm: string = '';
+  selectedCategory: string = '';
 
   constructor(private recipeService:RecipeService){}
 
@@ -26,7 +28,7 @@ export class GestionRecipeComponent {
 
   getRecipes(){
 
-    this.recipeService.getAllRecipes().subscribe(
+    this.recipeService.getAllRecipesList().subscribe(
       (recipe) =>{
         this.recipesList = recipe
         console.log('Datos recibidos en funcion desde TS', this.recipesList);
@@ -38,9 +40,6 @@ export class GestionRecipeComponent {
     )
 
   }
-
-
-
 
   deleteRecipe(idRecipe:number){
       
@@ -113,10 +112,26 @@ export class GestionRecipeComponent {
       });
   
     }
-  
 
+  editRecipe(){
+    if (this.recipeAEditar) {
+          
+          this.recipeService.updateRecipe(this.recipeAEditar.id_receta!/* asercion */, this.recipeAEditar).subscribe({
+            next: (response) =>{
+              console.log('Comprobar Receta modificado correctamente', response);
+              this.getRecipes()// Para actualizar los cambios      
+              this.closeModal(this.recipeAEditar!)
+              
+            },
+            error: (error) => {
+              console.log('Error al editar receta', error)
+              Swal.fire('Error', 'No se pudo actualizar el receta', 'error')
+            }
+          })
+        }
+  }
 
-   openModal(content: string, recipe?:Recipe ) {
+  openModal(content: string, recipe?:Recipe ) {
       this.mostrarModal = true;
       //reseteo de users
       this.recipeAEditar= null
@@ -135,16 +150,16 @@ export class GestionRecipeComponent {
         this.modalContent=""
       }
     
-    }
+  }
   
-    closeModal(recipe:Recipe){
-  
-      this.mostrarModal = false;
-      this.recipeAEditar = null;
-      this.recipeAEliminar = null;
-      this.modalTitle = "CONFIRMACIÓN"; // Resetear el título del modal
-      this.modalContent = ` La receta ${recipe.nombre}, ha sido editada con exito`; 
-  
-    }
+  closeModal(recipe:Recipe){
+
+    this.mostrarModal = false;
+    this.recipeAEditar = null;
+    this.recipeAEliminar = null;
+    this.modalTitle = "CONFIRMACIÓN"; // Resetear el título del modal
+    this.modalContent = ` La receta ${recipe.nombre}, ha sido editada con exito`; 
+
+  }
 
 }

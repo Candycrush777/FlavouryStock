@@ -13,7 +13,11 @@
         router.url != '/create-account' ? 'form-group-gestion' : ''
       ]"
     >
-    <h1 class="text-center mb-5">Formulario de registro</h1>
+    
+    <h1 [ngClass]="[
+    'text-center mb-5',
+    router.url != '/create-account' ? 'hiddenOut' : ''
+  ]">Formulario de registro</h1>
       <label
         for="nombre"
         [ngClass]="[

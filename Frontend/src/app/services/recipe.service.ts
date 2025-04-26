@@ -19,6 +19,14 @@ export class RecipeService {
       })
     );
   }
+  getAllRecipesList(): Observable<Recipe[]> {
+    return this.http.get<RecipeResponse>(`${this.api}/getRecipesList`).pipe(
+      map((res) => {
+        console.log('Respuesta de la api: ', res);
+        return res.recetas;
+      })
+    );
+  }
 
   loadPage(page: number): Observable<Recipe[]> {
     return this.http
@@ -34,6 +42,7 @@ export class RecipeService {
   searchRecipe(nombre: string): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(`${this.api}/search?nombre=${nombre}`)
   }
+
 
   //GET
 
@@ -53,8 +62,8 @@ export class RecipeService {
   }
   //PATCH
 
-  updateRecipe(id: number, recipe: Partial<Recipe>): Observable<Recipe> {
-    return this.http.put<Recipe>(`${this.api}/updateRecipe/${id}`, recipe);
+  updateRecipe(id: number, recipe: Recipe): Observable<Recipe> {
+    return this.http.patch<Recipe>(`${this.api}/updateRecipe/${id}`, recipe);
   }
 
   //DELETE
@@ -62,4 +71,6 @@ export class RecipeService {
   deleteRecipe(id: number): Observable<Recipe> {
     return this.http.delete<Recipe>(`${this.api}/deleteRecipe/${id}`);
   }
+
+
 }

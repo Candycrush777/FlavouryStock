@@ -89,8 +89,8 @@ exports.registerRecipe = (req, res) => {
     );
 };
 
-  //Obtener una receta por ID
-  exports.getRecipeById = (req, res) => {
+//Obtener una receta por ID
+exports.getRecipeById = (req, res) => {
     const id = req.params.id;
     const selectQuery = "SELECT * FROM vista_receta_detalle WHERE receta_id = ?";
 
@@ -104,10 +104,9 @@ exports.registerRecipe = (req, res) => {
 
       res.status(200).json(result[0]);
     });
-  };
-
-  //obtener recetas por nombre
-  exports.searchRecipeName = (req, res) =>{
+};
+//obtener recetas por nombre
+exports.searchRecipeName = (req, res) =>{
     const nombre = req.query.nombre
     
     if (!nombre) {
@@ -125,10 +124,9 @@ exports.registerRecipe = (req, res) => {
 
       res.status(200).json(result)
     })
-  }
-
-  //obtener recetas por idIngredientes
-  exports.getRecipesByIdIngredient = (req, res)=>{
+}
+//obtener recetas por idIngredientes
+exports.getRecipesByIdIngredient = (req, res)=>{
     const id = req.params.id
     const sql = ` SELECT r.id_receta, r.nombre, r.imagen, r.descripcion, r.tiempo_preparacion, r.categoria, i.id_ingrediente
                   FROM recetas r
@@ -149,10 +147,9 @@ exports.registerRecipe = (req, res) => {
       }
 
     })
-  }
-
-  //Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
-  exports.updateRecipe = (req, res) => {
+}
+//Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
+exports.updateRecipe = (req, res) => {
 
     const { nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion} = req.body
     const idReceta = req.params.id;
@@ -173,9 +170,9 @@ exports.registerRecipe = (req, res) => {
       }
     })
 
-  }
+}
 
-// Eliminar una receta
+// Eliminar una receta original
 exports.deleteRecipe = (req, res) => {
     const id = req.params.id;
     const deleteQuery = "DELETE FROM recetas WHERE id_receta = ?";
@@ -190,6 +187,31 @@ exports.deleteRecipe = (req, res) => {
       res.status(200).json({ message: "Receta eliminada correctamente" });
     });
   };
+
+
+
+exports.getAllRecipesList = (req, res) => {
+    /*Para probar en POSTMAN 
+    http://localhost:3000/api/recipes/getRecipes?page=1&limit=6*/
+    
+    const sql = "SELECT * FROM recetas";
+
+  db.query(sql, (err, dataResult) => {
+    if (err) {
+      return res.status(500).json({ Error: err.message });
+    }
+
+    if (dataResult.length === 0) {
+      return res.status(404).json({ Error: "No se encontraron recetas" });
+    }
+
+    res.status(200).json({
+      total: dataResult.length,
+      recetas: dataResult,
+    });
+  });
+}
+  
 
 
 

@@ -6,10 +6,8 @@
   padding: 20px;
 }
 
-.titulo{
-
-padding: 20px;
-
+.titulo {
+  padding: 20px;
 }
 
 .product-table {
@@ -52,6 +50,7 @@ td {
   padding: 8px;
   text-align: center;
   border-bottom: 1px solid #dbd9d9;
+  vertical-align: middle;
 }
 
 th {
@@ -65,20 +64,23 @@ th {
 
 .alimento-container {
   display: flex;
- /*  flex-direction: column; */
-  align-items: flex-start; 
+  /*  flex-direction: column; */
+  align-items: flex-start;
   gap: 1rem;
   padding: 0 0 0 20px;
 }
+
 .alimento-nombre-wrapper {
   display: flex;
- /*  flex-direction: column; */
-  align-items: flex-start; 
+  /*  flex-direction: column; */
+  align-items: flex-start;
 }
+
 .alimento-nombre {
   line-height: 1.2;
   text-align: start;
 }
+
 .id-alimento {
   color: #0d0d0e;
 }
@@ -109,7 +111,7 @@ th {
 }
 
 .alimento-imagen {
-  width: 40px; /* Hacer la imagen un poco más pequeña */
+  width: 40px;
   height: 40px;
   border-radius: 8px;
   object-fit: cover;
@@ -160,7 +162,6 @@ th {
 
 .editar:hover {
   transition: 0.15s ease-in-out;
-  /* color: #000000; */
   box-shadow: 0.15s ease-in-out;
   background-color: #579e82;
 }
@@ -188,13 +189,10 @@ th {
 }
 
 .form-container {
-  width: 90%; /* Usa un porcentaje en lugar de un valor fijo */
-
+  width: 90%;
   margin: 1rem 0;
   padding: 40px;
-  background-color: rgba(15, 15, 15, 0.007) ;
-  /* background-image: url("../../../../public/assets/fondo-inicio.jpg") !important; */
-  /*   background-size: cover; */
+  background-color: rgba(15, 15, 15, 0.007);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -211,28 +209,23 @@ th {
   background-color: white;
   color: #302f2f;
   font-size: 16px;
-/*   appearance: none; 
-  -webkit-appearance: none;
-  -moz-appearance: none; */
 }
 
 .tres select:focus {
   outline: 2px solid rgba(250, 145, 119, 0.645);
 }
 
-
-
 .form-row {
   display: flex;
-  justify-content: space-evenly; /* Mantiene la separación equilibrada */
+  justify-content: space-evenly;
   align-items: center;
-  gap: 40px; /* Reduce la distancia entre el input de alimento y los tres inputs */
+  gap: 40px;
   width: 100%;
 }
 
 .solo {
-  flex: 1; /* Hace que este input ocupe espacio proporcional */
-  max-width: 250px; /* Evita que crezca demasiado */
+  flex: 1;
+  max-width: 250px;
   display: flex;
   align-items: center;
 }
@@ -243,15 +236,14 @@ th {
   border: 2px solid #e4e1e1;
   border-radius: 10px;
   background-color: white;
-  /* outline: none; */
 }
 
 .tres {
-  flex: 1; /* También ocupa espacio proporcional */
-  max-width: 250px; /* Limita el ancho */
+  flex: 1;
+  max-width: 250px;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Ajusta la distancia entre los inputs */
+  gap: 20px;
 }
 
 .tres input {
@@ -261,21 +253,17 @@ th {
   box-shadow: #0d0d0e 2px;
   border-radius: 10px;
   background-color: white;
-  /* outline: none; */
 }
+
 input::placeholder {
-  /*  font-weight: bolder;  */
   font-size: 16px;
   color: #302f2f;
 }
 
 input:focus {
-  /* Mantén el borde del input igual */
   outline: 2px solid rgba(250, 145, 119, 0.645);
-  /* Cambia el color del borde interior al hacer foco */
 }
 
-/* Botón centrado */
 .boton-row {
   display: flex;
   justify-content: center;
@@ -300,60 +288,6 @@ input:focus {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
-.card {
-  width: 100%;
-  max-width: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 8px;
-  border-radius: 10px;
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
-  cursor: pointer;
-  margin: 20px;
-  background-color: rgb(247, 245, 239);
-}
-
-.card:hover {
-  background-color: #dffa9f;
-  transform: translateY(-3px);
-}
-
-.card:focus {
-  background-color: #e2e6ea;
-  transform: translateY(-3px);
-  outline: none;
-}
-
-.card img {
-  width: 90%;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.card:hover img {
-  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.3);
-}
-
-.card-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.card-text {
-  font-weight: bold;
-  font-size: 16px;
-  color: #333;
-  margin-top: 5px;
-  margin-bottom: 3px;
-}
-
 .categoria {
   font-size: 13px;
   color: rgb(32, 34, 34);
@@ -371,13 +305,10 @@ input:focus {
 }
 
 .row {
-  /*   display: flex;
-  justify-content: center; */
   margin-left: 50px;
   margin-right: 10px;
-  /*   gap: 10px; */
-}
 
+}
 
 .th-icon .th-img {
   display: none;
@@ -408,8 +339,7 @@ input:focus {
   max-width: 90%;
 }
 
-.tres-inputs{
-
+.tres-inputs {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -417,15 +347,12 @@ input:focus {
   gap: 15px;
 }
 
-
- .modal-body{
-
+.modal-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
- 
-} 
+}
 
 .modal-header {
   display: flex;
@@ -436,8 +363,6 @@ input:focus {
 .modal-header h3 {
   margin: 0;
 }
-
-
 
 .modal-body .solo,
 .modal-body .tres-inputs {
@@ -454,7 +379,6 @@ input:focus {
   color: #302f2f;
 }
 
-
 input::placeholder {
   font-size: 16px;
   color: #302f2f;
@@ -467,29 +391,23 @@ input:focus {
 
 .modal-footer {
   display: flex;
-  justify-content: center;  /* centra ambos botones */
-  gap: 1rem;                /* espacio entre ellos */
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
 /* Para el pipe */
-
 .unidad-medida {
   font-size: 0.75em;
   margin-left: 1.5px;
   margin-top: 2px;
- 
   color: #777;
 }
-
-
 
 @media (min-width: 620px) {
   .font-xxl {
     font-size: 1rem;
   }
 }
-
 /* Media Query para tabletas */
 @media (max-width: 1024px) {
   .product-table {
@@ -525,16 +443,16 @@ input:focus {
     width: 35px;
     height: 35px;
   }
+
   .form-row {
-    gap: 20px; /* Reduce más la separación */
+    gap: 20px;
   }
 
   .solo,
   .tres {
-    max-width: 200px; /* Reduce el tamaño de los inputs */
+    max-width: 200px;
   }
 }
-
 /* Media Query para pantallas de móviles (más pequeñas que 768px) */
 @media (max-width: 768px) {
   .product-table {
@@ -564,11 +482,6 @@ input:focus {
     gap: 0.8rem;
   }
 
-  .alimento-imagen {
-    width: 30px;
-    height: 30px;
-  }
-
   .estado-btn {
     font-size: 0.8rem;
     min-width: 80px;
@@ -578,6 +491,7 @@ input:focus {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+
   .form-row {
     display: flex;
     flex-direction: column;
@@ -591,16 +505,16 @@ input:focus {
     width: 100%;
     max-width: 300px;
     display: flex;
-    flex-direction: column; /* Para que el contenido se apile en columna */
-    align-items: center; /* Centra horizontalmente */
-    gap: 20px; /* Espacio entre los elementos internos */
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
   }
 
-  /* Ajustamos el width de todos los inputs en .solo y .tres */
   .solo input,
   .tres input {
-    width: 100% !important; /* Que ocupen todo el contenedor */
+    width: 100% !important;
   }
+
   .th-icon .th-img {
     display: inline-block;
     width: 24px;
@@ -611,55 +525,36 @@ input:focus {
     display: none;
   }
 
- 
   th {
     padding: 8px;
     text-align: center;
   }
 }
-
-/* A partir de 650px o menos: ocultar texto, mostrar icono */
-
-
-/* @media (max-width: 650px) {
-  .th-icon .th-img {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-  }
-
-  .th-icon .th-text {
-    display: none;
-  }
-
- 
-  th {
-    padding: 8px;
-    text-align: center;
-  }
-} */
 
 @media (max-width: 576px) {
   td {
     padding: 10px 0;
   }
+
   .flex1 {
     justify-content: space-between;
   }
+
   .btnComenzar {
     font-size: 0.8rem;
     width: 140px;
   }
+
   .eliminar,
   .editar {
     width: 60px;
   }
+
   .alimento-nombre {
     font-size: 1rem;
-    
+
   }
 }
-
 /* Media Query para pantallas de móviles muy pequeñas (menores de 480px) */
 @media (max-width: 480px) {
   .product-table {
@@ -711,18 +606,14 @@ input:focus {
   }
 
   .form-row {
-    flex-direction: column; /* Se apilan en columna */
+    flex-direction: column;
     align-items: center;
     gap: 15px;
   }
 
   .solo,
   .tres {
-    width: 100%; /* Ocupan todo el ancho */
-    max-width: 300px; /* Pero con límite */
+    width: 100%;
+    max-width: 300px;
   }
 }
-
-
-
-

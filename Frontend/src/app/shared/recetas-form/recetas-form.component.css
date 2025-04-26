@@ -42,11 +42,9 @@
   }
   
   .form-group {
-    margin-bottom: 1.2rem;
+    margin-bottom: 5px;
   }
-  .form-group-gestion {
-    margin-bottom: 15px;
-  }
+ 
   
   .form-label {
     display: block;

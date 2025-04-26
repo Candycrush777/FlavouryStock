@@ -1,131 +1,153 @@
 <div class="container-fluid">
-    <div class="container-gestion p-3">
-      <div class="row flex-column align-items-center">
-        <div class="col-12 col-lg-12 text-center columna-gest my-5">
-          <div class="cabecero d-flex justify-content-around">
-  
-            <h3 class="text-center pt-3 fs-1 fw-bold">GESTION DE LAS RECETAS</h3>
-            <button
-              class="btn btn-crear m-4 d-flex align-items-center"
-              (click)="openModal('crear')" data-bs-toggle="modal" data-bs-target="#flavouryModal"
-            >
-              <span>Añadir nuevo</span>
-              <span>&nbsp;&nbsp;</span>
-              <i class="fa-solid fa-user-plus"></i>
-            </button>
-          </div>
-          <!-- HACER QUE CUANDO CLIQUES EN EDITAR USER, EN EL FORM APAREZCAN LOS DATOS COMO
-                   EL EJERCICIO DE PHP EN LUGAR DEL CREATE ACCOUNT -->
-          <!-- <app-create-account *ngIf="mostrar"></app-create-account> -->
-  
-          <h3 class="text-center p-3">LISTADO DE RECETAS</h3>
-  
-          
-            <table class="table mx-auto">
-              <thead>
-                <tr>
-                  <th class="d-none d-xs-table-cell" scope="col"></th>
-                  <th scope="col" class="d-none d-sm-block">Imagen</th>
-                  <th colspan="2" scope="col">Nombre</th>
-  
-                  <th scope="col" class="d-none d-lg-block">Empresa</th>
-                  <th colspan="2" scope="col">Acciones</th>
-  
-                  <th class="d-none d-xs-table-cell" scope="col"></th>
-                </tr>
-              </thead>
-  
-              <tbody class="table-group-divider">
-                <tr *ngFor="let recipe of recipesList">
-                  <td class="d-none d-xs-table-cell" scope="row"></td>
-                  <td class="fs-5 d-none d-lg-table-cell">
-                    <img [src]="recipe.imagen" alt="" width="50">
-                    
-                </td>
-                  <td class="fs-5" colspan="2">{{ recipe.nombre }}</td>
-                  <td class="fs-5 d-none d-sm-table-cell">{{ recipe.id_receta }}</td>
-  
-  
-                  <td>
-                    <button class="btn btn-edit w-100" (click)="openModal('edit', recipe)" data-bs-toggle="modal" data-bs-target="#flavouryModal" >
-                      <i class="fa-solid fa-user-pen"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <!-- <button class="btn-del w-100" (click)="openModal('delete',user)" data-bs-toggle="modal" data-bs-target="#flavouryModal" > -->
-                    <button class="btn-del w-100" (click)="deleteRecipe(recipe.id_receta)">
-                      <i class="fa-solid fa-user-xmark"></i>
-                    </button>
-                  </td>
-  
-                  <td class="d-none d-xs-table-cell"></td>
-                </tr>
-              </tbody>
-            </table>
-         <!--  <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent">
+  <div class="container-gestion p-3">
+    <div class="row flex-column align-items-center">
+      <div class="col-12 col-lg-12 text-center columna-gest my-5">
+        <div class="cabecero d-flex justify-content-around">
+          <h3 class="text-center pt-3 fs-1 fw-bold">GESTION DE LAS RECETAS</h3>
+          <button
+            class="btn btn-crear m-4 d-flex align-items-center"
+            (click)="openModal('crear')"
+            data-bs-toggle="modal"
+            data-bs-target="#flavouryModal"
+          >
+            <span>Añadir Receta</span>
+            <span>&nbsp;&nbsp;</span>
+            <i class="fa-solid fa-user-plus"></i>
+          </button>
+        </div>
+
+        
+      
+
+        <h3 class="text-center p-3">LISTADO DE RECETAS</h3>
+
+        <table class="table mx-auto">
+          <thead>
+            <tr>
+              
+              <th class="d-none d-xs-table-cell" scope="col"></th>
+              <th scope="col" class="d-none d-lg-block">Id_Receta</th>
+              <th scope="col" class="d-none d-sm-table-cell">Imagen</th>
+              <th colspan="2" scope="col">Nombre</th>
+              <th colspan="2" scope="col">Acciones</th>
+              <th class="d-none d-xs-table-cell" scope="col"></th>
+            </tr>
+          </thead>
+        
+          <tbody class="table-group-divider">
+            <tr *ngFor="let recipe of recipesList">
+
+              <td class="d-none d-xs-table-cell" scope="row"></td>
+              <td class="fs-5 d-none d-lg-table-cell">
+                {{ recipe.id_receta }}
+              </td>
+              <td class="fs-5 d-none d-sm-table-cell">
+                <img [src]="recipe.imagen" alt="" width="50" />
+              </td>
+              <td class="fs-5" colspan="2">
+                {{ recipe.nombre }}
+              </td>
+              <td>
+                <button
+                  class="btn btn-edit w-100"
+                  (click)="openModal('edit', recipe)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#flavouryModal"
+                >
+                <i class="fa-solid fa-file-pen"></i>
+                </button>
+              </td>
+              <td>
+                <button
+                  class="btn-del w-100"
+                  (click)="deleteRecipe(recipe.id_receta)"
+                >
+                <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+              <td class="d-none d-xs-table-cell"></td>
+            </tr>
+          </tbody>
+        </table>
+        
+         <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent">
             
   
-             <ng-container *ngIf="modalTitle === 'CREANDO USUARIO'; else editTemplate">
-                <app-create-account></app-create-account>
+             <ng-container *ngIf="modalTitle === 'CREANDO RECETA'; else editTemplate">
+                <app-recetas-form></app-recetas-form>
              </ng-container>
   
              <ng-template #editTemplate>
-              <ng-container *ngIf="modalTitle === 'EDITANDO USUARIO' && usuarioAEditar">
+              <ng-container *ngIf="modalTitle === 'EDITANDO RECETA' && recipeAEditar">
   
                 <form>
                   
                   <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row ">
                     <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control fs-3 text-secondary" id="nombre" [(ngModel)]="usuarioAEditar.nombre" name="nombre" selected>
+                    <input type="text" class="form-control fs-3 text-secondary" id="nombre" [(ngModel)]="recipeAEditar.nombre" name="nombre" selected>
                   </div>
                   <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row ">
-                    <label for="apellido1" class="form-label">Apellido 1:</label>
-                    <input type="text" class="form-control fs-3 text-secondary" id="apellido1" [(ngModel)]="usuarioAEditar.apellido1" name="apellido1">
+                    <label for="apellido1" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control fs-3 text-secondary" id="descripcion" [(ngModel)]="recipeAEditar.descripcion" name="descripcion">
                   </div>
                   <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row ">
-                    <label for="apellido2" class="form-label">Apellido 2:</label>
-                    <input type="text" class="form-control fs-3 text-secondary" id="apellido2" [(ngModel)]="usuarioAEditar.apellido2" name="apellido2">
+                    <label for="apellido2" class="form-label">Paso a Paso</label>
+                    <input type="text" class="form-control fs-3 text-secondary" id="paso_paso" [(ngModel)]="recipeAEditar.paso_paso" name="paso_paso">
                   </div>
                   <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row rolClass">
-                    <label for="idRol" class="form-label">Rol:</label>
-                    <input type="redio" class="form-control fs-3 text-secondary  d-none d-sm-block" id="idRol" [value]="usuarioAEditar.id_rol === 1 ? 'Admin' : 'Usuario'">
+                    <label for="idRol" class="form-label">Tiempo preparacion</label>
+                    <input type="text" class="form-control fs-3 text-secondary" id="tiempo_preparacion" [(ngModel)]="recipeAEditar.tiempo_preparacion" name="tiempo_preparacion">
                   </div>
-  
-                  <div class="fs-4 d-flex justify-content-around row-form mb-2">
-  
-                    
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1" [checked]="usuarioAEditar.id_rol === 1" [value]="1" [(ngModel)]="usuarioAEditar.id_rol">
-                      <label class="form-check-label rolOption" for="radioDefault1">
-                        Admin
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" [checked]="usuarioAEditar.id_rol ===2" [value]="2" [(ngModel)]="usuarioAEditar.id_rol">
-                      <label class="form-check-label rolOption" for="radioDefault2">
-                        Usuario
-                      </label>
-                    </div>
+                  <!-- ESTACION SELECT -->
+                  <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row">
+                    <label for="estacion" class="form-label me-2">Estación de la receta:</label>
+                    <select
+                      id="estacion"
+                      name="estacion"
+                      class="form-select fs-3 text-secondary"
+                      [(ngModel)]="recipeAEditar.estacion"
+                    >
+                      <option value="" disabled *ngIf="!recipeAEditar.estacion">
+                        -- Selecciona estación --
+                      </option>
+                      <option value="primavera">Primavera</option>
+                      <option value="verano">Verano</option>
+                      <option value="otoño">Otoño</option>
+                      <option value="invierno">Invierno</option>
+                    </select>
                   </div>
-  
-                  <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row ">
-                    <label for="empresa" class="form-label">Empresa:</label>
-                    <input type="text" class="form-control fs-3 text-secondary" id="empresa" [(ngModel)]="usuarioAEditar.empresa" name="empresa">
+
+                  <!-- CATEGORAI SELECT -->
+
+                  <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row">
+                    <label for="categoria" class="form-label me-2">Categoría de la receta:</label>
+                    <select
+                      id="categoria"
+                      name="categoria"
+                      class="form-select fs-3 text-secondary"
+                      [(ngModel)]="recipeAEditar.categoria"
+                    >
+                      <option value="" disabled *ngIf="!recipeAEditar.categoria">
+                        -- Selecciona categoría --
+                      </option>
+                      <option value="desayuno">Desayuno</option>
+                      <option value="comida">Comida</option>
+                      <option value="cena">Cena</option>
+                      <option value="postre">Postre</option>
+                      <option value="vegano">Vegano</option>
+                    </select>
                   </div>
-                  <div class="mb-1 row-form d-flex fs-3 flex-column flex-sm-row ">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control fs-3 text-secondary" id="email" [(ngModel)]="usuarioAEditar.email" name="email">
-                  </div>
-                  <button type="button" class="btn btn-edit mt-3" (click)="editUser()">Guardar Cambios</button>
+
+              
+                  <button type="button" class="btn btn-edit mt-3" (click)="editRecipe()">Guardar Cambios</button>
   
                 </form>
   
               </ng-container>
              </ng-template>
   
-          </app-modal> -->
-        </div>
+          </app-modal>
       </div>
     </div>
   </div>
-  
+</div>

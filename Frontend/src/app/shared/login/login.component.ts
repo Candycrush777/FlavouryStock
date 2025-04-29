@@ -32,13 +32,25 @@ export class LoginComponent {
     
     if (!this.user.email || !this.user.passwd) {
       console.log('Email o contraseña vacíos');
-      alert('Email o contraseña vacíos')
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Correo electrónico o contraseña estan vacios",
+        showConfirmButton: false,
+        timer: 1500
+      });
       return;
     }
 
     this.userService.login(this.user).subscribe({
       next: (response) => {
-        alert("lOGIN EXITOSO")
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Inicio de sesión correctamente",
+          showConfirmButton: false,
+          timer: 1500
+        });
 
         localStorage.setItem('token', response.token)
         localStorage.setItem("id_rol", response.id_rol.toString())

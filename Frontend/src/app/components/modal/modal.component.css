@@ -1,13 +1,32 @@
+.modal-content{
+    background-color: Rgba(255,255,255, 0.8);
+    border: 1px solid white;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+}
+.modal-body, .modal-footer {
+    border-top: 1px solid white;
+    
+}
+
+
 .btnModal{
     background-color: #f18d57c9;
     border: none;
     color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .btnModal:hover{
     color: white;
     background-color: #f8bc9bf2;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 
 }
 

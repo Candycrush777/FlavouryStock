@@ -62,7 +62,7 @@
   .row-form{
     box-sizing: border-box;
     padding: 0 15px;
-    align-items: center;
+    
     border-bottom: 1px solid rgb(165, 165, 165);
     /* margin: 0 0 4px !important; */
   
@@ -73,13 +73,21 @@
     margin: 0;
     width: 40%;
     padding: 0 15px 0 0;
-    text-align: end;
+    text-align: start;
   }
   .form-control{
     border: none;
     gap: 5%;
     width: 55%;
     
+  }
+  .paso_paso{
+    min-height: 250px;
+    vertical-align: top;
+  }
+
+  .paso_pasoLabel{
+    vertical-align: top;
   }
   
   .rolClass{
@@ -89,6 +97,10 @@
   
   .rolOption{
     color:#6c757d ;
+  }
+  
+  .modal-custom-width{
+    min-width: 800px;
   }
   
   

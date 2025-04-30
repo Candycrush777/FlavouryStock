@@ -38,7 +38,7 @@
     margin: 0 auto;
     border: solid white 2px;
   
-    background: Rgba(255, 255, 255, 0.6);
+    background: white;
   }
   
   .form-group {
@@ -67,7 +67,7 @@
   
   .form-input:focus {
     outline: none;
-    border-bottom-color: #007bff;
+    border-bottom-color: rgb(237, 117, 87);
     box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
   }
   

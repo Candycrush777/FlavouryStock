@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-account',
@@ -63,22 +64,38 @@ export class CreateAccountComponent {
   }
 
   crearCuenta() {
-    if (!this.validatePassword()) {
-      console.log("La contraseña no cumple con los requisitos");
-      return;
-    }
 
     if (!this.user.nombre || !this.user.apellido1 || !this.user.apellido2 || !this.user.empresa || !this.user.email || !this.user.passwd) {
-      console.log("Todos los campos son obligatorios");
+      Swal.fire({
+              position: "center",
+              icon: "warning",
+              title: "Por favor, rellene todos los campos",
+              showConfirmButton: false,
+              timer: 1500
+            });
       return;
     }
 
     this.userService.createUser(this.user).subscribe({
       next: (response) => {
         console.log('Usuario creado exitosamente:', response.id_rol);
+        Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Usuario creado ecitosamente",
+                showConfirmButton: false,
+                timer: 1500
+              });
       },
       error: (error) => {
         console.error('Error al crear usuario:', error);
+        Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Error al crear usuario",
+                showConfirmButton: false,
+                timer: 1500
+              });
       }
     });
     this.clearUser();

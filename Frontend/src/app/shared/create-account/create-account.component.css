@@ -76,7 +76,7 @@ h1{
 
 .form-input:focus {
   outline: none;
-  border-bottom-color: #007bff;
+  border-bottom-color: rgb(237, 117, 87);
   box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
 }
 

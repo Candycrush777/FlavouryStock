@@ -19,7 +19,7 @@ app.use("/api/recipes", recipeRoutes)
 app.use("/api/etiquetas", etiquetaRoutes)
 app.use("/api/stockage", stockageRoutes)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT 
 
 
 

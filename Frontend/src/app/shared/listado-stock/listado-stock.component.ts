@@ -132,6 +132,9 @@ export class ListadoStockComponent implements OnInit {
       }
     });
   }
+
+//editar stock
+
    openEditForm(item: StockageView): void {
 
     console.log('Item recibido:', item); 
@@ -199,6 +202,57 @@ export class ListadoStockComponent implements OnInit {
       }
     });
   }
+
+
+  //Registrar compra
+
+// 1. Propiedades nuevas
+mostrarRegisterModal = false;
+
+basketModel: Stockage = {
+  id_ingrediente: 0,
+  cantidad_almacen: undefined,
+  cantidad_nevera: undefined,
+  cantidad_congelador: undefined
+};
+
+
+// 2. Abrir modal
+openRegisterModal(item: StockageView): void {
+  this.selectedIngredientId = item.id_ingrediente;
+  this.selectedIngredientName = item.ingrediente;
+  this.modalTitle = 'Registrar Etiqueta';
+  this.basketModel = {
+    id_ingrediente: item.id_ingrediente,
+    cantidad_almacen: undefined,
+    cantidad_nevera: undefined,
+    cantidad_congelador: undefined
+  };
+  this.mostrarRegisterModal = true;
+}
+
+// 3. Cerrar modal
+closeRegisterModal(): void {
+  this.mostrarRegisterModal = false;
+}
+
+// 4. Envío del formulario
+onSubmitRegister(): void {
+  const payload: Stockage = {
+    id_ingrediente: this.basketModel.id_ingrediente,
+    cantidad_almacen: this.basketModel.cantidad_almacen || 0,
+    cantidad_nevera: this.basketModel.cantidad_nevera || 0,
+    cantidad_congelador: this.basketModel.cantidad_congelador || 0
+  };
+
+  this.stockageService.registerBasket(payload)
+    .subscribe({
+      next: res => { alert(res.message); this.closeRegisterModal(); },
+      error: err => { alert('Error generando etiquetas'); }
+    });
+}
+
+
 
   deleteIngredient(idIngrediente: number): void {
     console.log('Ingrediente a eliminar:', idIngrediente); 

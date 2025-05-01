@@ -10,6 +10,7 @@ import { log } from 'console';
 })
 export class StockageService {
   private apiUrl = 'http://localhost:3000/api/stockage'; //poner la otra api conectandome a ingrdredientes
+  private api = 'http://localhost:3000/api/ingredients'; 
 
   constructor(private http: HttpClient) {}
 
@@ -37,12 +38,11 @@ export class StockageService {
     return this.http.patch<Stockage>(url, stockData);
   }
 
-  /*   registerBasket(idIngrediente: number, stockData: Partial<Stockage>): Observable<Stockage> {
-    const url = `${this.apiUrl}/updateStockage/${idIngrediente}`;
-    console.log('URL de PATCH para actualizar stock:', url); 
-    return this.http.patch<Stockage>(url, stockData);
-  } */
-
+  registerBasket(data: Stockage): Observable<{ message: string }> {
+    const url = `${this.api}/registerBasket`;
+    console.log('URL de POST para registrar la compra:', url);
+    return this.http.post<{ message: string }>(url, data);
+  }
   buscarStockage(busqueda: string): Observable<StockageView[]> {
     return this.http.get<StockageView[]>(`${this.apiUrl}/buscarStockage`, {
       params: { busqueda: busqueda },

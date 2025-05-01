@@ -32,6 +32,7 @@ import { SuggestedRecipesComponent } from './components/suggested-recipes/sugges
 import { NotFoundComponent } from './error/not-found-404/not-found.component';
 import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.component';
 import { UnidadMedidaPipe } from './pipes/unidad-medida.pipe';
+import { LegalComponent } from './shared/legal/legal.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UnidadMedidaPipe } from './pipes/unidad-medida.pipe';
     SuggestedRecipesComponent,
     NotFoundComponent,
     GestionRecipeComponent,
-    UnidadMedidaPipe
+    UnidadMedidaPipe,
+    LegalComponent
   ],
   imports: [
     BrowserModule, 

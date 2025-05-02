@@ -64,6 +64,12 @@ export class LoginComponent {
       },
       error: (error) => {
         console.error('Error en el login:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Correo electrónico o contraseña inconrrecto",
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     });
   }

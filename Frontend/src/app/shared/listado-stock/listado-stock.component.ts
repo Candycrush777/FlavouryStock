@@ -247,7 +247,7 @@ onSubmitRegister(): void {
 
   this.stockageService.registerBasket(payload)
     .subscribe({
-      next: res => { alert(res.message); this.closeRegisterModal(); },
+      next: res => { alert(res.message);this.getStockItems(); this.closeRegisterModal(); },
       error: err => { alert('Error generando etiquetas'); }
     });
 }

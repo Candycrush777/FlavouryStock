@@ -18,6 +18,7 @@ import { SearchComponent } from './components/search/search.component';
 import { SuggestedRecipesComponent } from './components/suggested-recipes/suggested-recipes.component';
 import { NotFoundComponent } from './error/not-found-404/not-found.component';
 import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.component';
+import { LegalComponent } from './shared/legal/legal.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'search/:nombre', component: SearchComponent },
   { path: 'suggested-recipes/:id',component: SuggestedRecipesComponent },
   { path: 'gestion-recipe', component: GestionRecipeComponent },
+  { path: 'legal/:tipo', component: LegalComponent },
   { path: '**',component: NotFoundComponent },
   
   

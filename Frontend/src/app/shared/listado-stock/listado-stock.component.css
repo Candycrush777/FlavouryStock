@@ -255,6 +255,10 @@ th {
   background-color: white;
 }
 
+.small{
+  size: 1px !important;
+}
+
 input::placeholder {
   font-size: 16px;
   color: #302f2f;
@@ -482,16 +486,6 @@ input:focus {
     gap: 0.8rem;
   }
 
-  .estado-btn {
-    font-size: 0.8rem;
-    min-width: 80px;
-  }
-
-  .pagination button {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-  }
-
   .form-row {
     display: flex;
     flex-direction: column;
@@ -579,13 +573,7 @@ input:focus {
     font-size: 0.75rem;
     min-width: 70px;
   }
-
-  .pagination button {
-    font-size: 0.75rem;
-    padding: 6px 10px;
-  }
-
-  .botones {
+   .botones {
     margin-top: 1rem;
     justify-content: center;
     margin-bottom: 1rem;

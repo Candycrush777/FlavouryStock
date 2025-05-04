@@ -82,25 +82,25 @@
   
                 <form>
                   
-                  <div class="mb-1 row-form d-flex fs-5 flex-column flex-sm-row ">
+                  <div class="mb-1 row-form d-flex fs-5 flex-column ">
                     <label for="nombre" class="form-label">Nombre:</label>
                     <input type="text" class="form-control fs-5 text-secondary" id="nombre" [(ngModel)]="recipeAEditar.nombre" name="nombre" selected>
                   </div>
-                  <div class="mb-1 row-form d-flex fs-5 flex-column flex-sm-row ">
+                  <div class="mb-1 row-form d-flex fs-5 flex-column ">
                     <label for="apellido1" class="form-label">Descripcion</label>
                     <input type="text" class="form-control fs-5 text-secondary" id="descripcion" [(ngModel)]="recipeAEditar.descripcion" name="descripcion">
                   </div>
-                  <div class="mb-1 row-form d-flex fs-5 flex-column flex-sm-row">
+                  <div class="mb-1 row-form d-flex fs-5 flex-column">
                     <label for="apellido2" class="form-label paso_pasoLabel">Paso a Paso</label>
                     <!-- <input type="text" class="form-control fs-5 text-secondary paso_paso" id="paso_paso" [(ngModel)]="recipeAEditar.paso_paso" name="paso_paso"> -->
                     <textarea class="form-control fs-5 text-secondary paso_paso" id="paso_paso" [(ngModel)]="recipeAEditar.paso_paso" name="paso_paso"></textarea>
                   </div>
-                  <div class="mb-1 row-form d-flex fs-5 flex-column flex-sm-row rolClass">
+                  <div class="mb-1 row-form d-flex fs-5 flex-column rolClass">
                     <label for="idRol" class="form-label">Tiempo preparacion</label>
                     <input type="text" class="form-control fs-5 text-secondary" id="tiempo_preparacion" [(ngModel)]="recipeAEditar.tiempo_preparacion" name="tiempo_preparacion">
                   </div>
                   <!-- ESTACION SELECT -->
-                  <div class="mb-1 row-form d-flex fs-5 flex-column flex-sm-row">
+                  <div class="mb-1 row-form d-flex fs-5 flex-column">
                     <label for="estacion" class="form-label me-2">Estación:</label>
                     <select
                       id="estacion"
@@ -120,7 +120,7 @@
 
                   <!-- CATEGORAI SELECT -->
 
-                  <div class="mb-1 row-form d-flex fs-5 flex-column flex-sm-row">
+                  <div class="mb-1 row-form d-flex fs-5 flex-column">
                     <label for="categoria" class="form-label me-2">Categoría:</label>
                     <select
                       id="categoria"

@@ -48,7 +48,7 @@ exports.registerRecipe = (req, res) => {
  
     // momentaneo, hasta decidir donde guardar las imagenes
  
-    const imagen = "ruta/por/cualquierruta.jpg";
+    const imagen = "/defaultImage.jpg";
  
     // tiene que rellenar todos los campos obligatorio
  

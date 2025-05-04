@@ -33,7 +33,9 @@ export class RecetasFormComponent {
     this.recipeService.registerRecipe(this.recipes).subscribe({
       next: (response) =>{
         console.log("Receta Agregada correctamente", response)
+        this.recipeService.getAllRecipesList();
         this.recipes = response;
+        
 
       },
       error: (error) =>{

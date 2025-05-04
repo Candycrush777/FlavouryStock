@@ -1,0 +1,41 @@
+div {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h2 {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #0056b3;
+}
+h4{
+    color: #0056b3;
+
+}
+
+p {
+    margin: 15px 0;
+}
+
+ul {
+    margin: 10px 0 15px 20px;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: #0b550e;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

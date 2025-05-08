@@ -107,6 +107,24 @@ h1{
   border-bottom: 2px solid #dee2e6;
   padding-bottom: 5px;
 }
+.password-container {
+  position: relative;
+}
+
+.show-password-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.show-password-btn:hover {
+  text-decoration: underline;
+}
+
 
 .btnComenzar {
   width: 180px;

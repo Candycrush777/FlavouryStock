@@ -15,15 +15,21 @@
 
     <div class="form-group">
       <label class="form-label"><b>Contraseña</b></label>
-      <input
-        type="password"
+      <div class="password-container">
+        <input
+        [type]="passwordVisible ? 'text': 'password'"
         class="form-input"
         [(ngModel)]="user.passwd"
         name="passwd"
         placeholder="Ingresa tu contraseña"
         required
       />
-    </div>
+      <button type="button" class="show-password-btn" (click)="showPassword()">
+        <i *ngIf="!passwordVisible" class="fa-regular fa-eye-slash"></i>
+        <i *ngIf="passwordVisible" class="fa-regular fa-eye"></i>
+      </button>
+      </div>
+      </div>
 
     <div class="boton">
       <button type="submit" class="submit-button btnComenzar" (click)="login()">

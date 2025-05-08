@@ -14,6 +14,10 @@ export class CreateAccountComponent {
   confirmPassword: string = '';
   passwordErrors: string[] = [];
   passwordsMatch: boolean = true;
+
+  passwordVisible: boolean = false;
+  confirmPassVisible: boolean = false;
+  
   
 
   user: User ={
@@ -36,6 +40,12 @@ export class CreateAccountComponent {
     this.user.id_rol = rol;
     console.log('Rol cambiado a:', rol);
   } */
+  showPassword(){
+    this.passwordVisible = !this.passwordVisible;
+  }
+  confirmShowPassword(){
+    this.confirmPassVisible = !this.confirmPassVisible
+  }
 
   validatePassword() {
     this.passwordErrors = [];

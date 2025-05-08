@@ -183,8 +183,9 @@
         ]"
         ><strong>Contraseña</strong></label
       >
-      <input
-        type="password"
+      <div class="password-container">
+        <input
+        [type]="passwordVisible ? 'text': 'password'"
         class="form-input"
         [(ngModel)]="user.passwd"
         (ngModelChange)="validatePassword()"
@@ -192,6 +193,11 @@
         placeholder="Contraseña"
         required
       />
+      <button type="button" class="show-password-btn" (click)="showPassword()">
+        <i *ngIf="!passwordVisible" class="fa-regular fa-eye-slash"></i>
+        <i *ngIf="passwordVisible" class="fa-regular fa-eye"></i>
+      </button>
+      </div>
       <!-- ngModelChange permite ejecutar la logica en tiempo real detecta cambios en el valor del campo del formulario  -->
       <div class="password-requirements" *ngIf="user.passwd">
         <p>La contraseña debe tener:</p>
@@ -252,8 +258,9 @@
         ]"
         ><strong>Vuelve a Ingresar tu contraseña</strong></label
       >
-      <input
-        type="password"
+      <div class="password-container">
+        <input
+        [type]="confirmPassVisible ? 'text': 'password'"
         class="form-input"
         [(ngModel)]="confirmPassword"
         (ngModelChange)="validatePassword()"
@@ -262,6 +269,11 @@
         [ngClass]="{ error: !passwordsMatch && confirmPassword }"
         required
       />
+      <button type="button" class="show-password-btn" (click)="confirmShowPassword()">
+        <i *ngIf="!confirmPassVisible" class="fa-regular fa-eye-slash"></i>
+        <i *ngIf="confirmPassVisible" class="fa-regular fa-eye"></i>
+      </button>
+      </div>
       <div class="password-error" *ngIf="!passwordsMatch && confirmPassword">
         <p class="error-message">Las contraseñas no coinciden</p>
       </div>

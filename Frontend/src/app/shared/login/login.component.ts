@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  passwordVisible: boolean = false;
   user: User = {
     id_rol: 0,
     id_usuario: 0,
@@ -26,6 +27,10 @@ export class LoginComponent {
     private userService: UserService,
     private router: Router
   ) {}
+
+  showPassword(){
+    this.passwordVisible = !this.passwordVisible;
+  }
 
   login() {
     /* console.log('Intentando login con usuario:', this.user); */

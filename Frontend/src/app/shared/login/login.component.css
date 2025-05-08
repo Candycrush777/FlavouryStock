@@ -32,6 +32,23 @@
     font-size: 0.9rem;
     transition: color 0.3s ease;
   }
+  .password-container {
+    position: relative;
+  }
+  
+  .show-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .show-password-btn:hover {
+    text-decoration: underline;
+  }
   
   .forgot-password:hover {
     color: #0056b3;

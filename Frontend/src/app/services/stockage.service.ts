@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DeleteResponse, Stockage, StockageView } from '../models/stockageView';
+import { DeleteResponse, RegisterResponse, Stockage, StockageView } from '../models/stockageView';
 import { log } from 'console';
 // Asegúrate de que la ruta sea correcta
 
@@ -38,11 +38,13 @@ export class StockageService {
     return this.http.patch<Stockage>(url, stockData);
   }
 
-  registerBasket(data: Stockage): Observable<{ message: string }> {
+  registerBasket(data: Stockage): Observable<RegisterResponse> {
     const url = `${this.api}/registerBasket`;
     console.log('URL de POST para registrar la compra:', url);
-    return this.http.post<{ message: string }>(url, data);
+    return this.http.post<RegisterResponse>(url, data);
   }
+
+  
   buscarStockage(busqueda: string): Observable<StockageView[]> {
     return this.http.get<StockageView[]>(`${this.apiUrl}/buscarStockage`, {
       params: { busqueda: busqueda },

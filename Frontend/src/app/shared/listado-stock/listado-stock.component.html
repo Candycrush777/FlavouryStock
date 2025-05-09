@@ -6,10 +6,13 @@
         <button class="btnComenzar" (click)="toggleForm()">
           Buscar Producto
         </button>
+        <button class="btnComenzar" (click)="toggleFormEtiqueta()">
+          Buscar Etiquetas
+        </button>
       </div>
     </div>
 
-    <!-- FORMULARIO DE BÚSQUEDA -->
+    <!-- FORMULARIO DE BÚSQUEDA ALIMENTOS-->
     <ng-template [ngIf]="isFormVisible">
       <div class="form-container">
         <form (ngSubmit)="buscarStockage()">
@@ -64,6 +67,46 @@
         </form>
       </div>
     </ng-template>
+    <!-- FORMULARIO DE BÚSQUEDA ETIQUETAS-->
+    <ng-template [ngIf]="isFormVisible2">
+      <div class="form-container">
+        <form>
+          <div class="form-row">
+            <div class="solo">
+              <input
+                type="text"
+                id="alimento"
+                name="alimento"
+                [(ngModel)]="searchEtiqueta"
+                placeholder="Introduzca producto"
+              />
+            </div>
+          </div>
+
+          <div class="boton-row">
+            <div class="div">
+              <button
+                type="button"
+                class="btnComenzar"
+                (click)="buscarEtiqueta()"
+              >
+                Buscar Etiquetas
+              </button>
+            </div>
+            <div class="div">
+              <button
+                type="button"
+                class="btnComenzar"
+                (click)="getAllEtiquetas()"
+              >
+                Todas Etiquetas
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
     <!-- TABLA DE STOCK -->
     <table class="table">
       <thead>
@@ -111,7 +154,8 @@
 
           <td class="font-xxl">{{ item.qty_total }}</td>
           <td>
-            <div class="d-flex justify-content-around "> <!-- poner gap -->
+            <div class="d-flex justify-content-around">
+              <!-- poner gap -->
               <button class="editar" type="button" (click)="openEditForm(item)">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
@@ -122,7 +166,11 @@
               >
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
-              <button class="editar" type="button" (click)="openRegisterModal(item)">
+              <button
+                class="editar"
+                type="button"
+                (click)="openRegisterModal(item)"
+              >
                 <i class="fa-solid fa-rectangle-list"></i>
               </button>
             </div>
@@ -155,7 +203,6 @@
               id="almacen"
               name="cantidad_almacen"
               placeholder="Cantidad en Almacén"
-              required
               [(ngModel)]="formModel.cantidad_almacen"
               min="0"
             />
@@ -164,7 +211,6 @@
               id="nevera"
               name="cantidad_nevera"
               placeholder="Cantidad en Nevera"
-              required
               [(ngModel)]="formModel.cantidad_nevera"
               min="0"
             />
@@ -173,7 +219,6 @@
               id="congelador"
               name="cantidad_congelador"
               placeholder="Cantidad en Congelador"
-              required
               [(ngModel)]="formModel.cantidad_congelador"
               min="0"
             />
@@ -204,9 +249,9 @@
     <div class="modal-container">
       <div class="modal-header">
         <h2 class="titulo-ingrediente text-center">
-          <p class="small">Registra tu compra de</p> {{ selectedIngredientName }}
+          <p class="small">Registra tu compra de</p>
+          {{ selectedIngredientName }}
         </h2>
-       
       </div>
 
       <div class="modal-body">
@@ -225,7 +270,6 @@
               name="cantidad_almacen"
               placeholder="Cantidad en Almacén"
               min="0"
-              required
               [(ngModel)]="basketModel.cantidad_almacen"
             />
             <input
@@ -233,7 +277,6 @@
               name="cantidad_nevera"
               placeholder="Cantidad en Nevera"
               min="0"
-              required
               [(ngModel)]="basketModel.cantidad_nevera"
             />
             <input
@@ -241,12 +284,10 @@
               name="cantidad_congelador"
               placeholder="Cantidad en Congelador"
               min="0"
-              required
               [(ngModel)]="basketModel.cantidad_congelador"
             />
           </div>
 
-         
           <div class="modal-footer">
             <button
               type="submit"
@@ -268,4 +309,3 @@
     </div>
   </div>
 </ng-template>
-

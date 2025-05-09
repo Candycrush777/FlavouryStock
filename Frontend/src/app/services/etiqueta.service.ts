@@ -11,6 +11,8 @@ export class EtiquetaService {
   private api = 'http://localhost:3000/api/etiquetas'
   constructor(private http: HttpClient) {}
 
+  
+
   getAllEtiquetas(): Observable<Etiqueta[]> {
     return this.http.get<EtiquetaResponse>(`${this.api}/getEtiquetas`).pipe(
       map((res) => {
@@ -62,6 +64,12 @@ export class EtiquetaService {
         return res.result
       })
     )
+  }
+
+  buscarEtiqueta(busqueda: string): Observable<Etiqueta[]> {
+    return this.http.get<Etiqueta[]>(`${this.api}/buscarEtiquetas`, {
+      params: { busqueda: busqueda },
+    });
   }
 
 

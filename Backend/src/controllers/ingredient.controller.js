@@ -42,7 +42,65 @@ exports.registerBasket2 = (req, res) =>{//todo original sin fechas calculadas
         insertarEtiquetaFunct("congelador", cantidad_congelador)
 }
 
-exports.registerBasket = async (req, res) =>{//todo ver posibles cambios dentro de la funct. NECESITA EL ASYNC
+
+// ingredient.controller.js
+
+exports.registerBasket = async (req, res) => {
+    try {
+      const fechaEtiqueta = new Date();
+      const id_usuario = 3;
+      const { id_ingrediente, cantidad_almacen, cantidad_nevera, cantidad_congelador } = req.body;
+  
+      // obtenemos caducidades (pueden venir null)
+      const caducidades = await obtenerCaducidad(db, id_ingrediente);
+      console.log('Caducidades antes de fallback:', caducidades);
+  
+      const insertarEtiquetaFunct = (lugar_almacen, cantidad, diasCaducidad) => {
+        // sólo chequeamos cantidad
+        if (cantidad > 0) {
+          // fallback: si caducidad es null|undefined, pongo 0 días
+          const dias = diasCaducidad ?? 0;
+  
+          const fecha_caducidad = new Date(fechaEtiqueta);
+          fecha_caducidad.setDate(fechaEtiqueta.getDate() + dias);
+  
+          console.log(`Insertando ${cantidad} en ${lugar_almacen} con diasCaducidad=${dias}`);
+  
+          const sql = `
+            INSERT INTO etiquetas
+              (id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad)
+            VALUES (?, ?, ?, ?, ?, ?)
+          `;
+          db.query(
+            sql,
+            [id_ingrediente, id_usuario, fechaEtiqueta, lugar_almacen, fecha_caducidad, cantidad],
+            (err, result) => {
+              if (err) {
+                console.error(`Error al insertar etiqueta de ${lugar_almacen}:`, err);
+                return res.status(500).json({ error: err.message });
+              }
+              console.log(`✔ Etiquetas generadas para ${lugar_almacen}`);
+            }
+          );
+        }
+      };
+  
+      // llamamos siempre las tres, aunque caducidad sea null
+      insertarEtiquetaFunct("almacen",   cantidad_almacen,   caducidades.almacen);
+      insertarEtiquetaFunct("nevera",    cantidad_nevera,    caducidades.nevera);
+      insertarEtiquetaFunct("congelador",cantidad_congelador,caducidades.congelador);
+  
+      // respondemos – el INSERT ocurre (o no) dentro del callback
+      return res.status(200).json({ message: 'Etiquetas generadas en BD correctamente' });
+    } catch (error) {
+      console.error("Error al registrar las etiquetas:", error);
+      return res.status(500).json({ error: error.message || "Error al procesar la solicitud" });
+    }
+  };
+  
+
+
+  /* exports.registerBasket = async (req, res) =>{//todo ver posibles cambios dentro de la funct. NECESITA EL ASYNC
     // todo: hay que modificar el user_activo, 
     // todo: quizas cambiar id_ingrediente, por nombre 
     // esta funcion necesita para postman id_ingrediente, y cantidades
@@ -54,13 +112,17 @@ exports.registerBasket = async (req, res) =>{//todo ver posibles cambios dentro 
     
             //aqui llamamos a la funcion de calculo de fechas
         const caducidades = await obtenerCaducidad(db,id_ingrediente)
+        console.log(caducidades) 
 
         const insertarEtiquetaFunct = (lugar_almacen, cantidad,diasCaducidad)=>{
             if (cantidad>0 && diasCaducidad !== null && diasCaducidad !== undefined) {
                  // todo calcular sumandole los dias ( sacados de otra consulta en id_ing.lugar)
                 const fecha_caducidad = new Date(fechaEtiqueta)
                 fecha_caducidad.setDate(fecha_caducidad.getDate()+ diasCaducidad)
-    
+
+                console.log(`Insertando ${cantidad} en ${lugar_almacen} con diasCaducidad=`, diasCaducidad)
+
+
                 const sql = "INSERT INTO etiquetas "+ 
                 "(id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad) "+
                 `VALUES(?,?,?,?,?,?)`
@@ -92,7 +154,7 @@ exports.registerBasket = async (req, res) =>{//todo ver posibles cambios dentro 
         return res.status(500).json({error: error.message || "Error al procesar la solicitud"})
     }
         
-    } 
+    }  */
 
 exports.getAllIngredients = (req, res)=>{
     const sql= "SELECT * FROM Ingredientes"
@@ -203,5 +265,8 @@ async function obtenerCaducidad(db, ingredienteId){
             }
         })
     })
-    
+
+
+       
 }
+

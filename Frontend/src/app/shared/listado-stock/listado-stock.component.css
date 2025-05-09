@@ -192,7 +192,7 @@ th {
   width: 90%;
   margin: 1rem 0;
   padding: 40px;
-  background-color: rgba(15, 15, 15, 0.007);
+  background-color: rgba(212, 210, 210, 0.007) ;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -272,7 +272,11 @@ input:focus {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  gap: 5px;
 }
+
+
+
 
 .stock-title {
   font-weight: bold;

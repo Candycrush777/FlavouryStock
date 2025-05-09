@@ -123,3 +123,41 @@ const {id} =req.params
 }
 
 //todo para caducado, crear una tabla que almacene etiquetas desechadas, y sean eliminadas de etiquetas normales
+
+exports.buscarEtiquetas = (req, res) => {
+    const busquedaNombre = req.query.busqueda || "";
+    const valorLike = `%${busquedaNombre}%`;
+  
+    const sql = `
+    SELECT
+      e.id_etiqueta,
+      e.id_ingrediente,
+      i.nombre AS nombre,            
+      i.categoria,
+      i.unidad_medida,
+      e.id_usuario,
+      e.fecha_etiquetado,
+      e.lugar_almacen,
+      e.fecha_caducidad,
+      e.cantidad
+    FROM etiquetas e
+    JOIN ingredientes i
+      ON e.id_ingrediente = i.id_ingrediente
+    WHERE i.nombre LIKE ?
+    ORDER BY e.fecha_etiquetado DESC
+  `;
+  
+    db.query(sql, [valorLike], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+  
+      if (result.length === 0) {
+        return res.status(404).json({
+          error: "No se encontraron etiquetas que coincidan con la búsqueda"
+        });
+      }
+  
+      res.status(200).json(result);
+    });
+  };

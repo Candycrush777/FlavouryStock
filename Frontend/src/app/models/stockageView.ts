@@ -23,3 +23,8 @@ export interface Stockage {
 export interface DeleteResponse {
   message: string;
 }
+
+export interface RegisterResponse {
+  message: string;
+}
+

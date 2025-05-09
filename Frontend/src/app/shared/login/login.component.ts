@@ -49,23 +49,29 @@ export class LoginComponent {
 
     this.userService.login(this.user).subscribe({
       next: (response) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Inicio de sesión correctamente",
-          showConfirmButton: false,
-          timer: 1500
-        });
 
         localStorage.setItem('token', response.token)
         localStorage.setItem("id_rol", response.id_rol.toString())
+
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Inicio de sesión correctamente",
+          showConfirmButton: false,
+          timer: 1000
+        });
+
+        
         // Aquí puedes redirigir según el rol
-        if (response.id_rol === 1) {
-          this.router.navigate(['/inicio-admin']);
-          
-        } else {
-          this.router.navigate(['/usuario']);
-        }
+        setTimeout(() => {
+          if (response.id_rol === 1) {
+            this.router.navigate(['/inicio-admin']);
+            
+          } else {
+            this.router.navigate(['/usuario']);
+          }
+        }, 1000)
+        
       },
       error: (error) => {
         console.error('Error en el login:', error);

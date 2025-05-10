@@ -93,6 +93,8 @@ export class ListadoStockComponent implements OnInit {
     }
   }
 
+  //Poner Ingredientes a 0
+
   clearStockage(idIngrediente: number): void {
     console.log('Ingrediente a resetear stock:', idIngrediente);
 
@@ -177,47 +179,97 @@ export class ListadoStockComponent implements OnInit {
     this.mostrarModal = false;
   }
 
-  onSubmitForm(): void {
-    // Convertir undefined a 0
-    const cantidad_almacen = this.formModel.cantidad_almacen || 0;
-    const cantidad_nevera = this.formModel.cantidad_nevera || 0;
-    const cantidad_congelador = this.formModel.cantidad_congelador || 0;
+ onSubmitForm(): void {
+  // Convertir undefined a 0
+  const cantidad_almacen = this.formModel.cantidad_almacen || 0;
+  const cantidad_nevera = this.formModel.cantidad_nevera || 0;
+  const cantidad_congelador = this.formModel.cantidad_congelador || 0;
 
-    // Validación frontend
-    if (cantidad_almacen + cantidad_nevera + cantidad_congelador <= 0) {
-      alert('Debes ingresar al menos una cantidad mayor que 0');
-      return;
-    }
+  // Función para dar estilo a botones de SweetAlert
+  const styleButton = (btn: HTMLElement) => {
+    btn.style.borderRadius = '10px';
+    btn.style.transition = '0.15s ease-in-out';
+    btn.addEventListener('mouseenter', () => {
+      btn.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+      btn.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.backgroundColor = '#000000B3';
+      btn.style.boxShadow = 'none';
+    });
+  };
 
-    if (this.selectedIngredientId == null) {
-      alert('Error: No se ha seleccionado un ingrediente válido.');
-      return;
-    }
-
-    console.log('ID a actualizar:', this.selectedIngredientId);
-
-    const updateData = {
-      cantidad_almacen: cantidad_almacen,
-      cantidad_nevera: cantidad_nevera,
-      cantidad_congelador: cantidad_congelador,
-    };
-
-    // Llamar al servicio usando selectedIngredientId
-
-    this.stockageService
-      .updateStockage(this.selectedIngredientId!, updateData)
-      .subscribe({
-        next: () => {
-          console.log('Actualización exitosa');
-          this.getStockItems(); // Actualizar lista
-          this.closeModal();
-        },
-        error: (err) => {
-          console.error('Error en actualización:', err);
-          alert('Error al actualizar el stock');
-        },
-      });
+  // Validación frontend
+  if (cantidad_almacen + cantidad_nevera + cantidad_congelador <= 0) {
+    Swal.fire({
+      title: 'Debes ingresar al menos una cantidad mayor que 0',
+      icon: 'warning',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#000000B3',
+      didOpen: () => {
+        const btn = Swal.getConfirmButton();
+        if (btn) styleButton(btn);
+      }
+    });
+    return;
   }
+
+  if (this.selectedIngredientId == null) {
+    Swal.fire({
+      title: 'Error: No se ha seleccionado un ingrediente válido.',
+      icon: 'error',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#000000B3',
+      didOpen: () => {
+        const btn = Swal.getConfirmButton();
+        if (btn) styleButton(btn);
+      }
+    });
+    return;
+  }
+
+  console.log('ID a actualizar:', this.selectedIngredientId);
+
+  const updateData = {
+    cantidad_almacen,
+    cantidad_nevera,
+    cantidad_congelador,
+  };
+
+  // Llamada al servicio
+  this.stockageService
+    .updateStockage(this.selectedIngredientId, updateData)
+    .subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Stock actualizado con éxito',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#000000B3',
+          didOpen: () => {
+            const btn = Swal.getConfirmButton();
+            if (btn) styleButton(btn);
+          }
+        }).then(() => {
+          this.getStockItems();
+          this.closeModal();
+        });
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error al actualizar el stock',
+          text: err?.message ?? '',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#000000B3',
+          didOpen: () => {
+            const btn = Swal.getConfirmButton();
+            if (btn) styleButton(btn);
+          }
+        });
+      },
+    });
+}
 
   //Registrar compra
 
@@ -250,8 +302,8 @@ export class ListadoStockComponent implements OnInit {
   }
 
   // Envío del formulario
-  onSubmitRegister(): void {
- const userId = Number(localStorage.getItem('userId'));
+onSubmitRegister(): void {
+  const userId = Number(localStorage.getItem('userId'));
   const payload: RegisterBasketPayload = {
     id_ingrediente: this.basketModel.id_ingrediente,
     cantidad_almacen: this.basketModel.cantidad_almacen ?? 0,
@@ -259,17 +311,60 @@ export class ListadoStockComponent implements OnInit {
     cantidad_congelador: this.basketModel.cantidad_congelador ?? 0,
     id_usuario: userId
   };
-    this.stockageService.registerBasket(payload).subscribe({
-      next: (res) => {
-        alert(res.message);
+
+  this.stockageService.registerBasket(payload).subscribe({
+    next: (res) => {
+      Swal.fire({
+        title: res.message,
+        icon: 'success',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#000000B3',
+        didOpen: () => {
+          const btn = Swal.getConfirmButton();
+          if (btn) {
+            btn.style.borderRadius = '10px';
+            btn.style.transition = '0.15s ease-in-out';
+            btn.addEventListener('mouseenter', () => {
+              btn.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+              btn.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+            });
+            btn.addEventListener('mouseleave', () => {
+              btn.style.backgroundColor = '#000000B3';
+              btn.style.boxShadow = 'none';
+            });
+          }
+        }
+      }).then(() => {
         this.getStockItems();
         this.closeRegisterModal();
-      },
-      error: (err) => {
-        alert('Error generando etiquetas');
-      },
-    });
-  }
+      });
+    },
+    error: (err) => {
+      Swal.fire({
+        title: 'Error generando etiquetas',
+        text: err?.message ?? '',
+        icon: 'error',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#000000B3',
+        didOpen: () => {
+          const btn = Swal.getConfirmButton();
+          if (btn) {
+            btn.style.borderRadius = '10px';
+            btn.style.transition = '0.15s ease-in-out';
+            btn.addEventListener('mouseenter', () => {
+              btn.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+              btn.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+            });
+            btn.addEventListener('mouseleave', () => {
+              btn.style.backgroundColor = '#000000B3';
+              btn.style.boxShadow = 'none';
+            });
+          }
+        }
+      });
+    },
+  });
+}
 
   deleteIngredient(idIngrediente: number): void {
     console.log('Ingrediente a eliminar:', idIngrediente);

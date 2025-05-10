@@ -155,24 +155,26 @@
           <td class="font-xxl">{{ item.qty_total }}</td>
           <td>
             <div class="d-flex justify-content-around">
+
               <!-- poner gap -->
-              <button class="editar" type="button" (click)="openEditForm(item)">
+              <button
+              class="editar ms-2"
+              type="button"
+              (click)="openRegisterModal(item)"
+            >
+              <i class="fa-solid fa-rectangle-list"></i>
+            </button>
+              <button class="editar mx-2" type="button" (click)="openEditForm(item)">
                 <i class="fa-solid fa-pen-to-square"></i>
               </button>
               <button
-                class="eliminar"
+                class="eliminar me-2"
                 type="button"
                 (click)="clearStockage(item.id_ingrediente)"
               >
                 <i class="fa-solid fa-trash-arrow-up"></i>
               </button>
-              <button
-                class="editar"
-                type="button"
-                (click)="openRegisterModal(item)"
-              >
-                <i class="fa-solid fa-rectangle-list"></i>
-              </button>
+              
             </div>
           </td>
         </tr>

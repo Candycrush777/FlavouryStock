@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Stockage, StockageView } from '../../models/stockageView';
+import { RegisterBasketPayload, Stockage, StockageView } from '../../models/stockageView';
 import { StockageService } from '../../services/stockage.service';
 import Swal from 'sweetalert2';
 import { EtiquetaService } from '../../services/etiqueta.service';
@@ -251,13 +251,14 @@ export class ListadoStockComponent implements OnInit {
 
   // Envío del formulario
   onSubmitRegister(): void {
-    const payload: Stockage = {
-      id_ingrediente: this.basketModel.id_ingrediente,
-      cantidad_almacen: this.basketModel.cantidad_almacen ?? 0,
-      cantidad_nevera: this.basketModel.cantidad_nevera ?? 0,
-      cantidad_congelador: this.basketModel.cantidad_congelador ?? 0,
-    };
-
+ const userId = Number(localStorage.getItem('userId'));
+  const payload: RegisterBasketPayload = {
+    id_ingrediente: this.basketModel.id_ingrediente,
+    cantidad_almacen: this.basketModel.cantidad_almacen ?? 0,
+    cantidad_nevera: this.basketModel.cantidad_nevera ?? 0,
+    cantidad_congelador: this.basketModel.cantidad_congelador ?? 0,
+    id_usuario: userId
+  };
     this.stockageService.registerBasket(payload).subscribe({
       next: (res) => {
         alert(res.message);

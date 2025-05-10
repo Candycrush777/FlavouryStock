@@ -28,3 +28,10 @@ export interface RegisterResponse {
   message: string;
 }
 
+export interface RegisterBasketPayload {
+  id_ingrediente: number;
+  cantidad_almacen: number;
+  cantidad_nevera: number;
+  cantidad_congelador: number;
+  id_usuario: number;
+}

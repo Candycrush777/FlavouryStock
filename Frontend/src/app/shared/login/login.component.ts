@@ -52,6 +52,8 @@ export class LoginComponent {
 
         localStorage.setItem('token', response.token)
         localStorage.setItem("id_rol", response.id_rol.toString())
+        localStorage.setItem("userId", response.id_user.toString());
+
 
         Swal.fire({
           position: "center",

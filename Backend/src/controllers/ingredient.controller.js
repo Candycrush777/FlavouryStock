@@ -48,8 +48,8 @@ exports.registerBasket2 = (req, res) =>{//todo original sin fechas calculadas
 exports.registerBasket = async (req, res) => {
     try {
       const fechaEtiqueta = new Date();
-      const id_usuario = 3;
-      const { id_ingrediente, cantidad_almacen, cantidad_nevera, cantidad_congelador } = req.body;
+     
+      const { id_ingrediente, cantidad_almacen, cantidad_nevera, cantidad_congelador,id_usuario } = req.body;
   
       // obtenemos caducidades (pueden venir null)
       const caducidades = await obtenerCaducidad(db, id_ingrediente);

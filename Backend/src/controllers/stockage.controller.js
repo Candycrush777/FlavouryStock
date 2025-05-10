@@ -66,7 +66,7 @@ exports.buscarStockage = (req, res) => {
   });
 };
 
-//la he probado al no funcionarme otras y esta si funciona
+
 
 exports.getStockageById = (req, res) => {
   const id = req.params.id; 

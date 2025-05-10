@@ -26,6 +26,7 @@ export interface DeleteResponse {
 
 export interface RegisterResponse {
   message: string;
+  lugaresInvalidos?: string[];
 }
 
 export interface RegisterBasketPayload {

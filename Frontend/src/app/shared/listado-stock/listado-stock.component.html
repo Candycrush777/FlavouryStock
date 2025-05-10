@@ -23,6 +23,7 @@
                 id="alimento"
                 name="alimento"
                 [(ngModel)]="searchTerm"
+              
                 placeholder="Introduzca producto"
               />
             </div>
@@ -33,6 +34,7 @@
                 id="categoria"
                 name="categoria"
                 [(ngModel)]="selectedCategory"
+                (keydown)="soloNumeros($event)"
                 (change)="filterByCategory()"
               >
                 <option value="" selected>Selecciona categoría</option>
@@ -78,7 +80,8 @@
                 id="alimento"
                 name="alimento"
                 [(ngModel)]="searchEtiqueta"
-                placeholder="Introduzca producto"
+                
+                placeholder="Introduzca etiqueta"
               />
             </div>
           </div>
@@ -206,6 +209,7 @@
               name="cantidad_almacen"
               placeholder="Cantidad en Almacén"
               [(ngModel)]="formModel.cantidad_almacen"
+              (keydown)="soloNumeros($event)"
               min="0"
             />
             <input
@@ -214,6 +218,7 @@
               name="cantidad_nevera"
               placeholder="Cantidad en Nevera"
               [(ngModel)]="formModel.cantidad_nevera"
+              (keydown)="soloNumeros($event)"
               min="0"
             />
             <input
@@ -222,6 +227,7 @@
               name="cantidad_congelador"
               placeholder="Cantidad en Congelador"
               [(ngModel)]="formModel.cantidad_congelador"
+              (keydown)="soloNumeros($event)"
               min="0"
             />
           </div>
@@ -263,6 +269,7 @@
             type="hidden"
             name="id_ingrediente"
             [(ngModel)]="basketModel.id_ingrediente"
+            (keydown)="soloNumeros($event)"
           />
 
           <!-- Cantidades para calcular etiquetas -->
@@ -273,6 +280,7 @@
               placeholder="Cantidad en Almacén"
               min="0"
               [(ngModel)]="basketModel.cantidad_almacen"
+              (keydown)="soloNumeros($event)"
             />
             <input
               type="number"
@@ -280,6 +288,7 @@
               placeholder="Cantidad en Nevera"
               min="0"
               [(ngModel)]="basketModel.cantidad_nevera"
+              (keydown)="soloNumeros($event)"
             />
             <input
               type="number"
@@ -287,6 +296,7 @@
               placeholder="Cantidad en Congelador"
               min="0"
               [(ngModel)]="basketModel.cantidad_congelador"
+              (keydown)="soloNumeros($event)"
             />
           </div>
 

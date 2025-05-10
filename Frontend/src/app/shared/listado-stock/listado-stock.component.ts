@@ -27,6 +27,10 @@ export class ListadoStockComponent implements OnInit {
   searchTerm: string = '';
   searchEtiqueta: string = '';
 
+  resultadosEtiqueta: Etiqueta[] | null = null;
+  mostrarResultadoEtiquetaModal = false;
+  currentEtiquetaIndex = 0;
+
   // Modelo del formulario (valores undefined para mostrar placeholders)
   formModel: Stockage = {
     id_ingrediente: 0,
@@ -328,43 +332,104 @@ export class ListadoStockComponent implements OnInit {
   }
 
   buscarEtiqueta() {
-    if (this.searchEtiqueta.trim() !== ''){
+    if (this.searchEtiqueta.trim() !== '') {
       this.etiquetaService.buscarEtiqueta(this.searchEtiqueta).subscribe({
         next: (result) => {
-          this.etiquetas = result;
-          console.log('Resultado de búsqueda (por nombre):', result);
+          this.resultadosEtiqueta = result;
+          this.currentEtiquetaIndex = 0; // <-- reinicia al primero
+          this.mostrarResultadoEtiquetaModal = true;
         },
-        error: (error) => {
-          console.error('Error al buscar etiquetas:', error);
-          this.etiquetas = [];
+        error: () => {
+          this.resultadosEtiqueta = [];
+          this.currentEtiquetaIndex = 0; // <-- idem
+          this.mostrarResultadoEtiquetaModal = true;
         },
       });
     } else {
-      this.etiquetas = [...this.allEtiquetas];
+      this.resultadosEtiqueta = [...this.allEtiquetas];
+      this.currentEtiquetaIndex = 0; // <-- idem
+      this.mostrarResultadoEtiquetaModal = true;
     }
   }
-    /** Carga TODAS las etiquetas desde el backend y las muestra */
-    getAllEtiquetas() {
-      console.log('→ Llamando a getAllEtiquetas()');
-      this.etiquetaService.getAllEtiquetas().subscribe({
-        next: (res) => {
-          this.allEtiquetas = res;
-          this.etiquetas    = [...res];
-          console.log('Etiquetas cargadas (total):', this.etiquetas);
-        },
-        error: (err) => {
-          console.error('Error al cargar todas las etiquetas:', err);
-          this.allEtiquetas = [];
-          this.etiquetas    = [];
-        }
-      });
+
+  // Funciones para la navegación del carrusel
+  nextEtiqueta(): void {
+    if (
+      this.resultadosEtiqueta &&
+      this.currentEtiquetaIndex < this.resultadosEtiqueta.length - 1
+    ) {
+      this.currentEtiquetaIndex++;
     }
+  }
+
+  previousEtiqueta(): void {
+    if (this.currentEtiquetaIndex > 0) {
+      this.currentEtiquetaIndex--;
+    }
+  }
+
+  cerrarResultadoEtiquetaModal(): void {
+    this.mostrarResultadoEtiquetaModal = false;
+    this.resultadosEtiqueta = null;
+  }
+  /** Carga TODAS las etiquetas desde el backend y las muestra */
+  getAllEtiquetas2() {
+    console.log('→ Llamando a getAllEtiquetas()');
+    this.etiquetaService.getAllEtiquetas().subscribe({
+      next: (res) => {
+        this.allEtiquetas = res;
+        this.etiquetas = [...res];
+        console.log('Etiquetas cargadas (total):', this.etiquetas);
+      },
+      error: (err) => {
+        console.error('Error al cargar todas las etiquetas:', err);
+        this.allEtiquetas = [];
+        this.etiquetas = [];
+      },
+    });
+  }
+
+  getAllEtiquetas(): void {
+    console.log('→ Llamando a getAllEtiquetas()');
+    this.etiquetaService.getAllEtiquetas().subscribe({
+      next: (res) => {
+        this.allEtiquetas = res;                // guardas para otros usos si hiciera falta
+        this.resultadosEtiqueta = [...res];     // el carrusel trabaja sobre este array
+        this.currentEtiquetaIndex = 0;          // arrancamos en la primera etiqueta
+        this.mostrarResultadoEtiquetaModal = true;  // abrimos el modal–carrusel
+        console.log('Modal abierto con todas las etiquetas:', this.resultadosEtiqueta);
+      },
+      error: (err) => {
+        console.error('Error al cargar todas las etiquetas:', err);
+        this.allEtiquetas = [];
+        this.resultadosEtiqueta = [];
+        // Opcional: podrías abrir el modal y mostrar "no hay resultados"
+        this.currentEtiquetaIndex = 0;
+        this.mostrarResultadoEtiquetaModal = true;
+      },
+    });
+  }
+  
 
   toggleForm(): void {
     this.isFormVisible = !this.isFormVisible;
   }
   toggleFormEtiqueta(): void {
-    this.isFormVisible2= !this.isFormVisible2;
-    
+    this.isFormVisible2 = !this.isFormVisible2;
+  }
+  //modalETIQUETA
+  mostrarModalEtiqueta = false;
+
+  openEtiqueta(item?: Etiqueta) {
+    console.log('Item recibido:', item);
+
+    this.selectedIngredientId = null;
+    //this.selectedIngredientName = item.nombre;
+    this.modalTitle = 'ETIQUETAS';
+
+    // Inicializa con undefined para mostrar placeholders
+
+    console.log('ID asignado:', this.formModel.id_ingrediente);
+    this.mostrarModalEtiqueta = true;
   }
 }

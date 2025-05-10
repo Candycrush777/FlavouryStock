@@ -313,48 +313,6 @@
 </ng-template>
 <!-- MODAL ETIQUETA -->
 
-<!-- <ng-template [ngIf]="mostrarResultadoEtiquetaModal">
-  <div class="modal-overlay">
-    <div class="modal-container">
-      
-      <div class="modal-body">
-        <ul class="list-group" *ngIf="resultadosEtiqueta && resultadosEtiqueta.length> 0; else noResultados">
-          <h2 class="titulo-ingrediente text-center">ETIQUETAS</h2>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            Identificador de Etiqueta: {{ etiqueta.id_etiqueta }}
-          </li>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            Ingrediente: {{ etiqueta.nombre }}
-          </li>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            Cantidad: {{ etiqueta.cantidad }} {{etiqueta.unidad_medida}}
-          </li>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            Lugar: {{ etiqueta.lugar_almacen }}
-          </li>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            F. Etiquetado: {{ etiqueta.fecha_etiquetado }}
-          </li>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            F. Caducidad: {{ etiqueta.fecha_caducidad }}
-          </li>
-          <li class="list-group-item fs-5" *ngFor="let etiqueta of resultadosEtiqueta">
-            Registrado por: {{ etiqueta.id_usuario }}
-          </li>
-          
-        </ul>
-        <ng-template #noResultados>
-          <p>No se encontraron etiquetas con el término de búsqueda "{{ searchEtiqueta }}".</p>
-        </ng-template>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btnComenzar" (click)="cerrarResultadoEtiquetaModal()">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</ng-template> -->
-
-
 <ng-template [ngIf]="mostrarResultadoEtiquetaModal">
   <div class="modal-overlay">
     <div class="modal-container">

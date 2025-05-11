@@ -51,6 +51,19 @@ exports.registerBasket = async (req, res) => {
   }
 };
 
+exports.getAllIngredients = (req, res)=>{
+    const sql= "SELECT * FROM Ingredientes"
+    db.query(sql, (err, result)=>{
+        if(err){
+            return res.status(500).json({error: err.message})
+        }
+        if(result.length===0){
+            return res.status(404).json({error: 'Ingrediente no encontrado'})
+        }
+        res.status(200).json(result)
+    })
+}
+
 
 exports.getIngredientById = (req, res) => {
   const ingredientId = req.params.id;

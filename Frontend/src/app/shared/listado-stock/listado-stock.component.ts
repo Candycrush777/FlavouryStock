@@ -35,18 +35,30 @@ export class ListadoStockComponent implements OnInit {
   mostrarResultadoEtiquetaModal = false;
   currentEtiquetaIndex = 0;
 
-    soloNumeros(event: KeyboardEvent) {
-  const teclasPermitidas = [
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'
-  ];
+  soloNumeros(event: KeyboardEvent) {
+    const teclasPermitidas = [
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      'Backspace',
+      'Delete',
+      'ArrowLeft',
+      'ArrowRight',
+      'Tab',
+    ];
 
-  if (!teclasPermitidas.includes(event.key)) {
-    event.preventDefault();
+    if (!teclasPermitidas.includes(event.key)) {
+      event.preventDefault();
+    }
   }
-}
 
-  // Modelo del formulario (valores undefined para mostrar placeholders)
   formModel: Stockage = {
     id_ingrediente: 0,
     cantidad_almacen: undefined,
@@ -62,7 +74,7 @@ export class ListadoStockComponent implements OnInit {
   ngOnInit() {
     this.stockageService.getAllStockages().subscribe((items) => {
       this.allItems = items;
-      this.stockItems = [...items]; // al principio muestro todo
+      this.stockItems = [...items];
     });
 
     this.etiquetaService.getAllEtiquetas().subscribe({
@@ -83,7 +95,6 @@ export class ListadoStockComponent implements OnInit {
 
   filterByCategory() {
     if (!this.selectedCategory) {
-      // si es cadena vacía (o “Todas”), volver a mostrar todo
       this.stockItems = [...this.allItems];
     } else {
       this.stockItems = this.allItems.filter(
@@ -107,8 +118,6 @@ export class ListadoStockComponent implements OnInit {
       this.stockItems = [...this.allItems];
     }
   }
-
-  //Poner Ingredientes a 0
 
   clearStockage(idIngrediente: number): void {
     console.log('Ingrediente a resetear stock:', idIngrediente);
@@ -155,7 +164,7 @@ export class ListadoStockComponent implements OnInit {
       if (result.isConfirmed) {
         this.stockageService.clearStocage(idIngrediente, {}).subscribe({
           next: (updated) => {
-            console.log('Stock reseteado:', updated);
+            /* console.log('Stock reseteado:', updated); */
             Swal.fire('Stock reseteado a 0 con éxito', '', 'success');
             this.getStockItems();
           },
@@ -173,12 +182,11 @@ export class ListadoStockComponent implements OnInit {
   //editar stock
 
   openEditForm(item: StockageView): void {
-    console.log('Item recibido:', item);
+    /*  console.log('Item recibido:', item); */
     this.selectedIngredientId = item.id_ingrediente;
     this.selectedIngredientName = item.ingrediente;
     this.modalTitle = 'Actualizar Cantidades';
 
-    // Inicializa con undefined para mostrar placeholders
     this.formModel = {
       id_ingrediente: item.id_ingrediente,
       cantidad_almacen: undefined,
@@ -188,21 +196,18 @@ export class ListadoStockComponent implements OnInit {
 
     console.log('ID asignado:', this.formModel.id_ingrediente);
     this.mostrarModal = true;
-    
   }
 
   closeModal(): void {
     this.mostrarModal = false;
-    this.selectedIngredientName = ''; 
+    this.selectedIngredientName = '';
   }
 
   onSubmitForm(): void {
-    // Convertir undefined a 0
     const cantidad_almacen = this.formModel.cantidad_almacen || 0;
     const cantidad_nevera = this.formModel.cantidad_nevera || 0;
     const cantidad_congelador = this.formModel.cantidad_congelador || 0;
 
-    // Función para dar estilo a botones de SweetAlert
     const styleButton = (btn: HTMLElement) => {
       btn.style.borderRadius = '10px';
       btn.style.transition = '0.15s ease-in-out';
@@ -216,7 +221,6 @@ export class ListadoStockComponent implements OnInit {
       });
     };
 
-    // Validación frontend
     if (cantidad_almacen + cantidad_nevera + cantidad_congelador <= 0) {
       Swal.fire({
         title: 'Debes ingresar al menos una cantidad mayor que 0',
@@ -245,7 +249,7 @@ export class ListadoStockComponent implements OnInit {
       return;
     }
 
-    console.log('ID a actualizar:', this.selectedIngredientId);
+    /* console.log('ID a actualizar:', this.selectedIngredientId); */
 
     const updateData = {
       cantidad_almacen,
@@ -304,25 +308,24 @@ export class ListadoStockComponent implements OnInit {
     cantidad_congelador: undefined,
   };
 
-  // Abrir modal de registro
-openRegisterModal(item: StockageView): void {
-  console.log('Item recibido para registrar etiqueta:', item);
-  this.selectedIngredientId   = item.id_ingrediente;
-  this.selectedIngredientName = item.ingrediente;  
-  this.modalTitle             = 'Registrar Etiqueta';
-  this.basketModel            = {
-    id_ingrediente: item.id_ingrediente,
-    cantidad_almacen: undefined,
-    cantidad_nevera: undefined,
-    cantidad_congelador: undefined,
-  };
-  this.mostrarRegisterModal = true;
-}
+  openRegisterModal(item: StockageView): void {
+    /*   console.log('Item recibido para registrar etiqueta:', item); */
+    this.selectedIngredientId = item.id_ingrediente;
+    this.selectedIngredientName = item.ingrediente;
+    this.modalTitle = 'Registrar Etiqueta';
+    this.basketModel = {
+      id_ingrediente: item.id_ingrediente,
+      cantidad_almacen: undefined,
+      cantidad_nevera: undefined,
+      cantidad_congelador: undefined,
+    };
+    this.mostrarRegisterModal = true;
+  }
 
   // Cerrar modal
   closeRegisterModal(): void {
     this.mostrarRegisterModal = false;
-    this.selectedIngredientName = ''; 
+    this.selectedIngredientName = '';
   }
 
   // Envío del formulario
@@ -336,120 +339,118 @@ openRegisterModal(item: StockageView): void {
       id_usuario: userId,
     };
 
-  this.stockageService.registerBasket(payload).subscribe({
-  next: (res) => {
-    const skipped = res.lugaresInvalidos || [];
+    this.stockageService.registerBasket(payload).subscribe({
+      next: (res) => {
+        const skipped = res.lugaresInvalidos || [];
 
-    // 1) Construimos la lista de lugares en los que el usuario puso cantidad > 0
-    const attempted: string[] = [];
-    if (payload.cantidad_almacen  > 0) attempted.push('almacen');
-    if (payload.cantidad_nevera   > 0) attempted.push('nevera');
-    if (payload.cantidad_congelador> 0) attempted.push('congelador');
+        const attempted: string[] = [];
+        if (payload.cantidad_almacen > 0) attempted.push('almacen');
+        if (payload.cantidad_nevera > 0) attempted.push('nevera');
+        if (payload.cantidad_congelador > 0) attempted.push('congelador');
 
-    if (skipped.length > 0) {
-      // Warning para los inválidos
-      Swal.fire({
-        title: '¡Atención!',
-        text: `No se pueden generar etiquetas en: ${skipped.join(', ')} de ${this.selectedIngredientName}`,
-        icon: 'warning',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#000000B3',
-        didOpen: () => {
-          const btn = Swal.getConfirmButton();
-          if (btn) {
-            btn.style.borderRadius = '10px';
-            btn.style.transition = '0.15s ease-in-out';
-            btn.addEventListener('mouseenter', () => {
-              btn.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
-              btn.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+        if (skipped.length > 0) {
+          Swal.fire({
+            title: '¡Atención!',
+            text: `No se pueden generar etiquetas en: ${skipped.join(
+              ', '
+            )} de ${this.selectedIngredientName}`,
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#000000B3',
+            didOpen: () => {
+              const btn = Swal.getConfirmButton();
+              if (btn) {
+                btn.style.borderRadius = '10px';
+                btn.style.transition = '0.15s ease-in-out';
+                btn.addEventListener('mouseenter', () => {
+                  btn.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+                  btn.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+                });
+                btn.addEventListener('mouseleave', () => {
+                  btn.style.backgroundColor = '#000000B3';
+                  btn.style.boxShadow = 'none';
+                });
+              }
+            },
+          }).then(() => {
+            const validPlaces = attempted.filter((l) => !skipped.includes(l));
+            Swal.fire({
+              title: validPlaces.length
+                ? 'Etiquetas generadas correctamente'
+                : 'Ninguna etiqueta generada',
+              text: validPlaces.length
+                ? `Se generaron en: ${validPlaces.join(', ')}`
+                : 'No había ningún lugar válido.',
+              icon: validPlaces.length ? 'success' : 'info',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#000000B3',
+              didOpen: () => {
+                const btn2 = Swal.getConfirmButton();
+                if (btn2) {
+                  btn2.style.borderRadius = '10px';
+                  btn2.style.transition = '0.15s ease-in-out';
+                  btn2.addEventListener('mouseenter', () => {
+                    btn2.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+                    btn2.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+                  });
+                  btn2.addEventListener('mouseleave', () => {
+                    btn2.style.backgroundColor = '#000000B3';
+                    btn2.style.boxShadow = 'none';
+                  });
+                }
+              },
+            }).then(() => {
+              this.getStockItems();
+              this.closeRegisterModal();
             });
-            btn.addEventListener('mouseleave', () => {
-              btn.style.backgroundColor = '#000000B3';
-              btn.style.boxShadow = 'none';
-            });
-          }
+          });
+        } else {
+          Swal.fire({
+            title: res.message,
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#000000B3',
+            didOpen: () => {
+              const btn3 = Swal.getConfirmButton();
+              if (btn3) {
+                btn3.style.borderRadius = '10px';
+                btn3.style.transition = '0.15s ease-in-out';
+                btn3.addEventListener('mouseenter', () => {
+                  btn3.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+                  btn3.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+                });
+                btn3.addEventListener('mouseleave', () => {
+                  btn3.style.backgroundColor = '#000000B3';
+                  btn3.style.boxShadow = 'none';
+                });
+              }
+            },
+          }).then(() => {
+            this.getStockItems();
+            this.closeRegisterModal();
+          });
         }
-      }).then(() => {
-        
-        const validPlaces = attempted.filter(l => !skipped.includes(l));
+      },
+      error: (err) => {
         Swal.fire({
-          title: validPlaces.length
-            ? 'Etiquetas generadas correctamente'
-            : 'Ninguna etiqueta generada',
-          text: validPlaces.length
-            ? `Se generaron en: ${validPlaces.join(', ')}`
-            : 'No había ningún lugar válido.',
-          icon: validPlaces.length ? 'success' : 'info',
+          title: 'Error generando etiquetas',
+          text: err?.message ?? '',
+          icon: 'error',
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#000000B3',
           didOpen: () => {
-            const btn2 = Swal.getConfirmButton();
-            if (btn2) {
-              btn2.style.borderRadius = '10px';
-              btn2.style.transition = '0.15s ease-in-out';
-              btn2.addEventListener('mouseenter', () => {
-                btn2.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
-                btn2.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+            const btn4 = Swal.getConfirmButton();
+            if (btn4) {
+              btn4.style.borderRadius = '10px';
+              btn4.style.transition = '0.15s ease-in-out';
+              btn4.addEventListener('mouseenter', () => {
+                btn4.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
+                btn4.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
               });
-              btn2.addEventListener('mouseleave', () => {
-                btn2.style.backgroundColor = '#000000B3';
-                btn2.style.boxShadow = 'none';
+              btn4.addEventListener('mouseleave', () => {
+                btn4.style.backgroundColor = '#000000B3';
+                btn4.style.boxShadow = 'none';
               });
-            }
-          }
-        }).then(() => {
-          this.getStockItems();
-          this.closeRegisterModal();
-        });
-      });
-    } else {
-
-      Swal.fire({
-        title: res.message,
-        icon: 'success',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#000000B3',
-        didOpen: () => {
-          const btn3 = Swal.getConfirmButton();
-          if (btn3) {
-            btn3.style.borderRadius = '10px';
-            btn3.style.transition = '0.15s ease-in-out';
-            btn3.addEventListener('mouseenter', () => {
-              btn3.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
-              btn3.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-            });
-            btn3.addEventListener('mouseleave', () => {
-              btn3.style.backgroundColor = '#000000B3';
-              btn3.style.boxShadow = 'none';
-            });
-          }
-        }
-      }).then(() => {
-        this.getStockItems();
-        this.closeRegisterModal();
-      });
-    }
-  },
-  error: (err) => {
-    Swal.fire({
-      title: 'Error generando etiquetas',
-      text: err?.message ?? '',
-      icon: 'error',
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#000000B3',
-      didOpen: () => {
-        const btn4 = Swal.getConfirmButton();
-        if (btn4) {
-          btn4.style.borderRadius = '10px';
-          btn4.style.transition = '0.15s ease-in-out';
-          btn4.addEventListener('mouseenter', () => {
-            btn4.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
-            btn4.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-          });
-          btn4.addEventListener('mouseleave', () => {
-            btn4.style.backgroundColor = '#000000B3';
-            btn4.style.boxShadow = 'none';
-          });
             }
           },
         });
@@ -458,7 +459,7 @@ openRegisterModal(item: StockageView): void {
   }
 
   deleteIngredient(idIngrediente: number): void {
-    console.log('Ingrediente a eliminar:', idIngrediente);
+    /*  console.log('Ingrediente a eliminar:', idIngrediente); */
 
     Swal.fire({
       title: '¿Estás seguro de eliminar este ingrediente?',
@@ -502,7 +503,7 @@ openRegisterModal(item: StockageView): void {
       if (result.isConfirmed) {
         this.stockageService.deleteIngredientById(idIngrediente).subscribe({
           next: (response) => {
-            console.log('Ingrediente eliminado:', response);
+            /*  console.log('Ingrediente eliminado:', response); */
             Swal.fire('Ingrediente eliminado con éxito', '', 'success');
 
             this.getStockItems();
@@ -523,23 +524,22 @@ openRegisterModal(item: StockageView): void {
       this.etiquetaService.buscarEtiqueta(this.searchEtiqueta).subscribe({
         next: (result) => {
           this.resultadosEtiqueta = result;
-          this.currentEtiquetaIndex = 0; // <-- reinicia al primero
+          this.currentEtiquetaIndex = 0;
           this.mostrarResultadoEtiquetaModal = true;
         },
         error: () => {
           this.resultadosEtiqueta = [];
-          this.currentEtiquetaIndex = 0; // <-- idem
+          this.currentEtiquetaIndex = 0;
           this.mostrarResultadoEtiquetaModal = true;
         },
       });
     } else {
       this.resultadosEtiqueta = [...this.allEtiquetas];
-      this.currentEtiquetaIndex = 0; // <-- idem
+      this.currentEtiquetaIndex = 0;
       this.mostrarResultadoEtiquetaModal = true;
     }
   }
 
-  // Funciones para la navegación del carrusel
   nextEtiqueta(): void {
     if (
       this.resultadosEtiqueta &&
@@ -563,20 +563,19 @@ openRegisterModal(item: StockageView): void {
     console.log('→ Llamando a getAllEtiquetas()');
     this.etiquetaService.getAllEtiquetas().subscribe({
       next: (res) => {
-        this.allEtiquetas = res; // guardas para otros usos si hiciera falta
-        this.resultadosEtiqueta = [...res]; // el carrusel trabaja sobre este array
-        this.currentEtiquetaIndex = 0; // arrancamos en la primera etiqueta
-        this.mostrarResultadoEtiquetaModal = true; // abrimos el modal–carrusel
-        console.log(
+        this.allEtiquetas = res;
+        this.resultadosEtiqueta = [...res];
+        this.currentEtiquetaIndex = 0;
+        this.mostrarResultadoEtiquetaModal = true;
+        /*   console.log(
           'Modal abierto con todas las etiquetas:',
           this.resultadosEtiqueta
-        );
+        ); */
       },
       error: (err) => {
         console.error('Error al cargar todas las etiquetas:', err);
         this.allEtiquetas = [];
         this.resultadosEtiqueta = [];
-        // Opcional: podrías abrir el modal y mostrar "no hay resultados"
         this.currentEtiquetaIndex = 0;
         this.mostrarResultadoEtiquetaModal = true;
       },
@@ -589,19 +588,15 @@ openRegisterModal(item: StockageView): void {
   toggleFormEtiqueta(): void {
     this.isFormVisible2 = !this.isFormVisible2;
   }
-  //modalETIQUETA
+
   mostrarModalEtiqueta = false;
 
   openEtiqueta(item?: Etiqueta) {
-    console.log('Item recibido:', item);
+    /*   console.log('Item recibido:', item); */
 
     this.selectedIngredientId = null;
-    //this.selectedIngredientName = item.nombre;
     this.modalTitle = 'ETIQUETAS';
-
-    // Inicializa con undefined para mostrar placeholders
-
-    console.log('ID asignado:', this.formModel.id_ingrediente);
+    /* console.log('ID asignado:', this.formModel.id_ingrediente); */
     this.mostrarModalEtiqueta = true;
   }
 }

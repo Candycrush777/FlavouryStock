@@ -6,6 +6,9 @@
     background-repeat: no-repeat;
     min-height: 60vh;
   }
+  .container-gestion, .gestion{
+    min-height: 60vh;
+  }
   
   .columna-gest {
     border-radius: 12px;

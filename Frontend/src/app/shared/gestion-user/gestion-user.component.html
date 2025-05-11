@@ -15,6 +15,7 @@
           </button>
         </div>
   
+
         <h3 class="text-center p-3">LISTADO DE USUARIOS</h3>
 
         
@@ -46,7 +47,7 @@
                   </button>
                 </td>
                 <td>
-                  <!-- <button class="btn-del w-100" (click)="openModal('delete',user)" data-bs-toggle="modal" data-bs-target="#flavouryModal" > -->
+            
                   <button class="btn-del w-100" (click)="deleteUser(user.id_usuario)">
                     <i class="fa-solid fa-user-xmark"></i>
                   </button>
@@ -57,14 +58,14 @@
             </tbody>
           </table>
         <app-modal [modalTitle]="modalTitle" [modalContent]="modalContent">
-          <!-- aqui metemos el form con un ngIF template -->
+  
 
            <ng-container *ngIf="modalTitle === 'CREANDO USUARIO'; else editTemplate">
               <app-create-account></app-create-account>
            </ng-container>
 
            <ng-template #editTemplate>
-            <ng-container *ngIf="modalTitle === 'EDITANDO USUARIO' && usuarioAEditar"><!-- ; else deleteTemplate -->
+            <ng-container *ngIf="modalTitle === 'EDITANDO USUARIO' && usuarioAEditar">
 
               <form>
                 

@@ -10,12 +10,12 @@ import Swal from 'sweetalert2';
   styleUrl: './gestion-recipe.component.css'
 })
 export class GestionRecipeComponent {
-  recipesList?: Recipe[]//Array para leer desde BD
+  recipesList?: Recipe[]
   recipe?: Recipe
-  modalTitle=""//para MODALS
+  modalTitle=""
   modalContent=""
-  recipeAEditar: Recipe | null = null//para el edit
-  recipeAEliminar: Recipe | null = null//para delete
+  recipeAEditar: Recipe | null = null
+  recipeAEliminar: Recipe | null = null
   mostrarModal = false
   searchTerm: string = '';
   selectedCategory: string = '';
@@ -45,11 +45,10 @@ export class GestionRecipeComponent {
       
       console.log('Usuario a Eliminar:', idRecipe); 
   
-      //Swal de confirmacion
+      
       Swal.fire({
         title: "¿Estás seguro de eliminar la receta?",
         text: "Esta acción no tiene vuelta atrás",
-        //showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Sí, eliminar",
         cancelButtonText: `No, mantener`,
@@ -59,29 +58,27 @@ export class GestionRecipeComponent {
         didOpen: () => {
   
           const addHoverEffects = (button: HTMLElement, originalColor: string) => {
-            // Transición para suavizar el cambio de estilo
+            
             button.style.transition = '0.15s ease-in-out';
       
             button.addEventListener('mouseenter', () => {
-              // Aplica color de hover y sombra cuando el cursor entra
+              
               button.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
               button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
             });
             button.addEventListener('mouseleave', () => {
-              // Restaura el color original y elimina la sombra cuando el cursor sale
+              
               button.style.backgroundColor = "#000000B3";
               button.style.boxShadow = 'none';
             });
           };
   
-          
-          // Obtiene el botón de confirmación y aplica border-radius
           const confirmBtn = Swal.getConfirmButton();
           if (confirmBtn) {
-            confirmBtn.style.borderRadius = '10px'; // Cambia este valor según lo necesario
+            confirmBtn.style.borderRadius = '10px'; 
             addHoverEffects(confirmBtn, '#3085d6');
           }
-          // Obtiene el botón de denegación y aplica border-radius
+          
           const cancelBtn = Swal.getCancelButton();
           if (cancelBtn) {
             cancelBtn.style.borderRadius = '10px';
@@ -91,7 +88,7 @@ export class GestionRecipeComponent {
   
         
       }).then((result) => {
-        //dentro del confirmar meto la funcion EJECUTORA
+        
         if (result.isConfirmed) {
           if (idRecipe) {
             this.recipeService.deleteRecipe(idRecipe!).subscribe({
@@ -119,7 +116,7 @@ export class GestionRecipeComponent {
           this.recipeService.updateRecipe(this.recipeAEditar.id_receta!/* asercion */, this.recipeAEditar).subscribe({
             next: (response) =>{
               console.log('Comprobar Receta modificado correctamente', response);
-              this.getRecipes()// Para actualizar los cambios      
+              this.getRecipes()     
               this.closeModal(this.recipeAEditar!)
               
             },
@@ -133,7 +130,7 @@ export class GestionRecipeComponent {
 
   openModal(content: string, recipe?:Recipe ) {
       this.mostrarModal = true;
-      //reseteo de users
+      
       this.recipeAEditar= null
       this.recipeAEliminar= null
   
@@ -157,7 +154,7 @@ export class GestionRecipeComponent {
     this.mostrarModal = false;
     this.recipeAEditar = null;
     this.recipeAEliminar = null;
-    this.modalTitle = "CONFIRMACIÓN"; // Resetear el título del modal
+    this.modalTitle = "CONFIRMACIÓN"; 
     this.modalContent = ` La receta ${recipe.nombre}, ha sido editada con exito`; 
 
   }

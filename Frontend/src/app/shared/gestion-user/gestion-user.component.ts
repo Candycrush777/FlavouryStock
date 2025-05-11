@@ -41,13 +41,13 @@ export class GestionUserComponent {
     );
   }
   
-  editUser(){//todo sin SWAL
+  editUser(){
     if (this.usuarioAEditar) {
       
-      this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!/* asercion */, this.usuarioAEditar).subscribe({
+      this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!, this.usuarioAEditar).subscribe({
         next: (response) =>{
           console.log('Comprobar Usuario modificado correctamente', response);
-          this.getUsers()// Para actualizar los cambios      
+          this.getUsers()     
           this.closeModal(this.usuarioAEditar!)
           
         },
@@ -63,11 +63,9 @@ export class GestionUserComponent {
     
     console.log('Usuario a Eliminar:', idUser); 
 
-    //Swal de confirmacion
     Swal.fire({
       title: "¿Estás seguro de eliminar el usuario?",
       text: "Esta acción no tiene vuelta atrás",
-      //showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: `No, mantener`,
@@ -77,29 +75,28 @@ export class GestionUserComponent {
       didOpen: () => {
 
         const addHoverEffects = (button: HTMLElement, originalColor: string) => {
-          // Transición para suavizar el cambio de estilo
+        
           button.style.transition = '0.15s ease-in-out';
     
           button.addEventListener('mouseenter', () => {
-            // Aplica color de hover y sombra cuando el cursor entra
+          
             button.style.backgroundColor = 'rgba(237, 117, 87, 0.645)';
             button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
           });
           button.addEventListener('mouseleave', () => {
-            // Restaura el color original y elimina la sombra cuando el cursor sale
+          
             button.style.backgroundColor = "#000000B3";
             button.style.boxShadow = 'none';
           });
         };
 
         
-        // Obtiene el botón de confirmación y aplica border-radius
+        
         const confirmBtn = Swal.getConfirmButton();
         if (confirmBtn) {
-          confirmBtn.style.borderRadius = '10px'; // Cambia este valor según lo necesario
+          confirmBtn.style.borderRadius = '10px'; 
           addHoverEffects(confirmBtn, '#3085d6');
         }
-        // Obtiene el botón de denegación y aplica border-radius
         const cancelBtn = Swal.getCancelButton();
         if (cancelBtn) {
           cancelBtn.style.borderRadius = '10px';
@@ -109,7 +106,7 @@ export class GestionUserComponent {
 
       
     }).then((result) => {
-      //dentro del confirmar meto la funcion EJECUTORA
+    
       if (result.isConfirmed) {
         if (idUser) {
           this.userService.deleteUserById(idUser!).subscribe({

@@ -370,7 +370,7 @@ openRegisterModal(item: StockageView): void {
           }
         }
       }).then(() => {
-        // 2) Ahora solo los lugares que sí tenían cantidad y NO estaban skipped
+        
         const validPlaces = attempted.filter(l => !skipped.includes(l));
         Swal.fire({
           title: validPlaces.length
@@ -403,7 +403,7 @@ openRegisterModal(item: StockageView): void {
         });
       });
     } else {
-      // Caso totalmente exitoso
+
       Swal.fire({
         title: res.message,
         icon: 'success',
@@ -559,23 +559,6 @@ openRegisterModal(item: StockageView): void {
     this.mostrarResultadoEtiquetaModal = false;
     this.resultadosEtiqueta = null;
   }
-  /** Carga TODAS las etiquetas desde el backend y las muestra */
-  getAllEtiquetas2() {
-    console.log('→ Llamando a getAllEtiquetas()');
-    this.etiquetaService.getAllEtiquetas().subscribe({
-      next: (res) => {
-        this.allEtiquetas = res;
-        this.etiquetas = [...res];
-        console.log('Etiquetas cargadas (total):', this.etiquetas);
-      },
-      error: (err) => {
-        console.error('Error al cargar todas las etiquetas:', err);
-        this.allEtiquetas = [];
-        this.etiquetas = [];
-      },
-    });
-  }
-
   getAllEtiquetas(): void {
     console.log('→ Llamando a getAllEtiquetas()');
     this.etiquetaService.getAllEtiquetas().subscribe({

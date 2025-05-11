@@ -55,19 +55,12 @@ td {
   width: 1200px !important;
 }
 
-
-/* FORMULARIO EDIT/DELETE */
-
-
 .row-form{
   box-sizing: border-box;
   padding: 0 15px;
   align-items: center;
   border-bottom: 1px solid rgb(165, 165, 165);
-  /* margin: 0 0 4px !important; */
-
 }
-
 
 .form-label{
   margin: 0;
@@ -90,9 +83,6 @@ td {
 .rolOption{
   color:#6c757d ;
 }
-
-
-
 
 @media (max-width: 1024px) {
   .cabecero {

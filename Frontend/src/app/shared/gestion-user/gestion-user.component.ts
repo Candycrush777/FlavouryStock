@@ -15,18 +15,18 @@ import { response } from 'express';
   styleUrl: './gestion-user.component.css',
 })
 export class GestionUserComponent {
-  usersList?: User[]//ARRAY para leer desde BD
+  usersList?: User[]
   user?: User
-  modalTitle=""//para MODALS
+  modalTitle=""
   modalContent=""
-  usuarioAEditar: User | null = null//para el edit
-  usuarioAEliminar: User | null = null//para delete
+  usuarioAEditar: User | null = null
+  usuarioAEliminar: User | null = null
   mostrarModal = false
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getUsers(); //llamamos a la funcion al iniciar el componente
+    this.getUsers(); 
   }
 
   getUsers() {
@@ -137,7 +137,6 @@ export class GestionUserComponent {
 
   openModal(content: string, usuario?:User ) {
     this.mostrarModal = true;
-    //reseteo de users
     this.usuarioAEditar= null
     this.usuarioAEliminar= null
 
@@ -146,7 +145,7 @@ export class GestionUserComponent {
       this.modalTitle="EDITANDO USUARIO"
       this.modalContent=""
       this.usuarioAEditar = usuario? { ...usuario} : null
-      console.log('Usuario a editar:', this.usuarioAEditar); 
+      //console.log('Usuario a editar:', this.usuarioAEditar); 
       
       
     }else if (content=== "crear") {
@@ -161,7 +160,7 @@ export class GestionUserComponent {
     this.mostrarModal = false;
     this.usuarioAEditar = null;
     this.usuarioAEliminar = null;
-    this.modalTitle = "CONFIRMACIÓN"; // Resetear el título del modal
+    this.modalTitle = "CONFIRMACIÓN";
     this.modalContent = ` El usuario ${user.nombre} ${user.apellido1}, ha sido editado con exito`; 
 
   }

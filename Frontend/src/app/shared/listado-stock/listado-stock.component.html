@@ -327,10 +327,10 @@
   <div class="modal-overlay">
     <div class="modal-container">
 
-      <!-- Sólo entra aquí si resultadosEtiqueta existe y tiene al menos 1 elemento -->
+
       <div class="modal-body" *ngIf="resultadosEtiqueta?.length; else noResultados">
 
-        <!-- Sacamos la etiqueta actual en una variable local -->
+     
         <ng-container *ngIf="resultadosEtiqueta![currentEtiquetaIndex] as etiqueta">
           <h2 class="titulo-ingrediente text-center">
             ETIQUETA {{ currentEtiquetaIndex + 1 }} / {{ resultadosEtiqueta!.length }}
@@ -348,7 +348,7 @@
           </div>
         </ng-container>
 
-        <!-- Controles de flechas -->
+        
         <div class="carousel-controls d-flex justify-content-between mt-3 w-75">
           <button
             class="btn btn-outline-primary"

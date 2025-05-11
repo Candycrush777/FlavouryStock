@@ -497,7 +497,6 @@ input:focus {
     gap: 20px;
   }
 
-  /* Unificamos el comportamiento de .solo y .tres */
   .solo,
   .tres {
     width: 100%;

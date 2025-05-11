@@ -33,7 +33,6 @@ export class LoginComponent {
   }
 
   login() {
-    /* console.log('Intentando login con usuario:', this.user); */
     
     if (!this.user.email || !this.user.passwd) {
       console.log('Email o contraseña vacíos');
@@ -63,8 +62,6 @@ export class LoginComponent {
           timer: 1000
         });
 
-        
-        // Aquí puedes redirigir según el rol
         setTimeout(() => {
           if (response.id_rol === 1) {
             this.router.navigate(['/inicio-admin']);

@@ -56,15 +56,12 @@ td {
 }
 
 
-/* FORMULARIO EDIT/DELETE */
-
 
 .row-form{
   box-sizing: border-box;
   padding: 0 15px;
   align-items: center;
   border-bottom: 1px solid rgb(165, 165, 165);
-  /* margin: 0 0 4px !important; */
 
 }
 

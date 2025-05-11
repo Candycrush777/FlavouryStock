@@ -18,7 +18,6 @@ import { UsuarioHeaderComponent } from './components/usuario-header/usuario-head
 import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 import { LoginComponent } from './shared/login/login.component';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
-import { StockComponent } from './shared/stock/stock.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CaducidadesComponent } from './shared/caducidades/caducidades.component';
@@ -46,7 +45,6 @@ import { LegalComponent } from './shared/legal/legal.component';
     InicioAdminComponent,
     LoginComponent,
     CreateAccountComponent,
-    StockComponent,
     ListadoStockComponent,
     CaducidadesComponent,
     RecipeComponent,

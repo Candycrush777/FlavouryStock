@@ -1,20 +1,19 @@
 const db = require("../config/bd");
 
 exports.getAllRecipes = (req, res) => {
-  /*Para probar en POSTMAN 
-  http://localhost:3000/api/recipes/getRecipes?page=1&limit=6*/
+ 
   
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 6;
   const offset = (page - 1) * limit;
 
-  //consulta para obtener el total de recetas
+  
   const countQuery = "SELECT COUNT(*) AS total From recetas";
 
-  //consulta para obtener las recetas pagonadas
+  
   const dataQuery = "SELECT * FROM recetas LIMIT ? OFFSET ?";
 
-  //primero obtenemos el total de las recetas
+  
   db.query(countQuery, (err, countResult) => {
     if (err) {
       return res.status(500).json({ Error: err.message });
@@ -23,7 +22,6 @@ exports.getAllRecipes = (req, res) => {
     const total = countResult[0].total;
     const totlaPages = Math.ceil(total / limit);
 
-    //obtenemos las recetas paginada
     db.query(dataQuery, [limit, offset], (err, dataResult) => {
       if (err) {
         return res.status(500).json({ Error: err.message });
@@ -45,12 +43,10 @@ exports.getAllRecipes = (req, res) => {
 
 exports.registerRecipe = (req, res) => {
     const { nombre, descripcion, paso_paso, tiempo_preparacion, categoria, estacion } = req.body;
- 
-    // momentaneo, hasta decidir donde guardar las imagenes
+
  
     const imagen = "/defaultImage.jpg";
  
-    // tiene que rellenar todos los campos obligatorio
  
     if (
       !nombre ||
@@ -89,7 +85,6 @@ exports.registerRecipe = (req, res) => {
     );
 };
 
-//Obtener una receta por ID
 exports.getRecipeById = (req, res) => {
     const id = req.params.id;
     const selectQuery = "SELECT * FROM vista_receta_detalle WHERE receta_id = ?";
@@ -105,7 +100,7 @@ exports.getRecipeById = (req, res) => {
       res.status(200).json(result[0]);
     });
 };
-//obtener recetas por nombre
+
 exports.searchRecipeName = (req, res) =>{
     const nombre = req.query.nombre
     
@@ -125,7 +120,7 @@ exports.searchRecipeName = (req, res) =>{
       res.status(200).json(result)
     })
 }
-//obtener recetas por idIngredientes
+
 exports.getRecipesByIdIngredient = (req, res)=>{
     const id = req.params.id
     const sql = ` SELECT r.id_receta, r.nombre, r.imagen, r.descripcion, r.tiempo_preparacion, r.categoria, i.id_ingrediente
@@ -148,7 +143,7 @@ exports.getRecipesByIdIngredient = (req, res)=>{
 
     })
 }
-//Actualizar una receta, puede dejar campos sin rellenar, y solo se deberia actualizar los campos rellenos
+
 exports.updateRecipe = (req, res) => {
 
     const { nombre, imagen, descripcion, paso_paso, tiempo_preparacion, categoria, estacion} = req.body
@@ -172,7 +167,7 @@ exports.updateRecipe = (req, res) => {
 
 }
 
-// Eliminar una receta original
+
 exports.deleteRecipe = (req, res) => {
     const id = req.params.id;
     const deleteQuery = "DELETE FROM recetas WHERE id_receta = ?";
@@ -191,9 +186,8 @@ exports.deleteRecipe = (req, res) => {
 
 
 exports.getAllRecipesList = (req, res) => {
-    /*Para probar en POSTMAN 
-    http://localhost:3000/api/recipes/getRecipes?page=1&limit=6*/
-    
+
+
     const sql = "SELECT * FROM recetas";
 
   db.query(sql, (err, dataResult) => {

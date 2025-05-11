@@ -6,10 +6,10 @@ const userController = require('../controllers/user.controller')
 router.post('/register', userController.register)
 router.post('/login', userController.login)
 router.delete('/delete/:id', userController.deleteUser)
-router.get('/getUsers', userController.getUsers)//obtiene todos los usuarios
+router.get('/getUsers', userController.getUsers)
 
 //update de usuario
-router.get('/edit/:id', userController.getUserId)//se obtiene los datos de usuario
-router.patch('/update/:id', userController.updateUser)//actualiza datos de usuario
+router.get('/edit/:id', userController.getUserId)
+router.patch('/update/:id', userController.updateUser)
 
 module.exports = router

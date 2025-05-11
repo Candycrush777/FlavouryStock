@@ -1,16 +1,13 @@
-const db = require('../config/bd')//importar la conexion 
-const bcrypt = require('bcryptjs')//para encriptar constraseña
+const db = require('../config/bd')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-
-
-//exportamos la funcion
 
 exports.register = (req, res) =>{
 
     const {nombre, apellido1, apellido2, empresa, email, passwd, id_rol}= req.body
 
-    //encriptar contraseña 
+
     const hashedPassword = bcrypt.hashSync(passwd, 10)
 
     const sql = "INSERT INTO Usuarios (id_rol, nombre, apellido1, apellido2, empresa, email, passwd) values (?,?,?,?,?,?,?)"
@@ -23,7 +20,7 @@ exports.register = (req, res) =>{
 }
 
 
-//funcion de login
+
 
 exports.login = (req, res) =>{
     const {email, passwd} = req.body
@@ -42,14 +39,13 @@ exports.login = (req, res) =>{
             return res.status(404).json({error: "Usuario no encontrado"})
         }
 
-        const userLogin = result[0]//email
-        //comparamos contraseñas
+        const userLogin = result[0]
+        
         const passMatch = bcrypt.compareSync(passwd, userLogin.passwd)
         if (!passMatch) {
             return res.status(401).json({error: 'Contraseña incorrecta'})
         }
 
-        //se crea un token para almacenarlo en el localStorage
         const token = jwt.sign(
             {
                 id_usuario: userLogin.id_usuario,
@@ -74,7 +70,7 @@ exports.login = (req, res) =>{
     })
 }
 
- //funcion de borrar usuario
+
 
 exports.deleteUser = (req, res) =>{
     const {id} = req.params
@@ -116,11 +112,10 @@ exports.getUserId = (req, res)=>{
         if (result.length === 0) {
             return res.status(404).json({error: 'Usuario no encontrado'})
         }
-        res.status(200).json(result[0])//devuelve los datos del usuario
+        res.status(200).json(result[0])
     })
 }
 
-//funcion de modificar 
 exports.updateUser =(req, res) =>{
     const { id_rol, nombre, apellido1, apellido2, empresa, email } = req.body;
     const userId = req.params.id;

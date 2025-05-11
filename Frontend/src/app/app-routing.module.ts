@@ -8,7 +8,6 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ListadoStockComponent } from './shared/listado-stock/listado-stock.component';
 import { CaducidadesComponent } from './shared/caducidades/caducidades.component';
 import { CommonModule } from '@angular/common';
-import { StockComponent } from './shared/stock/stock.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipeComponent } from './components/recipe/recipe.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent },
   { path: 'inicio-admin', component: InicioAdminComponent },
   { path: 'listado-stock', component: ListadoStockComponent },
-  { path: 'stock', component: StockComponent },
   { path: 'caducidades', component: CaducidadesComponent},
   { path: 'recipe', component: RecipeComponent },
   { path: 'gestion-user', component: GestionUserComponent },

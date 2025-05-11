@@ -1,6 +1,5 @@
 const db = require("../config/bd");
 
-// coger todos los ingredientes ordenados por ingrediente
 
 exports.getAllStockage = (req, res) => {
   const sql = `
@@ -66,7 +65,6 @@ exports.buscarStockage = (req, res) => {
   });
 };
 
-//la he probado al no funcionarme otras y esta si funciona
 
 exports.getStockageById = (req, res) => {
   const id = req.params.id; 
@@ -86,10 +84,10 @@ exports.getStockageById = (req, res) => {
 };
 
 
-// cantidades a 0
+
 
 exports.clearStockage = (req, res) => {
-  const idIngrediente = req.params.id; // ID del ingrediente pasado como parámetro
+  const idIngrediente = req.params.id; 
 
   const sql = `
     UPDATE stockages
@@ -101,16 +99,15 @@ exports.clearStockage = (req, res) => {
 
   db.query(sql, [idIngrediente], (err, result) => {
     if (err) {
-      // Error de base de datos
+      
       return res.status(500).json({ error: err.message });
     }
 
     if (result.affectedRows === 0) {
-      // No existía ningún registro con ese id_ingrediente
+
       return res.status(404).json({ error: "Ingrediente no encontrado" });
     }
 
-    // Actualización exitosa
     res.status(200).json({ message: "Cantidades reseteadas a 0 correctamente." });
   });
 };
@@ -119,7 +116,7 @@ exports.clearStockage = (req, res) => {
 
 
 exports.deleteIngredientById = (req, res) => {
-  const { id } = req.params; // Se espera el id en la URL, como /stockage/delete/5
+  const { id } = req.params; 
 
   const deleteQuery = "DELETE FROM stockages WHERE id_ingrediente = ?";
   db.query(deleteQuery, [id], (err, result) => {
@@ -138,11 +135,10 @@ exports.deleteIngredientById = (req, res) => {
 };
 
 exports.updateStockage = (req, res) => {
-  // Extraemos las cantidades del body
-  const { cantidad_almacen, cantidad_nevera, cantidad_congelador } = req.body;
-  const idIngrediente = req.params.id; // ID del ingrediente pasado como parámetro en la URL
 
-  // Por lo menos debe venir una cantidad sin no s epuede hacer
+  const { cantidad_almacen, cantidad_nevera, cantidad_congelador } = req.body;
+  const idIngrediente = req.params.id; 
+
   if (!cantidad_almacen && !cantidad_nevera && !cantidad_congelador) {
     return res
       .status(400)
@@ -151,7 +147,7 @@ exports.updateStockage = (req, res) => {
       });
   }
 
-  // Comprobamos si el ingrediente existe en el almacenamiento con el ID
+  
   const checkQuery = "SELECT * FROM stockages WHERE id_ingrediente = ?";
   db.query(checkQuery, [idIngrediente], (err, results) => {
     if (err) {
@@ -159,11 +155,10 @@ exports.updateStockage = (req, res) => {
     }
 
     if (results.length === 0) {
-      // Si no existe el ingrediente con ese ID, respondemos con un error
       return res.status(404).json({ error: "Ingrediente no encontrado" });
     }
 
-    // Si existe, sumamos las cantidades y actualizamos
+
     const existing = results[0];
 
     const newCantAlmacen =
@@ -175,7 +170,6 @@ exports.updateStockage = (req, res) => {
       (Number(existing.cantidad_congelador) || 0) +
       (Number(cantidad_congelador) || 0);
 
-    // Query para la actualización
     const sql = `
         UPDATE stockages
         SET cantidad_almacen = ?,

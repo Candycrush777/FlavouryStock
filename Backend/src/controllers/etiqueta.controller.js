@@ -54,9 +54,6 @@ exports.getCaducaMuyPronto = (req, res)=>{
 }
 
 
-
-//todo crear vista de detalle recetas, que contenga al menos 1 ingredientes a caducar
-
 exports.getRecetasPosibles = (req,res)=>{
     sql=`SELECT DISTINCT
     vrd.receta_id,
@@ -122,7 +119,6 @@ const {id} =req.params
     })
 }
 
-//todo para caducado, crear una tabla que almacene etiquetas desechadas, y sean eliminadas de etiquetas normales
 
 exports.buscarEtiquetas = (req, res) => {
     const busquedaNombre = req.query.busqueda || "";

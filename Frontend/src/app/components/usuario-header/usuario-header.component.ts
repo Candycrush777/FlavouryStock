@@ -14,6 +14,9 @@ import { Location } from '@angular/common'
 export class UsuarioHeaderComponent {
   @Output() onLogOut = new EventEmitter<void>()
 
+  
+  idRol = Number(localStorage.getItem('id_rol'));
+
   constructor(private userService: UserService, private router: Router, private location:Location){}
 
   logOut(){

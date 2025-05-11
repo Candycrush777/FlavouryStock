@@ -45,9 +45,7 @@ export class UserService {
     }
 
     getAllUser():Observable<User[]>{
-/*  BUSCANDO EL FALLO       const url = `${this.apiUrl}`;
-        console.log('URL DE GET ALL USER? que esta actuando',url);
- */       
+     
         return this.http.get<UserResponse>(`${this.apiUrl}/getUsers`).pipe(
             map((res)=> {
                 console.log('Respuesta de la api: ', res)

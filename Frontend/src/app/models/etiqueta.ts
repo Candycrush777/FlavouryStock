@@ -3,8 +3,7 @@ export interface EtiquetaResponse{
 }
 
 export interface Etiqueta {
-    //va a ser leida desde una vista, para poder 
-    // coger nombre ingrediente e imagen
+  
     
     //vista_etiqueta_detalle
     

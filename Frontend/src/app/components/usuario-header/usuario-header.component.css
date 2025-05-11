@@ -38,15 +38,9 @@
     background-color: rgba(237, 117, 87, 0.645);
 }
 
-/* .btnBuscar:active{
-    border-color: rgb(237,117,87);
-    box-shadow: 0 0 5px rgba(237, 117, 87, 0.5);
-    outline: none;
-    color: white;
-} */
 
 .btnBuscar:active, .btnVolver:active {
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro de nuevo */
+    background-color: rgba(0, 0, 0, 0.7); 
     border-color: rgb(237,117,87);
     box-shadow: 0 0 5px rgba(237, 117, 87, 0.5);
     outline: none;

@@ -18,9 +18,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 20px; /* Centra el círculo y añade margen inferior */
-    position: relative; /* Para posicionar el círculo encima del texto */
-    z-index: 1; /* Asegura que el círculo esté encima del texto */
+    margin: 0 auto 20px; 
+    position: relative; 
+    z-index: 1; 
     cursor: pointer;
 }
 
@@ -29,9 +29,9 @@
     border-radius: 20px;
     padding: 30px;
     text-align: center;
-    margin-top: -50px; /* Ajusta la posición para que el círculo esté encima */
-    position: relative; /* Para posicionar el rectángulo debajo del círculo */
-    z-index: 0; /* Asegura que el rectángulo esté debajo del círculo */
+    margin-top: -50px; 
+    position: relative; 
+    z-index: 0; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     border: 1px solid #1E222B;
     font-weight: bold;

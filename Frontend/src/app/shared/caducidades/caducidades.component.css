@@ -4,6 +4,7 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    min-height: 60vh;
   }
   
   .columna-gest {
@@ -54,18 +55,12 @@
   .btn-edit .btn-del {
     width: 1200px !important;
   }
-  
-  
-  /* FORMULARIO EDIT/DELETE */
-  
-  
+
   .row-form{
     box-sizing: border-box;
     padding: 0 15px;
     align-items: center;
     border-bottom: 1px solid rgb(165, 165, 165);
-    /* margin: 0 0 4px !important; */
-  
   }
   
   

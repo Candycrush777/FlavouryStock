@@ -1,8 +1,8 @@
 <div class="container ">
-  <!-- Receta destacada -->
+
   <app-slide-recipes [recipes]="recipes" (showDetail)="viewDetail($event)"></app-slide-recipes>
 
-  <!-- texto de separacion  -->
+
   <h1 class="text-center mt-5">Recetas, cocina con creatividad y eficiencia</h1>
   <p class="text-center">
     La clave está en la eficiencia sin sacrificar el sabor.
@@ -17,9 +17,9 @@
     </div>
   </div>
 
-  <!-- recetas  -->
+
   <app-recipe-list [recipes]="recipes" (showDetail)="viewDetail($event)"></app-recipe-list>
-  <!-- modal para el slide de recetas y recipe-list -->
+
   <app-modal  [modalTitle]="selectedRecipe?.receta_nombre ?? ''" [modalContent]="''">
     <div *ngIf="selectedRecipe"  class="animate__animated animate__fadeIn">
       <p><strong>Descripción:</strong> {{selectedRecipe.receta_descripcion}}</p>

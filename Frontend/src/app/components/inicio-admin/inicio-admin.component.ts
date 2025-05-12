@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { EtiquetaService } from '../../services/etiqueta.service';
 import Swal from 'sweetalert2';
-import { Etiqueta } from '../../models/etiqueta';
+
 
 @Component({
   selector: 'app-inicio-admin',
@@ -21,7 +21,9 @@ export class InicioAdminComponent {
       if (showAlert !== 'true') {
         this.etiquetaService.getCaducaMuyPronto().subscribe((productos) => {
           if (productos.length > 0) {
-            let nombre = productos.map((p) => p.nombre).join(', ');
+            let nombres = productos.map(p => p.nombre);
+            let nombreSinRepetir = nombres.filter((nombre, index) => nombres.indexOf(nombre) === index);
+            let nombre = nombreSinRepetir.join(', ');
             Swal.fire({
               position: 'center',
               icon: 'warning',

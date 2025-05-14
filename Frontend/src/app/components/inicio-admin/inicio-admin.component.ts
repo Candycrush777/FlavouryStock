@@ -24,7 +24,9 @@ export class InicioAdminComponent {
             let nombres = productos.map(p => p.nombre);
             let nombreSinRepetir = nombres.filter((nombre, index) => nombres.indexOf(nombre) === index);
             let nombre = nombreSinRepetir.join(', ');
-            Swal.fire({
+
+            setTimeout(() => {
+              Swal.fire({
               position: 'center',
               icon: 'warning',
               title: '¡Productos por caducar!',
@@ -32,6 +34,7 @@ export class InicioAdminComponent {
               confirmButtonText: 'Entendido',
               confirmButtonColor: '#f18c57',
             });
+            }, 1500);
             localStorage.setItem('caducidadMostrada', 'true');
           }
         });

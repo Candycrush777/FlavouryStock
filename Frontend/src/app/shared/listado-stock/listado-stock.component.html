@@ -335,7 +335,7 @@
           <h2 class="titulo-ingrediente text-center">
             ETIQUETA {{ currentEtiquetaIndex + 1 }} / {{ resultadosEtiqueta!.length }}
           </h2>
-          <div>___________________________________________________</div>
+          <div class="line">___________________________________________________</div>
           <div class="text-start">
 
             <h3 class="text-center"><strong>{{ etiqueta.nombre }}</strong> </h3>
@@ -377,7 +377,7 @@
           <p>No se encontraron etiquetas con "{{ searchEtiqueta }}".</p>
         </div>
       </ng-template>
-      <div>___________________________________________________</div>
+      <div class="line">___________________________________________________</div>
       <div class="modal-footer">
         <button type="button" class="btnComenzar" (click)="cerrarResultadoEtiquetaModal()">
           Cerrar

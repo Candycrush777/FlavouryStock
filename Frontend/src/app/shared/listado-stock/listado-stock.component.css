@@ -409,6 +409,10 @@ input:focus {
   color: #777;
 }
 
+.btn-outline-primary:hover {
+  background-color: #ed7557 !important;
+  color: white !important;
+
 @media (min-width: 620px) {
   .font-xxl {
     font-size: 1rem;

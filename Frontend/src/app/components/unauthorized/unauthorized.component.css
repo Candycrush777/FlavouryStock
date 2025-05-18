@@ -1,24 +1,29 @@
 :host {
   display: flex;
   justify-content: center;
-  padding-top: 50px; /* deja espacio para el header */
+  padding-top: 50px;
+  /* deja espacio para el header */
   background: #f5f5f5;
   min-height: 30vh;
 }
 
 /* Snackbar visual */
 .snackbar {
-  background-color: #323232;
-  color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
   text-align: center;
   max-width: 400px;
   width: 30%;
   animation: slideDown 0.4s ease-out;
   margin-bottom: 100px;
+  background-color: Rgba(255, 255, 255, 0.8);
+  border: 1px solid white;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  padding: 20px;
 }
+
+
 
 .snackbar h2 {
   margin-top: 0;
@@ -32,19 +37,23 @@
 }
 
 .snackbar button {
-  background-color: #2196f3;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  background-color: #2e2e2dc9;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .snackbar button:hover {
-  background-color: #1976d2;
+  color: white;
+    background-color: #f8bc9bf2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
+
+
 
 /* Animación hacia abajo */
 @keyframes slideDown {
@@ -52,9 +61,9 @@
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-

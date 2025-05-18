@@ -35,7 +35,7 @@ const routes: Routes = [
     component: CreateAccountComponent,
     canActivate: [AuthGuard], // poner usuario rol solo para admin
   },
-  { path: 'usuario', component: UsuarioComponent, /* canActivate: [AuthGuard] */ },
+  { path: 'usuario', component: UsuarioComponent,  canActivate: [AuthGuard] },
   {
     path: 'listado-stock',
     component: ListadoStockComponent,
@@ -66,8 +66,8 @@ const routes: Routes = [
   {
     path: 'inicio-admin',
     component: InicioAdminComponent,
-   /*  canActivate: [AuthGuard],
-    data: { roles: [1] }, */
+    canActivate: [AuthGuard],
+    data: { roles: [1] }, 
   },
   {
     path: 'gestion-user',
@@ -89,10 +89,10 @@ const routes: Routes = [
   { path: '**', component: NotFoundComponent },
 ];
 
-/* const routerConfig: ExtraOptions = {
+ const routerConfig: ExtraOptions = {
   initialNavigation: 'enabledBlocking',
   scrollPositionRestoration: 'top', 
-}; */
+}; 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {

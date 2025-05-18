@@ -4,7 +4,7 @@ const router = express.Router()
 
 const ingredientController = require("../controllers/ingredient.controller")
 
-//UPDATE DE LA COMPRA
+
 router.post("/registerBasket", ingredientController.registerBasket)
 
 router.get("/getAllIngredients", ingredientController.getAllIngredients)

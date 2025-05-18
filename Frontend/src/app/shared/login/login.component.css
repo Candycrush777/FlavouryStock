@@ -9,6 +9,7 @@
   align-items: center;
   flex-direction: column;
   padding: 40px;
+ 
 }
 
 .form-container {
@@ -19,7 +20,8 @@
   border-radius: 10px;
   border: solid white 4px;
     margin: 0 auto;
-    background: Rgba(255,255,255, 0.5);
+    background: Rgba(255,255,255, 0.8);
+   
 }
 .additional-options {
     margin-top: 1.5rem;

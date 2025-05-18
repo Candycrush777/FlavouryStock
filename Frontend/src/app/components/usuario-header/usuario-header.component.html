@@ -19,7 +19,7 @@
                 </ul>
                 
                 <form class="d-flex" role="search">
-                    <input #txtSearch class="form-control me-2" type="search" placeholder="Buscar receta" aria-label="Search">
+                    <input #txtSearch class="form-control me-2" id="search" type="search" placeholder="Buscar receta" aria-label="Search">
                     <button class="btn btnBuscar me-2" type="submit" (click)="searchRecipe(txtSearch.value)">Buscar</button>
                 </form>
                 <button (click)="volver()" class="btn  my-3 btnVolver">Volver</button>

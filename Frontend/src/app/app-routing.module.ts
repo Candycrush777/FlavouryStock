@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './shared/login/login.component';
 import { CreateAccountComponent } from './shared/create-account/create-account.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
@@ -18,33 +18,91 @@ import { SuggestedRecipesComponent } from './components/suggested-recipes/sugges
 import { NotFoundComponent } from './error/not-found-404/not-found.component';
 import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.component';
 import { LegalComponent } from './shared/legal/legal.component';
-
+import { AuthGuard } from './guards/auth.guard';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 const routes: Routes = [
+  // públicas
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
   { path: 'inicio', component: InicioComponent },
-  { path: 'create-account', component: CreateAccountComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'inicio-admin', component: InicioAdminComponent },
-  { path: 'listado-stock', component: ListadoStockComponent },
-  { path: 'caducidades', component: CaducidadesComponent},
+  { path: 'login', component: LoginComponent },
   { path: 'recipe', component: RecipeComponent },
-  { path: 'gestion-user', component: GestionUserComponent },
-  { path: 'recetas-form', component: RecetasFormComponent },
-  { path: 'search/:nombre', component: SearchComponent },
-  { path: 'suggested-recipes/:id',component: SuggestedRecipesComponent },
-  { path: 'gestion-recipe', component: GestionRecipeComponent },
   { path: 'legal/:tipo', component: LegalComponent },
-  { path: '**',component: NotFoundComponent },
-  
-  
 
-  //revisar si es necesario
+  // protegidas (requieren login → si no, /unauthorized)
+  {
+    path: 'create-account',
+    component: CreateAccountComponent,
+    canActivate: [AuthGuard], // poner usuario rol solo para admin
+  },
+  { path: 'usuario', component: UsuarioComponent, /* canActivate: [AuthGuard] */ },
+  {
+    path: 'listado-stock',
+    component: ListadoStockComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'caducidades',
+    component: CaducidadesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'recetas-form',
+    component: RecetasFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'search/:nombre',
+    component: SearchComponent,
+    canActivate: [AuthGuard], //mirar bien , creo quitar
+  },
+  {
+    path: 'suggested-recipes/:id',
+    component: SuggestedRecipesComponent,
+    canActivate: [AuthGuard],
+  },
+
+  // solo admin (si no, /unauthorized)
+  {
+    path: 'inicio-admin',
+    component: InicioAdminComponent,
+   /*  canActivate: [AuthGuard],
+    data: { roles: [1] }, */
+  },
+  {
+    path: 'gestion-user',
+    component: GestionUserComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [1] },
+  },
+  {
+    path: 'gestion-recipe',
+    component: GestionRecipeComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [1] },
+  },
+
+  // página de acceso denegado
+  { path: 'unauthorized', component: UnauthorizedComponent },
+
+  // fallback
+  { path: '**', component: NotFoundComponent },
 ];
 
+/* const routerConfig: ExtraOptions = {
+  initialNavigation: 'enabledBlocking',
+  scrollPositionRestoration: 'top', 
+}; */
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'}), CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top',
+      initialNavigation: 'enabledBlocking',
+    }),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

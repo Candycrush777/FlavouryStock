@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -25,39 +26,58 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    
+  }
 
-  showPassword(){
+  ngOnInit(): void {
+    
+  }
+
+  showPassword() {
     this.passwordVisible = !this.passwordVisible;
   }
 
   login() {
     
     if (!this.user.email || !this.user.passwd) {
-      console.log('Email o contraseña vacíos');
+  
       Swal.fire({
         position: "center",
         icon: "warning",
-        title: "Correo electrónico o contraseña estan vacios",
+        title: "Correo electrónico o contraseña están vacíos",
         showConfirmButton: false,
         timer: 1500
       });
       return;
     }
 
+    
+
     this.userService.login(this.user).subscribe({
       next: (response) => {
+       
+        // Verifica que token e id_rol existan en la respuesta:
+        if (!response.token || !response.id_rol) {
+        
+          Swal.fire({
+            icon: "error",
+            title: "Respuesta inválida del servidor",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          return;
+        }
 
-        localStorage.setItem('token', response.token)
-        localStorage.setItem("id_rol", response.id_rol.toString())
-        localStorage.setItem("userId", response.id_user.toString());
-
+        this.authService.setSession(response.token, response.id_rol);
+       
 
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Inicio de sesión correctamente",
+          title: "Inicio de sesión correcto",
           showConfirmButton: false,
           timer: 1000
         });
@@ -65,18 +85,16 @@ export class LoginComponent {
         setTimeout(() => {
           if (response.id_rol === 1) {
             this.router.navigate(['/inicio-admin']);
-            
           } else {
             this.router.navigate(['/usuario']);
           }
-        }, 1000)
-        
+        }, 1000);
       },
       error: (error) => {
-        //console.error('Error en el login:', error);
+        console.error('Error en el login:', error);  // <<-- Mostrar error backend
         Swal.fire({
           icon: "error",
-          title: "Correo electrónico o contraseña inconrrecto",
+          title: "Correo electrónico o contraseña incorrectos",
           showConfirmButton: false,
           timer: 1500
         });
@@ -84,3 +102,4 @@ export class LoginComponent {
     });
   }
 }
+

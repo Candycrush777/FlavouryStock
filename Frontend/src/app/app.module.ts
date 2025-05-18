@@ -4,7 +4,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS,  provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,6 +32,8 @@ import { NotFoundComponent } from './error/not-found-404/not-found.component';
 import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.component';
 import { UnidadMedidaPipe } from './pipes/unidad-medida.pipe';
 import { LegalComponent } from './shared/legal/legal.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -57,19 +59,31 @@ import { LegalComponent } from './shared/legal/legal.component';
     NotFoundComponent,
     GestionRecipeComponent,
     UnidadMedidaPipe,
-    LegalComponent
+    LegalComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
+      FormsModule,
     ReactiveFormsModule
   ],
   exports:[
     SlideRecipesComponent
   ],
-  providers: [provideClientHydration(withEventReplay())],
+ providers: [
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(
+      withFetch(),               // habilita el uso de fetch API (mejor para SSR) 
+      withInterceptorsFromDi() ,
+       // registra los interceptores desde DI (en el AuthInterceptor)
+    ),
+      { 
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true 
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

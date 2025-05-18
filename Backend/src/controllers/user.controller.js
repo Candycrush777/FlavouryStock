@@ -1,12 +1,18 @@
 const db = require('../config/bd')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')// middlewares/authMiddleware.js
+const jwt = require('jsonwebtoken');
 
 
 exports.register = (req, res) =>{
 
+    if (req.user.id_rol !== 1) {
+        res.sendStatus(403);
+        return;
+    }
     const {nombre, apellido1, apellido2, empresa, email, passwd, id_rol}= req.body
 
+   // console.log({nombre, apellido1, apellido2, empresa, email, passwd, id_rol});
+    
 
     const hashedPassword = bcrypt.hashSync(passwd, 10)
 
@@ -45,6 +51,7 @@ exports.login = (req, res) =>{
         if (!passMatch) {
             return res.status(401).json({error: 'Contraseña incorrecta'})
         }
+       
 
         const token = jwt.sign(
             {
@@ -73,6 +80,10 @@ exports.login = (req, res) =>{
 
 
 exports.deleteUser = (req, res) =>{
+    if (req.user.id_rol !== 1) {
+        res.sendStatus(403);
+        return;
+    }
     const {id} = req.params
 
     sql = "DELETE FROM Usuarios WHERE id_usuario = ?"
@@ -89,6 +100,10 @@ exports.deleteUser = (req, res) =>{
 }
 
 exports.getUsers = (req, res)=>{
+    if (req.user.id_rol !== 1) {
+        res.sendStatus(403);
+        return;
+    }
     sql = "SELECT id_usuario, id_rol, nombre, apellido1, apellido2, empresa, email FROM Usuarios "
     db.query(sql, (err, result) =>{
         if (err) {
@@ -103,7 +118,11 @@ exports.getUsers = (req, res)=>{
 
 
 exports.getUserId = (req, res)=>{
-    const userId = req.params.id;
+    let userId = null;
+    if (req.user.id_rol === 1) {
+        userId = req.params.id;
+    }
+    userId = req.user.id_usuario;
     sql = "SELECT id_rol, nombre, apellido1, apellido2, empresa, email FROM Usuarios WHERE id_usuario =" + userId;
     db.query(sql, (err, result) => {
         if (err) {
@@ -117,6 +136,11 @@ exports.getUserId = (req, res)=>{
 }
 
 exports.updateUser =(req, res) =>{
+    
+    if (req.user.id_rol !== 1) {
+        res.sendStatus(403);
+        return;
+    }
     const { id_rol, nombre, apellido1, apellido2, empresa, email } = req.body;
     const userId = req.params.id;
 

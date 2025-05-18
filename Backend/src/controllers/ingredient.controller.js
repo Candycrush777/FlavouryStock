@@ -1,55 +1,76 @@
 
 const db = require("../config/bd") 
 
+exports.registerBasket = (req, res) => {
+  const fechaEtiqueta = new Date();
+  const { id_ingrediente, cantidad_almacen, cantidad_nevera, cantidad_congelador } = req.body;
+  // Asegúrate de poblar req.user.id_usuario en tu middleware
+  const id_usuario = req.user?.id_usuario;
 
-exports.registerBasket = async (req, res) => {
-  try {
-    const fechaEtiqueta = new Date();
-    const { id_ingrediente, cantidad_almacen, cantidad_nevera, cantidad_congelador, id_usuario } = req.body;
-
-    const caducidades = await obtenerCaducidad(db, id_ingrediente);
-    console.log(caducidades);
-
-    const lugaresInvalidos = []; 
-
-    const insertarEtiquetaFunct = (lugar_almacen, cantidad, diasCaducidad) => {
-      if (cantidad > 0 && diasCaducidad !== null && diasCaducidad !== undefined) {
-        const fecha_caducidad = new Date(fechaEtiqueta);
-        fecha_caducidad.setDate(fecha_caducidad.getDate() + diasCaducidad);
-
-        console.log(`Insertando ${cantidad} en ${lugar_almacen} con diasCaducidad=`, diasCaducidad);
-
-        const sql = "INSERT INTO etiquetas (id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad) VALUES(?,?,?,?,?,?)";
-        db.query(sql, [id_ingrediente, id_usuario, fechaEtiqueta, lugar_almacen, fecha_caducidad, cantidad], (err, result) => {
-          if (err) {
-            console.log(`Error al insertar etiqueta de ${lugar_almacen}:` + err);
-            return res.status(500).json({ error: err.message });
-          } else if (result.affectedRows === 0) {
-            return res.status(404).json({ err: "No se han insertado los datos en Etiqueta" });
-          } else {
-            console.log(`Etiquetas generadas para ${lugar_almacen} correctamente`);
-          }
-        });
-      } else if (cantidad > 0 && (diasCaducidad === null || diasCaducidad === undefined)) {
-        lugaresInvalidos.push(lugar_almacen); 
-      }
-    };
-
-    insertarEtiquetaFunct("almacen", cantidad_almacen, caducidades.almacen);
-    insertarEtiquetaFunct("nevera", cantidad_nevera, caducidades.nevera);
-    insertarEtiquetaFunct("congelador", cantidad_congelador, caducidades.congelador);
-
-    let message = "Etiquetas generadas en BD correctamente";
-    if (lugaresInvalidos.length > 0) {
-      message += `. Pero no se pudieron almacenar en: ${lugaresInvalidos.join(", ")}`;
-    }
-
-    res.status(200).json({ message, lugaresInvalidos });
-  } catch (error) {
-    console.error("Error al registrar las etiquetas:", error);
-    return res.status(500).json({ error: error.message || "Error al procesar la solicitud" });
+  if (!id_usuario) {
+    return res.status(401).json({ error: 'Usuario no autenticado' });
   }
+
+  obtenerCaducidad(db, id_ingrediente)
+    .then(caducidades => {
+      const lugaresInvalidos = [];
+      const promesas = [];
+
+      const operaciones = [
+        ['almacen',    cantidad_almacen,   caducidades.almacen],
+        ['nevera',     cantidad_nevera,    caducidades.nevera],
+        ['congelador', cantidad_congelador,caducidades.congelador],
+      ];
+
+      for (const [lugar, cantidad, dias] of operaciones) {
+        if (cantidad > 0) {
+          if (dias == null) {
+            lugaresInvalidos.push(lugar);
+          } else {
+            const fecha_caducidad = new Date(fechaEtiqueta);
+            fecha_caducidad.setDate(fecha_caducidad.getDate() + dias);
+
+            const sql = `
+              INSERT INTO etiquetas
+                (id_ingrediente, id_usuario, fecha_etiquetado, lugar_almacen, fecha_caducidad, cantidad)
+              VALUES(?,?,?,?,?,?)
+            `;
+
+            promesas.push(new Promise((resolve, reject) => {
+              db.query(
+                sql,
+                [id_ingrediente, id_usuario, fechaEtiqueta, lugar, fecha_caducidad, cantidad],
+                (err, result) => {
+                  if (err) return reject(err);
+                  if (result.affectedRows === 0) {
+                    return reject(new Error(`No se insertó en ${lugar}`));
+                  }
+                  resolve();
+                }
+              );
+            }));
+          }
+        }
+      }
+
+      // Ejecutamos todas las inserciones en paralelo
+      return Promise.all(promesas)
+        .then(() => ({ lugaresInvalidos }))
+        .catch(err => { throw err; });
+    })
+    .then(({ lugaresInvalidos }) => {
+      let message = 'Etiquetas generadas en BD correctamente';
+      if (lugaresInvalidos.length) {
+        message += `. Pero no se pudieron almacenar en: ${lugaresInvalidos.join(', ')}`;
+      }
+      res.status(200).json({ message, lugaresInvalidos });
+    })
+    .catch(error => {
+      console.error('Error en registerBasket:', error);
+      res.status(500).json({ error: error.message });
+    });
 };
+
 
 exports.getAllIngredients = (req, res)=>{
     const sql= "SELECT * FROM Ingredientes"

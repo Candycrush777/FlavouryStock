@@ -120,8 +120,7 @@ export class ListadoStockComponent implements OnInit {
   }
 
   clearStockage(idIngrediente: number): void {
-    console.log('Ingrediente a resetear stock:', idIngrediente);
-
+    
     Swal.fire({
       title: `¿Estás seguro de resetear el stock a 0?`,
       text: 'Esta acción pondrá todas las cantidades de este ingrediente a cero y no se puede deshacer.',
@@ -194,7 +193,7 @@ export class ListadoStockComponent implements OnInit {
       cantidad_congelador: undefined,
     };
 
-    console.log('ID asignado:', this.formModel.id_ingrediente);
+    /* console.log('ID asignado:', this.formModel.id_ingrediente); */
     this.mostrarModal = true;
   }
 
@@ -560,17 +559,13 @@ export class ListadoStockComponent implements OnInit {
     this.resultadosEtiqueta = null;
   }
   getAllEtiquetas(): void {
-    console.log('→ Llamando a getAllEtiquetas()');
     this.etiquetaService.getAllEtiquetas().subscribe({
       next: (res) => {
         this.allEtiquetas = res;
         this.resultadosEtiqueta = [...res];
         this.currentEtiquetaIndex = 0;
         this.mostrarResultadoEtiquetaModal = true;
-        /*   console.log(
-          'Modal abierto con todas las etiquetas:',
-          this.resultadosEtiqueta
-        ); */
+     
       },
       error: (err) => {
         console.error('Error al cargar todas las etiquetas:', err);

@@ -2,7 +2,7 @@
 <h1  class="text-capitalize mt-5">Recetas <small>{{nombre}}</small></h1>
 <hr>
 
-<div *ngIf="noRecipe" class="text-warning">{{ noRecipe }}</div>
+<div *ngIf="noRecipe" class="text-warning fs-1">{{ noRecipe }}</div>
 
 <app-recipe-list [recipes]="recipes" *ngIf="recipes.length > 0" (showDetail)="viewDetail($event)"></app-recipe-list>
 <app-modal

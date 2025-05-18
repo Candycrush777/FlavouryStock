@@ -19,18 +19,28 @@ export class SearchComponent {
   pasosList: string[] = [];
 
   constructor(private recipeService: RecipeService, private activatedRoutes: ActivatedRoute){}
+  validateSearch(nombre: string): boolean {
+    const regex = /^[a-zA-Z\s]+$/;
+    return regex.test(nombre)
+  }
 
   ngOnInit(): void {
     this.activatedRoutes.params.subscribe(params => {
       this.nombre = params['nombre']
       console.log(this.nombre);
 
-      this.recipeService.searchRecipe(this.nombre).subscribe({
+      if (!this.validateSearch(this.nombre)) {
+        this.noRecipe = 'El nombre solo puede contener letras y espacios.'
+        this.recipes = []
+        return;
+      }else {
+        this.recipeService.searchRecipe(this.nombre).subscribe({
         next: (recipe) => {
           this.recipes = recipe;
           if (recipe.length === 0) {
             this.noRecipe = 'No se encontró ninguna receta con ese nombre.';
           }
+          this.noRecipe = ''
         },
         error: (err) => {
           console.error(err);
@@ -38,6 +48,9 @@ export class SearchComponent {
           this.noRecipe = err.error?.message || 'Ocurrió un error al buscar recetas.';
         }
       });
+      }
+
+      
       
     })
     

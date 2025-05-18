@@ -18,15 +18,21 @@ export class UsuarioComponent {
       if (showAlert !== 'true') {
         this.etiquetaService.getCaducaMuyPronto().subscribe((productos) => {
           if (productos.length > 0) {
-            let nombre = productos.map((p) => p.nombre).join(', ');
-            Swal.fire({
-              position: 'center',
-              icon: 'warning',
-              title: '¡Productos por caducar!',
-              html: `<strong>${nombre}</strong><br>caducan muy pronto.`,
-              confirmButtonText: 'Entendido',
-              confirmButtonColor: '#f18c57',
-            });
+            let nombres = productos.map((p) => p.nombre);
+            let nombreSinRepetir = nombres.filter(
+              (nombre, index) => nombres.indexOf(nombre) === index
+            );
+            let nombre = nombreSinRepetir.join(', ');
+            setTimeout(() => {
+              Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: '¡Productos por caducar!',
+                html: `<strong>${nombre}</strong><br>caducan muy pronto.`,
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#f18c57',
+              });
+            }, 1500);
             localStorage.setItem('caducidadMostrada', 'true');
           }
         });

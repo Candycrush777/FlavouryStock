@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { EtiquetaService } from '../../services/etiqueta.service';
 import Swal from 'sweetalert2';
-import { Etiqueta } from '../../models/etiqueta';
+
 
 @Component({
   selector: 'app-inicio-admin',
@@ -21,8 +21,12 @@ export class InicioAdminComponent {
       if (showAlert !== 'true') {
         this.etiquetaService.getCaducaMuyPronto().subscribe((productos) => {
           if (productos.length > 0) {
-            let nombre = productos.map((p) => p.nombre).join(', ');
-            Swal.fire({
+            let nombres = productos.map(p => p.nombre);
+            let nombreSinRepetir = nombres.filter((nombre, index) => nombres.indexOf(nombre) === index);
+            let nombre = nombreSinRepetir.join(', ');
+
+            setTimeout(() => {
+              Swal.fire({
               position: 'center',
               icon: 'warning',
               title: '¡Productos por caducar!',
@@ -30,6 +34,7 @@ export class InicioAdminComponent {
               confirmButtonText: 'Entendido',
               confirmButtonColor: '#f18c57',
             });
+            }, 1500);
             localStorage.setItem('caducidadMostrada', 'true');
           }
         });

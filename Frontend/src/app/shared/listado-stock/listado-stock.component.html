@@ -335,7 +335,7 @@
           <h2 class="titulo-ingrediente text-center">
             ETIQUETA {{ currentEtiquetaIndex + 1 }} / {{ resultadosEtiqueta!.length }}
           </h2>
-          <hr>
+          <div class="line">___________________________________________________</div>
           <div class="text-start">
 
             <h3 class="text-center"><strong>{{ etiqueta.nombre }}</strong> </h3>
@@ -345,21 +345,28 @@
             <p><strong>F. Etiquetado:</strong> {{ etiqueta.fecha_etiquetado | date:'dd/MM/yyyy' }}</p>
             <p><strong>F. Caducidad:</strong> {{ etiqueta.fecha_caducidad | date:'dd/MM/yyyy' }}</p>
             <p><strong>Registrado por:</strong> {{ etiqueta.id_usuario }}</p>
+            
           </div>
         </ng-container>
 
         
         <div class="carousel-controls d-flex justify-content-between mt-3 w-75">
+          
           <button
             class="btn btn-outline-primary"
             (click)="previousEtiqueta()"
-            [disabled]="currentEtiquetaIndex === 0">
+            [disabled]="currentEtiquetaIndex === 0"
+            style="border-color: #ff5733; color: #ff5733;"
+          >
             ← Anterior
           </button>
+
           <button
             class="btn btn-outline-primary"
             (click)="nextEtiqueta()"
-            [disabled]="currentEtiquetaIndex === resultadosEtiqueta!.length - 1">
+            [disabled]="currentEtiquetaIndex === resultadosEtiqueta!.length - 1"
+            style="border-color: #ff5733; color: #ff5733;"
+          >
             Siguiente →
           </button>
         </div>
@@ -370,7 +377,7 @@
           <p>No se encontraron etiquetas con "{{ searchEtiqueta }}".</p>
         </div>
       </ng-template>
-
+      <div class="line">___________________________________________________</div>
       <div class="modal-footer">
         <button type="button" class="btnComenzar" (click)="cerrarResultadoEtiquetaModal()">
           Cerrar

@@ -18,7 +18,7 @@ export class CreateAccountComponent {
   passwordVisible: boolean = false;
   confirmPassVisible: boolean = false;
   
-  
+  confirmCheched:boolean=false;
 
   user: User ={
     id_rol: 1, // Por defecto será usuario ser admin
@@ -72,7 +72,19 @@ export class CreateAccountComponent {
 
   crearCuenta() {
 
-    if (!this.user.nombre || !this.user.apellido1 || !this.user.apellido2 || !this.user.empresa || !this.user.email || !this.user.passwd) {
+    if (!this.confirmCheched) {
+
+          Swal.fire({
+              position: "center",
+              icon: "warning",
+              title: "Por favor, acepte los terminos y condiciones",
+              showConfirmButton: false,
+              timer: 1500
+            });
+      return;
+    }
+
+    if (!this.user.nombre || !this.user.apellido1 || !this.user.apellido2 || !this.user.empresa || !this.user.email || !this.user.passwd ) {
       Swal.fire({
               position: "center",
               icon: "warning",
@@ -89,7 +101,7 @@ export class CreateAccountComponent {
         Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Usuario creado ecitosamente",
+                title: "Usuario creado exitosamente",
                 showConfirmButton: false,
                 timer: 1500
               });

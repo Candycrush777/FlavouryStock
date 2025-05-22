@@ -40,7 +40,7 @@ export class SuggestedRecipesComponent {
     this.recipeService.getRecipeByIdIngrediente(idIngred).subscribe({
       next: (response)=>{
         this.recipes= response
-        console.log('Etiquetas recibidas para posible receta por ID', response)
+       /*  console.log('Etiquetas recibidas para posible receta por ID', response) */
       }, error:(error) => {
         console.log(`Error obtenido en recetaPosibleId, el idRecogido: ${idIngred}`, error);
       }
@@ -48,11 +48,11 @@ export class SuggestedRecipesComponent {
   }
 
   viewDetail(recipe: Recipe){
-    console.log("lo que recibo de sugested", recipe);
+   /*  console.log("lo que recibo de sugested", recipe); */
     
     this.recipeService.getRecipeById(recipe.id_receta).subscribe(
       (detailRecipe) =>{
-        console.log("lo que recibo de detalle de receta sugerida", detailRecipe);
+        /* console.log("lo que recibo de detalle de receta sugerida", detailRecipe); */
         
         this.selectedRecipe = detailRecipe
         this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)

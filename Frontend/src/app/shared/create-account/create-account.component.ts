@@ -36,10 +36,7 @@ export class CreateAccountComponent {
     public router: Router
   ) {}
 
- /*  cambiarRol(rol: number) {
-    this.user.id_rol = rol;
-    console.log('Rol cambiado a:', rol);
-  } */
+ 
   showPassword(){
     this.passwordVisible = !this.passwordVisible;
   }
@@ -88,7 +85,7 @@ export class CreateAccountComponent {
 
     this.userService.createUser(this.user).subscribe({
       next: (response) => {
-        console.log('Usuario creado exitosamente:', response.id_rol);
+       /*  console.log('Usuario creado exitosamente:', response.id_rol); */
         Swal.fire({
                 position: "center",
                 icon: "success",

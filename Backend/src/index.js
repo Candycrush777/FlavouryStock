@@ -27,11 +27,11 @@ const stockageRoutes = require("./routes/stockageRoutes");
 app.use("/api/users", userRoutes);
 
 // 👇 Rutas protegidas (con autenticación)
-app.use("/api/ingredients", verificarToken, ingredientRoutes); //Añade middleware aquí
+app.use("/api/ingredients", verificarToken, ingredientRoutes); 
 app.use("/api/recipes",recipeRoutes);
 app.use("/api/etiquetas", verificarToken, etiquetaRoutes);
 app.use("/api/stockage", verificarToken, stockageRoutes);
 
-const PORT = process.env.PORT || 3000; //Añade valor por defecto, mirar si quitar
+const PORT = process.env.PORT || 3000; 
 
 app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));

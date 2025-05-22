@@ -34,9 +34,9 @@ export class GestionUserComponent {
     this.userService.getAllUser().subscribe(
       (user) => {
         this.usersList = user;
-        console.log('Datos recibidos en GetUSERS() gestion.ts:', this.usersList);
+ /*        console.log('Datos recibidos en GetUSERS() gestion.ts:', this.usersList); */
       },error=> {
-        console.log('Error obtenido en usuarios', error);
+        console.log('Error obtenido en usuarios', error); 
       }
     );
   }
@@ -46,13 +46,13 @@ export class GestionUserComponent {
       
       this.userService.UpdateUserById(this.usuarioAEditar.id_usuario!, this.usuarioAEditar).subscribe({
         next: (response) =>{
-          console.log('Comprobar Usuario modificado correctamente', response);
+          /* console.log('Comprobar Usuario modificado correctamente', response); */
           this.getUsers()     
           this.closeModal(this.usuarioAEditar!)
           
         },
         error: (error) => {
-          console.log('Error al editar usuario', error)
+         console.log('Error al editar usuario', error) 
           Swal.fire('Error', 'No se pudo actualizar el usuario', 'error')
         }
       })
@@ -61,7 +61,7 @@ export class GestionUserComponent {
  
   deleteUser(idUser:number){
     
-    console.log('Usuario a Eliminar:', idUser); 
+    /* console.log('Usuario a Eliminar:', idUser);  */
 
     Swal.fire({
       title: "¿Estás seguro de eliminar el usuario?",
@@ -111,12 +111,12 @@ export class GestionUserComponent {
         if (idUser) {
           this.userService.deleteUserById(idUser!).subscribe({
             next: (response)=>{
-              console.log("USER ELIM", response);
+             /*  console.log("USER ELIM", response); */
               
               Swal.fire("Usuario eliminado con exito", "","success")
               this.getUsers()
             }, error: (error)=>{
-              console.log('Error al editar usuario', error)
+               console.log('Error al editar usuario', error) 
               Swal.fire('Error', 'No se pudo Eliminar el usuario', 'error')
             }
           })

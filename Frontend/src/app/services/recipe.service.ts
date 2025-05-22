@@ -14,7 +14,7 @@ export class RecipeService {
   getAllRecipes(): Observable<Recipe[]> {
     return this.http.get<RecipeResponse>(`${this.api}/getRecipes?page=1`).pipe(
       map((res) => {
-        console.log('Respuesta de la api: ', res);
+        /* console.log('Respuesta de la api: ', res); */
         return res.recetas;
       })
     );
@@ -22,7 +22,7 @@ export class RecipeService {
   getAllRecipesList(): Observable<Recipe[]> {
     return this.http.get<RecipeResponse>(`${this.api}/getRecipesList`).pipe(
       map((res) => {
-        console.log('Respuesta de la api: ', res);
+        /* console.log('Respuesta de la api: ', res); */
         return res.recetas;
       })
     );
@@ -55,7 +55,7 @@ export class RecipeService {
   getRecipeByIdIngrediente(id:number):Observable<Recipe[]>{
     return this.http.get<RecipeArray>(`${this.api}/getRecipesByIdIngredient/${id}`).pipe(
       map((res)=>{
-        console.log("Respuesta de la Api: en recipeByIngred", res)
+       /*  console.log("Respuesta de la Api: en recipeByIngred", res) */
         return res.result
       })
     )

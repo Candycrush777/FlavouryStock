@@ -27,7 +27,7 @@ export class SearchComponent {
   ngOnInit(): void {
     this.activatedRoutes.params.subscribe(params => {
       this.nombre = params['nombre']
-      console.log(this.nombre);
+     /*  console.log(this.nombre); */
 
       if (!this.validateSearch(this.nombre)) {
         this.noRecipe = 'El nombre solo puede contener letras y espacios.'
@@ -44,7 +44,7 @@ export class SearchComponent {
         },
         error: (err) => {
           console.error(err);
-          this.recipes = []; // asegura que el array esté vacío
+          this.recipes = []; 
           this.noRecipe = err.error?.message || 'Ocurrió un error al buscar recetas.';
         }
       });

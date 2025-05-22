@@ -64,7 +64,7 @@ export class RecipeComponent implements OnInit {
   viewDetail(recipe: Recipe){
     this.recipeService.getRecipeById(recipe.id_receta).subscribe(
       (detailRecipe) =>{
-        console.log("Respuesta de el detalle de cada receta en recipe.ts", detailRecipe);
+       /*  console.log("Respuesta de el detalle de cada receta en recipe.ts", detailRecipe); */
         
         this.selectedRecipe = detailRecipe
         this.ingredienteList = this.parseIngredientes(detailRecipe.ingredientes_formato)

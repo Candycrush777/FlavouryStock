@@ -22,17 +22,7 @@ export class CaducidadesComponent {
 
   constructor(private etiquetaService: EtiquetaService) {}
 
-  /* ngOnInit(): void {
-   //llamamos a la funcion al iniciar el componente NO NECESARIO
-    this.getEtiquetasMP();
-  } */
 
-  /* ngOnInit(): void {
-    setTimeout(() => {
-      this.caducidadesExiste(); // verificamos existencia de caducidades
-    }, 3000);
-  } */
- 
 
   getEtiquetas() {
     this.etiquetaService.getAllEtiquetas().subscribe(
@@ -54,10 +44,10 @@ export class CaducidadesComponent {
     this.etiquetaService.getCaducaPronto().subscribe(
       (etiqueta) => {
         this.caducidadesList = etiqueta;
-        console.log('Etiquetas recibidas CaducaP', this.caducidadesList);
+       /*  console.log('Etiquetas recibidas CaducaP', this.caducidadesList); */
       },
       (error) => {
-        console.log('Error obtenido en caducidades', error);
+      /*   console.log('Error obtenido en caducidades', error); */
       }
     );
   }
@@ -66,7 +56,7 @@ export class CaducidadesComponent {
     this.etiquetaService.getCaducaMuyPronto().subscribe(
       (etiqueta) => {
         this.caducidadesList = etiqueta;
-        console.log('Etiquetas recibidas CaducaP', this.caducidadesList);
+        /* console.log('Etiquetas recibidas CaducaP', this.caducidadesList); */
       },
       (error) => {
         console.log('Error obtenido en caducidades', error);
@@ -79,7 +69,7 @@ export class CaducidadesComponent {
     this.etiquetaService.getCaducado().subscribe(
       (etiqueta) => {
         this.caducidadesList = etiqueta;
-        console.log('Etiquetas recibidas Caducado', this.caducidadesList);
+        /* console.log('Etiquetas recibidas Caducado', this.caducidadesList); */
       },
       (error) => {
         console.log('Error obtenido en caducidades/caducado', error);
@@ -92,7 +82,7 @@ export class CaducidadesComponent {
     this.etiquetaService.getRecetasPosId(idIngred).subscribe({
       next: (response)=>{
         //this.caducidadesList = etiqueta;
-        console.log('Etiquetas recibidas para posible receta por ID', response)
+        /* console.log('Etiquetas recibidas para posible receta por ID', response) */
       }, error:(error) => {
         console.log(`Error obtenido en recetaPosibleId, el idRecogido: ${idIngred}`, error);
       }

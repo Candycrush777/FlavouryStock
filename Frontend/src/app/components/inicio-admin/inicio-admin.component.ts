@@ -17,7 +17,7 @@ export class InicioAdminComponent {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       const showAlert = localStorage.getItem('caducidadMostrada');
-      console.log(showAlert);
+     /*  console.log(showAlert); */
       if (showAlert !== 'true') {
         this.etiquetaService.getCaducaMuyPronto().subscribe((productos) => {
           if (productos.length > 0) {

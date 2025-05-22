@@ -6,24 +6,25 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-unauthorized',
   standalone: false,
   templateUrl: './unauthorized.component.html',
-  styleUrl: './unauthorized.component.css'
+  styleUrl: './unauthorized.component.css',
 })
 export class UnauthorizedComponent implements OnInit {
   show = false;
 
-  constructor(private router: Router,
-              @Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-ngOnInit() {
-  if (isPlatformBrowser(this.platformId)) {
-    // Retrasar 100ms para evitar destello en hidratación
-    setTimeout(() => this.show = true, 100);
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      
+      setTimeout(() => (this.show = true), 100);
+    }
+    /* console.log('🚫 UnauthorizedComponent rendered'); */
   }
-  console.log('🚫 UnauthorizedComponent rendered');
-}
 
   goHome() {
     this.router.navigate(['/inicio']);
   }
 }
-

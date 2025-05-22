@@ -31,11 +31,11 @@ export class GestionRecipeComponent {
     this.recipeService.getAllRecipesList().subscribe(
       (recipe) =>{
         this.recipesList = recipe
-        console.log('Datos recibidos en funcion desde TS', this.recipesList);
+       /*  console.log('Datos recibidos en funcion desde TS', this.recipesList); */
         
       }, error=>{
-        console.log('Error obtenido en recipes en el TS', error);
-        
+      /*   console.log('Error obtenido en recipes en el TS', error);
+         */
       }
     )
 
@@ -43,7 +43,7 @@ export class GestionRecipeComponent {
 
   deleteRecipe(idRecipe:number){
       
-      console.log('Usuario a Eliminar:', idRecipe); 
+     /*  console.log('Usuario a Eliminar:', idRecipe);  */
   
       
       Swal.fire({
@@ -93,12 +93,12 @@ export class GestionRecipeComponent {
           if (idRecipe) {
             this.recipeService.deleteRecipe(idRecipe!).subscribe({
               next: (response)=>{
-                console.log("RECETA ELIM", response);
+                /* console.log("RECETA ELIM", response); */
                 
                 Swal.fire("Receta eliminada con exito", "","success")
                 this.getRecipes()
               }, error: (error)=>{
-                console.log('Error al editar receta', error)
+                /* console.log('Error al editar receta', error) */
                 Swal.fire('Error', 'No se pudo Eliminar la receta', 'error')
               }
             })
@@ -113,15 +113,15 @@ export class GestionRecipeComponent {
   editRecipe(){
     if (this.recipeAEditar) {
           
-          this.recipeService.updateRecipe(this.recipeAEditar.id_receta!/* asercion */, this.recipeAEditar).subscribe({
+          this.recipeService.updateRecipe(this.recipeAEditar.id_receta!, this.recipeAEditar).subscribe({
             next: (response) =>{
-              console.log('Comprobar Receta modificado correctamente', response);
+            /*   console.log('Comprobar Receta modificado correctamente', response); */
               this.getRecipes()     
               this.closeModal(this.recipeAEditar!)
               
             },
             error: (error) => {
-              console.log('Error al editar receta', error)
+               console.log('Error al editar receta', error) 
               Swal.fire('Error', 'No se pudo actualizar el receta', 'error')
             }
           })
@@ -139,7 +139,7 @@ export class GestionRecipeComponent {
         this.modalTitle="EDITANDO RECETA"
         this.modalContent=""
         this.recipeAEditar = recipe? { ...recipe} : null
-        console.log('Receta a editar:', this.recipeAEditar); 
+       /*  console.log('Receta a editar:', this.recipeAEditar); */ 
         
         
       }else if (content=== "crear") {

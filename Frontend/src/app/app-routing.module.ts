@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'create-account',
     component: CreateAccountComponent,
-    canActivate: [AuthGuard], // poner usuario rol solo para admin
+    canActivate: [AuthGuard], 
   },
   { path: 'usuario', component: UsuarioComponent,  canActivate: [AuthGuard] },
   {
@@ -54,7 +54,7 @@ const routes: Routes = [
   {
     path: 'search/:nombre',
     component: SearchComponent,
-    canActivate: [AuthGuard], //mirar bien , creo quitar
+    canActivate: [AuthGuard], 
   },
   {
     path: 'suggested-recipes/:id',

@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DeleteResponse, RegisterBasketPayload, RegisterResponse, Stockage, StockageView } from '../models/stockageView';
-import { log } from 'console';
-// Asegúrate de que la ruta sea correcta
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class StockageService {
-  private apiUrl = 'http://localhost:3000/api/stockage'; //poner la otra api conectandome a ingrdredientes
+  private apiUrl = 'http://localhost:3000/api/stockage'; 
   private api = 'http://localhost:3000/api/ingredients'; 
 
   constructor(private http: HttpClient) {}
@@ -23,7 +23,7 @@ export class StockageService {
     stockData: Partial<Stockage>
   ): Observable<Stockage> {
     const url = `${this.apiUrl}/updateStockage/${idIngrediente}`;
-    console.log('URL de PATCH para actualizar stock:', url);
+  /*   console.log('URL de PATCH para actualizar stock:', url); */
     return this.http.patch<Stockage>(url, stockData);
   }
 
@@ -33,14 +33,14 @@ export class StockageService {
   ): Observable<Stockage> {
     const url = `${this.apiUrl}/clearStockage/${idIngrediente}`;
 
-    console.log('URL de PATCH para resetar stock:', url);
+   /*  console.log('URL de PATCH para resetar stock:', url); */
 
     return this.http.patch<Stockage>(url, stockData);
   }
 
   registerBasket(data: RegisterBasketPayload): Observable<RegisterResponse> {
     const url = `${this.api}/registerBasket`;
-    console.log('URL de POST para registrar la compra:', url);
+   /*  console.log('URL de POST para registrar la compra:', url); */
     return this.http.post<RegisterResponse>(url, data);
   }
 

@@ -18,19 +18,19 @@ export class UserService {
             email: user.email,
             passwd: user.passwd
         };
-        console.log('Datos enviados al login:', loginData);
+    /*     console.log('Datos enviados al login:', loginData);
         console.log('¿Email está vacío?', !loginData.email);
-        console.log('¿Passwd está vacío?', !loginData.passwd); 
+        console.log('¿Passwd está vacío?', !loginData.passwd);  */
         
         return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginData).pipe(
             tap((response) => {
-                console.log('Respuesta completa', response);
+                /* console.log('Respuesta completa', response); */
                 localStorage.setItem('UserLogin', response.id_rol.toString())
                 
             }),
             catchError(error => {
-                console.log('Error completo:', error);
-                console.log('Mensaje del backend:', error.error);
+                /* console.log('Error completo:', error);
+                console.log('Mensaje del backend:', error.error); */
                 throw error;
             })
         ); 
@@ -57,9 +57,9 @@ export class UserService {
     }
 
     UpdateUserById(userId : number,user: User):Observable<User>{
-        //BUSCANDO EL FALLO       
+             
         const url = `${this.apiUrl}/update/${userId}`;
-        console.log('URL DE PATCH EDIT USER? que esta actuando',url);
+        /* console.log('URL DE PATCH EDIT USER? que esta actuando',url); */
  
         return this.http.patch<User>(`${this.apiUrl}/update/${userId}`, user)
     }

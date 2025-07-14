@@ -34,6 +34,13 @@ import { UnidadMedidaPipe } from './pipes/unidad-medida.pipe';
 import { LegalComponent } from './shared/legal/legal.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { MetricsComponent } from './shared/metrics/metrics.component';
+import { MetricStockComponent } from './components/metrics/metric-stock/metric-stock.component';
+import { MetricCaducidadComponent } from './components/metrics/metric-caducidad/metric-caducidad.component';
+import { MetricRecetasComponent } from './components/metrics/metric-recetas/metric-recetas.component';
+import { MetricEstacionesComponent } from './components/metrics/metric-estaciones/metric-estaciones.component';
+import { MetricCategoriasComponent } from './components/metrics/metric-categorias/metric-categorias.component';
+import { MetricOcupacionComponent } from './components/metrics/metric-ocupacion/metric-ocupacion.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +67,14 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
     GestionRecipeComponent,
     UnidadMedidaPipe,
     LegalComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    MetricsComponent,
+    MetricStockComponent,
+    MetricCaducidadComponent,
+    MetricRecetasComponent,
+    MetricEstacionesComponent,
+    MetricCategoriasComponent,
+    MetricOcupacionComponent
   ],
   imports: [
     BrowserModule, 

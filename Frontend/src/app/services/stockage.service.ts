@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DeleteResponse, RegisterBasketPayload, RegisterResponse, Stockage, StockageView } from '../models/stockageView';
+import { DeleteResponse, RegisterBasketPayload, RegisterResponse, Stockage, StockagePorcentajes, StockageView } from '../models/stockageView';
 
 
 
@@ -56,4 +56,8 @@ export class StockageService {
       `${this.apiUrl}/deleteIngredientById/${id}`
     );
   }
+
+ getStockagePorcentajes(): Observable<StockagePorcentajes> {
+  return this.http.get<StockagePorcentajes>(`${this.apiUrl}/porcentajes`);
+}
 }

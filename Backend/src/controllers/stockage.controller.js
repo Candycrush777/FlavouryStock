@@ -197,3 +197,31 @@ exports.updateStockage = (req, res) => {
     );
   });
 };
+
+exports.obtenerStockagePorcentajes = (req, res) => {
+  const sql = `
+    SELECT 
+      SUM(cantidad_almacen) AS total_almacen,
+      SUM(cantidad_nevera) AS total_nevera,
+      SUM(cantidad_congelador) AS total_congelador,
+      (SUM(cantidad_almacen) + SUM(cantidad_nevera) + SUM(cantidad_congelador)) AS total_general,
+      ROUND((SUM(cantidad_almacen) / NULLIF((SUM(cantidad_almacen) + SUM(cantidad_nevera) + SUM(cantidad_congelador)), 0)) * 100, 2) AS porcentaje_almacen,
+      ROUND((SUM(cantidad_nevera) / NULLIF((SUM(cantidad_almacen) + SUM(cantidad_nevera) + SUM(cantidad_congelador)), 0)) * 100, 2) AS porcentaje_nevera,
+      ROUND((SUM(cantidad_congelador) / NULLIF((SUM(cantidad_almacen) + SUM(cantidad_nevera) + SUM(cantidad_congelador)), 0)) * 100, 2) AS porcentaje_congelador
+    FROM vista_stockage;
+  `;
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    
+    if (result.length === 0) {
+      return res.status(404).json({ error: "No hay datos de stock disponibles" });
+    }
+
+    // Devuelve un solo objeto con los totales y porcentajes
+    res.status(200).json(result[0]);
+  });
+};
+

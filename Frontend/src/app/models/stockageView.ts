@@ -36,3 +36,13 @@ export interface RegisterBasketPayload {
   cantidad_congelador: number;
   id_usuario: number;
 }
+
+export interface StockagePorcentajes {
+  total_almacen: string;
+  total_nevera: string;
+  total_congelador: string;
+  total_general: string;
+  porcentaje_almacen: string;
+  porcentaje_nevera: string;
+  porcentaje_congelador: string;
+}

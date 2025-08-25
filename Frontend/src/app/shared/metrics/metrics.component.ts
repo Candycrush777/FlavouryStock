@@ -8,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class MetricsComponent {
 
+
+selectedMetric: string = '';
+
+
+selectMetric(metric: string){
+
+  this.selectedMetric = metric;
+}
+
+
+
 }

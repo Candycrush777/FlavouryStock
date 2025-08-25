@@ -20,6 +20,7 @@ import { GestionRecipeComponent } from './shared/gestion-recipe/gestion-recipe.c
 import { LegalComponent } from './shared/legal/legal.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
+import { MetricsComponent } from './shared/metrics/metrics.component';
 
 const routes: Routes = [
   // públicas
@@ -33,9 +34,9 @@ const routes: Routes = [
   {
     path: 'create-account',
     component: CreateAccountComponent,
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
-  { path: 'usuario', component: UsuarioComponent,  canActivate: [AuthGuard] },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
   {
     path: 'listado-stock',
     component: ListadoStockComponent,
@@ -54,12 +55,16 @@ const routes: Routes = [
   {
     path: 'search/:nombre',
     component: SearchComponent,
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
   {
     path: 'suggested-recipes/:id',
     component: SuggestedRecipesComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'metrics',
+    component: MetricsComponent,
   },
 
   // solo admin (si no, /unauthorized)
@@ -67,7 +72,7 @@ const routes: Routes = [
     path: 'inicio-admin',
     component: InicioAdminComponent,
     canActivate: [AuthGuard],
-    data: { roles: [1] }, 
+    data: { roles: [1] },
   },
   {
     path: 'gestion-user',
@@ -89,10 +94,10 @@ const routes: Routes = [
   { path: '**', component: NotFoundComponent },
 ];
 
- const routerConfig: ExtraOptions = {
+const routerConfig: ExtraOptions = {
   initialNavigation: 'enabledBlocking',
-  scrollPositionRestoration: 'top', 
-}; 
+  scrollPositionRestoration: 'top',
+};
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {

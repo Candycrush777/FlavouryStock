@@ -41,6 +41,8 @@ import { MetricRecetasComponent } from './components/metrics/metric-recetas/metr
 import { MetricEstacionesComponent } from './components/metrics/metric-estaciones/metric-estaciones.component';
 import { MetricCategoriasComponent } from './components/metrics/metric-categorias/metric-categorias.component';
 import { MetricOcupacionComponent } from './components/metrics/metric-ocupacion/metric-ocupacion.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { MetricOcupacionComponent } from './components/metrics/metric-ocupacion/
     BrowserModule, 
     AppRoutingModule,
       FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
+    
   ],
   exports:[
     SlideRecipesComponent

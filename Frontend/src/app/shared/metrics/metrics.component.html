@@ -13,6 +13,14 @@
   <button type="button" class="btn btn-outline-dark flex-fill" (click)="selectMetric('ocupacion')">📊 Ocupación</button>
 </div>
 
+<ng-container [ngSwitch]="selectedMetric">
+  <app-metric-stock *ngSwitchCase="'stock'"></app-metric-stock>
+  <app-metric-caducidad *ngSwitchCase="'caducidad'"></app-metric-caducidad>
+  <app-metric-recetas *ngSwitchCase="'recetas'"></app-metric-recetas>
+  <app-metric-estaciones *ngSwitchCase="'estaciones'"></app-metric-estaciones>
+  <app-metric-categorias *ngSwitchCase="'categorias'"></app-metric-categorias>
+  <app-metric-ocupacion *ngSwitchCase="'ocupacion'"></app-metric-ocupacion>
+</ng-container>
 
 
 

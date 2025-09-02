@@ -18,3 +18,9 @@ export interface Etiqueta {
     unidad_medida: string,
     lugar_almacen: string
 }
+
+export interface CaducidadPorcentajes {
+  caducado: number;
+  caducaPronto: number;
+  vigente: number;
+}

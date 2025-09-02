@@ -42,7 +42,7 @@ export interface StockagePorcentajes {
   total_nevera: string;
   total_congelador: string;
   total_general: string;
-  porcentaje_almacen: string;
-  porcentaje_nevera: string;
-  porcentaje_congelador: string;
+  porcentaje_almacen: number;
+  porcentaje_nevera: number;
+  porcentaje_congelador: number;
 }

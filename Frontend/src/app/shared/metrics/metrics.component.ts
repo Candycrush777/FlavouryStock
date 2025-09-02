@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class MetricsComponent {
 
 
-selectedMetric: string = '';
+selectedMetric: string = 'stock';
 
 
 selectMetric(metric: string){

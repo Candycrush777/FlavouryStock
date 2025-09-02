@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Etiqueta } from '../models/etiqueta';
+import { CaducidadPorcentajes, Etiqueta } from '../models/etiqueta';
 import { Observable, map } from 'rxjs';
 import { EtiquetaResponse } from './../models/etiqueta';
 
@@ -68,5 +68,9 @@ export class EtiquetaService {
     return this.http.get<Etiqueta[]>(`${this.api}/buscarEtiquetas`, {
       params: { busqueda: busqueda },
     });
+  }
+
+  getCaducidadesPorcentajes():Observable<CaducidadPorcentajes>{
+    return this.http.get<CaducidadPorcentajes>(`${this.api}/porcentajes`)
   }
 }

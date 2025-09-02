@@ -11,5 +11,7 @@ router.get("/getCaducado", etiquetaController.getCaducado)
 router.get("/getPosibleRecipe",etiquetaController.getRecetasPosibles)
 router.get("/getPosibleRecipeId/:id",etiquetaController.getRecetasPosiblesIdIng)
 router.get("/buscarEtiquetas",etiquetaController.buscarEtiquetas)
+router.get("/porcentajes", etiquetaController.obtenerCaducidadesPorcentajes);
+
 
 module.exports = router

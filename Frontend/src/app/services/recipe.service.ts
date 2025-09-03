@@ -1,7 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Recipe, RecipeResponse, RecipeViewDetail, RecipeArray } from '../models/recipes';
+import {
+  Recipe,
+  RecipeResponse,
+  RecipeViewDetail,
+  RecipeArray,
+  RecipeCategoriaPorcentaje,
+} from '../models/recipes';
 
 @Injectable({
   providedIn: 'root',
@@ -36,29 +42,28 @@ export class RecipeService {
 
   //POST
   registerRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post<Recipe>(`${this.api}/registerRecipe`, recipe)
+    return this.http.post<Recipe>(`${this.api}/registerRecipe`, recipe);
   }
 
   searchRecipe(nombre: string): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.api}/search?nombre=${nombre}`)
+    return this.http.get<Recipe[]>(`${this.api}/search?nombre=${nombre}`);
   }
-
 
   //GET
 
   getRecipeById(id: number): Observable<RecipeViewDetail> {
-    return this.http.get<RecipeViewDetail>(
-      `${this.api}/getRecipeById/${id}`
-    );
+    return this.http.get<RecipeViewDetail>(`${this.api}/getRecipeById/${id}`);
   }
 
-  getRecipeByIdIngrediente(id:number):Observable<Recipe[]>{
-    return this.http.get<RecipeArray>(`${this.api}/getRecipesByIdIngredient/${id}`).pipe(
-      map((res)=>{
-       /*  console.log("Respuesta de la Api: en recipeByIngred", res) */
-        return res.result
-      })
-    )
+  getRecipeByIdIngrediente(id: number): Observable<Recipe[]> {
+    return this.http
+      .get<RecipeArray>(`${this.api}/getRecipesByIdIngredient/${id}`)
+      .pipe(
+        map((res) => {
+          /*  console.log("Respuesta de la Api: en recipeByIngred", res) */
+          return res.result;
+        })
+      );
   }
   //PATCH
 
@@ -72,5 +77,7 @@ export class RecipeService {
     return this.http.delete<Recipe>(`${this.api}/deleteRecipe/${id}`);
   }
 
-
+  getRecipePorcentajes(): Observable<RecipeCategoriaPorcentaje[]> {
+    return this.http.get<RecipeCategoriaPorcentaje[]>(`${this.api}/porcentajes`);
+  }
 }

@@ -10,6 +10,7 @@ router.get('/getRecipeById/:id', recipeController.getRecipeById);
 router.get('/getRecipesByIdIngredient/:id', recipeController.getRecipesByIdIngredient);
 router.patch('/updateRecipe/:id', recipeController.updateRecipe); 
 router.delete('/deleteRecipe/:id', recipeController.deleteRecipe);
-router.get('/search', recipeController.searchRecipeName)
+router.get('/search', recipeController.searchRecipeName);
+router.get('/porcentajes',recipeController.obtenerCategoriaPorcentajes);
 
 module.exports = router;

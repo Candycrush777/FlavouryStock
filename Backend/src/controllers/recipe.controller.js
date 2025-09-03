@@ -205,6 +205,23 @@ exports.getAllRecipesList = (req, res) => {
     });
   });
 }
+
+exports.obtenerCategoriaPorcentajes =(req,res)=>{
+
+const sql= `
+SELECT 
+categoria,
+COUNT(*) AS total_categoria,
+ROUND((COUNT(*)/ (SELECT COUNT(*) FROM recetas)) * 100,2)AS porcentaje
+FROM recetas
+GROUP BY categoria`;
+
+db.query(sql,(err,result)=>{
+  if (err) return res.status(500).json({error:err.message});
+  res.status(200).json(result);
+})
+
+}
   
 
 

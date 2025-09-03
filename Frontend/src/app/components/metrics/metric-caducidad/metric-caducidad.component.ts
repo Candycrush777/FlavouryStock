@@ -48,7 +48,7 @@ export class MetricCaducidadComponent implements OnInit {
       .getCaducidadesPorcentajes()
       .subscribe((data: CaducidadPorcentajes) => {
         this.doughnutChartData = {
-          labels: ['Caducado', 'Caduca Pronto', 'Vigente'],
+          labels: ['Vigente', 'Caduca Pronto','Caducado'],
           datasets: [
             {
               data: [
@@ -56,7 +56,7 @@ export class MetricCaducidadComponent implements OnInit {
                 Number(data.caducaPronto),
                 Number(data.vigente),
               ],
-              backgroundColor: ['#42A5F5', '#66BB6A', '#FFA726']
+              backgroundColor: ['#4CAF50', '#FFEB3B', '#F44336']
             },
           ],
         };

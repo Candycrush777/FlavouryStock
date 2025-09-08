@@ -206,53 +206,87 @@ exports.getAllRecipesList = (req, res) => {
   });
 }
 
-exports.obtenerCategoriaPorcentajes =(req,res)=>{
+// Función que hace la consulta y devuelve una promesa
+async function obtenerCategoriaPorcentajes(db) {
+  return new Promise((resolve, reject) => {
+    const sql = `
+      SELECT 
+        categoria,
+        COUNT(*) AS total_categoria,
+        ROUND((COUNT(*) / (SELECT COUNT(*) FROM recetas)) * 100, 2) AS porcentaje
+      FROM recetas
+      GROUP BY categoria
+    `;
 
-const sql= `
-SELECT 
-categoria,
-COUNT(*) AS total_categoria,
-ROUND((COUNT(*)/ (SELECT COUNT(*) FROM recetas)) * 100,2)AS porcentaje
-FROM recetas
-GROUP BY categoria`;
-
-db.query(sql,(err,result)=>{
-  if (err) return res.status(500).json({error:err.message});
-  res.status(200).json(result);
-})
-
-}
-
-exports.obtenerEstacionPorcentajes = (req, res) => {
-  const sql = `
-    SELECT 
-      CASE 
-        WHEN estacion IS NULL THEN 'Todo el año'
-        ELSE estacion
-      END AS estacion,
-      COUNT(*) AS total_estacion,
-      ROUND((COUNT(*) / (SELECT COUNT(*) FROM recetas)) * 100, 2) AS porcentaje
-    FROM recetas
-    GROUP BY 
-      CASE 
-        WHEN estacion IS NULL THEN 'Todo el año'
-        ELSE estacion
-      END
-    ORDER BY 
-      CASE 
-        WHEN estacion = 'primavera' THEN 1
-        WHEN estacion = 'verano' THEN 2
-        WHEN estacion = 'otoño' THEN 3
-        WHEN estacion = 'invierno' THEN 4
-        WHEN estacion IS NULL THEN 5
-        ELSE 6
-      END`;
-
-  db.query(sql, (err, result) => {
-    if (err) return res.status(500).json({error: err.message});
-    res.status(200).json(result);
+    db.query(sql, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
   });
 }
+
+// Función que se exporta como endpoint
+exports.obtenerCategoriaPorcentajes = async (req, res) => {
+  try {
+    const result = await obtenerCategoriaPorcentajes(db); // llamamos a la función async
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+// Función que hace la consulta y devuelve una promesa
+async function obtenerEstacionPorcentajes(db) {
+  return new Promise((resolve, reject) => {
+    const sql = `
+      SELECT 
+        CASE 
+          WHEN estacion IS NULL THEN 'Todo el año'
+          ELSE estacion
+        END AS estacion,
+        COUNT(*) AS total_estacion,
+        ROUND((COUNT(*) / (SELECT COUNT(*) FROM recetas)) * 100, 2) AS porcentaje
+      FROM recetas
+      GROUP BY 
+        CASE 
+          WHEN estacion IS NULL THEN 'Todo el año'
+          ELSE estacion
+        END
+      ORDER BY 
+        CASE 
+          WHEN estacion = 'primavera' THEN 1
+          WHEN estacion = 'verano' THEN 2
+          WHEN estacion = 'otoño' THEN 3
+          WHEN estacion = 'invierno' THEN 4
+          WHEN estacion IS NULL THEN 5
+          ELSE 6
+        END
+    `;
+
+    db.query(sql, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
+
+// Función que se exporta como endpoint
+exports.obtenerEstacionPorcentajes = async (req, res) => {
+  try {
+    const result = await obtenerEstacionPorcentajes(db); // llamamos a la función async
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
   
 
 

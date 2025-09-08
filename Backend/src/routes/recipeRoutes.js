@@ -12,5 +12,6 @@ router.patch('/updateRecipe/:id', recipeController.updateRecipe);
 router.delete('/deleteRecipe/:id', recipeController.deleteRecipe);
 router.get('/search', recipeController.searchRecipeName);
 router.get('/porcentajes',recipeController.obtenerCategoriaPorcentajes);
+router.get('/porcentajesEstacion',recipeController.obtenerEstacionPorcentajes);
 
 module.exports = router;

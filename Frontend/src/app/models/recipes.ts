@@ -32,7 +32,13 @@ export interface RecipeArray {
 }
 
 export interface RecipeCategoriaPorcentaje {
-    categoria: string;
-    total_categoria:number;
-    porcentaje:number;
+  categoria: string;
+  total_categoria: number;
+  porcentaje: string;
+}
+
+export interface RecipeEstacionPorcentaje {
+  estacion: string;
+  total_estacion: number;
+  porcentaje: string;
 }

@@ -56,7 +56,7 @@ ngOnInit(): void {
     // Crear un mapa para acceso fácil por categoría
     const categoriaMap = new Map<string, number>();
     data.forEach(item => {
-      categoriaMap.set(item.categoria.toLowerCase(), item.porcentaje);
+      categoriaMap.set(item.categoria.toLowerCase(), Number(item.porcentaje));
     });
 
     this.doughnutChartData = {

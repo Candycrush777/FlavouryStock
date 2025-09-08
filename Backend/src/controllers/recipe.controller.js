@@ -222,6 +222,37 @@ db.query(sql,(err,result)=>{
 })
 
 }
+
+exports.obtenerEstacionPorcentajes = (req, res) => {
+  const sql = `
+    SELECT 
+      CASE 
+        WHEN estacion IS NULL THEN 'Todo el año'
+        ELSE estacion
+      END AS estacion,
+      COUNT(*) AS total_estacion,
+      ROUND((COUNT(*) / (SELECT COUNT(*) FROM recetas)) * 100, 2) AS porcentaje
+    FROM recetas
+    GROUP BY 
+      CASE 
+        WHEN estacion IS NULL THEN 'Todo el año'
+        ELSE estacion
+      END
+    ORDER BY 
+      CASE 
+        WHEN estacion = 'primavera' THEN 1
+        WHEN estacion = 'verano' THEN 2
+        WHEN estacion = 'otoño' THEN 3
+        WHEN estacion = 'invierno' THEN 4
+        WHEN estacion IS NULL THEN 5
+        ELSE 6
+      END`;
+
+  db.query(sql, (err, result) => {
+    if (err) return res.status(500).json({error: err.message});
+    res.status(200).json(result);
+  });
+}
   
 
 

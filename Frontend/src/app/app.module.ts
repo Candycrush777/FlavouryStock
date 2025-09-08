@@ -4,7 +4,12 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS,  provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,10 +44,9 @@ import { MetricStockComponent } from './components/metrics/metric-stock/metric-s
 import { MetricCaducidadComponent } from './components/metrics/metric-caducidad/metric-caducidad.component';
 import { MetricRecetasComponent } from './components/metrics/metric-recetas/metric-recetas.component';
 import { MetricEstacionesComponent } from './components/metrics/metric-estaciones/metric-estaciones.component';
-import { MetricCategoriasComponent } from './components/metrics/metric-categorias/metric-categorias.component';
+
 import { MetricOcupacionComponent } from './components/metrics/metric-ocupacion/metric-ocupacion.component';
 import { NgChartsModule } from 'ng2-charts';
-
 
 @NgModule({
   declarations: [
@@ -75,32 +79,28 @@ import { NgChartsModule } from 'ng2-charts';
     MetricCaducidadComponent,
     MetricRecetasComponent,
     MetricEstacionesComponent,
-    MetricCategoriasComponent,
-    MetricOcupacionComponent
+    MetricOcupacionComponent,
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     AppRoutingModule,
-      FormsModule,
+    FormsModule,
     ReactiveFormsModule,
-    NgChartsModule
-    
+    NgChartsModule,
   ],
-  exports:[
-    SlideRecipesComponent
-  ],
- providers: [
+  exports: [SlideRecipesComponent],
+  providers: [
     provideClientHydration(withEventReplay()),
     provideHttpClient(
-      withFetch(),               // habilita el uso de fetch API (mejor para SSR) 
-      withInterceptorsFromDi() ,
-       // registra los interceptores desde DI (en el AuthInterceptor)
+      withFetch(), // habilita el uso de fetch API (mejor para SSR)
+      withInterceptorsFromDi()
+      // registra los interceptores desde DI (en el AuthInterceptor)
     ),
-      { 
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true 
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

@@ -9,7 +9,6 @@
   <button type="button" class="btn btn-outline-success flex-fill" (click)="selectMetric('caducidad')">⏳ Caducidad</button>
   <button type="button" class="btn btn-outline-warning flex-fill" (click)="selectMetric('recetas')">📋 Recetas</button>
   <button type="button" class="btn btn-outline-info flex-fill" (click)="selectMetric('estaciones')">🌱 Estaciones</button>
-  <button type="button" class="btn btn-outline-secondary flex-fill" (click)="selectMetric('categorias')">🏷️ Categorías</button>
   <button type="button" class="btn btn-outline-dark flex-fill" (click)="selectMetric('ocupacion')">📊 Ocupación</button>
 </div>
 
@@ -18,11 +17,8 @@
   <app-metric-caducidad *ngSwitchCase="'caducidad'"></app-metric-caducidad>
   <app-metric-recetas *ngSwitchCase="'recetas'"></app-metric-recetas>
   <app-metric-estaciones *ngSwitchCase="'estaciones'"></app-metric-estaciones>
-  <app-metric-categorias *ngSwitchCase="'categorias'"></app-metric-categorias>
   <app-metric-ocupacion *ngSwitchCase="'ocupacion'"></app-metric-ocupacion>
 </ng-container>
-
-
 
 
 

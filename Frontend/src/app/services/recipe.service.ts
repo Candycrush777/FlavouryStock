@@ -7,6 +7,7 @@ import {
   RecipeViewDetail,
   RecipeArray,
   RecipeCategoriaPorcentaje,
+  RecipeEstacionPorcentaje,
 } from '../models/recipes';
 
 @Injectable({
@@ -79,5 +80,10 @@ export class RecipeService {
 
   getRecipePorcentajes(): Observable<RecipeCategoriaPorcentaje[]> {
     return this.http.get<RecipeCategoriaPorcentaje[]>(`${this.api}/porcentajes`);
+  }
+
+  getEstacionesPorcentaje():Observable<RecipeEstacionPorcentaje[]>{
+
+    return this.http.get<RecipeEstacionPorcentaje[]>(`${this.api}/porcentajesEstacion`)
   }
 }

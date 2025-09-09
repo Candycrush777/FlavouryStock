@@ -37,6 +37,7 @@ export interface RegisterBasketPayload {
   id_usuario: number;
 }
 
+
 export interface StockagePorcentajes {
   total_almacen: string;
   total_nevera: string;

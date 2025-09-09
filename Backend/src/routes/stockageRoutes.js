@@ -3,12 +3,12 @@ const router = express.Router();
 
 const stockageController = require("../controllers/stockage.controller");
 
-router.get("/getAllStockage", stockageController.getAllStockage);//bien
-router.get("/buscarStockage", stockageController.buscarStockage); //bien
-router.get("/getStockageById/:id", stockageController.getStockageById);//bien
-router.get("/getStockageById/:id", stockageController.getStockageById);//bien
-router.patch("/updateStockage/:id", stockageController.updateStockage);//bien
-router.delete("/deleteIngredientById/:id", stockageController.deleteIngredientById);//bien
+router.get("/getAllStockage", stockageController.getAllStockage);
+router.get("/buscarStockage", stockageController.buscarStockage); 
+router.get("/getStockageById/:id", stockageController.getStockageById);
+router.get("/getStockageById/:id", stockageController.getStockageById);
+router.patch("/updateStockage/:id", stockageController.updateStockage);
+router.delete("/deleteIngredientById/:id", stockageController.deleteIngredientById);
 router.get("/porcentajes", stockageController.obtenerStockagePorcentajes);
 
 module.exports = router;

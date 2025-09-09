@@ -158,15 +158,15 @@ exports.buscarEtiquetas = (req, res) => {
     });
   };
 
-  exports.obtenerCaducidadesPorcentajes = (req, res) => {
+exports.obtenerCaducidadesPorcentajes = (req, res) => {
   const sql = `
     SELECT 
       SUM(CASE WHEN fecha_caducidad < CURDATE() THEN 1 ELSE 0 END) AS caducado,
-      SUM(CASE WHEN fecha_caducidad BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY) THEN 1 ELSE 0 END) AS caducaPronto,
-      SUM(CASE WHEN fecha_caducidad > DATE_ADD(CURDATE(), INTERVAL 7 DAY) THEN 1 ELSE 0 END) AS vigente
+      SUM(CASE WHEN fecha_caducidad BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY) THEN 1 ELSE 0 END) AS caducaPronto,
+      SUM(CASE WHEN fecha_caducidad > DATE_ADD(CURDATE(), INTERVAL 30 DAY) THEN 1 ELSE 0 END) AS vigente
     FROM etiquetas;
   `;
-
+  
   db.query(sql, (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
     res.status(200).json(result[0]);
